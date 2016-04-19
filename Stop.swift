@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import SWXMLHash
 
 struct Stop {
     var stop_id: Int?
@@ -29,7 +30,23 @@ struct Stop {
     var location: CLLocation
 
 //    <location latitude="41.768367" longitude="-87.625724" needs_recoding="false"/>
-    func initFromXML() {
+    init(xmlData: XMLIndexer) {
+        stop_id = 123
+        direction = "asdf"
+        stop_name = "asdf"
+        station_name = "asdf"
+        map_id = 1
+        ada = false
 
+        red = false
+        blue = false
+        green = false
+        brown = false
+        purple = false
+        purple_exp = false
+        yellow = false
+        pink = false
+        orange = false
+        location = CLLocation()
     }
 }

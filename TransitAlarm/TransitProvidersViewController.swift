@@ -11,14 +11,13 @@ import UIKit
 class TransitProvidersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-
     var transitProviders = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        transitProviders = ["CTA Train"]
+        transitProviders = ["CTA Train"] // enum?
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,7 +25,7 @@ class TransitProvidersViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let reuseID = "cellID"
+        let reuseID = "transitProviderCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
         cell.textLabel!.text = self.transitProviders[indexPath.row]
         return cell
