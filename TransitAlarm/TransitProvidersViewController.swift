@@ -38,8 +38,6 @@ class TransitProvidersViewController: UIViewController, UITableViewDelegate, UIT
             let indexPath = self.tableView.indexPathForCell(cell)
             destinationVC.transitProvider = self.transitProviders[indexPath!.row]
         } else {
-
-
         }
     }
 }
