@@ -20,6 +20,7 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
 
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
+    var didCenterMap = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,6 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         self.stopNameLabel.text = stop?.stop_name
         self.title = stop?.stop_name
 
-        centerMap()
         dropStopPin()
         dropUserLocationPin()
     }
@@ -53,7 +53,7 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             return pin
         } else {
             let pin = MKAnnotationView()
-            pin.image = UIImage.init(named: "bikeImage")
+            pin.image = UIImage.init(named: "MapIcon")
             pin.canShowCallout = true
             pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             return pin
@@ -64,6 +64,11 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.first!
         self.updateDistance()
+
+        if !self.didCenterMap {
+            centerMap()
+            self.didCenterMap  = !self.didCenterMap
+        }
     }
 
     // MARK: private methods
@@ -76,8 +81,17 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
 
     private func centerMap() {
-        let stopLocation = getStopCoordinate2D()
-        self.mapView.setRegion(MKCoordinateRegionMake(stopLocation, MKCoordinateSpanMake(0.05, 0.05)), animated: true)
+        let latitudeDistance = abs(self.stop!.location.coordinate.latitude - self.currentLocation.coordinate.latitude).degreesToMeters()
+        let longitudeDistance = abs(self.stop!.location.coordinate.longitude - self.currentLocation.coordinate.longitude).degreesToMeters()
+
+
+        let averageLatitude = (self.stop!.location.coordinate.latitude + self.currentLocation.coordinate.latitude) / 2
+        let averageLongitude = (self.stop!.location.coordinate.longitude + self.currentLocation.coordinate.longitude) / 2
+
+        let averageLocation = CLLocationCoordinate2D(latitude: averageLatitude, longitude: averageLongitude)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(averageLocation, latitudeDistance * 1.1, longitudeDistance * 1.1)
+
+        self.mapView.setRegion(coordinateRegion, animated: false)
     }
 
     private func getStopCoordinate2D() -> CLLocationCoordinate2D {
