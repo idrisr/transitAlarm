@@ -186,7 +186,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="jrj-HG-bjK" id="4tR-PR-R4D"/>
                         <outlet property="passwordTextField" destination="YcB-BW-oXU" id="jQS-AB-flw"/>
-                        <segue destination="Yqq-mX-gZ2" kind="presentation" identifier="LoginSegue" id="NMM-jD-IhJ"/>
+                        <segue destination="Yqq-mX-gZ2" kind="presentation" identifier="LoginSegue" id="xm0-PK-daD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CAZ-JE-Eh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
