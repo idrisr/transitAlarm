@@ -6,5 +6,8 @@ target 'TransitAlarm' do
 pod 'SWXMLHash'
 pod 'Alamofire'
 pod 'Firebase', '>= 2.5.1'
+pod 'FBSDKCoreKit'
+pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
 
 end
