@@ -19,6 +19,11 @@ extension Double {
     func metersToFeet() -> Double {
         return self * 3.28084
     }
+
+    func degreesToMeters() -> Double {
+        // https://en.wikipedia.org/wiki/Decimal_degrees#precision
+        return self * 111.32 * 1000
+    }
 }
 
 class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
