@@ -81,66 +81,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCw-54-iO6">
-                                <rect key="frame" x="71" y="82" width="45" height="21"/>
-                                <string key="text" base64-UTF8="YES">
-U3RvcDogGw
-</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWc-kk-Iwb">
-                                <rect key="frame" x="132" y="82" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmP-WZ-rda">
-                                <rect key="frame" x="44" y="166" width="72" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uME-p1-oBY">
-                                <rect key="frame" x="132" y="166" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uh-Ov-fJh">
-                                <rect key="frame" x="44" y="206" width="72" height="21"/>
+                                <rect key="frame" x="20" y="93" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpU-HK-AIp">
-                                <rect key="frame" x="132" y="206" width="42" height="21"/>
+                                <rect key="frame" x="20" y="122" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWc-kk-Iwb">
+                                <rect key="frame" x="20" y="64" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="23e-Ae-4vr">
+                                <rect key="frame" x="20" y="151" width="560" height="449"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yCw-54-iO6" firstAttribute="leading" secondItem="rtg-Av-H7y" secondAttribute="leadingMargin" constant="51" id="2He-Iy-dvd"/>
-                            <constraint firstItem="BmP-WZ-rda" firstAttribute="top" secondItem="yCw-54-iO6" secondAttribute="bottom" constant="63" id="35E-MF-BwR"/>
-                            <constraint firstItem="yCw-54-iO6" firstAttribute="top" secondItem="qSi-T7-36b" secondAttribute="bottom" constant="18" id="9xm-Ga-Gen"/>
-                            <constraint firstItem="GWc-kk-Iwb" firstAttribute="leading" secondItem="yCw-54-iO6" secondAttribute="trailing" constant="16" id="KFi-TM-rmC"/>
-                            <constraint firstItem="uME-p1-oBY" firstAttribute="bottom" secondItem="BmP-WZ-rda" secondAttribute="bottom" id="OF8-QS-gSt"/>
-                            <constraint firstItem="2Uh-Ov-fJh" firstAttribute="bottom" secondItem="RpU-HK-AIp" secondAttribute="bottom" id="XgH-t4-Xdh"/>
-                            <constraint firstItem="2Uh-Ov-fJh" firstAttribute="leading" secondItem="BmP-WZ-rda" secondAttribute="leading" id="XsQ-b3-l18"/>
-                            <constraint firstItem="2Uh-Ov-fJh" firstAttribute="top" secondItem="BmP-WZ-rda" secondAttribute="bottom" constant="19" id="Ycm-yN-hDz"/>
-                            <constraint firstItem="RpU-HK-AIp" firstAttribute="bottom" secondItem="2Uh-Ov-fJh" secondAttribute="bottom" id="d1a-4U-kEL"/>
-                            <constraint firstItem="uME-p1-oBY" firstAttribute="leading" secondItem="GWc-kk-Iwb" secondAttribute="leading" id="pyn-DO-xwT"/>
-                            <constraint firstItem="GWc-kk-Iwb" firstAttribute="bottom" secondItem="yCw-54-iO6" secondAttribute="bottom" id="qsQ-Lb-e4J"/>
-                            <constraint firstItem="RpU-HK-AIp" firstAttribute="leading" secondItem="2Uh-Ov-fJh" secondAttribute="trailing" constant="16" id="vx0-Yn-pPm"/>
-                            <constraint firstItem="BmP-WZ-rda" firstAttribute="trailing" secondItem="yCw-54-iO6" secondAttribute="trailing" id="xMU-jY-SLT"/>
+                            <constraint firstItem="23e-Ae-4vr" firstAttribute="top" secondItem="RpU-HK-AIp" secondAttribute="bottom" constant="8" symbolic="YES" id="6Xr-cN-wbL"/>
+                            <constraint firstItem="23e-Ae-4vr" firstAttribute="leading" secondItem="rtg-Av-H7y" secondAttribute="leadingMargin" id="9g0-yQ-38b"/>
+                            <constraint firstItem="uME-p1-oBY" firstAttribute="leading" secondItem="GWc-kk-Iwb" secondAttribute="leading" id="GEQ-mP-kkp"/>
+                            <constraint firstItem="GWc-kk-Iwb" firstAttribute="top" secondItem="qSi-T7-36b" secondAttribute="bottom" id="NWZ-dc-sYd"/>
+                            <constraint firstItem="RpU-HK-AIp" firstAttribute="top" secondItem="uME-p1-oBY" secondAttribute="bottom" constant="8" symbolic="YES" id="QXc-pe-E0C"/>
+                            <constraint firstItem="ZI9-sH-UTN" firstAttribute="top" secondItem="23e-Ae-4vr" secondAttribute="bottom" id="RC6-w9-MFB"/>
+                            <constraint firstItem="RpU-HK-AIp" firstAttribute="leading" secondItem="GWc-kk-Iwb" secondAttribute="leading" id="WUQ-zL-esq"/>
+                            <constraint firstItem="GWc-kk-Iwb" firstAttribute="leading" secondItem="rtg-Av-H7y" secondAttribute="leadingMargin" id="glA-d2-fWB"/>
+                            <constraint firstItem="uME-p1-oBY" firstAttribute="top" secondItem="GWc-kk-Iwb" secondAttribute="bottom" constant="8" symbolic="YES" id="pEf-aN-s2L"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="23e-Ae-4vr" secondAttribute="trailing" id="qg9-CP-Hoh"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="distanceLabelFeet" destination="uME-p1-oBY" id="129-rg-aCv"/>
                         <outlet property="distanceLabelMiles" destination="RpU-HK-AIp" id="FMY-yg-a0X"/>
+                        <outlet property="mapView" destination="23e-Ae-4vr" id="dyo-sX-AJJ"/>
                         <outlet property="stopNameLabel" destination="GWc-kk-Iwb" id="FXr-8J-zQ7"/>
                     </connections>
                 </viewController>
