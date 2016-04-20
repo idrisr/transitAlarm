@@ -24,15 +24,14 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.showsUserLocation = true
         locationManager.delegate = self
         self.mapView.delegate = self
-        self.mapView.showsUserLocation = true
 
         self.stopNameLabel.text = stop?.stop_name
         self.title = stop?.stop_name
 
         dropStopPin()
-        dropUserLocationPin()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -48,9 +47,8 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
 
     // MARK: MKMapViewDelegate
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation.title! != stop?.stop_name {
-            let pin = MKPinAnnotationView()
-            return pin
+        if annotation.isKindOfClass(MKUserLocation) {
+            return nil
         } else {
             let pin = MKAnnotationView()
             pin.image = UIImage.init(named: "MapIcon")
@@ -102,12 +100,6 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let annotation = MKPointAnnotation()
         annotation.coordinate = getStopCoordinate2D()
         annotation.title = self.stop?.stop_name
-        self.mapView.addAnnotation(annotation)
-    }
-
-    private func dropUserLocationPin() {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
         self.mapView.addAnnotation(annotation)
     }
 }
