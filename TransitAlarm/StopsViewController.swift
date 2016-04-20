@@ -18,6 +18,9 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var transitProvider: String?
     var stops =  [Stop]()
 
+    // FIXME: enum me!
+    let lines = ["red", "blue", "green", "brown", "purple", "purple_exp", "yellow", "pink", "orange"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -48,7 +51,6 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(stops.count)
         return stops.count
     }
 
@@ -59,4 +61,17 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.textLabel!.text = stop.stop_name
         return cell
     }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let stop = stops[indexPath.row]
+        print(stop.location)
+    }
+
+//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        return self.lines.count;
+//    }
+//
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return self.lines[section]
+//    }
 }

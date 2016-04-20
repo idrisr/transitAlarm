@@ -31,6 +31,33 @@ extension String {
     }
 }
 
+enum CTATrainLine: String{
+    case Red           = "red"
+    case Blue          = "blue"
+    case Green         = "g"
+    case Brown         = "brn"
+    case Purple        = "p"
+    case PurpleExpress = "pexp"
+    case Yellow        = "y"
+    case Pink          = "pnK"
+    case Orange        = "o"
+
+    func elementName() -> String {
+        switch self {
+            case .Red:           return "Red"
+            case .Blue:          return "Blue"
+            case .Green:         return "Green"
+            case .Brown:         return "Brown"
+            case .Purple:        return "Purple"
+            case .PurpleExpress: return "Purple Express"
+            case .Yellow:        return "Yellow"
+            case .Pink:          return "Pink"
+            case .Orange:        return "Orange"
+        }
+    }
+    static let allValues = [Red, Blue, Green, Brown, Purple, PurpleExpress, Yellow, Pink, Orange]
+}
+
 struct Stop {
     var stop_id: Int?
     var direction: String? // enum?
@@ -38,17 +65,8 @@ struct Stop {
     var station_name: String?
     var map_id: Int?
     var ada: Bool?
-
-    var red: Bool?
-    var blue: Bool?
-    var green: Bool?
-    var brown: Bool?
-    var purple: Bool?
-    var purple_exp: Bool?
-    var yellow: Bool?
-    var pink: Bool?
-    var orange: Bool?
     var location: CLLocation
+    var lines: [CTATrainLine]
 
     init(xmlData: XMLIndexer) {
         stop_id      = xmlData["stop_id"].element!.text!.toInt()
@@ -57,17 +75,16 @@ struct Stop {
         station_name = xmlData["station_name"].element!.text
         map_id       = xmlData["map_id"].element!.text?.toInt()
         ada          = xmlData["ada"].element!.text!.toBool()
-        red          = xmlData["red"].element?.text!.toBool()
-        blue         = xmlData["blue"].element?.text!.toBool()
-        green        = xmlData["g"].element?.text!.toBool()
-        brown        = xmlData["brn"].element?.text!.toBool()
-        purple       = xmlData["p"].element?.text!.toBool()
-        purple_exp   = xmlData["pexp"].element?.text!.toBool()
-        yellow       = xmlData["y"].element?.text!.toBool()
-        pink         = xmlData["pnk"].element?.text!.toBool()
-        orange       = xmlData["o"].element?.text!.toBool()
+        lines = [CTATrainLine]()
+
         let latitude = xmlData["location"].element?.attributes["latitude"]?.toDouble()
         let longitude = xmlData["location"].element?.attributes["longitude"]?.toDouble()
         location     = CLLocation(latitude: latitude!, longitude: longitude!)
+
+        for trainLine in CTATrainLine.allValues {
+            if xmlData[trainLine.rawValue].element?.text!.toBool() == true {
+                lines.append(trainLine)
+            }
+        }
     }
 }
