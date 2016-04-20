@@ -88,9 +88,9 @@ enum CTATrainLine: Int {
             case .Pink:          return UIColor.pinkColor()
             case .Orange:        return UIColor.orangeColor()
         }
-
     }
 
+    // must be a better way. what if we add a value to the enum?
     static let allValues = [Red, Blue, Green, Brown, Purple, PurpleExpress, Yellow, Pink, Orange]
 }
 
@@ -105,6 +105,7 @@ struct Stop {
     var lines: [CTATrainLine]
 
     init(xmlData: XMLIndexer) {
+        // FIXME: add xml element values to enum somehow
         stop_id      = xmlData["stop_id"].element!.text!.toInt()
         direction    = xmlData["direction_id"].element!.text
         stop_name    = xmlData["stop_name"].element!.text
