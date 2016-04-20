@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
 
@@ -56,6 +58,32 @@ class LoginViewController: UIViewController {
         }
         
     }
+    
+    @IBAction func facebookLoginPressed(sender: UIButton) {
+        let facebookLogin = FBSDKLoginManager()
+        
+        facebookLogin.logInWithReadPermissions(["email"]) { (facebookResult, facebookError) in
+            if facebookError != nil {
+                print("Facebook login failed. Error \(facebookError)")
+            } else {
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                print("successfully logged in with Facebook. \(accessToken)")
+                
+                DataService.dataService.REF_BASE.authWithOAuthProvider("facebook", token: accessToken, withCompletionBlock: { error, authData in
+                    if error != nil {
+                        print("login faied \(error)")
+                    } else {
+                        print("logged in \(authData)")
+                        NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
+                        self.performSegueWithIdentifier(SEGUE_LOGIN, sender: nil)
+                    }
+                })
+                
+            }
+        }
+        
+    }
+    
     
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)

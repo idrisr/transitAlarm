@@ -172,6 +172,21 @@
                                     <action selector="loginAttemptPressed:" destination="fXi-q9-qzo" eventType="touchUpInside" id="Ek5-Na-BLq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4l-Oo-k9G">
+                                <rect key="frame" x="228" y="409" width="144" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="144" id="AKl-Yn-lFL"/>
+                                    <constraint firstAttribute="height" constant="30" id="fhV-pU-b5P"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Login with Facebook">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookLoginPressed:" destination="fXi-q9-qzo" eventType="touchUpInside" id="L91-7i-ZMd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -181,6 +196,8 @@
                             <constraint firstItem="YcB-BW-oXU" firstAttribute="top" secondItem="jrj-HG-bjK" secondAttribute="bottom" constant="20" id="gAo-Cg-xFw"/>
                             <constraint firstItem="YcB-BW-oXU" firstAttribute="centerX" secondItem="vtd-ZI-wc5" secondAttribute="centerX" id="nlg-Mo-zNV"/>
                             <constraint firstItem="jrj-HG-bjK" firstAttribute="top" secondItem="hXx-PK-SWG" secondAttribute="bottom" constant="199" id="rE0-0G-NIc"/>
+                            <constraint firstItem="d4l-Oo-k9G" firstAttribute="top" secondItem="TOp-iw-Pb2" secondAttribute="bottom" constant="15" id="yK9-bG-Poi"/>
+                            <constraint firstItem="d4l-Oo-k9G" firstAttribute="centerX" secondItem="vtd-ZI-wc5" secondAttribute="centerX" id="zsJ-y7-f3E"/>
                         </constraints>
                     </view>
                     <connections>
