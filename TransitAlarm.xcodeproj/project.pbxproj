@@ -55,6 +55,7 @@
 		6879AF7E1CC534FA003F6483 = {
 			isa = PBXGroup;
 			children = (
+				6879AFA91CC701EA003F6483 /* view */,
 				6879AFA21CC566D0003F6483 /* model */,
 				6879AF9F1CC562CC003F6483 /* data */,
 				6879AF9C1CC53A5F003F6483 /* Controller */,
@@ -77,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				6879AF8A1CC534FA003F6483 /* AppDelegate.swift */,
-				6879AF8E1CC534FA003F6483 /* Main.storyboard */,
 				6879AF911CC534FA003F6483 /* Assets.xcassets */,
 				6879AF961CC534FA003F6483 /* Info.plist */,
 			);
@@ -107,6 +107,14 @@
 				6879AFA31CC566DE003F6483 /* Stop.swift */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		6879AFA91CC701EA003F6483 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6879AF8E1CC534FA003F6483 /* Main.storyboard */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		88185E17FD44657094D50B86 /* Pods */ = {
@@ -256,6 +264,7 @@
 				6879AF8F1CC534FA003F6483 /* Base */,
 			);
 			name = Main.storyboard;
+			path = TransitAlarm;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

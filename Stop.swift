@@ -31,18 +31,18 @@ extension String {
     }
 }
 
-enum CTATrainLine: String{
-    case Red           = "red"
-    case Blue          = "blue"
-    case Green         = "g"
-    case Brown         = "brn"
-    case Purple        = "p"
-    case PurpleExpress = "pexp"
-    case Yellow        = "y"
-    case Pink          = "pnK"
-    case Orange        = "o"
+enum CTATrainLine: Int {
+    case Red
+    case Blue
+    case Green
+    case Brown
+    case Purple
+    case PurpleExpress
+    case Yellow
+    case Pink
+    case Orange
 
-    func elementName() -> String {
+    func name() -> String {
         switch self {
             case .Red:           return "Red"
             case .Blue:          return "Blue"
@@ -55,6 +55,34 @@ enum CTATrainLine: String{
             case .Orange:        return "Orange"
         }
     }
+
+    func xmlElementName() -> String {
+        switch self {
+            case .Red:           return "red"
+            case .Blue:          return "blue"
+            case .Green:         return "g"
+            case .Brown:         return "brn"
+            case .Purple:        return "p"
+            case .PurpleExpress: return "pexp"
+            case .Yellow:        return "y"
+            case .Pink:          return "pnk"
+            case .Orange:        return "o"
+        }
+    }
+
+    func color() -> UIColor {
+            case .Red:           return UIColor.red
+            case .Blue:          return "blue"
+            case .Green:         return "g"
+            case .Brown:         return "brn"
+            case .Purple:        return "p"
+            case .PurpleExpress: return "pexp"
+            case .Yellow:        return "y"
+            case .Pink:          return "pnk"
+            case .Orange:        return "o"
+
+    }
+
     static let allValues = [Red, Blue, Green, Brown, Purple, PurpleExpress, Yellow, Pink, Orange]
 }
 
@@ -82,7 +110,7 @@ struct Stop {
         location     = CLLocation(latitude: latitude!, longitude: longitude!)
 
         for trainLine in CTATrainLine.allValues {
-            if xmlData[trainLine.rawValue].element?.text!.toBool() == true {
+            if xmlData[trainLine.xmlElementName()].element?.text!.toBool() == true {
                 lines.append(trainLine)
             }
         }

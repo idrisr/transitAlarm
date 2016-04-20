@@ -18,9 +18,6 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var transitProvider: String?
     var stops =  [Stop]()
 
-    // FIXME: enum me!
-    let lines = ["red", "blue", "green", "brown", "purple", "purple_exp", "yellow", "pink", "orange"]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -51,27 +48,56 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stops.count
+        // how to use the enum here?
+        switch section {
+            case CTATrainLine.Red.rawValue:           return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Red) }).count
+            case CTATrainLine.Blue.rawValue:          return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Blue) }).count
+            case CTATrainLine.Green.rawValue:         return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Green) }).count
+            case CTATrainLine.Brown.rawValue:         return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Brown) }).count
+            case CTATrainLine.Purple.rawValue:        return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Purple) }).count
+            case CTATrainLine.PurpleExpress.rawValue: return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.PurpleExpress) }).count
+            case CTATrainLine.Yellow.rawValue:        return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Yellow) }).count
+            case CTATrainLine.Yellow.rawValue:        return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Yellow) }).count
+            case CTATrainLine.Pink.rawValue:          return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Pink) }).count
+            case CTATrainLine.Orange.rawValue:        return self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Orange) }).count
+            default: return 0
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var stopsForLine: [Stop]
+
+        // surely there's a better less repetitive way and dont filter for each cell
+        switch indexPath.section {
+            case CTATrainLine.Red.rawValue:           stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Red) })
+            case CTATrainLine.Blue.rawValue:          stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Blue) })
+            case CTATrainLine.Green.rawValue:         stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Green) })
+            case CTATrainLine.Brown.rawValue:         stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Brown) })
+            case CTATrainLine.Purple.rawValue:        stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Purple) })
+            case CTATrainLine.PurpleExpress.rawValue: stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.PurpleExpress) })
+            case CTATrainLine.Yellow.rawValue:        stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Yellow) })
+            case CTATrainLine.Yellow.rawValue:        stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Yellow) })
+            case CTATrainLine.Pink.rawValue:          stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Pink) })
+            case CTATrainLine.Orange.rawValue:        stopsForLine = self.stops.filter({ (stop) -> Bool in stop.lines.contains(CTATrainLine.Orange) })
+            default: stopsForLine = []
+        }
+
         let reuseID = "stopsCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-        let stop = stops[indexPath.row]
+        let stop = stopsForLine[indexPath.row]
         cell.textLabel!.text = stop.stop_name
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let stop = stops[indexPath.row]
-        print(stop.location)
+//        let stop = stops[indexPath.row]
     }
 
-//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return self.lines.count;
-//    }
-//
-//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return self.lines[section]
-//    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return CTATrainLine.allValues.count
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return CTATrainLine.allValues[section].name()
+    }
 }
