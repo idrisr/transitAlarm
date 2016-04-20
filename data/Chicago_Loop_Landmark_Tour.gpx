@@ -1,0 +1,1095 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" creator="Geovative Solutions GeoTours" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Chicago Loop Landmark Tour</name>
+    <desc>Driving tour of Chicago's Downtown "Loop" areas landmarks.</desc>
+    <author>
+      <name>fatciv, using GeoTours</name>
+      <link href="http://www.geovative.com/view?t=KEFM">
+        <text>Chicago Loop Landmark Tour</text>
+      </link>
+    </author>
+    <link href="http://www.geovative.com/view?t=KEFM">
+      <text>Chicago Loop Landmark Tour</text>
+    </link>
+    <time>2008-12-28T19:22:41</time>
+    <keywords>Chicago, Landmark, Tour, Illinois, Loop, Downtown</keywords>
+  </metadata>
+  <wpt lat="41.887788" lon="-87.624192">
+    <name>333 N. Michigan Building</name>
+    <desc>333 North Michigan Building
+
+Address: 333 N. Michigan Ave.
+Year Built: 1928
+Architect: Holabird &amp; Roche / Root
+Date Designated a Chicago Landmark: February 7, 1997
+
+One of the city's most outstanding Art Deco-style skyscrapers, it is one of four buildings surrounding the Michigan Avenue Bridge that define one of the city's--and nation's--finest urban spaces. The building's base is sheathed in polished granite, in shades of black and purple. Its upper stories, which are set back in dramatic fashion to correspond to the city's 1923 zoning ordinance, are clad in buff-colored limestone and dark terra cotta. The building's prominence is further heightened by its unique site. Due to the jog of Michigan Avenue at the bridge, the building is visible the length of North Michigan Avenue, appearing to be located in the center of the street.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.886511" lon="-87.626777">
+    <name>35 East Wacker Drive Building</name>
+    <desc>35 East Wacker Drive Building
+
+Address: 35 E. Wacker Dr.
+Year Built: 1925-1927
+Architect: Giaver &amp; Dinkelberg
+Date Designated a Chicago Landmark: February 9, 1994
+
+Corner Clock, photo by CCL This 40-story building was the tallest outside of New York City at the time of its construction. Designed as the "Jeweler's Building," it originally housed a parking garage on the second through 22nd floors. The building's terra cotta-clad, classical design marks it as one of the most prominent high-rise statements of the so-called City Beautiful Movement. It is also the most notable work of the partnership of Joachim Giaver and Frederick Dinkelberg, who had spent most of their architectural careers with the firm of D.H. Burnham &amp; Company.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.875996" lon="-87.625178">
+    <name>Auditorium Building</name>
+    <desc>Auditorium Building
+
+Address: 430 S. Michigan Ave.
+Year Built: 1886-1890
+Architect: Adler &amp; Sullivan
+Date Designated a Chicago Landmark: September 15, 1976
+
+The extraordinary engineering talent of Dankmar Adler and the architectural genius of Louis H. Sullivan created this building to reflect the cultural maturity of Chicago. Combining hotel and office space with a splendid theater designed for an opera company, the Auditorium was a turning point in Sullivan's career and a milestone in the development of modern architecture.
+
+Sullivan's genius for architectural ornamentation is displayed in the building's interior, where most of the public rooms are lavishly finished. The grandest interior space is the theater itself, with four broad elliptical arches spanning the width of the theater and decorated by plaster reliefs covered with gold leaf.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.873584" lon="-87.624783">
+    <name>Blackstone Hotel</name>
+    <desc>Blackstone Hotel
+
+Address: 636 S. Michigan Ave.
+Year Built: 1908-1910
+Architect: Marshall &amp; Fox
+Date Designated a Chicago Landmark: April 29, 1998
+
+Considered the city's best example of a turn-of-the-century luxury hotel, the Blackstone also represents--both its exterior and interior--an excellent and rare example of the Modern French style of Beaux-Arts, (Classical Revival) architecture. Built by prominent hoteliers Tracy and John Drake, the Blackstone became known as the "Hotel of Presidents," serving as host to a dozen U.S. Presidents, including Woodrow Wilson, Theodore and Franklin D. Roosevelt, and John F. Kennedy. The Blackstone was the location of the famous "smoke-filled rooms" where Warren G. Harding was chosen as the compromise Republican nominee for President in June 1920. (The term, which has since become a political cliche, was coined by a reporter covering the convention.) The hotel was named for Timothy B. Blackstone, a prominent railroad executive and the founding president of the Union Stock Yards, whose mansion had stood on the site.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.877867" lon="-87.634781">
+    <name>Brooks Building</name>
+    <desc>Brooks Building
+
+Address: 223 W. Jackson Blvd.
+Year Built: 1909-1910
+Architect: Holabird &amp; Roche
+Date Designated a Chicago Landmark: January 14, 1997
+
+A remarkably intact example of a Chicago School-style structure, which was an architectural movement of international importance that developed here between the 1880s and the early 1900s. The building was commissioned by Boston developers Peter and Shepard Brooks, who built many of Chicago's most innovative structures. It was designed by Holabird &amp; Roche, who were instrumental in the so-called Chicago School of architecture. The building, which is notable for its finely detailed orange-brown and green colored terra cotta ornament, large windows, and minimal wall surfaces, epitomizes the early steel-framed skyscraper--a type of structure that Chicago is world renown for having helped create.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.886547" lon="-87.624603">
+    <name>Carbide and Carbon Building</name>
+    <desc>Carbide and Carbon Building
+
+Address: 230 N. Michigan Ave.
+Year Built: 1929
+Architect: Burnham Brothers
+Date Designated a Chicago Landmark: May 9, 1996
+
+According to popular legend, the architects of this building chose its dark green and gold colors based on a gold-foiled champagne bottle seen at an office holiday party. Whether true or not, the resulting color combination and Art Deco-style detailing make it one of the most-distinctive features on the Chicago skyline. The building's lobby also is a classic of Art Deco design, with exceptionally fine bronzework and black marble. The building was designed by Daniel and Hubert Burnham, sons of the legendary architect and city planner Daniel H. Burnham.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.882009" lon="-87.627805">
+    <name>Carson, Pirie, Scott and Company Building</name>
+    <desc>Carson, Pirie, Scott and Company Building
+
+Address: 1 S. State St.
+Year Built: 1898-99 and 1902-04; 1905-06, twelve-story south addition; 1960-61, eight-story south addition
+Architects: Louis H Sullivan,D. H. Burnham and Co.
+Date Designated a Chicago Landmark: November 5, 1970
+
+One of the most important structures in early modern architecture, famed for its influential modular construction and design. Visionary architect Louis Sullivan shaped this commercial building--originally built for the Schlesinger and Mayer department store--into a dramatically animated structure that inseparably merges beauty and function. The ornament of the lower two stories is frozen in cast iron, while at the same time giving the impression of being in fluid motion. It is an excellent example of Sullivan's genius for architectural ornament.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.878896" lon="-87.625067">
+    <name>Chapin and Gore Building</name>
+    <desc>Chapin and Gore Building
+
+Address: 63 E. Adams St.
+Year Built: 1904
+Architect: Schmidt &amp; Garden
+Date Designated a Chicago Landmark: January 21, 1982
+
+Chapin and Gore, a liquor distilling firm, commissioned this building to combine its warehouse and office space with a street-level retail store and bar. Working with architect Hugh M. G. Garden, Richard Schmidt demonstrated the aesthetic possibilities of the utilitarian building through the bold exterior expression of interior functions, fine brickwork, and decorative terra cotta. Garden and Schmidt were acknowledged as one of the most progressive architectural firms of the early 20th centrury. The building's ornamental capitals and cornice were removed in the 1950s, but are expected to be restored in 1998.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.877378" lon="-87.632221">
+    <name>Chicago Board of Trade Building</name>
+    <desc>Chicago Board of Trade Building
+
+Address: 141 W. Jackson Blvd.
+Year Built: 1930
+Architect: Holabird &amp; Root
+Date Designated a Chicago Landmark: May 4, 1977
+
+One of the city's finest examples of Art Deco architecture, a style of the 1920s and early 1930s that attempted to express the modern, streamlined world by the use of cubic forms, geometric ornament, and sleek surface materials.
+
+The unrelieved verticality of the north facade provides a dramatic termination to LaSalle Street. The two-story lobby is one of the city's finest examples of this period of design.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.881359" lon="-87.628156">
+    <name>Chicago Building</name>
+    <desc>Chicago Building
+
+Address: 7 W. Madison St.
+Year Built: 1904-1905
+Architect: Holabird &amp; Roche
+Date Designated a Chicago Landmark: March 26, 1996
+
+An excellent and very visible example of the internationally recognized architectural style known as the Chicago School. The building's features epitomize this style: large "Chicago windows," metal-frame construction, distinctive bays, and terra cotta cladding. The building's designers were one of the firms instrumental in developing the Chicago School. The building is prominently sited on the southwest corner of State and Madison, its visibility heightened by a jog in the alignment of State Street. The building is a critical component of a grouping of significant structures--which include Carson Pirie Scott and the former Mandel Brothers Store--at what was once labeled the "World's Busiest Corner."</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.883856" lon="-87.624958">
+    <name>Chicago Public Library/Cultural Center</name>
+    <desc>Chicago Public Library/Cultural Center
+
+Address: 78 E. Washington St.
+Year Built: 1897
+Architect: Shepley, Rutan &amp; Coolidge
+Date Designated a Chicago Landmark: November 15, 1976
+
+This is the first permanent structure of the city's public library system. Designed to be a grand civic building, its Classical Revival-style exterior appearance and its interior spaces are based on classical Greek and Italian Renaissance precedents. The interior is extensively decorated with mosaics, marbles, bronze, and two stained-glass domes designed by the Tiffany Glass and Decorating Company. The building's architect was the Boston firm that succeeded the office of Henry Hobson Richardson, designer of the Glessner House.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.885407" lon="-87.627066">
+    <name>Chicago Theater</name>
+    <desc>Chicago Theater
+
+Address: 175 N. State St.
+Year Built: 1921
+Architect: Rapp &amp; Rapp
+Date Designated a Chicago Landmark: January 28, 1983
+
+A distinctively American building type, the motion picture palace provided a fantasy environment in which the fantasies of stage and screen could be enjoyed. This Beaux-Arts style Classical Revival building, with its elaborate decoration and grand proportions, was one of the first such buildings in the nation and is the oldest surviving in Chicago. Its upright sign and marquee, alone, serve as an unofficial emblem of the city. Its architects also designed the Uptown Theatre, another Chicago Landmark.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.88384" lon="-87.631654">
+    <name>City Hall-County Building</name>
+    <desc>City Hall-County Building
+
+Address: 121 N. LaSalle St./118 N. Clark St.
+Year Built: 1905-08 and 1909-11
+Architect: Holabird &amp; Roche
+Date Designated a Chicago Landmark: January 21, 1982
+
+Since 1853, the governments of Chicago and Cook County have shared three different buildings on this site. The monumental, Classical Revival-style exterior of the present structure, which was designed to be a functional and efficient office building, symbolizes the strength, dignity, and vigor of the governmental functions it contains. The County Building was completed in 1908; City Hall was finished in 1911.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.882449" lon="-87.637269">
+    <name>Civic Opera Building</name>
+    <desc>Civic Opera Building
+
+Address: 20 N. Wacker Dr.
+Year Built: 1927-1929
+Architect: Graham, Anderson, Probst &amp; White
+Date Designated a Chicago Landmark: February 5, 1998
+
+A mixed-use structure, the Civic Opera Building houses both a 3,400-seat auditorium and more than half a million square feet of office and retail space. Its architecture clearly expresses its joint role as a civic monument to culture and commerce. The ornate, French Renaissance Revival-style,
+
+two-story portico and monumental pedestrian colonnade, which face Wacker Drive, are appropriate to the style and use of a grand opera house.
+
+In contrast, the building's Art Deco-style facade facing the Chicago River is shaped like an enormous armchair; its 12-story "seat" is the opera house, its 22-story "arms" are office annexes, and its 45-story "back" is the office tower.
+
+Critics at the time referred to the building as "Insull's throne," in reference to its builder, utility magnate Samuel Insull. The interior of the opera house features a sumptuous lobby and fire curtain, both detailed by noted muralist and designer Jules Guerin.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.875792" lon="-87.618939">
+    <name>Clarence Buckingham Memorial Fountain and Garden</name>
+    <desc>Clarence Buckingham Memorial Fountain and Garden
+
+Address: Bounded by Lake Shore, Balbo, Columbus and Jackson drives
+Year Built: 1927
+Architects: Bennett, Parson &amp; Frost,Jacques Lambert
+Date Designated a Chicago Landmark: August 30, 2000
+
+Funded by philanthropist Kate Buckingham in memory of her brother, Buckingham Fountain is one of the nation's finest fountains and a public icon of Chicago. It is the centerpiece of Grant Park, the city's grand "front yard," and is set within a handsomely landscaped garden, one of the city's finest examples of a Beaux-Arts-style landscape design.
+
+The fountain is distinguished not only for its exquisite decorative details and finely wrought bronze sculpture, but also for its innovative use of technology which creates a dynamic light and water display on a massive scale. It is the work of architect-planner Edward H. Bennett, a significant figure in the creation and execution of the 1909 Plan of Chicago, which encouraged the creation of lakefront amenities such as the fountain.
+
+His other works include the Michigan Avenue Bridge, Wacker Drive, and city plans for Detroit, Portland, Ore., Brooklyn, and Ottawa.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.884074" lon="-87.63018">
+    <name>Daley Center</name>
+    <desc>Daley Center
+
+Address: 50 W. Washington St.
+Year Built: 1965, 1967 (Picasso sculpture)
+Architects: Pablo Picasso,C.F. Murphy Associates
+Date Designated a Chicago Landmark: November 6, 2002
+
+The Daley Center (originally known as the Chicago Civic Center) is an exceptional example of International Style architecture, based on the revolutionary steel and glass skyscrapers of world-famous architect Ludwig Mies van der Rohe. The building, Chicago's first major public building to be constructed in a modern rather than a classical architectural style, was designed by C. F. Murphy Associates whose work was influential in Chicago during the 1960s and 70s. Innovative for its time are the building's huge spans of steel framing, its exceptional spatial flexibility and the first-ever use of self-weathering Cor-Ten steel as an exterior "skin" for a skyscraper. The building's public spaces remain remarkably intact and are fine examples of International Style interior design. The building's large plaza is ornamented with a fountain and a monumental, enigmatic sculpture fashioned by Pablo Picasso, one of the most influential figures of twentieth century art. The Picasso, unveiled in 1967, is built of Cor-Ten steel similar to that used in the building.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.872281" lon="-87.629193">
+    <name>Dearborn Street Station</name>
+    <desc>Dearborn Street Station
+
+Address: 47 W. Polk St.
+Year Built: 1885
+Architect: Cyrus L. W. Eidlitz
+Date Designated a Chicago Landmark: March 2, 1982
+
+Construction of this Romanesque Revival-style station symbolized the burgeoning railroad industry in America and Chicago's role as the hub of that industry. As the railroads declined in importance, passenger traffic diminished and operations ceased at this terminal in 1971. After years of neglect, the station began a new life in the mid-1980s as a commercial center, enhancing the surrounding revitalizing community. It is one of the oldest railroad stations in the U.S. and the last remaining of Chicago's early downtown stations. Its designer was a noted New York architect.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.884834" lon="-87.628724">
+    <name>Delaware Building</name>
+    <desc>Delaware Building
+
+Address: 36 W. Randolph St.
+Year Built: 1872-1874; 1889, two-story addition and atrium
+Architects: Wheelock &amp; Thomas,Julius H. Huber
+Date Designated a Chicago Landmark: November 23, 1983
+
+One of the few Loop structures surviving from the massive rebuilding that followed the Fire of 1871, this Italianate-style building is also an early example of the use of a precast concrete facade in Chicago. An 1889 remodeling made it competitive with newer and larger commercial buildings by adding two floors, a dramatic steel-framed interior atrium, and redesigning the first two floors.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.873478" lon="-87.626453">
+    <name>Dexter Building</name>
+    <desc>Dexter Building
+
+Address: 630 S. Wabash Ave.
+Year Built: 1887
+Architect: Adler &amp; Sullivan
+Date Designated a Chicago Landmark: July 31, 1996
+
+A modest commercial loft structure, this building represents an irreplaceable link in the chain of work of one of the nation's most important architectural partnerships, that of Louis Sullivan and Dankmar Adler. The building's unornamented design is a precursor to the firm's work on the Auditorium Building, and the use of a cast-iron structural system permits larger window openings than would have been possible through the use of masonry alone. The distinctive, perforated, cast-iron beams on the rear facade, for example, anticipate building design of nearly seven decades later. The building, which was erected by Chicago attorney Wirt Dexter, was initially used as a factory and showroom for R. Deimel &amp; Brothers, a furniture manufacturing firm.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.87703" lon="-87.644308">
+    <name>Engine Company 5, Truck 2</name>
+    <desc>Engine Company 5, Truck 2
+
+Address: 324 S. Desplaines St.
+Year Built: 1928
+Date Designated a Chicago Landmark: October 1, 2003
+
+This distinctive firehouse was built during an important period of growth for Chicago that resulted in the construction of some of the City's most ornate firehouses. Designed by noted architect Chicago Alfred Alschuler. Through their history and architecture historic Chicago firehouses like this one represent evolving ideas about the firehouse and fire protection in the City over time.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.889183" lon="-87.632519">
+    <name>Field Building</name>
+    <desc>Field Building
+
+Address: 135 S. LaSalle St.
+Year Built: 1928-1934
+Architect: Graham, Anderson, Probst &amp; White
+Date Designated a Chicago Landmark: February 9, 1994
+
+The vertical profile and stepped silhouette of its facade, together with a sleek two-story lobby, make the Field Building one of the city's most distinctive Art Deco buildings. Built by the estate of department store founder Marshall Field, it was the last major office building completed prior to a two-decade construction hiatus caused by the Great Depression and World War II. Its site formerly was occupied by the Home Insurance Building (1884), a pioneer in metal-frame skyscraper technology.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.875996" lon="-87.625178">
+    <name>Fine Arts Building</name>
+    <desc>Fine Arts Building
+
+Address: 410 S. Michigan Ave.
+Year Built: 1885, addition and remodeling, 1898
+Architect: Solon S. Beman
+Date Designated a Chicago Landmark: June 7, 1978
+
+Built by the Studebaker company for the assembly and display of their carriages and wagons, this building was converted into studios and theaters for artists and craftsmen in 1898. The renovation involved adding three floors and designing an interior that would reflect the interests of the new tenants. The interior public spaces, including murals on the 10th floor, remain virtually untouched from the 1898 remodeling.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.877525" lon="-87.628991">
+    <name>Fisher Building</name>
+    <desc>Fisher Building
+
+Address: 343 S. Dearborn St.
+Year Built: 1896, north addition, 1907
+Architects: D. H. Burnham and Co.,Peter J. Weber
+Date Designated a Chicago Landmark: June 7, 1978
+
+Cladding this early skyscraper with Gothic-inspired, terra-cotta tracery was not a casual stylistic choice. Its designers looked for inspiration to the early Gothic cathedrals of Europe, which shared common characteristics of tallness and often having more glass than masonry.
+
+Eagles and mythical beasts decorate the upper stories, and aquatic creatures and seashells--a visual pun on the name of the building's original owner, Lucius G. Fisher--are found at the base. A later addition to the north is largely a repetition of the original design, except for the absence of bay windows.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.881449" lon="-87.624956">
+    <name>Gage Group</name>
+    <desc>Gage Group
+
+Address: 18, 24 and 30 S. Michigan Ave.
+Year Built: 1899-1900
+Architects: Louis H Sullivan, Holabird &amp; Roche
+Date Designated a Chicago Landmark: September 11, 1996
+
+This group of three buildings takes its name from the northernmost structure which was designed by master architect Louis Sullivan for the Gage Brothers, a hat wholesaler. The facades, which resulted from Sullivan's collaboration with Holabird &amp; Roche, demonstrate two different approaches to the Chicago School, a design movement that led to the creation of modern commercial architecture. The buildings by Holabird &amp; Roche are straightforward, while the facade designed by Sullivan (18 S.) exemplifies his more expressive approach.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.88519" lon="-87.629479">
+    <name>Harris and Selwyn Theaters</name>
+    <desc>Harris and Selwyn Theaters
+
+Address: 180-190 N. Dearborn St.
+Year Built: 1922
+Architect: Kenneth H. Franzheim
+Date Designated a Chicago Landmark: March 31, 1983
+
+Built by New York theatrical producers, Sam H. Harris and Archie &amp; Edgar Selwyn, at a time when the legitimate theater flourished, these "Twin Theaters," as they were called, were designed for stage productions. The Harris was designed with Italian Renaissance details; the Selwyn was based on English Classical styles. Among the actors who appeared in performances here are Ethel Barrymore, Helen Hayes, Charles Laughton, Tallulah Bankhead, Mae West, Boris Karloff, and Audrey Hepburn.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.881406" lon="-87.626949">
+    <name>Haskell-Barker-Atwater Buildings</name>
+    <desc>Haskell-Barker-Atwater Buildings
+
+Address: 18, 22, 28 S. Wabash Ave.
+Year Built: 1875-1877; 18 S. remodeled in 1896
+Architects: Louis H Sullivan, Wheelock &amp; Thomas,John Mill Van Osdel
+Date Designated a Chicago Landmark: November 13, 1996
+
+These buildings provide the best remaining example of what the east side of the Loop looked like prior to the skyscraper boom of the 1890s. All three buildings were designed by prominent post-Fire architects, including the city's first registered architect, John Mills Van Osdel. The bottom two floors of the Haskell Building were remodeled in 1896 by master architect Louis Sullivan. The upper floors typify post-Fire architecture, with their distinctive round arches and decorative masonry.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.887202" lon="-87.62683">
+    <name>Heald Square Monument</name>
+    <desc>Heald Square Monument
+
+Address: Wacker Drive at Wabash Avenue
+Year Built: 1936-1941
+Architects: Lorado Taft,Leonard Crunelle
+Date Designated a Chicago Landmark: September 15, 1971
+
+Robert Morris and Haym Salomon, the civilian patriots who are depicted here standing hand-in-hand with George Washington, were the two principal financers of the American Revolution. In the 1930s, a group of Chicago civic leaders formed an organization to raise funds to erect a suitable monument to these three patriots. Noted sculptor Lorado Taft began the design; it was finished by his associate, Leonard Crunelle. The location of the monument was named for Capt. Nathan Heald, commander of Fort Dearborn from 1810-1812.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.881406" lon="-87.626949">
+    <name>Heyworth Building</name>
+    <desc>Heyworth Building
+
+Address: 29 E. Madison Street
+Year Built: 1904
+Architect: D. H. Burnham and Co.
+Date Designated a Chicago Landmark: September 27, 2000
+
+This building was built by Otto Young, a wholesale jeweler and real estate investor. Named for Young's son-in-law, Lawrence Heyworth, who supervised the building's construction, the Heyworth historically housed jewelers, watchmakers, and related businesses. It is an unusual and innovative variation on Chicago School design, combining the structurally expressive character of the Chicago School with the decorative appearance of traditional masonry architecture. The building's tapestry-like ornament complements Louis Sullivan's lavish ornament on the adjacent Carson Pirie Scott department store. Its intact decorative cornice is a highly-crafted and rare building feature among Chicago commercial buildings. It was designed by Frederick P. Dinkelberg, an important architect working for one of the largest and most influential architectural firms in the United States in the early 1900s. Other buildings by Dinkelberg include the Railway Exchange Building in Chicago and New York's Flatiron Building. In addition, one of Chicago's finest historic storefronts, designed in 1917 for O'Connor &amp; Goldberg Shoes, remains at 23 E. Madison St.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.880719" lon="-87.628957">
+    <name>Inland Steel Building</name>
+    <desc>Inland Steel Building
+
+Address: 30 W. Monroe St.
+Year Built: 1956-1957
+Architect: Skidmore, Owings and Merrill
+Date Designated a Chicago Landmark: October 7, 1998
+
+This is one of the defining commercial high-rises of the post-World War II era of modern architecture. The use of stainless steel cladding is an eloquent testimony to the corporation that commissioned the building as its headquarters. The placement of all structural columns on the building's perimeter and the consolidation of elevators and other service functions in a separate tower allowed for a highly flexible interior floor layout. It was the first skyscraper to be built in the Loop following the Great Depression of the 1930s. Its principal designers were Bruce Graham and Walter Netsch of the SOM architecture firm.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.871609" lon="-87.647435">
+    <name>Jane Addams Hull-House</name>
+    <desc>Jane Addams Hull-House
+
+Address: 800 S. Halsted
+Year Built: 1856, House; 1905, Dining Hall
+Architect: Pond &amp; Pond
+Date Designated a Chicago Landmark: June 12, 1974
+
+Here, in 1889, Jane Addams and Ellen Gates Starr started what became the most influential social settlement house in America. They began in a then-dilapidated, 33-year-old mansion that had been built by real estate developer Charles J. Hull. By 1907, however, the settlement had grown into a 13-building complex that enveloped the original building. In 1963, the settlement moved from this site, when it was acquired for the new Chicago Circle Campus of the University of Illinois. As a memorial to Jane Addams, the university retained the original Hull-House Residents Dining Hall (dating to 1905) and rebuilt missing portions of the original Hull House.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.881435" lon="-87.625657">
+    <name>Jewelers Building</name>
+    <desc>Jewelers Building
+
+Address: 15-17 S. Wabash Ave.
+Year Built: 1881-1882
+Architect: Adler &amp; Sullivan(primary)
+Date Designated a Chicago Landmark: December 18, 1981
+
+The only example of the early work of Adler and Sullivan that survives in the Loop, this is a common loft building in its construction and plan, but its facade is a dramatic departure from others of its type. A very open exterior, using cast-iron mullions rather than masonry piers in the central bay, and Sullivan's unique stylized floral ornament give this building its special distinction.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.885723" lon="-87.635421">
+    <name>Lake-Franklin Group</name>
+    <desc>Lake-Franklin Group
+
+Address: 227-235 W. Lake St. and 173-191 N. Franklin St.
+Year Built: 1872-1875, 1896, addition for 233 W./175 N.
+Architects: George H. Edbrooke, Burling &amp; Adler
+Date Designated a Chicago Landmark: February 26, 1997
+
+As the oldest remaining buildings in the Loop, this commercial block represents a rare example of what downtown Chicago looked like when it rebuilt from the Fire of 1871. These early-Victorian era buildings exhibit many of the distinctive features of post-Fire architecture, including cast-iron columns, incised stonework, decorative window hoods, and arched window openings. Located just one block from the Chicago River, this intact group of "mercantile loft" structures is one of the last remnants of the city's wholesaling district, an area that was integral to Chicago's status in the late-19th century as the world's largest market for grain, lumber, livestock, and provisions. The early occupants of these buildings represent a compendium of period wholesalers: a tannery and leather dealer, a manufacturer of iron and woodworking machinery, a sandstone company, a steam heating company, mitten and hat manufacturers, and a corner saloon.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.876916" lon="-87.627651">
+    <name>Leiter II Building</name>
+    <desc>Leiter II Building
+
+Address: 403 S. State St.
+Year Built: 1891
+Architect: William LeBaron Jenney
+Date Designated a Chicago Landmark: January 14, 1997
+
+Renowned as one of the nation's most important early examples of skeletal-frame commercial architecture, this building is discussed in every major history of American architecture. A National Historic Landmark, it was designed by William Le Baron Jenney, the so-called "father of the skyscraper." This building was erected by Levi Leiter; later, it was leased by Sears, Roebuck &amp; Co. for its flagship department store. It is the city's oldest surviving department store, a type of building that contributed to State Street's development as a retailing thoroughfare. The so-called "first Leiter" building, built in 1879 at Wells and Monroe, was demolished in 1972.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.887493" lon="-87.625061">
+    <name>London Guarantee Building</name>
+    <desc>London Guarantee Building
+
+Address: 360 N. Michigan Ave.
+Year Built: 1922-1923
+Architect: Alfred S. Alschuler
+Date Designated a Chicago Landmark: April 16, 1996
+
+One of the city's few and best examples of the Beaux Arts-style Classical Revival applied to the design of a tall office building. It is one of four structures that were constructed around the Michigan Avenue Bridge during the 1920s, a cluster of buildings that has helped define one of Chicago's most dramatic and important urban spaces. The other three buildings are 333 N. Michigan, Tribune Tower, and the Wrigley Building. Built by a British insurance company to be its American headquarters, the building's irregular-shaped site was part of the land once occupied by Fort Dearborn (1803-56).</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.868884" lon="-87.625858">
+    <name>Ludington Building</name>
+    <desc>Ludington Building
+
+ 	 Address: 1104 S. Wabash Ave.
+Year Built: 1891
+Architect: William LeBaron Jenney
+Date Designated a Chicago Landmark: June 10, 1996
+
+The city's earliest-surviving, steel-frame building, a type of construction that changed modern architecture. It represents one of the high points of its designer, William Le Baron Jenney, who is widely considered to be the "father of the skyscraper." As one of the first structures to be completely clad in terra cotta, it also marks an important step in Chicago's leadership in the development of the architectural terra cotta industry. Its purity of form and delicacy of ornamental detail mark it as one of the most significant visual landmarks of the South Loop. It was built by Mary Ludington to house the American Book Company.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.880723" lon="-87.62879">
+    <name>Majestic Building and Theater</name>
+    <desc>Majestic Building and Theater
+
+Address: 22 W. Monroe St.
+Year Built: 1906
+Architect: Edmund R. Krause
+Date Designated a Chicago Landmark: May 11, 2005
+
+This lavishly detailed skyscraper houses one of ChicagoÂ¿s oldest legitimate theaters, showing high-quality vaudeville, drama and musicals throughout its history. It is in the French Renaissance style with tripartite Chicago-style windows and a richly-detailed terra-cotta facade. After World War II, the theater was renamed for the Shubert family, which operated AmericaÂ¿s largest theatrical production and theater-owning organization. Acts performing here during the theaterÂ¿s history included Sarah Bernhardt, the Marx Brothers, magician Harry Houdini, and the musicals Â¿CarouselÂ¿ and Â¿Hair.Â¿ The theater's lobby and auditorium are beautifully detailed with Classical ornament and moldings.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.876326" lon="-87.628972">
+    <name>Manhattan Building</name>
+    <desc>Manhattan Building
+
+Address: 431 S. Dearborn St.
+Year Built: 1891
+Architect: William LeBaron Jenney
+Date Designated a Chicago Landmark: July 7, 1978
+
+The versatility and strength of metal frame construction made the skyscraper possible, as evidenced by this structure, which reached the then-astounding height of 16 stories in 1891. Its architect was a pioneer in the development of tall buildings. The distinctive bay windows provide maximum light to the building's interior spaces, while the combination of a granite (lower three floors) and brick facade (upper stories) help carry and lighten the load of the internal steel framework.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.880356" lon="-87.630144">
+    <name>Marquette Building</name>
+    <desc>Marquette Building
+
+Address: 140 S. Dearborn St.
+Year Built: 1895
+Architect: Holabird &amp; Roche
+Date Designated a Chicago Landmark: June 9, 1975
+
+In this building, an appropriate exterior aesthetic expression for the then-new, steel-framed skyscraper was found. The facade clearly reveals its underlying structure--with broad windows set in a framework of narrow piers and spandrels. Its open and well-lit interior layout, built around a central light court, significantly influenced the design of modern high-rise commercial structures. The building is named for Jacques Marquette, a French Jesuit missionary and explorer who, in 1674-75, wintered in the area that is now Chicago. The lobby is decorated with mosaic panels made by the Tiffany firm and bronze heads of native Americans, animals, and early explorers.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.883814" lon="-87.627887">
+    <name>Marshall Field and Company Building</name>
+    <desc>Marshall Field and Company Building
+
+Address: 111 N. State Street
+Year Built: 1892; 1902, 1906, 1907 and 1914
+Architects: Burnham, Daniel H., and Charles Atwood,D. H. Burnham and Co., Graham, Anderson, Probst &amp; White
+Date Designated a Chicago Landmark: November 1, 2005
+
+The Marshall Field and Company Building is the â€˜grand dameâ€™ of Chicago department store buildings, finely designed and detailed in the Classical Revival style. It is significant historically as the longtime headquarters of Marshall Field and Company, one of the nationâ€™s most historically important retail enterprises, and as one of the finest historic department store buildings in the nation. Built in stages over a generation, the building is the work of one of Chicagoâ€™s leading architects, Daniel H. Burnham; Charles Atwood, a designer in Burnhamâ€™s firm during the early 1890s; Burnhamâ€™s later firm, D.H. Burnham &amp; Company; and its successor firm after Burnhamâ€™s death, Graham, Burnham, &amp; Co. The building is noteworthy for its lavish interiors, including two atria decorated with stained glass and Tiffany mosaics, plus the much-loved Walnut Room.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.887604" lon="-87.625453">
+    <name>Mather Tower</name>
+    <desc>Mather Tower
+
+ 	 Address: 75 E. Wacker Dr.
+Year Built: 1928
+Architect: Herbert Hugh Riddle
+Date Designated a Chicago Landmark: March 7, 2001
+
+This building is Chicago's most slender skyscraper, a "Jazz Age" silhouette against the city's dramatic skyline. Clad in Gothic-inspired terra cotta, Mather Tower is one of Chicago's finest "Modernistic" skyscrapers, combining modern form with lush historic ornament both in its exterior and interior. The form of this "needle" skyscraper was encouraged by the 1923 Chicago Zoning Ordinance which called for tall, slender, "setback" towers. Mather Tower's design-a tower with many shallow setbacks rising to a height of over 500 feet-epitomizes the verticality possible under this pioneering zoning ordinance.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.877522" lon="-87.629542">
+    <name>Monadnock Block</name>
+    <desc>Monadnock Block
+
+Address: 53 W. Jackson Blvd.
+Year Built: North half, 1889-91; South half, 1891-93
+Architects: Burnham &amp; Root, Holabird &amp; Roche
+Date Designated a Chicago Landmark: November 14, 1973
+
+The two halves of this building provide a unique perspective for examining the history and development of modern architecture. The north part--famed for its lack of traditional ornamentation--is a masonry, wall-bearing structure, the last skyscraper to employ this method of construction, with six-foot thick walls at the base. The south addition, on the other hand, is an early example of steel-frame construction, its underlying structure revealed through narrow piers and wide windows. Together, they mark the end of one building tradition and the beginning of another.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.881296" lon="-87.632296">
+    <name>New York Life Building</name>
+    <desc>New York Life Building
+
+Address: 37-43 S. LaSalle St.
+Year Built: 1893-1894, , 1898, 1903
+Architect: Jenney &amp; Mundie
+Date Designated a Chicago Landmark: July 6, 2006
+
+This building is the work of Jenney &amp; Mundie, whose senior partner, William Le Baron Jenney, was one of the Cityâ€™s most important 19th-century architects. It is an important surviving example of early Chicago School high-rise construction. It is one of the oldest buildings on LaSalle Street, historically the center of finance and banking in Chicago. Its terra-cotta facade is an excellent example of Classical Revival-style architecture, while its marble-clad lobby is one of downtown Chicagoâ€™s most visually distinctive historic lobbies. The building was built in stages, with the original 12-story building facing LaSalle St. built in 1893-94. In 1898, a 13-story addition was built east of the original building, which received a one-story rooftop addition. Then, in 1903, an additional 14th floor was added to the entire building.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.876326" lon="-87.628972">
+    <name>Old Colony Building</name>
+    <desc>Old Colony Building
+
+Address: 407 S. Dearborn St.
+Year Built: 1894
+Architect: Holabird &amp; Roche
+Date Designated a Chicago Landmark: July 7, 1978
+
+Rounded corner bays, a feature of many early skyscrapers, enliven the silhouette of this commercial structure. Continuous vertical piers divide the building's long Dearborn Street facade into tall, narrow sections, while continuous horizontal spandrels serve to visually widen the narrow Van Buren Street facade. The structure is a critical component of a dramatic stretch of landmark structures along South Dearborn that also includes the Fisher and Manhattan buildings.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.886048" lon="-87.625743">
+    <name>Old Dearborn Bank Building</name>
+    <desc>Old Dearborn Bank Building
+
+Address: 203 N. Wabash Ave.
+Year Built: 1928
+Architect: Rapp &amp; Rapp
+Date Designated a Chicago Landmark: June 4, 2003
+
+This brick-clad skyscraper is one of the Loop's most unusual, with its fantastical terra-cotta ornament depicting both medieval and mythological figures. The work of the renowned theater architects Rapp and Rapp who also designed the Chicago and Uptown Theaters, the Old Dearborn Bank Building is one of only two buildings by the firm designed solely as offices. The design of the building successfully blends the overall straight-forward form of Chicago Commercial skyscrapers with the exotic ornament more typical of movie "palaces" of the 1920s.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.884834" lon="-87.628724">
+    <name>Oliver Building</name>
+    <desc>Oliver Building
+
+Address: 159 N. Dearborn St.
+Year Built: 1907, top addition 1920
+Architect: Holabird &amp; Roche
+Date Designated a Chicago Landmark: May 9, 1984
+
+Constructed as the corporate headquarters of the Oliver Typewriter Company, this building is an excellent representation of the principles of the Chicago School of architecture.
+
+The building's internal steel frame is clearly expressed on the facade, which is further enhanced by cast-iron ornament that subtly advertises the company's name and product. The top two floors were added in 1920 by the original architects.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.889183" lon="-87.632519">
+    <name>One North LaSalle Building</name>
+    <desc>One North LaSalle Building
+
+Address: 1 N. LaSalle St.
+Year Built: 1929-1930
+Architect: Karl M. Vitzthum
+Date Designated a Chicago Landmark: April 16, 1996
+
+A premier example of the soaring, streamlined skyscrapers built during the 1920s, this is also one of the city's best surviving examples of the Art Deco style, with its dramatic silhouette and lavishly detailed entrance and lobby. The building is a major contributor to LaSalle Street's reputation as one of the city's premier architectural corridors. It is one of the best surviving examples of the work of architects Vitzhum and Burns, who were known for their design of banks and churches. And, for 35 years, the 49-story building was the city's tallest structure, a title it relinquished to the Daley Civic Center in 1965.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.885407" lon="-87.627066">
+    <name>Page Brothers Building</name>
+    <desc>Page Brothers Building
+
+Address: 177-91 N. State St.
+Year Built: 1872, West facade remodeled 1902
+Architects: John Mill Van Osdel, Hill &amp; Woltersdorf
+Date Designated a Chicago Landmark: January 28, 1983
+
+This building north facade, facing Lake Street, features the city's last remaining cast-iron front, a construction technique that was common practice in pre-Fire of 1871 Chicago. Built when Lake Street was the city's main retail street, the building's west facade (State Street) was remodeled and another floor added in 1902, reflecting the reorientation of commercial activity from Lake to State Street.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.880144" lon="-87.626877">
+    <name>Palmer House Hotel</name>
+    <desc>Palmer House Hotel
+
+Address: 17 E. Monroe St.
+Year Built: 1925-1927
+Architect: Holabird &amp; Roche
+Date Designated a Chicago Landmark: December 13, 2006
+
+The current Palmer House Hotel is the fourth to bear the name of Potter Palmer, one of Chicago's most significant businessmen and real-estate developers. It is a handsome Classical Revival-style building with French Neoclassical ornament. Interior spaces of note include its grandly-scaled hotel reception lobby and several meeting rooms, including the Empire Room, Red Lacquer Room, and Grand Ballroom. At the intersection of State and Monroe Streets, the building also contains arguably Chicago's finest historic retail storefront and interior, originally created for C.D. Peacock jewelers.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.882645" lon="-87.625706">
+    <name>Pittsfield Building</name>
+    <desc>Pittsfield Building
+
+Address: 55 E. Washington St.
+Year Built: 1927
+Architect: Graham, Anderson, Probst &amp; White
+Date Designated a Chicago Landmark: August 31, 1977
+
+The 38-story Pittsfield Building is one of downtown Chicago's most distinctive skyscraper designs. The city's tallest building at the time of its completion, the building was designed by Graham, Anderson, Probst and White, one of the city's most distinguished architectural firms during the 1910s and 20s.The building's handsome design, combining both Art Deco and Gothic detailing, is a creative response to the city's 1923 zoning ordinance which encouraged skyscrapers with setback towers. The interior of the building features an outstanding five-story atrium embellished by glowing marbles, gleaming brasses and carvings in a Spanish Gothic style.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.882849" lon="-87.628655">
+    <name>Reliance Building</name>
+    <desc>Reliance Building
+
+Address: 32 N. State Street
+Year Built: Base built in 1890; Upper stories built 1894-95
+Architects: Burnham &amp; Root,D. H. Burnham and Co.
+Date Designated a Chicago Landmark: July 11, 1975
+
+To Chicagoans of the 1890s, the glass-covered exterior of this building seemed to almost defy gravity. A century later, it is internationally recognized as the direct ancestor of today's glass-and-steel skyscrapers. Extremely narrow piers, mullions, and spandrels, all covered with cream-colored terra cotta decorated with Gothic-style tracery, divide wide expanses of glass and clearly delineate the interior steel framework that supports the building. The light and airy facade is almost entirely windows--both flat and projecting bays--of the type known as a "Chicago window:" a wide fixed pane with narrow movable sash windows flanking it. A flat cornice tops the 14-story structure. The severely deteriorated exterior was completely restored by the City of Chicago in 1996.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.889183" lon="-87.632519">
+    <name>Rookery Building</name>
+    <desc>Rookery Building
+
+Address: 209 S. LaSalle St.
+Year Built: 1885-1888, Lobby remodeled 1905-07
+Architects: Frank Lloyd Wright, Burnham &amp; Root
+Date Designated a Chicago Landmark: July 5, 1972
+
+The powerful exterior of this building, which is softened by lively ornament detailed by architect John Root, typifies the lingering picturesque attitudes toward commercial architecture still prevalent in the 1880s. A transitional structure in the evolution of modern architecture, the Rookery Building employs both masonry wall-bearing and skeletal frame construction techniques. It takes its name from a temporary City Hall and water tank that stood on the site following the Fire of 1871. A favorite roost for pigeons, these structures were referred to as "the rookery." When Frank Lloyd Wright remodeled the Rookery's large skylit lobby in 1905, he introduced elements characteristic of his Prairie School designs.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.884553" lon="-87.644203">
+    <name>Site of the Haymarket Tragedy</name>
+    <desc>Site of the Haymarket Tragedy
+
+Address: 151-199 N. Desplaines St.
+Year Built: 1886
+Date Designated a Chicago Landmark: March 25, 1991
+
+A decade of strife between labor and industry culminated here in a confrontation that resulted in the tragic death of both workers and policemen. On May 4, 1886, spectators at a labor rally had gathered around the mouth of Crane's Alley (east side of Desplaines, just north of Randolph), named for an industrial plant that stands east of the site. A contingent of police approaching on Desplaines Street were met by a bomb thrown from just south of the alley. The resultant trial of eight activists gained worldwide attention for the labor movement, and initiated the tradition of "May Day" labor rallies in many cities.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.87048" lon="-87.628632">
+    <name>Site of the John and Mary Jones House</name>
+    <desc>Site of the John and Mary Jones House
+
+Address: Southwest corner of W. 9th St. and S. Plymouth Ct.
+Date Designated a Chicago Landmark: May 26, 2004
+
+This site honors two persons from Chicagoâ€™s early history. John Jones was the undisputed leader of Chicagoâ€™s black community from the 1850s through the 1870s and rose to national prominence as an abolitionist, civil rights activist, and the first African-American to hold elected office in Cook County. John and his wife Mary Jones were central figures in the abolitionist movement, using their home on Edina Place (now South Plymouth Court) as a â€˜stationâ€™ on the Underground Railroad to help fugitive slaves find freedom.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.869217" lon="-87.642008">
+    <name>Site of the Origin of the Chicago Fire of 1871</name>
+    <desc>Site of the Origin of the Chicago Fire of 1871
+
+Address: Dekoven and Jefferson Streets
+Year Built: Fire started on October 8, 1871; Sculpture erected, 1961
+Architect: Egon Weiner
+Date Designated a Chicago Landmark: September 15, 1971
+
+Sometime between 8:45 and 9:30, on the night of October 8, 1871, a fire started in a barn owned by Catherine and Patrick O'Leary on DeKoven Street, 1-1/2 miles southwest of the downtown. Fanned by a strong wind, in a city largely built of wood structures, the blaze raged for nearly 30 hours. Flames spread as far as the city's northern limits (near Fullerton Avenue) before finally dying out in the early morning rain of Tuesday, October 10. Much of the downtown and surrounding areas lay in ruins; 300 were dead and a third of the city's population of 300,000 was left homeless. Ironically and appropriately, Chicago's Fire Department Training Academy stands on the site.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.885723" lon="-87.636852">
+    <name>Site of the Sauganash Hotel/Wigwam</name>
+    <desc>Site of the Sauganash Hotel/Wigwam
+
+Address: Southeast Corner of Lake Street and Wacker Drive
+Year Built: Sauganash built 1831, destroyed 1851; Wigwam built 1860, destroyed 1867
+Date Designated a Chicago Landmark: November 6, 2002
+
+The Site of the Sauganash Hotel/Wigwam is important in the history of Chicago's early development. Mark Beaubien built the Sauganash Hotel in 1831 at Wolf Point, on the east bank of the south branch of the Chicago River at the "forks" of the River where the north and south branches meet. It was at the Sauganash Hotel in 1833 that the newly-formed Town of Chicago voted to elected its first town trustees and where many of the town meetings occurred. During a brief period in 1837 when the building was not in operation as a hotel, it served as Chicago's first theater. The Sauganash Hotel remained in almost continuous operation until it burned down in 1851.
+
+The Wigwam, constructed on the same site nine years later, was home to the 1860 Republican National Convention. It was at this historic convention that Abraham Lincoln was nominated as the Republican candidate for president. His nomination and eventual election as the nation's 16th President triggered a series of dramatic events surrounding the abolition of slavery and the secession of several southern states, ultimately culminating in the Civil War. His powerful leadership skills are credited with having led the country successfully through perhaps its darkest time.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.884786" lon="-87.633592">
+    <name>Steuben Club Building</name>
+    <desc>Steuben Club Building
+
+Address: 188 W. Randolph St.
+Year Built: 1929
+Architect: Karl M. Vitzthum
+Date Designated a Chicago Landmark: July 26, 2006
+
+This is one of Chicagoâ€™s most visually striking, 1920s-era skyscrapers in Chicago. Designed in the Gothic Revival architectural style, the building is an outstanding example of a terra-cotta-clad skyscraper, ornamented with a plethora of Gothic ornament, including pointed arches, tracery, finials, and flying buttresses. The Building was designed by Karl M. Vitzthum, one of Chicagoâ€™s significant early twentieth-century architects and the designer of the One North LaSalle Building (a designated Chicago Landmark), as well as a number of distinctive neighborhood bank buildings throughout Chicago.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.886036" lon="-87.633638">
+    <name>Trustees System Service Building</name>
+    <desc>Trustees System Service Building
+
+Address: 201 N. Wells St.
+Year Built: 1929-1930
+Architects: Edgar Miller, Thielbard &amp; Fugard,Eugene and Gwen Lux
+Date Designated a Chicago Landmark: January 14, 2004
+
+One of downtown Chicago's most distinctive "Jazz Age" skyscrapers, this building is handsomely clad with variegated brick that lightens from deep red to lighter yellow-red from base to crown. The building's distinctive stepped-back top with terra-cotta crown reflects the influence of the 1923 Chicago zoning ordinance. The building is embellished with a variety of art works, including low-relief limestone sculpures by husband-and-wife artists Eugene and Gwen Lux that depict allegorical scenes in the history of banking and commerce. In addition, artist Edgar Miller designed the cut-lead decorative screen ornamenting one of the building's entrances on Lake St. The building's public lobbies are richly ornamented with deeply-colored marbles.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.878678" lon="-87.639577">
+    <name>Union Station</name>
+    <desc>Union Station
+
+Address: 210 S. Canal Street
+Year Built: 1913-1925
+Architect: Graham, Anderson, Probst &amp; White
+Date Designated a Chicago Landmark: May 1, 2002
+
+Built during the time when Chicago reigned as the undisputed rail center of the United States, Union Station handled as many as 300 trains and 100,000 passengers daily. Upon its completion Union Station was hailed as an outstanding achievement in railroad facility planning and is one of the most historically significant passenger railroad stations in the United States. Today the monumental Neoclassical station is the last-remaining great railroad terminal still in use in Chicago. The station's ornate Beaux-Arts main waiting room, the "Great Hall," is one of the United States' great interior public spaces with its vaulted skylight and connecting lobbies, staircases, and balconies.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+  <wpt lat="41.882853" lon="-87.634596">
+    <name>Washington Block</name>
+    <desc>Washington Block
+
+Address: 40 N. Wells St.
+Year Built: 1873-1874
+Architect: Frederick and Edward Baumann
+Date Designated a Chicago Landmark: January 14, 1997
+
+At the time of its construction, in the aftermath of the Fire of 1871, the Washington Block was one of the tallest buildings in the city. It is a critical link to understanding the evolution of the Chicago skyscraper, a rare surviving example of the use of the "isolated pier foundation," which was an engineering advancement that helped develop the high-rise office building. The ornate detailing of its virtually intact limestone facades makes the Washington Block a building of individual architectural distinction. The building originally featured an outside staircase that led to an ornate, second-floor corner entrance. The lobby still includes a rare example of a curving hardwood staircase.</desc>
+    <sym>Waypoint</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+        <gpxx:Proximity>152.4</gpxx:Proximity>
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+</gpx>
