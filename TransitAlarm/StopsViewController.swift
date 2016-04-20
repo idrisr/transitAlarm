@@ -15,6 +15,10 @@ extension Double {
     func metersToMiles() -> Double {
         return self * 0.000621371
     }
+
+    func metersToFeet() -> Double {
+        return self * 3.28084
+    }
 }
 
 class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
@@ -31,18 +35,13 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.title = "CTA Train Stops"
 
+        // just have one location manager for whole app and set its delegate as we move through vcs
         locationManager.delegate = self
-        locationManager.startUpdatingLocation()
 
+        downloadCTATrainData()
         // get rid of this stringly typed shit
-        switch transitProvider! {
-        case "CTA Train":
-            downloadCTATrainData()
-
-        default:
-            print("")
-        }
 
         // init array or array with blank arrays
         for _ in 0..<CTATrainLine.allValues.count {
@@ -50,13 +49,16 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        locationManager.startUpdatingLocation()
+    }
+
     // MARK: CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.first!
         self.tableView.reloadData()
-        locationManager.stopUpdatingLocation()
     }
-
 
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,8 +102,12 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
-//        let indexPath = self.tableView.indexPathForCell(cell)
-//        let destinationVC = segue.destinationViewController as! StopViewController
+        let indexPath = self.tableView.indexPathForCell(cell)
+        let stop = self.stops[indexPath!.section][indexPath!.row]
+
+        let destinationVC = segue.destinationViewController as! StopViewController
+        destinationVC.stop = stop
+        self.locationManager.stopUpdatingLocation()
     }
 
     private func downloadCTATrainData() {
