@@ -85,9 +85,11 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-TransitAlarm/Alamofire.framework"
+  install_framework "Pods-TransitAlarm/Firebase.framework"
   install_framework "Pods-TransitAlarm/SWXMLHash.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-TransitAlarm/Alamofire.framework"
+  install_framework "Pods-TransitAlarm/Firebase.framework"
   install_framework "Pods-TransitAlarm/SWXMLHash.framework"
 fi
