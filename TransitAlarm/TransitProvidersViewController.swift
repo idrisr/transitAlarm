@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import CoreLocation
 
 class TransitProvidersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     var transitProviders = [String]()
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         transitProviders = ["CTA Train"] // enum?
+        self.askForUserLocationPermission()
+    }
+
+    func askForUserLocationPermission() {
+        locationManager.requestWhenInUseAuthorization()
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,8 +45,6 @@ class TransitProvidersViewController: UIViewController, UITableViewDelegate, UIT
             let indexPath = self.tableView.indexPathForCell(cell)
             destinationVC.transitProvider = self.transitProviders[indexPath!.row]
         } else {
-
-
         }
     }
 }
