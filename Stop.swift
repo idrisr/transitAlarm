@@ -10,6 +10,12 @@ import Foundation
 import CoreLocation
 import SWXMLHash
 
+extension UIColor {
+    class func pinkColor() -> UIColor {
+        return UIColor(red: 255/256, green: 192/256, blue: 203/256, alpha: 1.0)
+    }
+}
+
 extension String {
     func toBool() -> Bool? {
         switch self {
@@ -71,15 +77,17 @@ enum CTATrainLine: Int {
     }
 
     func color() -> UIColor {
-            case .Red:           return UIColor.red
-            case .Blue:          return "blue"
-            case .Green:         return "g"
-            case .Brown:         return "brn"
-            case .Purple:        return "p"
-            case .PurpleExpress: return "pexp"
-            case .Yellow:        return "y"
-            case .Pink:          return "pnk"
-            case .Orange:        return "o"
+        switch self {
+            case .Red:           return UIColor.redColor()
+            case .Blue:          return UIColor.blueColor()
+            case .Green:         return UIColor.greenColor()
+            case .Brown:         return UIColor.brownColor()
+            case .Purple:        return UIColor.purpleColor()
+            case .PurpleExpress: return UIColor.purpleColor()
+            case .Yellow:        return UIColor.yellowColor()
+            case .Pink:          return UIColor.pinkColor()
+            case .Orange:        return UIColor.orangeColor()
+        }
 
     }
 
