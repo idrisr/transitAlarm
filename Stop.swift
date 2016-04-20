@@ -62,6 +62,10 @@ enum CTATrainLine: Int {
         }
     }
 
+    func headerName() -> String {
+        return "\(self.name()) Line"
+    }
+
     func xmlElementName() -> String {
         switch self {
             case .Red:           return "red"

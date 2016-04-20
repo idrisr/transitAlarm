@@ -85,24 +85,13 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return CTATrainLine.allValues[section].name()
+        return CTATrainLine(rawValue: section)?.headerName()
     }
 
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        switch section {
-            case CTATrainLine.Red.rawValue:           header.contentView.backgroundColor = CTATrainLine.Red.color()
-            case CTATrainLine.Blue.rawValue:          header.contentView.backgroundColor = CTATrainLine.Blue.color()
-            case CTATrainLine.Green.rawValue:         header.contentView.backgroundColor = CTATrainLine.Green.color()
-            case CTATrainLine.Brown.rawValue:         header.contentView.backgroundColor = CTATrainLine.Brown.color()
-            case CTATrainLine.Purple.rawValue:        header.contentView.backgroundColor = CTATrainLine.Purple.color()
-            case CTATrainLine.PurpleExpress.rawValue: header.contentView.backgroundColor = CTATrainLine.PurpleExpress.color()
-            case CTATrainLine.Yellow.rawValue:        header.contentView.backgroundColor = CTATrainLine.Yellow.color()
-            case CTATrainLine.Pink.rawValue:          header.contentView.backgroundColor = CTATrainLine.Pink.color()
-            case CTATrainLine.Orange.rawValue:        header.contentView.backgroundColor = CTATrainLine.Orange.color()
-            default:                                  header.contentView.backgroundColor = UIColor.whiteColor()
-        }
+        header.contentView.backgroundColor = CTATrainLine(rawValue: section)!.color()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
