@@ -17,7 +17,6 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     @IBOutlet weak var distanceLabelFeet: UILabel!
     @IBOutlet weak var distanceLabelMiles: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-    let annotation = MKPointAnnotation()
 
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
@@ -32,9 +31,8 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
 
         self.stopNameLabel.text = stop?.stop_name
         self.title = stop?.stop_name
-
+        
         startMonitoringGeotification()
-        regionWithAnnotation()
         dropStopPin()
     }
 
@@ -51,6 +49,20 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         mapView.showsUserLocation = (status == .AuthorizedAlways)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        stopMonitoringRegion()
+    }
+    
+    func stopMonitoringRegion() {
+        for region in locationManager.monitoredRegions {
+            if let circularRegion = region as? CLCircularRegion {
+                if circularRegion.identifier == region.identifier {
+                    locationManager.stopMonitoringForRegion(circularRegion)
+                }
+            }
+        }
     }
     
     func regionWithAnnotation() -> CLCircularRegion {
@@ -70,7 +82,7 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             return
         }
         if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
-           showAlert("Error", message: "Location always on not enabled, Geo-Notification will not be sent")
+           showAlert("Error", message: "Location always on not enabled, transit stop notification will not be sent")
         }
         let region = regionWithAnnotation()
         locationManager.startMonitoringForRegion(region)
@@ -138,15 +150,45 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
 
     private func dropStopPin() {
+        let annotation = MKPointAnnotation()
         annotation.coordinate = getStopCoordinate2D()
         annotation.title = self.stop?.stop_name
         self.mapView.addAnnotation(annotation)
     }
     
+    func handleRegionEvent(region: CLRegion!) {
+        print("Transit stop approaching!")
+        if UIApplication.sharedApplication().applicationState == .Active {
+              showAlert("Transit Stop Approachig", message: region.identifier)
+        } else {
+            // Otherwise present a local notification
+            let notification = UILocalNotification()
+            notification.alertBody = "Approaching \(region.identifier)"
+            notification.soundName = "Default";
+            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+        }
+    }
+    
+    func handleRegionEventExit(region: CLRegion!) {
+        print("You have missed your stop.")
+    }
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleRegionEvent(region)
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleRegionEventExit(region)
+        }
+    }
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
+ 
 }
