@@ -107,7 +107,7 @@ struct Stop {
     var ada: Bool?
     var location: CLLocation
     var lines: [CTATrainLine]
-
+    
     init(xmlData: XMLIndexer) {
         // FIXME: add xml element values to enum somehow
         stop_id      = xmlData["stop_id"].element!.text!.toInt()

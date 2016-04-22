@@ -17,20 +17,24 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     @IBOutlet weak var distanceLabelFeet: UILabel!
     @IBOutlet weak var distanceLabelMiles: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    let annotation = MKPointAnnotation()
 
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var didCenterMap = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.showsUserLocation = true
         locationManager.delegate = self
         self.mapView.delegate = self
+        locationManager.requestAlwaysAuthorization()
 
         self.stopNameLabel.text = stop?.stop_name
         self.title = stop?.stop_name
 
+        startMonitoringGeotification()
+        regionWithAnnotation()
         dropStopPin()
     }
 
@@ -43,6 +47,43 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        mapView.showsUserLocation = (status == .AuthorizedAlways)
+    }
+    
+    func regionWithAnnotation() -> CLCircularRegion {
+        let geoLocation = CLLocationCoordinate2DMake(self.stop!.location.coordinate.latitude, self.stop!.location.coordinate.longitude)
+        let radius: CLLocationDistance!
+        radius = 500
+        let regionTitle = stop?.stop_name
+        let region = CLCircularRegion(center: geoLocation, radius: radius, identifier: regionTitle!)
+        let overlay = MKCircle(centerCoordinate: geoLocation, radius: radius)
+        mapView.addOverlay(overlay)
+        return region
+    }
+    
+    func startMonitoringGeotification() {
+        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+            showAlert("Error", message: "Geofencing not supported on device.")
+            return
+        }
+        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+           showAlert("Error", message: "Location always on not enabled, Geo-Notification will not be sent")
+        }
+        let region = regionWithAnnotation()
+        locationManager.startMonitoringForRegion(region)
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if overlay is MKCircle {
+            let circleRenderer = MKCircleRenderer(overlay: overlay)
+            circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
+            circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+            return circleRenderer
+        }
+        return nil
     }
 
     // MARK: MKMapViewDelegate
@@ -97,9 +138,15 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
 
     private func dropStopPin() {
-        let annotation = MKPointAnnotation()
         annotation.coordinate = getStopCoordinate2D()
         annotation.title = self.stop?.stop_name
         self.mapView.addAnnotation(annotation)
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
