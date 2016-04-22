@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fXi-q9-qzo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fXi-q9-qzo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1M1-xZ-Ufa">
-                                <rect key="frame" x="20" y="0.0" width="560" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="stopsCell" textLabel="CZj-El-AD1" detailTextLabel="iW3-Cp-w1O" style="IBUITableViewCellStyleSubtitle" id="b2B-cj-UBZ">
-                                        <rect key="frame" x="0.0" y="92" width="560" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b2B-cj-UBZ" id="LOt-Ae-83C">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CZj-El-AD1">
@@ -51,17 +51,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="4HB-MD-MZv">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="giF-r2-Xu8" id="AoN-6K-EwL"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="1M1-xZ-Ufa" secondAttribute="trailing" id="XCv-KW-ilx"/>
-                            <constraint firstItem="u3l-2e-uHY" firstAttribute="top" secondItem="1M1-xZ-Ufa" secondAttribute="bottom" id="aQV-mD-2OA"/>
-                            <constraint firstItem="1M1-xZ-Ufa" firstAttribute="top" secondItem="h3L-xK-bdK" secondAttribute="bottom" constant="-64" id="ldi-oe-r1K"/>
-                            <constraint firstItem="1M1-xZ-Ufa" firstAttribute="leading" secondItem="GXt-A3-PjU" secondAttribute="leadingMargin" id="nWm-7r-1UR"/>
+                            <constraint firstItem="4HB-MD-MZv" firstAttribute="top" secondItem="h3L-xK-bdK" secondAttribute="bottom" id="2O4-hd-RuX"/>
+                            <constraint firstAttribute="trailing" secondItem="4HB-MD-MZv" secondAttribute="trailing" id="DYC-w5-Igu"/>
+                            <constraint firstItem="4HB-MD-MZv" firstAttribute="leading" secondItem="GXt-A3-PjU" secondAttribute="leading" id="Tem-Cd-Oqv"/>
+                            <constraint firstItem="1M1-xZ-Ufa" firstAttribute="top" secondItem="h3L-xK-bdK" secondAttribute="bottom" id="Toq-vi-KdJ"/>
+                            <constraint firstItem="u3l-2e-uHY" firstAttribute="top" secondItem="1M1-xZ-Ufa" secondAttribute="bottom" id="lQD-r9-pTz"/>
+                            <constraint firstAttribute="trailing" secondItem="1M1-xZ-Ufa" secondAttribute="trailing" id="lWC-Q0-MoD"/>
+                            <constraint firstItem="1M1-xZ-Ufa" firstAttribute="leading" secondItem="GXt-A3-PjU" secondAttribute="leading" id="xbc-ZT-KHj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gEe-cL-7A9"/>
                     <connections>
+                        <outlet property="searchBar" destination="4HB-MD-MZv" id="x26-ed-IEm"/>
                         <outlet property="tableView" destination="1M1-xZ-Ufa" id="uej-Ml-KMQ"/>
                     </connections>
                 </viewController>

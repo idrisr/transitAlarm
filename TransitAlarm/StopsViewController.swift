@@ -26,21 +26,26 @@ extension Double {
     }
 }
 
-class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UISearchBarDelegate {
 
     let _apiURL = "https://data.cityofchicago.org/api/views/8pix-ypme/rows.xml?accessType=DOWNLOAD"
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var transitProvider: String?
     var stops =  [[Stop]]()
+    var filteredStops = [[Stop]]()
+    var searchBarIsSearching = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.title = "CTA Train Stops"
+        self.searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.Done
 
         // just have one location manager for whole app and set its delegate as we move through vcs
         locationManager.delegate = self
@@ -67,13 +72,23 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchBarIsSearching {
+            return self.filteredStops[section].count
+        }
         return self.stops[section].count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let reuseID = "stopsCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-        let stop = self.stops[indexPath.section][indexPath.row]
+        let stop: Stop!
+        
+        if searchBarIsSearching {
+            stop = filteredStops[indexPath.section][indexPath.row]
+        } else {
+            stop = stops[indexPath.section][indexPath.row]
+        }
+        
         cell.textLabel!.text = stop.stop_name
         let distanceInMiles = stop.location.distanceFromLocation(currentLocation).metersToMiles()
         cell.detailTextLabel!.text = String(format: "Miles Away: %.3f", distanceInMiles)
@@ -87,6 +102,19 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return CTATrainLine(rawValue: section)?.headerName()
     }
+    
+//  func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+//      if  searchBar.text == nil || searchBar.text == "" {
+//           searchBarIsSearching = false
+//           tableView.reloadData()
+//           view.endEditing(true)
+//        } else {
+//            searchBarIsSearching = true
+//            let lower = searchBar.text!.lowercaseString
+//            filteredStops = stops[0].filter({$0.stop_name!.rangeOfString(lower) != nil})
+//            tableView.reloadData()
+//        }
+//    }
 
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
