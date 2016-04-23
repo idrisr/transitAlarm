@@ -31,7 +31,8 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
 
         self.stopNameLabel.text = stop?.stop_name
         self.title = stop?.stop_name
-        
+
+        regionWithAnnotation()
         startMonitoringGeotification()
         dropStopPin()
     }
