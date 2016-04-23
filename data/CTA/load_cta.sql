@@ -73,8 +73,6 @@ CREATE TABLE `routes` (
 	KEY `route_type` (route_type)
 );
 
-
-
 DROP TABLE IF EXISTS trips;
 -- trip_id,service_id,route_id,trip_headsign,direction_id,shape_id
 CREATE TABLE `trips` (
@@ -91,7 +89,6 @@ CREATE TABLE `trips` (
     KEY `service_id` (service_id)
 );
 
-
 DROP TABLE IF EXISTS stops;
 -- stop_id,stop_code,stop_name,stop_lat,stop_lon,location_type,parent_station,wheelchair_boarding
 CREATE TABLE `stops` (
@@ -103,14 +100,13 @@ CREATE TABLE `stops` (
 	stop_lon DECIMAL(8,6)
 );
 
-
 DROP TABLE IF EXISTS stop_times;
 CREATE TABLE `stop_times` (
     trip_id               VARCHAR(255),
     arrival_time          VARCHAR(8),
     departure_time        VARCHAR(8),
     stop_id               VARCHAR(255),
-    stop_sequence         VARCHAR(255),
+    stop_sequence         SMALLINT UNSIGNED,
     stop_headsign         VARCHAR(8),
     pickup_type           INT(2),
     shape_dist_traveled   VARCHAR(8),
@@ -120,7 +116,6 @@ CREATE TABLE `stop_times` (
     KEY `stop_sequence` (stop_sequence),
     KEY `pickup_type` (pickup_type)
 );
-
 
 DROP TABLE IF EXISTS frequencies;
 
