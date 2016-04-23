@@ -44,7 +44,7 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.title = "CTA Train Stops"
-        self.searchBar.delegate = self
+        self.searchBar.de/Users/MatthewBraca/Desktop/transitAlarm/TransitAlarm/StopsViewController.swiftlegate = self
         searchBar.returnKeyType = UIReturnKeyType.Done
 
         // just have one location manager for whole app and set its delegate as we move through vcs

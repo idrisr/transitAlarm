@@ -34,7 +34,7 @@
 		258362AA1CC80DAE003E592D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		43C7C040C5F92399D5135115 /* Pods-TransitAlarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.release.xcconfig"; sourceTree = "<group>"; };
 		6879AF871CC534FA003F6483 /* TransitAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransitAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TransitAlarm/AppDelegate.swift; sourceTree = "<group>"; };
 		6879AF8C1CC534FA003F6483 /* TransitProvidersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransitProvidersViewController.swift; path = TransitAlarm/TransitProvidersViewController.swift; sourceTree = "<group>"; };
 		6879AF8F1CC534FA003F6483 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6879AF911CC534FA003F6483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,7 +107,6 @@
 		6879AF891CC534FA003F6483 /* TransitAlarm */ = {
 			isa = PBXGroup;
 			children = (
-				6879AF8A1CC534FA003F6483 /* AppDelegate.swift */,
 				6879AF911CC534FA003F6483 /* Assets.xcassets */,
 				6879AF961CC534FA003F6483 /* Info.plist */,
 			);
@@ -145,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				6879AF8E1CC534FA003F6483 /* Main.storyboard */,
+				6879AF8A1CC534FA003F6483 /* AppDelegate.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
