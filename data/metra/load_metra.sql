@@ -1,18 +1,18 @@
---  /*  
+--  /*
 --  * The code is contributed by Michael Perkins
---  * I change a little bit. 
---  * The original file is located in https://raw.githubusercontent.com/sbma44/py-gtfs-mysql/master/sql_better/load.sql
+--  * I change a little bit.
+--  * The original file is located in https://raw.githubusercontent.com/sbma44/py-metra-mysql/master/sql_better/load.sql
 --  *
 --  * SparkandShine (sparkandshine.net)
 --  */
 
-DROP DATABASE IF EXISTS gtfs;
--- CREATE DATABASE IF NOT EXISTS gtfs;
-CREATE DATABASE gtfs
+DROP DATABASE IF EXISTS metra;
+-- CREATE DATABASE IF NOT EXISTS metra;
+CREATE DATABASE metra
 	DEFAULT CHARACTER SET utf8
 	DEFAULT COLLATE utf8_general_ci;
 
-USE gtfs
+USE metra
 
 DROP TABLE IF EXISTS agency;
 -- agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang
@@ -33,31 +33,6 @@ CREATE TABLE `shapes` (
 	shape_pt_lon DECIMAL(8,6),
 	shape_pt_sequence VARCHAR(255),
     shape_dist_traveled DECIMAL(8,6)
-);
-
-DROP TABLE IF EXISTS calendar;
--- service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
-CREATE TABLE `calendar` (
-    	service_id VARCHAR(255) NOT NULL PRIMARY KEY,
-	monday TINYINT(1),
-	tuesday TINYINT(1),
-	wednesday TINYINT(1),
-	thursday TINYINT(1),
-	friday TINYINT(1),
-	saturday TINYINT(1),
-	sunday TINYINT(1),
-	start_date VARCHAR(8),	
-	end_date VARCHAR(8)
-);
-
-DROP TABLE IF EXISTS calendar_dates;
--- service_id,date,exception_type
-CREATE TABLE `calendar_dates` (
-    service_id VARCHAR(255),
-    `date` VARCHAR(8),
-    exception_type INT(2),
-    FOREIGN KEY (service_id) REFERENCES calendar(service_id),
-    KEY `exception_type` (exception_type)    
 );
 
 DROP TABLE IF EXISTS routes;
@@ -89,7 +64,6 @@ CREATE TABLE `trips` (
 	block_id VARCHAR(255),
 	shape_id VARCHAR(255),
 	FOREIGN KEY (route_id) REFERENCES routes(route_id),
-	FOREIGN KEY (service_id) REFERENCES calendar(service_id),
 	KEY `route_id` (route_id),
 	KEY `service_id` (service_id)
 );
@@ -114,15 +88,14 @@ CREATE TABLE `stops` (
 DROP TABLE IF EXISTS stop_times;
 -- trip_id,stop_id,stop_sequence,arrival_time,departure_time,stop_headsign,pickup_type,drop_off_type,shape_dist_traveled
 CREATE TABLE `stop_times` (
-    trip_id VARCHAR(255),
-	arrival_time VARCHAR(8),
-	departure_time VARCHAR(8),
-	stop_id VARCHAR(255),
-	stop_sequence VARCHAR(255),
-	pickup_type INT(2),
-	drop_off_type INT(2),
-	--  stop_headsign VARCHAR(8),
-	--  shape_dist_traveled VARCHAR(8),
+    trip_id          VARCHAR(255),
+    arrival_time     VARCHAR(8),
+    departure_time   VARCHAR(8),
+    stop_id          VARCHAR(255),
+    stop_sequence    SMALLINT UNSIGNED,
+    pickup_type      INT(2),
+    drop_off_type    INT(2),
+
 	FOREIGN KEY (trip_id) REFERENCES trips(trip_id),
 	FOREIGN KEY (stop_id) REFERENCES stops(stop_id),
 	KEY `trip_id` (trip_id),
@@ -133,61 +106,9 @@ CREATE TABLE `stop_times` (
 );
 
 
-DROP TABLE IF EXISTS frequencies;
-
--- trip_id,start_time,end_time,headway_secs
-CREATE TABLE `frequencies` (
-	trip_id VARCHAR(255),
-	start_time VARCHAR(50),
-	end_time VARCHAR(50),
-	headway_secs VARCHAR(50),
-	FOREIGN KEY (trip_id) REFERENCES trips(trip_id)
-);
-
-LOAD DATA LOCAL INFILE 'metra/agency.txt' 
-INTO TABLE agency                 
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE 'metra/shapes.txt' 
-INTO TABLE shapes                 
-FIELDS TERMINATED BY ',' 
-LINES TERMINATED BY '\n' 
-IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE 'metra/calendar.txt' 
-INTO TABLE calendar             
-FIELDS TERMINATED BY ',' 
-LINES TERMINATED BY '\n' 
-IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE 'metra/calendar_dates.txt' 
-INTO TABLE calendar_dates 
-FIELDS TERMINATED BY ',' 
-LINES TERMINATED BY '\n' 
-IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE 'metra/routes.txt' 
-INTO TABLE routes                 
-FIELDS TERMINATED BY ',' 
-LINES TERMINATED BY '\n' 
-IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE 'metra/stops.txt' 
-INTO TABLE stops                   
-FIELDS TERMINATED BY ',' 
-LINES TERMINATED BY '\n' 
-IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE 'metra/trips.txt' 
-INTO TABLE trips                   
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE 'metra/stop_times.txt' 
-INTO TABLE stop_times         
-FIELDS TERMINATED BY ',' 
-LINES TERMINATED BY '\n' 
-IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE 'tmp/agency.txt' INTO TABLE agency                 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE 'tmp/shapes.txt' INTO TABLE shapes                 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE 'tmp/routes.txt' INTO TABLE routes                 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE 'tmp/stops.txt' INTO TABLE stops                   FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE 'tmp/trips.txt' INTO TABLE trips                   FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE 'tmp/stop_times.txt' INTO TABLE stop_times         FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
