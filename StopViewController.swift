@@ -88,15 +88,12 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let region = regionWithAnnotation()
         locationManager.startMonitoringForRegion(region)
     }
-    
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-        if overlay is MKCircle {
-            let circleRenderer = MKCircleRenderer(overlay: overlay)
-            circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
-            circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
-            return circleRenderer
-        }
-        return nil
+
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let circleRenderer = MKCircleRenderer(overlay: overlay)
+        circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
+        circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        return circleRenderer
     }
 
     // MARK: MKMapViewDelegate
