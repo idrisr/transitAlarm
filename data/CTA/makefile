@@ -1,7 +1,7 @@
 all: clean makedirs unzip removequotes removespaces fixstops loaddb fixbadlatlon
 
 TMPDIR=tmp
-gtfo?=CTA.zip
+gtfs?=CTA.zip
 STOPS=$(TMPDIR)/stops.txt
 SQLSCRIPT=load_cta.sql
 SQLGETBADLATLON=get_bad_lat_lon.sql
@@ -16,19 +16,19 @@ SQLUPDATEBADLATLON=$(TMPDIR)/update_bad_lat_lon.sql
 help:
 	# @echo "see https://developers.google.com/transit/gtfs/reference"
 	# @echo ""
-	# @echo "make gtfo=[pathToMyZippedGTFOfile/transit.zip]"
-	# @echo "example usage: make gtfo=CTA/google_transit.zip"
+	# @echo "make gtfs=[pathToMyZippedgtfsfile/transit.zip]"
+	# @echo "example usage: make gtfs=CTA/google_transit.zip"
 
 makedirs:
 	mkdir -p $(TMPDIR)
 
 unzip:
-	unzip $(gtfo) trips.txt      
-	unzip $(gtfo) stop_times.txt
-	unzip $(gtfo) stops.txt      
-	unzip $(gtfo) shapes.txt     
-	unzip $(gtfo) routes.txt     
-	unzip $(gtfo) agency.txt     
+	unzip $(gtfs) trips.txt
+	unzip $(gtfs) stop_times.txt
+	unzip $(gtfs) stops.txt
+	unzip $(gtfs) shapes.txt
+	unzip $(gtfs) routes.txt
+	unzip $(gtfs) agency.txt
 	mv *txt $(TMPDIR)
 
 removequotes:
@@ -49,7 +49,7 @@ fixstops:
 	mv $(STOPS) $(STOPS).old
 	mv $(STOPS).new $(STOPS)
 
-loaddb: 
+loaddb:
 	cat $(SQLSCRIPT) | mysql -u root -p$(DBPASSWORD)
 
 fixbadlatlon:
