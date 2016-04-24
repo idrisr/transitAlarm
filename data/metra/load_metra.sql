@@ -1,11 +1,3 @@
---  /*
---  * The code is contributed by Michael Perkins
---  * I change a little bit.
---  * The original file is located in https://raw.githubusercontent.com/sbma44/py-metra-mysql/master/sql_better/load.sql
---  *
---  * SparkandShine (sparkandshine.net)
---  */
-
 DROP DATABASE IF EXISTS metra;
 -- CREATE DATABASE IF NOT EXISTS metra;
 CREATE DATABASE metra
@@ -28,11 +20,12 @@ CREATE TABLE `agency` (
 DROP TABLE IF EXISTS shapes;
 -- shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence
 CREATE TABLE `shapes` (
-	shape_id VARCHAR(255) NOT NULL,
+	shape_id INTEGER NOT NULL,
 	shape_pt_lat DECIMAL(8,6),
 	shape_pt_lon DECIMAL(8,6),
-	shape_pt_sequence VARCHAR(255),
+	shape_pt_sequence INTEGER,
     shape_dist_traveled DECIMAL(8,6)
+    primary key (shape_id, shape_pt_lat, shape_pt_lon)
 );
 
 DROP TABLE IF EXISTS routes;
@@ -41,38 +34,33 @@ CREATE TABLE `routes` (
     route_id VARCHAR(255) NOT NULL PRIMARY KEY,
 	route_short_name VARCHAR(50),
 	route_long_name VARCHAR(255),
-	route_desc VARCHAR(255),
-	agency_id VARCHAR(255),
+	--  agency_id VARCHAR(255) add this, but not the one in the file
 	route_type INT(2),
+	route_url VARCHAR(255),
 	route_color VARCHAR(20),
 	route_text_color VARCHAR(20),
-	route_url VARCHAR(255),
-	FOREIGN KEY (agency_id) REFERENCES agency(agency_id),
-	KEY `agency_id` (agency_id),
+	--  FOREIGN KEY (agency_id) REFERENCES agency(agency_id),
+	--  KEY `agency_id` (agency_id),
 	KEY `route_type` (route_type)
 );
-
-
 
 DROP TABLE IF EXISTS trips;
 -- trip_id,service_id,route_id,trip_headsign,direction_id,shape_id
 CREATE TABLE `trips` (
-    route_id VARCHAR(255),
-	service_id VARCHAR(255),
-	trip_id VARCHAR(255) NOT NULL PRIMARY KEY,
-	trip_headsign VARCHAR(255),
-	block_id VARCHAR(255),
-	shape_id VARCHAR(255),
-	FOREIGN KEY (route_id) REFERENCES routes(route_id),
-	KEY `route_id` (route_id),
-	KEY `service_id` (service_id)
+route_id VARCHAR(255),
+service_id VARCHAR(255),
+trip_id VARCHAR(255) NOT NULL PRIMARY KEY,
+block_id VARCHAR(255),
+shape_id VARCHAR(255),
+FOREIGN KEY (route_id) REFERENCES routes(route_id),
+KEY `route_id` (route_id),
+KEY `service_id` (service_id)
 );
-
 
 DROP TABLE IF EXISTS stops;
 -- stop_id,stop_code,stop_name,stop_lat,stop_lon,location_type,parent_station,wheelchair_boarding
 CREATE TABLE `stops` (
-    	stop_id VARCHAR(255) NOT NULL PRIMARY KEY,
+    stop_id VARCHAR(255) NOT NULL PRIMARY KEY,
 	stop_code VARCHAR(255),
 	stop_name VARCHAR(255),
 	stop_lat DECIMAL(8,6),

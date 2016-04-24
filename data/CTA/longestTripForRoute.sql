@@ -1,8 +1,9 @@
 -- finds the trip for a route with the max number of stops.
 -- if trip with max stops tied, chooses the max trip_id
 
---  CREATE TABLE routeTrip AS (
-    SELECT z.route_id, r.route_long_name, z.stop_sequence, MAX(z.trip_id) as aTripID
+use cta;
+CREATE TABLE routeTrip AS (
+    SELECT z.route_id, r.route_long_name, MAX(z.trip_id) as aTripID
     FROM (
         SELECT t.trip_id, t.route_id, st.stop_sequence
         FROM trips t
@@ -19,4 +20,4 @@
     ON y.route_id = z.route_id AND y.max_stop_sequence = z.stop_sequence
     JOIN routes r ON r.route_id = z.route_id
     GROUP BY z.route_id, r.route_long_name, z.stop_sequence
---  )
+)
