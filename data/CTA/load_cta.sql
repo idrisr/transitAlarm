@@ -4,7 +4,7 @@ CREATE DATABASE cta
 	DEFAULT CHARACTER SET utf8
 	DEFAULT COLLATE utf8_general_ci;
 
-USE cta
+USE cta;
 
 DROP TABLE IF EXISTS agency;
 -- agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang
@@ -24,7 +24,7 @@ CREATE TABLE `shapes` (
 	shape_pt_lat DECIMAL(8,6),
 	shape_pt_lon DECIMAL(8,6),
 	shape_pt_sequence INTEGER,
-    shape_dist_traveled DECIMAL(8,6)
+    shape_dist_traveled DECIMAL(8,6),
     primary key (shape_id, shape_pt_lat, shape_pt_lon)
 );
 

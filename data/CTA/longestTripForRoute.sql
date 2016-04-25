@@ -3,7 +3,7 @@
 
 use cta;
 CREATE TABLE routeTrip AS (
-    SELECT z.route_id, r.route_long_name, MAX(z.trip_id) as aTripID
+    SELECT r.agency_id, z.route_id, r.route_long_name, MAX(z.trip_id) as aTripID
     FROM (
         SELECT t.trip_id, t.route_id, st.stop_sequence
         FROM trips t
