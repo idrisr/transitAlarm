@@ -19,7 +19,7 @@ CREATE TABLE `agency` (
 DROP TABLE IF EXISTS shapes;
 -- shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence
 CREATE TABLE `shapes` (
-	shape_id INTEGER NOT NULL,
+	shape_id VARCHAR(255) NOT NULL,
 	shape_pt_lat DECIMAL(8,6),
 	shape_pt_lon DECIMAL(8,6),
 	shape_pt_sequence INTEGER,
@@ -50,6 +50,7 @@ CREATE TABLE `trips` (
 route_id VARCHAR(255),
 service_id VARCHAR(255),
 trip_id VARCHAR(255) NOT NULL PRIMARY KEY,
+trip_headsign VARCHAR(255),
 block_id VARCHAR(255),
 shape_id VARCHAR(255),
 FOREIGN KEY (route_id) REFERENCES routes(route_id),
