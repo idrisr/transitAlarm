@@ -12,9 +12,8 @@ CREATE TABLE `agency` (
     agency_id VARCHAR(255) NOT NULL PRIMARY KEY,
     agency_name VARCHAR(255),
     agency_url VARCHAR(255),
-    agency_timezone VARCHAR(50),
-    agency_phone VARCHAR(255),
-    agency_lang VARCHAR(50)
+    agency_lang VARCHAR(50),
+    agency_timezone VARCHAR(50)
 );
 
 DROP TABLE IF EXISTS shapes;
@@ -24,7 +23,7 @@ CREATE TABLE `shapes` (
 	shape_pt_lat DECIMAL(8,6),
 	shape_pt_lon DECIMAL(8,6),
 	shape_pt_sequence INTEGER,
-    shape_dist_traveled DECIMAL(8,6)
+    shape_dist_traveled DECIMAL(8,6),
     primary key (shape_id, shape_pt_lat, shape_pt_lon)
 );
 
@@ -34,11 +33,12 @@ CREATE TABLE `routes` (
     route_id VARCHAR(255) NOT NULL PRIMARY KEY,
 	route_short_name VARCHAR(50),
 	route_long_name VARCHAR(255),
-	--  agency_id VARCHAR(255) add this, but not the one in the file
+    route_desc VARCHAR(255),
+    agency_id VARCHAR(255),
 	route_type INT(2),
-	route_url VARCHAR(255),
 	route_color VARCHAR(20),
 	route_text_color VARCHAR(20),
+	route_url VARCHAR(255),
 	--  FOREIGN KEY (agency_id) REFERENCES agency(agency_id),
 	--  KEY `agency_id` (agency_id),
 	KEY `route_type` (route_type)

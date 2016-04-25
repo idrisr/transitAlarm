@@ -1,7 +1,7 @@
 -- finds the trip for a route with the max number of stops.
 -- if trip with max stops tied, chooses the max trip_id
 
-use cta;
+use DB_REPLACE_ME;
 CREATE TABLE routeTrip AS (
     SELECT r.agency_id, z.route_id, r.route_long_name, MAX(z.trip_id) as aTripID
     FROM (

@@ -1,0 +1,180 @@
+Database: cta  Table: agency
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field           | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| agency_name     | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_url      | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_timezone | varchar(50)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_lang     | varchar(50)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_phone    | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_fare_url | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_id       | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: metra  Table: agency
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field           | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| agency_id       | varchar(255) | utf8_general_ci | NO   | PRI |         |       | select,insert,update,references |         |
+| agency_name     | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_url      | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_timezone | varchar(50)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_phone    | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_lang     | varchar(50)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+agency_id,
+agency_name,
+agency_url,
+agency_timezone,
+agency_phone,
+agency_lang,
+
+Database: cta  Table: routeTrip
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field           | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| agency_id       | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_id        | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_long_name | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| aTripID         | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: metra  Table: routeTrip
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field           | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| agency_id       | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_id        | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_long_name | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| aTripID         | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: cta  Table: routes
++------------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field            | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++------------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| route_id         | varchar(255) | utf8_general_ci | NO   | PRI |         |       | select,insert,update,references |         |
+| route_short_name | varchar(50)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_long_name  | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_type       | int(2)       |                 | YES  | MUL |         |       | select,insert,update,references |         |
+| route_url        | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_color      | varchar(20)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_text_color | varchar(20)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_id        | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++------------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: metra  Table: routes
++------------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field            | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++------------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| route_id         | varchar(255) | utf8_general_ci | NO   | PRI |         |       | select,insert,update,references |         |
+| route_short_name | varchar(50)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_long_name  | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_desc       | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| agency_id        | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_type       | int(2)       |                 | YES  | MUL |         |       | select,insert,update,references |         |
+| route_color      | varchar(20)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_text_color | varchar(20)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| route_url        | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++------------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: cta  Table: shapes
++---------------------+--------------+-----------+------+-----+---------+-------+---------------------------------+---------+
+| Field               | Type         | Collation | Null | Key | Default | Extra | Privileges                      | Comment |
++---------------------+--------------+-----------+------+-----+---------+-------+---------------------------------+---------+
+| shape_id            | int(11)      |           | NO   | PRI |         |       | select,insert,update,references |         |
+| shape_pt_lat        | decimal(8,6) |           | NO   | PRI |         |       | select,insert,update,references |         |
+| shape_pt_lon        | decimal(8,6) |           | NO   | PRI |         |       | select,insert,update,references |         |
+| shape_pt_sequence   | int(11)      |           | YES  |     |         |       | select,insert,update,references |         |
+| shape_dist_traveled | decimal(8,6) |           | YES  |     |         |       | select,insert,update,references |         |
++---------------------+--------------+-----------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: metra  Table: shapes
++---------------------+--------------+-----------+------+-----+---------+-------+---------------------------------+---------+
+| Field               | Type         | Collation | Null | Key | Default | Extra | Privileges                      | Comment |
++---------------------+--------------+-----------+------+-----+---------+-------+---------------------------------+---------+
+| shape_id            | int(11)      |           | NO   | PRI |         |       | select,insert,update,references |         |
+| shape_pt_lat        | decimal(8,6) |           | NO   | PRI |         |       | select,insert,update,references |         |
+| shape_pt_lon        | decimal(8,6) |           | NO   | PRI |         |       | select,insert,update,references |         |
+| shape_pt_sequence   | int(11)      |           | YES  |     |         |       | select,insert,update,references |         |
+| shape_dist_traveled | decimal(8,6) |           | YES  |     |         |       | select,insert,update,references |         |
++---------------------+--------------+-----------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: cta  Table: stop_times
++---------------------+----------------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field               | Type                 | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++---------------------+----------------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| trip_id             | varchar(255)         | utf8_general_ci | YES  | MUL |         |       | select,insert,update,references |         |
+| arrival_time        | varchar(8)           | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| departure_time      | varchar(8)           | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| stop_id             | int(11)              |                 | YES  | MUL |         |       | select,insert,update,references |         |
+| stop_sequence       | smallint(5) unsigned |                 | YES  | MUL |         |       | select,insert,update,references |         |
+| stop_headsign       | varchar(8)           | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| pickup_type         | int(2)               |                 | YES  | MUL |         |       | select,insert,update,references |         |
+| shape_dist_traveled | varchar(8)           | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++---------------------+----------------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: metra  Table: stop_times
++----------------+----------------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field          | Type                 | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++----------------+----------------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| trip_id        | varchar(255)         | utf8_general_ci | YES  | MUL |         |       | select,insert,update,references |         |
+| arrival_time   | varchar(8)           | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| departure_time | varchar(8)           | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| stop_id        | varchar(255)         | utf8_general_ci | YES  | MUL |         |       | select,insert,update,references |         |
+| stop_sequence  | smallint(5) unsigned |                 | YES  | MUL |         |       | select,insert,update,references |         |
+| pickup_type    | int(2)               |                 | YES  | MUL |         |       | select,insert,update,references |         |
+| drop_off_type  | int(2)               |                 | YES  | MUL |         |       | select,insert,update,references |         |
++----------------+----------------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: cta  Table: stops
++-----------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field     | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++-----------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| stop_id   | int(11)      |                 | NO   | PRI |         |       | select,insert,update,references |         |
+| stop_code | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| stop_name | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| stop_desc | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| stop_lat  | decimal(8,6) |                 | NO   | PRI |         |       | select,insert,update,references |         |
+| stop_lon  | decimal(8,6) |                 | NO   | PRI |         |       | select,insert,update,references |         |
++-----------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: metra  Table: stops
++---------------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field               | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++---------------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| stop_id             | varchar(255) | utf8_general_ci | NO   | PRI |         |       | select,insert,update,references |         |
+| stop_code           | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| stop_name           | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| stop_lat            | decimal(8,6) |                 | YES  |     |         |       | select,insert,update,references |         |
+| stop_lon            | decimal(8,6) |                 | YES  |     |         |       | select,insert,update,references |         |
+| location_type       | int(2)       |                 | YES  |     |         |       | select,insert,update,references |         |
+| parent_station      | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| wheelchair_boarding | int(2)       |                 | YES  |     |         |       | select,insert,update,references |         |
+| stop_desc           | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| zone_id             | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++---------------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: cta  Table: trips
++------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field      | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| route_id   | varchar(255) | utf8_general_ci | YES  | MUL |         |       | select,insert,update,references |         |
+| service_id | varchar(255) | utf8_general_ci | YES  | MUL |         |       | select,insert,update,references |         |
+| trip_id    | varchar(255) | utf8_general_ci | NO   | PRI |         |       | select,insert,update,references |         |
+| block_id   | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| shape_id   | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+
+Database: metra  Table: trips
++------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| Field      | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
++------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+| route_id   | varchar(255) | utf8_general_ci | YES  | MUL |         |       | select,insert,update,references |         |
+| service_id | varchar(255) | utf8_general_ci | YES  | MUL |         |       | select,insert,update,references |         |
+| trip_id    | varchar(255) | utf8_general_ci | NO   | PRI |         |       | select,insert,update,references |         |
+| block_id   | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
+| shape_id   | varchar(255) | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
++------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
+

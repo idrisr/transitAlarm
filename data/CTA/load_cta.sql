@@ -1,5 +1,4 @@
 DROP DATABASE IF EXISTS cta;
--- CREATE DATABASE IF NOT EXISTS cta;
 CREATE DATABASE cta
 	DEFAULT CHARACTER SET utf8
 	DEFAULT COLLATE utf8_general_ci;
@@ -7,18 +6,16 @@ CREATE DATABASE cta
 USE cta;
 
 DROP TABLE IF EXISTS agency;
--- agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang
 CREATE TABLE `agency` (
-    agency_id VARCHAR(255) NOT NULL PRIMARY KEY,
     agency_name VARCHAR(255),
     agency_url VARCHAR(255),
     agency_timezone VARCHAR(50),
+    agency_lang VARCHAR(50),
     agency_phone VARCHAR(255),
-    agency_lang VARCHAR(50)
+    agency_fare_url VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS shapes;
--- shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence
 CREATE TABLE `shapes` (
 	shape_id INTEGER NOT NULL,
 	shape_pt_lat DECIMAL(8,6),
