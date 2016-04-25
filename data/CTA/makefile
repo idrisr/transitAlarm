@@ -1,4 +1,4 @@
-all: clean makedirs unzip removequotes removespaces fixstops loaddb fixbadlatlon
+all: clean makedirs unzip removequotes removespaces fixstops loaddb fixbadlatlon addAgencyID
 
 TMPDIR=tmp
 gtfs?=CTA.zip
@@ -8,6 +8,8 @@ SQLGETBADLATLON=get_bad_lat_lon.sql
 BADLATLON=$(TMPDIR)/bad_lat_lon
 DBPASSWORD=password
 SQLUPDATEBADLATLON=$(TMPDIR)/update_bad_lat_lon.sql
+
+ADDAGENCYID_SQL=add_agencyID_to_route.sql
 
 # MD5 (CTA.zip) = 115a397cdf5a38d2ef22cf3a74bb67c5
 # http://www.transitchicago.com/downloads/sch_data/
@@ -58,6 +60,9 @@ fixbadlatlon:
 		awk -F, '$$1==var {print "UPDATE stops SET stop_lat=" $$5 ",stop_lon=" $$6 " WHERE stop_id=" $$1 ";"}' var="$$STOP_ID" $(STOPS).old;\
 	done < $(BADLATLON) > $(SQLUPDATEBADLATLON)
 	cat $(SQLUPDATEBADLATLON) | mysql -u root -p$(DBPASSWORD) -A cta
+
+addAgencyID:
+	mysql -N -u root -p$(DBPASSWORD) < $(ADDAGENCYID_SQL)
 
 clean:
 	rm -rf $(TMPDIR)
