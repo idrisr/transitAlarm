@@ -13,6 +13,7 @@ PODS:
   - FBSDKShareKit (4.11.0):
     - FBSDKCoreKit
   - Firebase (2.5.1)
+  - SwiftCSV (0.3.2)
   - SWXMLHash (2.3.1)
 
 DEPENDENCIES:
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FBSDKShareKit
   - Firebase (>= 2.5.1)
+  - SwiftCSV
   - SWXMLHash
 
 SPEC CHECKSUMS:
@@ -30,6 +32,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
   FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
+  SwiftCSV: 8b64b738fc54567d229acb17ce6d584e0dd27560
   SWXMLHash: 795c66e74f4cc9473ad6465c6653c5a6f59f417e
 
 COCOAPODS: 0.39.0
