@@ -33,6 +33,7 @@ unzip:
 	@unzip $(gtfs) shapes.txt     -d $(TMPDIR)
 	@unzip $(gtfs) routes.txt     -d $(TMPDIR)
 	@unzip $(gtfs) agency.txt     -d $(TMPDIR)
+	dos2unix $(TMPDIR)/*
 
 removequotes:
 	for f in $(TMPDIR)/*; do      \
