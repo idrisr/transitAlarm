@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 # modified from here: https://stackoverflow.com/questions/4589891/mysql-dump-into-csv-text-files-with-column-names-at-the-top
 
+if [ "$#" -ne 2 ]; then
+    echo "Illegal number of parameters"
+    echo "Usage: $0 [DBNAME] [TABLENAME]"
+    exit 1
+fi
+
 DBNAME=$1
 TABLE=$2
 

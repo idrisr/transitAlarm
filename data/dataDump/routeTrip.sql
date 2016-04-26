@@ -1,6 +1,8 @@
 -- route_trip
-SELECT 
-agency_id, route_id, route_long_name, aTripID cta.routetrip
-UNION
-SELECT 
-agency_id, route_id, route_long_name, aTripID from metra.routetrip
+use ctametra;
+
+CREATE TABLE routeTrip SELECT * FROM (
+    SELECT route_id, trip_id FROM cta.routetrip
+    UNION
+    SELECT route_id, trip_id FROM metra.routetrip
+) X

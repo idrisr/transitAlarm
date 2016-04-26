@@ -23,13 +23,6 @@ Database: metra  Table: agency
 | agency_lang     | varchar(50)  | utf8_general_ci | YES  |     |         |       | select,insert,update,references |         |
 +-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
 
-agency_id,
-agency_name,
-agency_url,
-agency_timezone,
-agency_phone,
-agency_lang,
-
 Database: cta  Table: routeTrip
 +-----------------+--------------+-----------------+------+-----+---------+-------+---------------------------------+---------+
 | Field           | Type         | Collation       | Null | Key | Default | Extra | Privileges                      | Comment |
