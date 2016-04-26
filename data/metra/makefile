@@ -1,4 +1,4 @@
-all: clean unzip removequotes removespaces loaddb createRouteTrip
+all: clean unzip removequotes removespaces loaddb createRouteTrip updateStopname
 
 TMPDIR=tmp
 gtfs?=metra.zip
@@ -9,6 +9,7 @@ BADLATLON=$(TMPDIR)/bad_lat_lon
 DBPASSWORD=password
 DBNAME=metra
 SQLUPDATEBADLATLON=$(TMPDIR)/update_bad_lat_lon.sql
+UPDATESTOPNAME_SQL=update_stop_name.sql
 COMMON_DIR=../common
 
 CREATEROUTETRIP_SQL=$(COMMON_DIR)/longestTripForRoute.sql
@@ -47,6 +48,9 @@ removespaces:
 
 loaddb:
 	sed "s/DB_REPLACE_ME/$(DBNAME)/g" $(MAKEDB_SQL) | mysql -u root -p$(DBPASSWORD);
+
+updateStopname:
+	mysql -u root -p$(DBPASSWORD) < $(UPDATESTOPNAME_SQL)
 
 createRouteTrip:
 	sed "s/DB_REPLACE_ME/$(DBNAME)/g" $(CREATEROUTETRIP_SQL) | mysql -u root -p$(DBPASSWORD);
