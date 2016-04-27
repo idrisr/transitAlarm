@@ -11,6 +11,7 @@
 
 import Foundation
 import CoreData
+import CoreLocation
 
 extension Shape {
 
@@ -20,4 +21,21 @@ extension Shape {
     @NSManaged var sequence: String?
     @NSManaged var route: Route?
 
+    var location2D: CLLocationCoordinate2D {
+        get {
+            return CLLocationCoordinate2DMake(self.getLatitude(), self.getLongitude())
+        }
+    }
+
+    func getLatitude() -> CLLocationDegrees {
+        return Double(self.latitude!)!
+    }
+
+    func getLongitude() -> CLLocationDegrees {
+        return Double(self.longitude!)!
+    }
+
+    func getSequence() -> Int {
+        return Int(self.sequence!)!
+    }
 }

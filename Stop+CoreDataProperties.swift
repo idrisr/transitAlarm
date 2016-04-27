@@ -18,12 +18,12 @@ extension Stop {
     @NSManaged var id: String?
 
     // TODO: change these to the right type in core data to avoid constant casting
-    @NSManaged var latitude: String?
-    @NSManaged var longitude: String?
-    @NSManaged var name: String?
-    @NSManaged var sequence: String?
-    @NSManaged var trip_id: String?
-    @NSManaged var route: Route?
+    @NSManaged var latitude:     String?
+    @NSManaged var longitude:    String?
+    @NSManaged var name:         String?
+    @NSManaged var sequence:     String?
+    @NSManaged var trip_id:      String?
+    @NSManaged var route:        Route?
 
     var location: CLLocation {
         get {

@@ -11,6 +11,7 @@
 
 import Foundation
 import CoreData
+import MapKit
 
 extension Route {
 
@@ -27,4 +28,16 @@ extension Route {
     @NSManaged var shapes: NSSet?
     @NSManaged var stops: NSSet?
 
+    var shapeLine: MKPolyline {
+        get {
+            // sort shape by sequence
+            let shapeSort = shapes!.sort( { Int(($0 as! Shape).sequence!) > Int(($1 as! Shape).sequence!) } )
+
+            // get locations of shapes
+            var locations = shapeSort.map { ($0 as! Shape).location2D }
+
+            // create polyline
+            return MKPolyline(coordinates: &locations, count: locations.count)
+        }
+    }
 }

@@ -46,6 +46,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.mapView.addOverlay(self.stop!.route!.shapeLine)
         locationManager.startUpdatingLocation()
         self.updateDistance()
     }
@@ -93,10 +94,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     // MARK: MKMapViewDelegate
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        let circleRenderer = MKCircleRenderer(overlay: overlay)
-        circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
-        circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
-        return circleRenderer
+        if overlay is MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = UIColor.blueColor()
+            renderer.lineWidth = 5.0
+            return renderer
+        } else {
+            let circleRenderer = MKCircleRenderer(overlay: overlay)
+            circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
+            circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+            return circleRenderer
+        }
     }
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
