@@ -45,7 +45,7 @@ class StopTableViewController: UITableViewController {
         let cell = sender as! UITableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
         let stop = self.stops[indexPath!.row]
-        let destinationVC = segue.destinationViewController as! StopViewController
+        let destinationVC = segue.destinationViewController as! MapViewController
         destinationVC.stop = stop
     }
 
@@ -55,7 +55,7 @@ class StopTableViewController: UITableViewController {
 
         self.shapes = (self.route?.shapes?.allObjects as? [Shape])!
         shapes.sortInPlace( { Int($0.sequence!) > Int($1.sequence!) } )
-        print(shapes)
+//        print(shapes)
         self.tableView.reloadData()
     }
     
