@@ -37,14 +37,4 @@ class TransitProvidersViewController: UIViewController, UITableViewDelegate, UIT
         cell.textLabel!.text = self.transitProviders[indexPath.row]
         return cell
     }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "routeToStopSegue" {
-            let destinationVC = segue.destinationViewController as! StopsViewController
-            let cell = sender as! UITableViewCell
-            let indexPath = self.tableView.indexPathForCell(cell)
-            destinationVC.transitProvider = self.transitProviders[indexPath!.row]
-        } else {
-        }
-    }
 }
