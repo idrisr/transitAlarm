@@ -30,7 +30,7 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         self.mapView.showsUserLocation = true
         locationManager.delegate = self
         self.mapView.delegate = self
-        locationManager.requestAlwaysAuthorization()
+//        locationManager.requestAlwaysAuthorization()
 
         self.stopNameLabel.text = stop?.name
         self.title = stop?.name
@@ -201,11 +201,10 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             let transitStopName: Dictionary<String,String> = [
                 "transitStop":self.stop!.name!
             ]
-//            let saveStop = DataService.dataService.REF_CURRENT_USER
             let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
             let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
             firebaseSaveStopList.updateChildValues(transitStopName)
-//            self.dataService.getTransitStops()
+            self.dataService.getTransitStops()
         }
         alert.addAction(action)
         alert.addAction(saveAction)
