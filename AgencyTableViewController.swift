@@ -27,7 +27,6 @@ class AgencyTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return agencies.count
     }
 
@@ -39,13 +38,12 @@ class AgencyTableViewController: UITableViewController {
         return cell
     }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let cell = sender as! UITableViewCell
-//        let indexPath = self.tableView.indexPathForCell(cell)
-//        let agency = self.agencies[indexPath!.row]
-//        let destinationVC = segue.destinationViewController as! RouteTableViewController
-//        destinationVC.agency = agency
+        let cell = sender as! UITableViewCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        let agency = self.agencies[indexPath!.row]
+        let destinationVC = segue.destinationViewController as! RouteTableViewController
+        destinationVC.agency = agency
     }
 
     private func loadAgencies() {
