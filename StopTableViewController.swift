@@ -55,7 +55,7 @@ class StopTableViewController: UITableViewController {
 
         self.shapes = (self.route?.shapes?.allObjects as? [Shape])!
         shapes.sortInPlace( { Int($0.sequence!) > Int($1.sequence!) } )
-        print(shapes)
+//        print(shapes)
         self.tableView.reloadData()
     }
     
