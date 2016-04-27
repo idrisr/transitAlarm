@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                                   self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.db).sqlite-wal"),
                                   self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.db).sqlite-shm")]
 
-            for var index = 0; index < sourceSqliteURLs.count; index++ {
+            for index in 0..<sourceSqliteURLs.count {
                 do {
                     try NSFileManager.defaultManager().copyItemAtURL(sourceSqliteURLs[index], toURL: destSqliteURLs[index])
                 } catch {
