@@ -11,10 +11,13 @@
 
 import Foundation
 import CoreData
+import CoreLocation
 
 extension Stop {
 
     @NSManaged var id: String?
+
+    // TODO: change these to the right type in core data to avoid constant casting
     @NSManaged var latitude: String?
     @NSManaged var longitude: String?
     @NSManaged var name: String?
@@ -22,4 +25,23 @@ extension Stop {
     @NSManaged var trip_id: String?
     @NSManaged var route: Route?
 
+    var location: CLLocation {
+        get {
+            let latitude = self.getLatitude()
+            let longitude = self.getLongitude()
+            return CLLocation(latitude: latitude, longitude: longitude)
+        }
+    }
+
+    var location2D: CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(self.getLatitude(), self.getLongitude())
+    }
+
+    func getLatitude() -> CLLocationDegrees {
+        return Double(self.latitude!)!
+    }
+
+    func getLongitude() -> CLLocationDegrees {
+        return Double(self.longitude!)!
+    }
 }

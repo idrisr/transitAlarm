@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Agency Table View Controller-->
@@ -101,7 +102,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="4AJ-xy-e4Z" kind="show" id="ntO-Zn-eyJ"/>
+                                    <segue destination="0Kp-1v-Evy" kind="show" id="ocV-D3-Mo9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -114,24 +115,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emz-eD-41M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2694" y="364"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="kTS-Yd-Zus">
-            <objects>
-                <viewController id="4AJ-xy-e4Z" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Pb5-Dq-YCt"/>
-                        <viewControllerLayoutGuide type="bottom" id="yeg-xE-QyK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="E5Z-FY-Vf6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="axg-mN-2yB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3323" y="361"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YfS-gs-wiN">
@@ -150,6 +133,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJM-G3-geQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="802" y="367"/>
+        </scene>
+        <!--Stop View Controller-->
+        <scene sceneID="Z1p-KQ-Z6f">
+            <objects>
+                <viewController id="0Kp-1v-Evy" customClass="StopViewController" customModule="TransitAlarm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0Ez-Z4-9FN"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z7f-Bp-2pK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I73-9R-kWB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7z-OR-TcK">
+                                <rect key="frame" x="20" y="93" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrP-ob-euL">
+                                <rect key="frame" x="20" y="122" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBf-YP-UPo">
+                                <rect key="frame" x="20" y="64" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5RW-MS-65G">
+                                <rect key="frame" x="20" y="151" width="560" height="449"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5RW-MS-65G" firstAttribute="top" secondItem="jrP-ob-euL" secondAttribute="bottom" constant="8" symbolic="YES" id="8rT-HI-p5a"/>
+                            <constraint firstItem="R7z-OR-TcK" firstAttribute="leading" secondItem="SBf-YP-UPo" secondAttribute="leading" id="Bgl-Cc-vhY"/>
+                            <constraint firstItem="jrP-ob-euL" firstAttribute="leading" secondItem="SBf-YP-UPo" secondAttribute="leading" id="KQA-ci-EXK"/>
+                            <constraint firstItem="SBf-YP-UPo" firstAttribute="top" secondItem="0Ez-Z4-9FN" secondAttribute="bottom" id="MR9-F5-scR"/>
+                            <constraint firstItem="SBf-YP-UPo" firstAttribute="leading" secondItem="I73-9R-kWB" secondAttribute="leadingMargin" id="QIb-1H-aOH"/>
+                            <constraint firstItem="Z7f-Bp-2pK" firstAttribute="top" secondItem="5RW-MS-65G" secondAttribute="bottom" id="TBV-2i-pen"/>
+                            <constraint firstItem="R7z-OR-TcK" firstAttribute="top" secondItem="SBf-YP-UPo" secondAttribute="bottom" constant="8" symbolic="YES" id="V2o-Sd-806"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5RW-MS-65G" secondAttribute="trailing" id="cLa-3I-0Iw"/>
+                            <constraint firstItem="5RW-MS-65G" firstAttribute="leading" secondItem="I73-9R-kWB" secondAttribute="leadingMargin" id="d76-oJ-qcy"/>
+                            <constraint firstItem="jrP-ob-euL" firstAttribute="top" secondItem="R7z-OR-TcK" secondAttribute="bottom" constant="8" symbolic="YES" id="w3L-3X-oiM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="distanceLabelFeet" destination="R7z-OR-TcK" id="9fX-IF-xUX"/>
+                        <outlet property="distanceLabelMiles" destination="jrP-ob-euL" id="Avr-5Z-DNt"/>
+                        <outlet property="mapView" destination="5RW-MS-65G" id="QbR-R0-u5g"/>
+                        <outlet property="stopNameLabel" destination="SBf-YP-UPo" id="FE9-Lm-S4L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hjc-Ut-d1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3337" y="364"/>
         </scene>
     </scenes>
 </document>
