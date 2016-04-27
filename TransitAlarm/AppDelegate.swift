@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     let locationManager = CLLocationManager()
     var window: UIWindow?
+    let model = "transit"
+    let db = "SingleViewCoreData"
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,35 +29,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
+    func applicationWillResignActive(application: UIApplication) { }
 
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
+    func applicationDidEnterBackground(application: UIApplication) { }
 
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
+    func applicationWillEnterForeground(application: UIApplication) { }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         FBSDKAppEvents.activateApp()
     }
 
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
+    func applicationWillTerminate(application: UIApplication) { }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
     // MARK: - Core Data stack
-
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.idrisr.CoreDataDeleteMe" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -64,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("CoreDataDeleteMe", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("\(self.model)", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
 
@@ -73,6 +63,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
+
+        // Load the existing database
+        if !NSFileManager.defaultManager().fileExistsAtPath(url.path!) {
+
+            let sourceSqliteURLs = [NSBundle.mainBundle().URLForResource("\(self.db)", withExtension: "sqlite")!,
+                                    NSBundle.mainBundle().URLForResource("\(self.db)", withExtension: "sqlite-wal")!,
+                                    NSBundle.mainBundle().URLForResource("\(self.db)", withExtension: "sqlite-shm")!]
+
+            let destSqliteURLs = [self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.db).sqlite"),
+                                  self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.db).sqlite-wal"),
+                                  self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.db).sqlite-shm")]
+
+            for var index = 0; index < sourceSqliteURLs.count; index++ {
+                do {
+                    try NSFileManager.defaultManager().copyItemAtURL(sourceSqliteURLs[index], toURL: destSqliteURLs[index])
+                } catch {
+                    print(error)
+                }
+            }
+        }
+
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
@@ -116,6 +127,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
         }
     }
-
+    
 }
 

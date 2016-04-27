@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BE1843CB88DBD2C0F40EC0270144AE34B59FA292",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BE1843CB88DBD2C0F40EC0270144AE34B59FA292" : 0,
+    "35681F561780F863C631A94621C77D862E26B620" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B8B838D1-83D1-49A5-8BB5-5E59618EB941",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BE1843CB88DBD2C0F40EC0270144AE34B59FA292" : "TransitAlarm\/",
+    "35681F561780F863C631A94621C77D862E26B620" : "DBCreator\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TransitAlarm",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TransitAlarm.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/idrisr\/TransitAlarmDBCreator.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "35681F561780F863C631A94621C77D862E26B620"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/idrisr\/transitAlarm.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BE1843CB88DBD2C0F40EC0270144AE34B59FA292"
+    }
+  ]
+}

@@ -35,8 +35,8 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var transitProvider: String?
-    var stops =  [[Stop]]()
-    var filteredStops = [[Stop]]()
+    var stops =  [[Stop_]]()
+    var filteredStops = [[Stop_]]()
     var searchBarIsSearching = false
 
     override func viewDidLoad() {
@@ -55,7 +55,7 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         // init array or array with blank arrays
         for _ in 0..<CTATrainLine.allValues.count {
-            self.stops.append([Stop]())
+            self.stops.append([Stop_]())
         }
     }
 
@@ -81,7 +81,7 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let reuseID = "stopsCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-        let stop: Stop!
+        let stop: Stop_!
         
         if searchBarIsSearching {
             stop = filteredStops[indexPath.section][indexPath.row]
@@ -137,9 +137,9 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         Alamofire.request(.GET, url).responseString { response in
             let result = response.result
             let xml = SWXMLHash.parse(result.value!)
-            var tmp = [Stop]()
+            var tmp = [Stop_]()
             for stopXML in xml["response"]["row"]["row"] {
-                let stop = Stop(xmlData: stopXML)
+                let stop = Stop_(xmlData: stopXML)
                 tmp.append(stop)
             }
 
