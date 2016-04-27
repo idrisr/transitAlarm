@@ -12,6 +12,7 @@
 import Foundation
 import CoreData
 import CoreLocation
+import MapKit
 
 extension Stop {
 
@@ -30,6 +31,15 @@ extension Stop {
             let latitude = self.getLatitude()
             let longitude = self.getLongitude()
             return CLLocation(latitude: latitude, longitude: longitude)
+        }
+    }
+
+    var annotation: MKPointAnnotation {
+        get {
+            // TODO: better way?
+            let tmp = MKPointAnnotation()
+            tmp.coordinate = self.location2D
+            return tmp
         }
     }
 

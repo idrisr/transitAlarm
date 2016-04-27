@@ -12,6 +12,7 @@
 import Foundation
 import CoreData
 import MapKit
+import SwiftHEXColors
 
 extension Route {
 
@@ -38,6 +39,20 @@ extension Route {
 
             // create polyline
             return MKPolyline(coordinates: &locations, count: locations.count)
+        }
+    }
+
+    var annotations: [MKPointAnnotation] {
+        get {
+            return stops!.map{ ($0 as! Stop).annotation }
+        }
+    }
+
+    var mapColor: UIColor {
+        if self.color != "" {
+            return UIColor(hexString: self.color!)!
+        } else {
+            return UIColor.blackColor()
         }
     }
 }

@@ -46,6 +46,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        addStopAnnotations()
         self.mapView.addOverlay(self.stop!.route!.shapeLine)
         locationManager.startUpdatingLocation()
         self.updateDistance()
@@ -96,8 +97,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = UIColor.blueColor()
-            renderer.lineWidth = 5.0
+            renderer.strokeColor = self.stop?.route?.mapColor
+            renderer.lineWidth = 2.0
             return renderer
         } else {
             let circleRenderer = MKCircleRenderer(overlay: overlay)
@@ -110,12 +111,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isKindOfClass(MKUserLocation) {
             return nil
-        } else {
+        } else if annotation.title! == self.stop!.name {
             let pin = MKAnnotationView()
             pin.image = UIImage.init(named: "MapIcon")
             pin.canShowCallout = true
             pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             return pin
+        } else {
+            return MKPinAnnotationView()
         }
     }
 
@@ -173,6 +176,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         annotation.coordinate = self.stop!.location2D
         annotation.title = self.stop!.name
         self.mapView.addAnnotation(annotation)
+    }
+
+    private func addStopAnnotations() {
+        self.mapView.addAnnotations(self.stop!.route!.annotations)
     }
 
     private func handleRegionEvent(region: CLRegion!) {
