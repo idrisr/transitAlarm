@@ -41,10 +41,12 @@ class StopTableViewController: UITableViewController {
         return cell
     }
 
-
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let cell = sender as! UITableViewCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        let stop = self.stops[indexPath!.row]
+        let destinationVC = segue.destinationViewController as! StopViewController
+        destinationVC.stop = stop
     }
 
     private func loadRoutes() {

@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-    var stop: Stop_?
+    var stop: Stop?
     
     let dataService = DataService()
     let favorites = [String]()
@@ -32,8 +32,8 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         self.mapView.delegate = self
         locationManager.requestAlwaysAuthorization()
 
-        self.stopNameLabel.text = stop?.stop_name
-        self.title = stop?.stop_name
+        self.stopNameLabel.text = stop?.name
+        self.title = stop?.name
         
         regionWithAnnotation()
         dropStopPin()
@@ -73,10 +73,10 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     func regionWithAnnotation() -> CLCircularRegion {
-        let geoLocation = CLLocationCoordinate2DMake(self.stop!.location.coordinate.latitude, self.stop!.location.coordinate.longitude)
+        let geoLocation = stop!.location2D
         let radius: CLLocationDistance!
         radius = 500
-        let regionTitle = stop?.stop_name
+        let regionTitle = stop?.name
         let region = CLCircularRegion(center: geoLocation, radius: radius, identifier: regionTitle!)
         let overlay = MKCircle(centerCoordinate: geoLocation, radius: radius)
         mapView.addOverlay(overlay)
@@ -136,12 +136,11 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
 
     private func centerMap() {
-        let latitudeDistance = abs(self.stop!.location.coordinate.latitude - self.currentLocation.coordinate.latitude).degreesToMeters()
-        let longitudeDistance = abs(self.stop!.location.coordinate.longitude - self.currentLocation.coordinate.longitude).degreesToMeters()
+        let latitudeDistance = abs(self.stop!.getLatitude() - self.currentLocation.coordinate.latitude).degreesToMeters()
+        let longitudeDistance = abs(self.stop!.getLongitude() - self.currentLocation.coordinate.longitude).degreesToMeters()
 
-
-        let averageLatitude = (self.stop!.location.coordinate.latitude + self.currentLocation.coordinate.latitude) / 2
-        let averageLongitude = (self.stop!.location.coordinate.longitude + self.currentLocation.coordinate.longitude) / 2
+        let averageLatitude = (self.stop!.getLatitude() + self.currentLocation.coordinate.latitude) / 2
+        let averageLongitude = (self.stop!.getLongitude() + self.currentLocation.coordinate.longitude) / 2
 
         let averageLocation = CLLocationCoordinate2D(latitude: averageLatitude, longitude: averageLongitude)
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(averageLocation, latitudeDistance * 1.1, longitudeDistance * 1.1)
@@ -150,13 +149,13 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
 
     private func getStopCoordinate2D() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2DMake(self.stop!.location.coordinate.latitude, self.stop!.location.coordinate.longitude)
+        return CLLocationCoordinate2DMake(self.stop!.getLatitude(), self.stop!.getLongitude())
     }
 
     private func dropStopPin() {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = getStopCoordinate2D()
-        annotation.title = self.stop?.stop_name
+        annotation.coordinate = self.stop!.location2D
+        annotation.title = self.stop!.name
         self.mapView.addAnnotation(annotation)
     }
     
@@ -200,7 +199,7 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let action = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (UIAlertAction) in
             let transitStopName: Dictionary<String,String> = [
-                "transitStop":self.stop!.stop_name!
+                "transitStop":self.stop!.name!
             ]
 //            let saveStop = DataService.dataService.REF_CURRENT_USER
             let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
