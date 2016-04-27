@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     var stop: Stop?
 
     let dataService = DataService()

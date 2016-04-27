@@ -22,7 +22,7 @@
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
 		6879AFA41CC566DE003F6483 /* Stop_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AFA31CC566DE003F6483 /* Stop_.swift */; };
 		6879AFA81CC5847F003F6483 /* trains.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6879AFA71CC5847F003F6483 /* trains.xml */; };
-		6879AFAB1CC72CB3003F6483 /* StopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AFAA1CC72CB3003F6483 /* StopViewController.swift */; };
+		6879AFAB1CC72CB3003F6483 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AFAA1CC72CB3003F6483 /* MapViewController.swift */; };
 		68A32BD71CD053880015E7EE /* Stop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BCF1CD053880015E7EE /* Stop+CoreDataProperties.swift */; };
 		68A32BD81CD053880015E7EE /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BD01CD053880015E7EE /* Stop.swift */; };
 		68A32BD91CD053880015E7EE /* Agency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BD11CD053880015E7EE /* Agency+CoreDataProperties.swift */; };
@@ -60,7 +60,7 @@
 		6879AF961CC534FA003F6483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6879AFA31CC566DE003F6483 /* Stop_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop_.swift; sourceTree = "<group>"; };
 		6879AFA71CC5847F003F6483 /* trains.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = trains.xml; path = data/trains.xml; sourceTree = "<group>"; };
-		6879AFAA1CC72CB3003F6483 /* StopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopViewController.swift; sourceTree = "<group>"; };
+		6879AFAA1CC72CB3003F6483 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		68A32BCF1CD053880015E7EE /* Stop+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stop+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		68A32BD01CD053880015E7EE /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		68A32BD11CD053880015E7EE /* Agency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Agency+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 				68422DB71CD0F0D100677CA3 /* RouteTableViewController.swift */,
 				68422DB91CD0F0E300677CA3 /* StopTableViewController.swift */,
 				6879AF8C1CC534FA003F6483 /* TransitProvidersViewController.swift */,
-				6879AFAA1CC72CB3003F6483 /* StopViewController.swift */,
+				6879AFAA1CC72CB3003F6483 /* MapViewController.swift */,
 				258362A01CC7D13F003E592D /* LoginViewController.swift */,
 			);
 			name = Controller;
@@ -345,7 +345,7 @@
 				258362A51CC7D2FA003E592D /* DataService.swift in Sources */,
 				68A32BD71CD053880015E7EE /* Stop+CoreDataProperties.swift in Sources */,
 				68A32BDC1CD053880015E7EE /* Route.swift in Sources */,
-				6879AFAB1CC72CB3003F6483 /* StopViewController.swift in Sources */,
+				6879AFAB1CC72CB3003F6483 /* MapViewController.swift in Sources */,
 				68422DB81CD0F0D100677CA3 /* RouteTableViewController.swift in Sources */,
 				68422DBF1CD11B9D00677CA3 /* Extensions.swift in Sources */,
 				68A32BDE1CD053880015E7EE /* Shape.swift in Sources */,

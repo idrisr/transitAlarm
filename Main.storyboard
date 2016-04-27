@@ -134,10 +134,10 @@
             </objects>
             <point key="canvasLocation" x="802" y="367"/>
         </scene>
-        <!--Stop View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="Z1p-KQ-Z6f">
             <objects>
-                <viewController id="0Kp-1v-Evy" customClass="StopViewController" customModule="TransitAlarm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0Kp-1v-Evy" customClass="MapViewController" customModule="TransitAlarm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Ez-Z4-9FN"/>
                         <viewControllerLayoutGuide type="bottom" id="Z7f-Bp-2pK"/>
