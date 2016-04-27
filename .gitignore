@@ -36,3 +36,12 @@ xcdebugger
 *dylib
 design/*png
 *csv
+*zip
+*gpx
+*ods
+tmp/
+gpxfiles/
+*txt
+*ods#
+tables
+dataDump/

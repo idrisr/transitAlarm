@@ -88,7 +88,6 @@ class LoginViewController: UIViewController {
                 
             }
         }
-        
     }
     
     func showAlert(title: String, message: String) {

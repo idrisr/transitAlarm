@@ -94,7 +94,7 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let region = regionWithAnnotation()
         locationManager.startMonitoringForRegion(region)
     }
-    
+
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)

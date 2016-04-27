@@ -13,14 +13,30 @@
 		258362AB1CC80DAE003E592D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258362A81CC80DAD003E592D /* Bolts.framework */; };
 		258362AC1CC80DAE003E592D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258362A91CC80DAE003E592D /* FBSDKCoreKit.framework */; };
 		258362AD1CC80DAE003E592D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258362AA1CC80DAE003E592D /* FBSDKLoginKit.framework */; };
+		68422DB81CD0F0D100677CA3 /* RouteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DB71CD0F0D100677CA3 /* RouteTableViewController.swift */; };
+		68422DBA1CD0F0E300677CA3 /* StopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DB91CD0F0E300677CA3 /* StopTableViewController.swift */; };
 		6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8A1CC534FA003F6483 /* AppDelegate.swift */; };
 		6879AF8D1CC534FA003F6483 /* TransitProvidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8C1CC534FA003F6483 /* TransitProvidersViewController.swift */; };
 		6879AF901CC534FA003F6483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF8E1CC534FA003F6483 /* Main.storyboard */; };
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
 		6879AF9E1CC53DC2003F6483 /* StopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF9D1CC53DC2003F6483 /* StopsViewController.swift */; };
-		6879AFA41CC566DE003F6483 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AFA31CC566DE003F6483 /* Stop.swift */; };
+		6879AFA41CC566DE003F6483 /* Stop_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AFA31CC566DE003F6483 /* Stop_.swift */; };
 		6879AFA81CC5847F003F6483 /* trains.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6879AFA71CC5847F003F6483 /* trains.xml */; };
 		6879AFAB1CC72CB3003F6483 /* StopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AFAA1CC72CB3003F6483 /* StopViewController.swift */; };
+		68A32BD71CD053880015E7EE /* Stop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BCF1CD053880015E7EE /* Stop+CoreDataProperties.swift */; };
+		68A32BD81CD053880015E7EE /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BD01CD053880015E7EE /* Stop.swift */; };
+		68A32BD91CD053880015E7EE /* Agency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BD11CD053880015E7EE /* Agency+CoreDataProperties.swift */; };
+		68A32BDA1CD053880015E7EE /* Agency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BD21CD053880015E7EE /* Agency.swift */; };
+		68A32BDB1CD053880015E7EE /* Route+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BD31CD053880015E7EE /* Route+CoreDataProperties.swift */; };
+		68A32BDC1CD053880015E7EE /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BD41CD053880015E7EE /* Route.swift */; };
+		68A32BDD1CD053880015E7EE /* Shape+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BD51CD053880015E7EE /* Shape+CoreDataProperties.swift */; };
+		68A32BDE1CD053880015E7EE /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BD61CD053880015E7EE /* Shape.swift */; };
+		68A32BE01CD053B00015E7EE /* SingleViewCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 68A32BDF1CD053B00015E7EE /* SingleViewCoreData.sqlite */; };
+		68A32BE41CD055600015E7EE /* test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68A32BE31CD055600015E7EE /* test.storyboard */; };
+		68A32BE61CD055960015E7EE /* AgencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A32BE51CD055960015E7EE /* AgencyTableViewController.swift */; };
+		68A32C0A1CD059E10015E7EE /* transit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68A32C081CD059E10015E7EE /* transit.xcdatamodeld */; };
+		68A32C0D1CD061290015E7EE /* SingleViewCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 68A32C0B1CD061170015E7EE /* SingleViewCoreData.sqlite-shm */; };
+		68A32C0E1CD0612B0015E7EE /* SingleViewCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 68A32C0C1CD061170015E7EE /* SingleViewCoreData.sqlite-wal */; };
 		BF7A6E1DD50199FA43AD4029 /* Pods_TransitAlarm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1F438AF36F8B192181B97F /* Pods_TransitAlarm.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,16 +49,32 @@
 		258362A91CC80DAE003E592D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		258362AA1CC80DAE003E592D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		43C7C040C5F92399D5135115 /* Pods-TransitAlarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.release.xcconfig"; sourceTree = "<group>"; };
+		68422DB71CD0F0D100677CA3 /* RouteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewController.swift; sourceTree = "<group>"; };
+		68422DB91CD0F0E300677CA3 /* StopTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTableViewController.swift; sourceTree = "<group>"; };
 		6879AF871CC534FA003F6483 /* TransitAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransitAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TransitAlarm/AppDelegate.swift; sourceTree = "<group>"; };
+		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6879AF8C1CC534FA003F6483 /* TransitProvidersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransitProvidersViewController.swift; path = TransitAlarm/TransitProvidersViewController.swift; sourceTree = "<group>"; };
 		6879AF8F1CC534FA003F6483 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6879AF911CC534FA003F6483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6879AF961CC534FA003F6483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6879AF9D1CC53DC2003F6483 /* StopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopsViewController.swift; path = TransitAlarm/StopsViewController.swift; sourceTree = "<group>"; };
-		6879AFA31CC566DE003F6483 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		6879AFA31CC566DE003F6483 /* Stop_.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop_.swift; sourceTree = "<group>"; };
 		6879AFA71CC5847F003F6483 /* trains.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = trains.xml; path = data/trains.xml; sourceTree = "<group>"; };
 		6879AFAA1CC72CB3003F6483 /* StopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopViewController.swift; sourceTree = "<group>"; };
+		68A32BCF1CD053880015E7EE /* Stop+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stop+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		68A32BD01CD053880015E7EE /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		68A32BD11CD053880015E7EE /* Agency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Agency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		68A32BD21CD053880015E7EE /* Agency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agency.swift; sourceTree = "<group>"; };
+		68A32BD31CD053880015E7EE /* Route+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Route+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		68A32BD41CD053880015E7EE /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		68A32BD51CD053880015E7EE /* Shape+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Shape+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		68A32BD61CD053880015E7EE /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
+		68A32BDF1CD053B00015E7EE /* SingleViewCoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = SingleViewCoreData.sqlite; sourceTree = "<group>"; };
+		68A32BE31CD055600015E7EE /* test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = test.storyboard; sourceTree = "<group>"; };
+		68A32BE51CD055960015E7EE /* AgencyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyTableViewController.swift; sourceTree = "<group>"; };
+		68A32C091CD059E10015E7EE /* transit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = transit.xcdatamodel; sourceTree = "<group>"; };
+		68A32C0B1CD061170015E7EE /* SingleViewCoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SingleViewCoreData.sqlite-shm"; sourceTree = "<group>"; };
+		68A32C0C1CD061170015E7EE /* SingleViewCoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SingleViewCoreData.sqlite-wal"; sourceTree = "<group>"; };
 		ED5957CB7DFB6C78C26E900D /* Pods-TransitAlarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +116,7 @@
 		6879AF7E1CC534FA003F6483 = {
 			isa = PBXGroup;
 			children = (
+				68A32BAF1CD051C80015E7EE /* CoreData */,
 				258362A31CC7D2D0003E592D /* Services */,
 				6879AFA91CC701EA003F6483 /* view */,
 				6879AFA21CC566D0003F6483 /* model */,
@@ -107,6 +140,7 @@
 		6879AF891CC534FA003F6483 /* TransitAlarm */ = {
 			isa = PBXGroup;
 			children = (
+				6879AF8A1CC534FA003F6483 /* AppDelegate.swift */,
 				6879AF911CC534FA003F6483 /* Assets.xcassets */,
 				6879AF961CC534FA003F6483 /* Info.plist */,
 			);
@@ -116,6 +150,8 @@
 		6879AF9C1CC53A5F003F6483 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				68422DB71CD0F0D100677CA3 /* RouteTableViewController.swift */,
+				68422DB91CD0F0E300677CA3 /* StopTableViewController.swift */,
 				6879AF8C1CC534FA003F6483 /* TransitProvidersViewController.swift */,
 				6879AF9D1CC53DC2003F6483 /* StopsViewController.swift */,
 				6879AFAA1CC72CB3003F6483 /* StopViewController.swift */,
@@ -135,7 +171,7 @@
 		6879AFA21CC566D0003F6483 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				6879AFA31CC566DE003F6483 /* Stop.swift */,
+				6879AFA31CC566DE003F6483 /* Stop_.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -144,9 +180,29 @@
 			isa = PBXGroup;
 			children = (
 				6879AF8E1CC534FA003F6483 /* Main.storyboard */,
-				6879AF8A1CC534FA003F6483 /* AppDelegate.swift */,
+				68A32BE31CD055600015E7EE /* test.storyboard */,
+				68A32BE51CD055960015E7EE /* AgencyTableViewController.swift */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		68A32BAF1CD051C80015E7EE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				68A32BCF1CD053880015E7EE /* Stop+CoreDataProperties.swift */,
+				68A32BD01CD053880015E7EE /* Stop.swift */,
+				68A32BD11CD053880015E7EE /* Agency+CoreDataProperties.swift */,
+				68A32BD21CD053880015E7EE /* Agency.swift */,
+				68A32BD31CD053880015E7EE /* Route+CoreDataProperties.swift */,
+				68A32BD41CD053880015E7EE /* Route.swift */,
+				68A32BD51CD053880015E7EE /* Shape+CoreDataProperties.swift */,
+				68A32BD61CD053880015E7EE /* Shape.swift */,
+				68A32BDF1CD053B00015E7EE /* SingleViewCoreData.sqlite */,
+				68A32C0B1CD061170015E7EE /* SingleViewCoreData.sqlite-shm */,
+				68A32C0C1CD061170015E7EE /* SingleViewCoreData.sqlite-wal */,
+				68A32C081CD059E10015E7EE /* transit.xcdatamodeld */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		88185E17FD44657094D50B86 /* Pods */ = {
@@ -221,6 +277,10 @@
 			files = (
 				6879AFA81CC5847F003F6483 /* trains.xml in Resources */,
 				6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */,
+				68A32C0E1CD0612B0015E7EE /* SingleViewCoreData.sqlite-wal in Resources */,
+				68A32C0D1CD061290015E7EE /* SingleViewCoreData.sqlite-shm in Resources */,
+				68A32BE01CD053B00015E7EE /* SingleViewCoreData.sqlite in Resources */,
+				68A32BE41CD055600015E7EE /* test.storyboard in Resources */,
 				6879AF901CC534FA003F6483 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,13 +340,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68A32BD91CD053880015E7EE /* Agency+CoreDataProperties.swift in Sources */,
+				68422DBA1CD0F0E300677CA3 /* StopTableViewController.swift in Sources */,
 				258362A11CC7D13F003E592D /* LoginViewController.swift in Sources */,
 				258362A51CC7D2FA003E592D /* DataService.swift in Sources */,
 				6879AF9E1CC53DC2003F6483 /* StopsViewController.swift in Sources */,
+				68A32BD71CD053880015E7EE /* Stop+CoreDataProperties.swift in Sources */,
+				68A32BDC1CD053880015E7EE /* Route.swift in Sources */,
 				6879AFAB1CC72CB3003F6483 /* StopViewController.swift in Sources */,
+				68422DB81CD0F0D100677CA3 /* RouteTableViewController.swift in Sources */,
+				68A32BDE1CD053880015E7EE /* Shape.swift in Sources */,
 				6879AF8D1CC534FA003F6483 /* TransitProvidersViewController.swift in Sources */,
+				68A32BE61CD055960015E7EE /* AgencyTableViewController.swift in Sources */,
+				68A32BDB1CD053880015E7EE /* Route+CoreDataProperties.swift in Sources */,
+				68A32BDD1CD053880015E7EE /* Shape+CoreDataProperties.swift in Sources */,
 				6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */,
-				6879AFA41CC566DE003F6483 /* Stop.swift in Sources */,
+				68A32BD81CD053880015E7EE /* Stop.swift in Sources */,
+				6879AFA41CC566DE003F6483 /* Stop_.swift in Sources */,
+				68A32C0A1CD059E10015E7EE /* transit.xcdatamodeld in Sources */,
+				68A32BDA1CD053880015E7EE /* Agency.swift in Sources */,
 				258362A71CC7E410003E592D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +517,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		68A32C081CD059E10015E7EE /* transit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				68A32C091CD059E10015E7EE /* transit.xcdatamodel */,
+			);
+			currentVersion = 68A32C091CD059E10015E7EE /* transit.xcdatamodel */;
+			name = transit.xcdatamodeld;
+			path = ../DBCreator/DBCreator/transit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6879AF7F1CC534FA003F6483 /* Project object */;
 }

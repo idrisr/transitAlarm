@@ -91,6 +91,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-TransitAlarm/FBSDKShareKit.framework"
   install_framework "Pods-TransitAlarm/Firebase.framework"
   install_framework "Pods-TransitAlarm/SWXMLHash.framework"
+  install_framework "Pods-TransitAlarm/SwiftCSV.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-TransitAlarm/Alamofire.framework"
@@ -100,4 +101,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-TransitAlarm/FBSDKShareKit.framework"
   install_framework "Pods-TransitAlarm/Firebase.framework"
   install_framework "Pods-TransitAlarm/SWXMLHash.framework"
+  install_framework "Pods-TransitAlarm/SwiftCSV.framework"
 fi
