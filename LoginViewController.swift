@@ -39,8 +39,11 @@ class LoginViewController: UIViewController {
                                 //error should never be thrown
                                 self.showAlert("Could Not Create Account", message: "Account was not created, please try something else.")
                             } else {
-                                NSUserDefaults.standardUserDefaults().setValue([KEY_UID], forKey: KEY_UID)
-                                DataService.dataService.REF_BASE.authUser(email, password: password, withCompletionBlock: nil)
+                                NSUserDefaults.standardUserDefaults().setValue(result[KEY_UID], forKey: KEY_UID)
+                                DataService.dataService.REF_BASE.authUser(email, password: password, withCompletionBlock: { error, authData in
+                                    let user = ["provider": authData.provider!, "email":self.emailTextField!.text! as String]
+                                    DataService.dataService.createFirebaseUser(authData.uid, user: user)
+                                })
                                 self.performSegueWithIdentifier(SEGUE_LOGIN, sender: nil)
                             }
                         })
@@ -62,7 +65,7 @@ class LoginViewController: UIViewController {
     @IBAction func facebookLoginPressed(sender: UIButton) {
         let facebookLogin = FBSDKLoginManager()
         
-        facebookLogin.logInWithReadPermissions(["email"]) { (facebookResult, facebookError) in
+        facebookLogin.logInWithReadPermissions(["email"], fromViewController: self) { (facebookResult, facebookError) in
             if facebookError != nil {
                 print("Facebook login failed. Error \(facebookError)")
             } else {
@@ -74,6 +77,10 @@ class LoginViewController: UIViewController {
                         print("login faied \(error)")
                     } else {
                         print("logged in \(authData)")
+                        
+                        let user = ["provider": authData.provider!, "email":self.emailTextField!.text! as String]
+                        DataService.dataService.createFirebaseUser(authData.uid, user: user)
+                        
                         NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
                         self.performSegueWithIdentifier(SEGUE_LOGIN, sender: nil)
                     }
@@ -83,7 +90,6 @@ class LoginViewController: UIViewController {
         }
         
     }
-    
     
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)

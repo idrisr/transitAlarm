@@ -12,6 +12,9 @@ import CoreLocation
 
 class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     var stop: Stop?
+    
+    let dataService = DataService()
+    let favorites = [String]()
 
     @IBOutlet weak var stopNameLabel: UILabel!
     @IBOutlet weak var distanceLabelFeet: UILabel!
@@ -33,8 +36,11 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         self.title = stop?.stop_name
         
         regionWithAnnotation()
-        startMonitoringGeotification()
         dropStopPin()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        startMonitoringGeotification()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -42,11 +48,11 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         locationManager.startUpdatingLocation()
         self.updateDistance()
     }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        locationManager.stopUpdatingLocation()
-    }
+//
+//    override func viewWillDisappear(animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        locationManager.stopUpdatingLocation()
+//    }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         mapView.showsUserLocation = (status == .AuthorizedAlways)
@@ -89,14 +95,11 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         locationManager.startMonitoringForRegion(region)
     }
     
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-        if overlay is MKCircle {
-            let circleRenderer = MKCircleRenderer(overlay: overlay)
-            circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
-            circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
-            return circleRenderer
-        }
-        return nil
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let circleRenderer = MKCircleRenderer(overlay: overlay)
+        circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
+        circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        return circleRenderer
     }
 
     // MARK: MKMapViewDelegate
@@ -160,7 +163,7 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     func handleRegionEvent(region: CLRegion!) {
         print("Transit stop approaching!")
         if UIApplication.sharedApplication().applicationState == .Active {
-              showAlert("Transit Stop Approachig", message: region.identifier)
+            showAlertWithSaveOption(region.identifier, message: "Your stop is approaching, would you like to save stop for future use?")
         } else {
             // Otherwise present a local notification
             let notification = UILocalNotification()
@@ -190,6 +193,26 @@ class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func showAlertWithSaveOption(title:String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+        let saveAction = UIAlertAction(title: "Save", style: .Default) { (UIAlertAction) in
+            let transitStopName: Dictionary<String,String> = [
+                "transitStop":self.stop!.stop_name!
+            ]
+//            let saveStop = DataService.dataService.REF_CURRENT_USER
+            let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
+            let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
+            firebaseSaveStopList.updateChildValues(transitStopName)
+//            self.dataService.getTransitStops()
+        }
+        alert.addAction(action)
+        alert.addAction(saveAction)
+        locationManager.stopUpdatingLocation()
+        presentViewController(alert, animated: true, completion: nil)
+        
     }
  
 }

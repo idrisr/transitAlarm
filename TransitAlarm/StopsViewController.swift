@@ -44,7 +44,6 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.title = "CTA Train Stops"
-        self.searchBar.de/Users/MatthewBraca/Desktop/transitAlarm/TransitAlarm/StopsViewController.swiftlegate = self
         searchBar.returnKeyType = UIReturnKeyType.Done
 
         // just have one location manager for whole app and set its delegate as we move through vcs
@@ -59,10 +58,10 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        locationManager.startUpdatingLocation()
-    }
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        locationManager.startUpdatingLocation()
+//    }
 
     // MARK: CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -129,7 +128,7 @@ class StopsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         let destinationVC = segue.destinationViewController as! StopViewController
         destinationVC.stop = stop
-        self.locationManager.stopUpdatingLocation()
+//        self.locationManager.stopUpdatingLocation()
     }
 
     private func downloadCTATrainData() {
