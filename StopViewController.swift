@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class StopViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-    var stop: Stop?
+    var stop: Stop_?
     
     let dataService = DataService()
     let favorites = [String]()
