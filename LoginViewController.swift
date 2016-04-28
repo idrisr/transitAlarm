@@ -22,6 +22,7 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
             self.performSegueWithIdentifier(SEGUE_LOGIN, sender: nil)
         }
