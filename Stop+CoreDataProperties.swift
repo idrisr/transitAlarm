@@ -34,6 +34,12 @@ extension Stop {
         }
     }
 
+    var overlay: StopMapOverlay {
+        get {
+            return StopMapOverlay(stop: self)
+        }
+    }
+
     var annotation: MKPointAnnotation {
         get {
             // TODO: better way?
@@ -45,6 +51,12 @@ extension Stop {
 
     var location2D: CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(self.getLatitude(), self.getLongitude())
+    }
+
+    var boundingMapRect: MKMapRect {
+        let size:Double = 5000
+        let p = MKMapPointForCoordinate(location2D)
+        return MKMapRectMake(p.x - (size / 2), p.y - (size / 2), size, size)
     }
 
     func getLatitude() -> CLLocationDegrees {

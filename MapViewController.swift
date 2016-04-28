@@ -29,6 +29,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.showsUserLocation = true
+        self.mapView.showsBuildings = false
+        self.mapView.showsPointsOfInterest = false
+
         locationManager.delegate = self
         self.mapView.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -46,8 +49,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        addStopAnnotations()
         self.mapView.addOverlay(self.stop!.route!.shapeLine)
+        self.mapView.addOverlays(self.stop!.route!.stopOverlays)
         locationManager.startUpdatingLocation()
         self.updateDistance()
     }
@@ -100,6 +103,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             renderer.strokeColor = self.stop?.route?.mapColor
             renderer.lineWidth = 2.0
             return renderer
+        } else if overlay is StopMapOverlay {
+            let stopImage = UIImage(named:"StopIcon")
+            return StopOverlayRenderer(overlay: overlay, overlayImage: stopImage!)
         } else {
             let circleRenderer = MKCircleRenderer(overlay: overlay)
             circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
@@ -118,7 +124,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             return pin
         } else {
-            return MKPinAnnotationView()
+            let pin = MKAnnotationView()
+            pin.image = UIImage.init(named: "StopIcon")
+            pin.canShowCallout = true
+            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            return pin
         }
     }
 
@@ -178,8 +188,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.mapView.addAnnotation(annotation)
     }
 
+    private func addStopOverlays() {
+        self.mapView.addOverlays(self.stop!.route!.stopOverlays)
+    }
+
     private func addStopAnnotations() {
-        self.mapView.addAnnotations(self.stop!.route!.annotations)
+        self.mapView.addAnnotations(self.stop!.route!.stopAnnotations)
     }
 
     private func handleRegionEvent(region: CLRegion!) {

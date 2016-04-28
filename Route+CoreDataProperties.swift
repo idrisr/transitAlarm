@@ -42,9 +42,15 @@ extension Route {
         }
     }
 
-    var annotations: [MKPointAnnotation] {
+    var stopAnnotations: [MKAnnotation] {
         get {
             return stops!.map{ ($0 as! Stop).annotation }
+        }
+    }
+
+    var stopOverlays: [StopMapOverlay] {
+        get {
+            return stops!.map{ ($0 as! Stop).overlay }
         }
     }
 
