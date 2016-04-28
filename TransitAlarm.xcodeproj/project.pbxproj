@@ -13,6 +13,7 @@
 		258362AB1CC80DAE003E592D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258362A81CC80DAD003E592D /* Bolts.framework */; };
 		258362AC1CC80DAE003E592D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258362A91CC80DAE003E592D /* FBSDKCoreKit.framework */; };
 		258362AD1CC80DAE003E592D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258362AA1CC80DAE003E592D /* FBSDKLoginKit.framework */; };
+		682D9CC91CD243E300A54C4E /* 223W_Erie.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */; };
 		68422DB81CD0F0D100677CA3 /* RouteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DB71CD0F0D100677CA3 /* RouteTableViewController.swift */; };
 		68422DBA1CD0F0E300677CA3 /* StopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DB91CD0F0E300677CA3 /* StopTableViewController.swift */; };
 		68422DBD1CD10A3E00677CA3 /* transit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68422DBB1CD10A3E00677CA3 /* transit.xcdatamodeld */; };
@@ -49,6 +50,7 @@
 		258362A91CC80DAE003E592D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		258362AA1CC80DAE003E592D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		43C7C040C5F92399D5135115 /* Pods-TransitAlarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.release.xcconfig"; sourceTree = "<group>"; };
+		682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 223W_Erie.gpx; path = project_gpxfiles/223W_Erie.gpx; sourceTree = "<group>"; };
 		68422DB71CD0F0D100677CA3 /* RouteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewController.swift; sourceTree = "<group>"; };
 		68422DB91CD0F0E300677CA3 /* StopTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTableViewController.swift; sourceTree = "<group>"; };
 		68422DBC1CD10A3E00677CA3 /* transit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = transit.xcdatamodel; sourceTree = "<group>"; };
@@ -113,9 +115,18 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
+		682D9CC51CD2429000A54C4E /* gpxfiles */ = {
+			isa = PBXGroup;
+			children = (
+				682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */,
+			);
+			name = gpxfiles;
+			sourceTree = "<group>";
+		};
 		6879AF7E1CC534FA003F6483 = {
 			isa = PBXGroup;
 			children = (
+				682D9CC51CD2429000A54C4E /* gpxfiles */,
 				68A32BAF1CD051C80015E7EE /* CoreData */,
 				258362A31CC7D2D0003E592D /* Services */,
 				6879AFA91CC701EA003F6483 /* view */,
@@ -278,6 +289,7 @@
 				6879AFA81CC5847F003F6483 /* trains.xml in Resources */,
 				6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */,
 				68A32C0E1CD0612B0015E7EE /* SingleViewCoreData.sqlite-wal in Resources */,
+				682D9CC91CD243E300A54C4E /* 223W_Erie.gpx in Resources */,
 				68A32C0D1CD061290015E7EE /* SingleViewCoreData.sqlite-shm in Resources */,
 				68A32BE01CD053B00015E7EE /* SingleViewCoreData.sqlite in Resources */,
 				68A32BE41CD055600015E7EE /* Main.storyboard in Resources */,

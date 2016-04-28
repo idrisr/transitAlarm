@@ -6,9 +6,9 @@
 //  Copyright © 2016 id. All rights reserved.
 //
 
-import UIKit
-import MapKit
 import CoreLocation
+import MapKit
+import UIKit
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     var stop: Stop?
