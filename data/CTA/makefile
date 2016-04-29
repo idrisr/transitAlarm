@@ -1,4 +1,4 @@
-all: clean makedirs unzip removequotes removespaces fixstops loaddb fixbadlatlon addAgencyID createRouteTrip
+all: clean unzip removequotes removespaces changeAgencyName fixstops loaddb fixbadlatlon addAgencyID createRouteTrip
 
 TMPDIR=tmp
 gtfs?=CTA.zip
@@ -6,6 +6,7 @@ STOPS=$(TMPDIR)/stops.txt
 SQLSCRIPT=load_cta.sql
 SQLGETBADLATLON=get_bad_lat_lon.sql
 BADLATLON=$(TMPDIR)/bad_lat_lon
+DBUSER=root
 DBPASSWORD=password
 DBNAME=cta
 SQLUPDATEBADLATLON=$(TMPDIR)/update_bad_lat_lon.sql
@@ -24,10 +25,6 @@ help:
 	# @echo "make gtfs=[pathToMyZippedgtfsfile/transit.zip]"
 	# @echo "example usage: make gtfs=CTA/google_transit.zip"
 
-makedirs:
-	mkdir -p $(TMPDIR)
-
-
 unzip:
 	@mkdir -p $(TMPDIR)
 	@unzip $(gtfs) trips.txt      -d $(TMPDIR)
@@ -38,14 +35,19 @@ unzip:
 	@unzip $(gtfs) agency.txt     -d $(TMPDIR)
 
 removequotes:
-	for f in $(TMPDIR)/*; do      \
+	@for f in $(TMPDIR)/*; do      \
 		gsed -i 's/"//g' $$f; \
 	done
 
 removespaces:
-	for f in $(TMPDIR)/*; do      \
+	@for f in $(TMPDIR)/*; do      \
 		gsed -i "s/, \+/,/g" $$f; \
 	done
+
+changeAgencyName: 
+	@tail -n1 $(TMPDIR)/agency.txt >> $(TMPDIR)/agency.txt
+	@gsed -i '2s/Chicago Transit Authority/CTA Train/g' $(TMPDIR)/agency.txt
+	@gsed -i '3s/Chicago Transit Authority/CTA Bus/g' $(TMPDIR)/agency.txt
 
 fixstops:
 	# the stops.txt file has extra columns with no headers, and has its headers in the wrong order
@@ -56,20 +58,20 @@ fixstops:
 	mv $(STOPS).new $(STOPS)
 
 loaddb:
-	cat $(SQLSCRIPT) | mysql -u root -p$(DBPASSWORD)
+	cat $(SQLSCRIPT) | mysql -u $(DBUSER) -p$(DBPASSWORD)
 
 fixbadlatlon:
-	mysql -N -u root -p$(DBPASSWORD) < $(SQLGETBADLATLON) > $(BADLATLON)
+	mysql -N -u $(DBUSER) -p$(DBPASSWORD) < $(SQLGETBADLATLON) > $(BADLATLON)
 	while read STOP_ID; do\
 		awk -F, '$$1==var {print "UPDATE stops SET stop_lat=" $$5 ",stop_lon=" $$6 " WHERE stop_id=" $$1 ";"}' var="$$STOP_ID" $(STOPS).old;\
 	done < $(BADLATLON) > $(SQLUPDATEBADLATLON)
-	cat $(SQLUPDATEBADLATLON) | mysql -u root -p$(DBPASSWORD) -A cta
+	cat $(SQLUPDATEBADLATLON) | mysql -u $(DBUSER) -p$(DBPASSWORD) -A cta
 
 addAgencyID:
-	sed "s/DB_REPLACE_ME/$(DBNAME)/g" $(ADDAGENCYID_SQL) | mysql -u root -p$(DBPASSWORD);
+	sed "s/DB_REPLACE_ME/$(DBNAME)/g" $(ADDAGENCYID_SQL) | mysql -u $(DBUSER) -p$(DBPASSWORD);
 
 createRouteTrip:
-	sed "s/DB_REPLACE_ME/$(DBNAME)/g" $(CREATEROUTETRIP_SQL) | mysql -u root -p$(DBPASSWORD);
+	sed "s/DB_REPLACE_ME/$(DBNAME)/g" $(CREATEROUTETRIP_SQL) | mysql -u $(DBUSER) -p$(DBPASSWORD);
 
 clean:
 	rm -rf $(TMPDIR)
