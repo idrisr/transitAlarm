@@ -14,7 +14,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var stop: Stop?
 
     let dataService = DataService()
-    let favorites = [String]()
 
     @IBOutlet weak var stopNameLabel: UILabel!
     @IBOutlet weak var distanceLabelFeet: UILabel!
@@ -202,7 +201,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
             let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
             firebaseSaveStopList.updateChildValues(transitStopName)
-            self.dataService.getTransitStops()
         }
         alert.addAction(action)
         alert.addAction(saveAction)

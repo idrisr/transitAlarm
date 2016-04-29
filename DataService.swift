@@ -42,12 +42,16 @@ class DataService {
         REF_USER.childByAppendingPath(uid).setValue(user)
     }
     
-    func getTransitStops() {
-        let ref = Firebase(url:"\(REF_CURRENT_USER)/favorites")
-        ref.observeEventType(.ChildAdded, withBlock: { snapshot in
-            let transitStop = snapshot.value.objectForKey("transitStop") as? String
-            self.transitStops.append(transitStop!)
-            print("\(self.transitStops)")
-        })
-    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
