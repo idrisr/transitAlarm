@@ -443,7 +443,6 @@ class OneBigViewController: UIViewController,
         do {
             let result = try self.moc!.executeFetchRequest(request)
             self.agencys = result as! [Agency]
-            self.tableView.reloadData()
         } catch {
             let fetchError = error as NSError
             print(fetchError)
