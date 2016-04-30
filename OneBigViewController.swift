@@ -24,15 +24,13 @@ class OneBigViewController: UIViewController,
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
 
-
-    // corresponds to which sections are opened
+    // somehow all these arrays should be in a struct/class of their own.
     var opened = [true, false, false]
-
     var agencys = [Agency]()
     var routes = [Route]()
     var stops = [Stop]()
-
     var sectionClosed = [Bool]()
+    var selection = [Int]()
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
