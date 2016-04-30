@@ -23,7 +23,16 @@ class OneBigViewController: UIViewController,
     let favorites = [String]()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
-    var agencies = [Agency]()
+
+
+    // corresponds to which sections are opened
+    var opened = [true, false, false]
+
+    var agencys = [Agency]()
+    var routes = [Route]()
+    var stops = [Stop]()
+
+    var sectionClosed = [Bool]()
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +40,7 @@ class OneBigViewController: UIViewController,
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var didCenterMap = false
+    var dataSource: [[AnyObject]]?
 
     // MARK: view life cycle
     override func viewDidLoad() {
@@ -47,6 +57,12 @@ class OneBigViewController: UIViewController,
         self.mapView.delegate = self
         locationManager.requestAlwaysAuthorization()
 
+        self.loadAgencys()
+        self.loadRoutes()
+        self.loadStops()
+
+        var dataSource = [self.agencys, self.routes, self.stops]
+
 //        regionWithAnnotation()
 //        dropStopPin()
     }
@@ -57,7 +73,6 @@ class OneBigViewController: UIViewController,
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        loadAgencies()
 //        self.mapView.addOverlay(self.stop!.route!.shapeLine)
 //        self.mapView.addOverlays(self.stop!.route!.stopOverlays)
         locationManager.startUpdatingLocation()
@@ -70,18 +85,80 @@ class OneBigViewController: UIViewController,
 
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return agencies.count
+        if self.opened[section] {
+            switch section {
+            case tableSection.Agency.rawValue:
+                return self.agencys.count
+            case tableSection.Route.rawValue:
+                return self.routes.count
+            case tableSection.Stop.rawValue:
+                return self.stops.count
+            default:
+                return 0
+            }
+        } else {
+            return 0
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let reuseID = "agencyCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-        let agency = self.agencies[indexPath.row]
-        cell.textLabel?.text = agency.name
-        return cell
+        switch indexPath.section {
+        case tableSection.Agency.rawValue:
+            let reuseID = "agencyCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+            let agency = self.agencys[indexPath.row]
+            cell.textLabel?.text = agency.name
+            return cell
+
+        case tableSection.Route.rawValue:
+            let reuseID = "agencyCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+            let route = self.routes[indexPath.row]
+            cell.textLabel?.text = route.long_name
+            return cell
+
+        case tableSection.Stop.rawValue:
+            let reuseID = "agencyCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+            let stop = self.stops[indexPath.row]
+            cell.textLabel?.text = stop.name
+            return cell
+        default:
+            let reuseID = "agencyCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+            return cell
+        }
     }
 
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3;
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection: Int) -> String? {
+        return tableSection(rawValue: titleForHeaderInSection)!.headerTitle()
+    }
+
+
     // MARK: UITableViewDelegate
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        NSLog("Selected: \(indexPath.section) \(indexPath.row)")
+
+        // if pick in section n
+        switch indexPath.section {
+        case tableSection.Agency.rawValue:
+            self.opened[indexPath.section + 1] = !self.opened[indexPath.section + 1]
+
+        case tableSection.Route.rawValue:
+            self.opened[indexPath.section + 1] = !self.opened[indexPath.section + 1]
+
+        default:
+            print("do nothing")
+        }
+        self.tableView.reloadData()
+
+        // open up section n+1
+    }
+
 
     // MARK: CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -262,12 +339,40 @@ class OneBigViewController: UIViewController,
     }
 
     // MARK: private funcs core data stuff
-    private func loadAgencies() {
+    private func loadAgencys() {
         let request = NSFetchRequest.init(entityName: "Agency")
 
         do {
             let result = try self.moc!.executeFetchRequest(request)
-            agencies = result as! [Agency]
+            self.agencys = result as! [Agency]
+            self.tableView.reloadData()
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+    }
+
+    // MARK: private funcs core data stuff
+    private func loadRoutes() {
+        let request = NSFetchRequest.init(entityName: "Route")
+
+        do {
+            let result = try self.moc!.executeFetchRequest(request)
+            self.routes = result as! [Route]
+            self.tableView.reloadData()
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+    }
+
+    // MARK: private funcs core data stuff
+    private func loadStops() {
+        let request = NSFetchRequest.init(entityName: "Stop")
+
+        do {
+            let result = try self.moc!.executeFetchRequest(request)
+            stops = result as! [Stop]
             self.tableView.reloadData()
         } catch {
             let fetchError = error as NSError
