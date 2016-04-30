@@ -89,16 +89,7 @@ class OneBigViewController: UIViewController,
 
         switch tableSection(rawValue: section)! {
             case .Agency:
-                switch self.tableHanlder.sectionStates[tableSection.Agency.rawValue].status {
-                case .Selected:
-                    return 1
-
-                case .WaitingForSelection:
-                    return self.agencys.count
-
-                case .NotReadyForSelection:
-                    return 0
-            }
+                return self.agencys.count
 
             case .Route:
                 switch self.tableHanlder.sectionStates[tableSection.Route.rawValue].status {
@@ -127,18 +118,44 @@ class OneBigViewController: UIViewController,
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let sectionState = self.tableHanlder.sectionStates[indexPath.section]
+
         switch tableSection(rawValue: indexPath.section)! {
             case .Agency:
+                var agency: Agency
                 let reuseID = "agencyCell"
+
+                switch sectionState.status {
+                    case .Selected:
+                        agency = self.agencys[sectionState.selection!]
+
+                    case .WaitingForSelection:
+                        agency = self.agencys[indexPath.row]
+
+                    case .NotReadyForSelection:
+                        return tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+                }
+
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-                let agency = self.agencys[indexPath.row]
                 cell.textLabel?.text = agency.name
                 return cell
 
             case .Route:
+                var route: Route
                 let reuseID = "agencyCell"
+
+                switch sectionState.status {
+                    case .Selected:
+                        route = self.routes[sectionState.selection!]
+
+                    case .WaitingForSelection:
+                        route = self.routes[indexPath.row]
+
+                    case .NotReadyForSelection:
+                        return tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+                }
+
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-                let route = self.routes[indexPath.row]
                 cell.textLabel?.text = route.long_name
                 return cell
 
@@ -152,7 +169,7 @@ class OneBigViewController: UIViewController,
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3;
+        return 1;
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection: Int) -> String? {
@@ -163,39 +180,73 @@ class OneBigViewController: UIViewController,
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
+        // with animations?
+        let sectionState = self.tableHanlder.sectionStates[indexPath.section]
+
+        var rowsToDelete     = [NSIndexPath]()
+//        var rowsToInsert     = [NSIndexPath]()
+//        var sectionsToDelete = [NSIndexSet]()
+//        var sectionsToInsert = [NSIndexSet]()
+
         switch tableSection(rawValue: indexPath.section)! {
-        case .Agency:
-            // select the agency
-            self.agency = self.agencys[indexPath.row]
+            case .Agency:
+                switch sectionState.status {
+                    case .WaitingForSelection:
+                        self.agency = self.agencys[indexPath.row]
+                        self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Agency, myStatus: .Selected, mySelection: indexPath.row)
 
-            // change the status of agency section
-            self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Agency, myStatus: .Selected)
+                        self.tableHanlder.sectionStates[indexPath.section + 1] = SectionState(mySection: .Route, myStatus: .WaitingForSelection, mySelection: nil)
+                        self.routes = self.agency?.routes?.allObjects as! [Route]
 
-            // change the status of route section
-            self.tableHanlder.sectionStates[indexPath.section + 1] = SectionState(mySection: .Route, myStatus: .WaitingForSelection)
+                        var agencysToRemove = [Agency]()
+                        for i in 0..<self.agencys.count {
+                            if i != indexPath.row {
+                                rowsToDelete.append(NSIndexPath(forRow: i, inSection: indexPath.section))
+                                agencysToRemove.append(self.agencys[i])
+                            }
+                        }
 
-            // set the agency
-            self.agency = self.agencys[indexPath.row]
+                    self.agencys.removeObjectsInArray(agencysToRemove)
+//                        sectionsToInsert = [NSIndexSet(index:1)]
 
-            // set the routes
-            self.routes = self.agency?.routes?.allObjects as! [Route]
+                    // already was selected
+                    case .Selected:
+                        self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Agency, myStatus: .WaitingForSelection, mySelection: nil)
+                        self.tableHanlder.sectionStates[indexPath.section + 1] = SectionState(mySection: .Route, myStatus: .NotReadyForSelection, mySelection: nil)
+                        self.tableHanlder.sectionStates[indexPath.section + 2] = SectionState(mySection: .Route, myStatus: .NotReadyForSelection, mySelection: nil)
 
-        case .Route:
-            // select the route
+                    case .NotReadyForSelection:
+                        break
+                }
 
+            case .Route:
+                switch sectionState.status {
+                    case .WaitingForSelection:
+                        break
 
-            // change the status of route section
-            // change the status of stop section
-            // update the map
-            print("yo")
+                    case .Selected:
+                        break
 
-        case .Stop:
-            // select the stop
-            // change the status of stop section
-            // update the map
-            print("yo")
+                    case .NotReadyForSelection:
+                        break
+                }
+                self.route = self.routes[indexPath.row]
+                self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Route, myStatus: .Selected, mySelection: indexPath.row)
+                self.tableHanlder.sectionStates[indexPath.section + 1] = SectionState(mySection: .Stop, myStatus: .WaitingForSelection, mySelection: nil)
+                self.route = self.routes[indexPath.row]
+                self.stops = self.route?.stops?.allObjects as! [Stop]
+
+            case .Stop:
+                self.stop = self.stops[indexPath.row] // select the stop
+                // change the status of route section
+                self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Stop, myStatus: .Selected, mySelection: indexPath.row)
+                self.stop = self.stops[indexPath.row] // set the stop
+                // update the map
         }
-        self.tableView.reloadData()
+
+//        self.tableView.beginUpdates()
+        self.tableView.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: .Automatic)
+//        self.tableView.endUpdates()
     }
 
 
@@ -271,7 +322,14 @@ class OneBigViewController: UIViewController,
         }
     }
 
-    // MARK: private methods
+    // MARK: private methods user location stuff
+    private func drawRoutes() {
+        for route in self.routes {
+            self.mapView.addOverlay(route.shapeLine)
+        }
+    }
+
+    // MARK: private methods map stuff
     private func regionWithAnnotation() -> CLCircularRegion {
         let geoLocation = stop!.location2D
         let radius: CLLocationDistance!

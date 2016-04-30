@@ -9,6 +9,20 @@
 import UIKit
 import CoreData
 
+extension Array where Element: Equatable {
+    mutating func removeObject(object: Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
+        }
+    }
+
+    mutating func removeObjectsInArray(array: [Element]) {
+        for object in array {
+            self.removeObject(object)
+        }
+    }
+}
+
 enum tableSection: Int {
     case Agency
     case Route
@@ -38,10 +52,12 @@ enum sectionStatus: Int {
 struct SectionState {
     var section: tableSection
     var status: sectionStatus
+    var selection: Int?
 
-    init(mySection: tableSection, myStatus: sectionStatus) {
+    init(mySection: tableSection, myStatus: sectionStatus, mySelection: Int?) {
         section = mySection
         status = myStatus
+        selection = mySelection
     }
 }
 
@@ -57,9 +73,9 @@ class TableHandler {
     init() {
         moc = appDelegate.managedObjectContext
         sectionStates = [
-            SectionState(mySection: .Agency, myStatus: .WaitingForSelection),
-            SectionState(mySection: .Route, myStatus: .NotReadyForSelection),
-            SectionState(mySection: .Stop, myStatus: .NotReadyForSelection)
+            SectionState(mySection: .Agency, myStatus: .WaitingForSelection, mySelection: nil),
+            SectionState(mySection: .Route, myStatus: .NotReadyForSelection, mySelection: nil),
+            SectionState(mySection: .Stop, myStatus: .NotReadyForSelection,  mySelection:nil)
         ]
     }
 

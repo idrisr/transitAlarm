@@ -9,9 +9,10 @@
 import Foundation
 import CoreData
 
+func ==(lhs:Agency, rhs:Agency) -> Bool { // Implement Equatable
+    return lhs.id == rhs.id
+}
 
 class Agency: NSManagedObject {
-
-// Insert code here to add functionality to your managed object subclass
 
 }
