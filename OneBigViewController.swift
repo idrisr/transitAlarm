@@ -17,6 +17,8 @@ class OneBigViewController: UIViewController,
                             UITableViewDataSource,
                             UITableViewDelegate {
 
+    var agency: Agency?
+    var route: Route?
     var stop: Stop?
 
     let dataService = DataService()
@@ -25,7 +27,6 @@ class OneBigViewController: UIViewController,
     var moc: NSManagedObjectContext?
 
     // somehow all these arrays should be in a struct/class of their own.
-    var opened = [true, false, false]
     var agencys = [Agency]()
     var routes = [Route]()
     var stops = [Stop]()
@@ -38,28 +39,28 @@ class OneBigViewController: UIViewController,
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var didCenterMap = false
-    var dataSource: [[AnyObject]]?
+    var tableHanlder = TableHandler()
 
     // MARK: view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.showsUserLocation = true
-        self.mapView.showsBuildings = false
-        self.mapView.showsPointsOfInterest = false
-
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
 
         moc = appDelegate.managedObjectContext
         locationManager.delegate = self
         self.mapView.delegate = self
         locationManager.requestAlwaysAuthorization()
 
+        // make lazy vars?
         self.loadAgencys()
         self.loadRoutes()
         self.loadStops()
 
-        var dataSource = [self.agencys, self.routes, self.stops]
+        self.mapView.showsUserLocation = true
+        self.mapView.showsBuildings = false
+        self.mapView.showsPointsOfInterest = false
+
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
 
 //        regionWithAnnotation()
 //        dropStopPin()
@@ -83,49 +84,71 @@ class OneBigViewController: UIViewController,
 
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.opened[section] {
-            switch section {
-            case tableSection.Agency.rawValue:
-                return self.agencys.count
-            case tableSection.Route.rawValue:
-                return self.routes.count
-            case tableSection.Stop.rawValue:
-                return self.stops.count
-            default:
-                return 0
+        // for each section
+        // what state are you in?
+
+        switch tableSection(rawValue: section)! {
+            case .Agency:
+                switch self.tableHanlder.sectionStates[tableSection.Agency.rawValue].status {
+                case .Selected:
+                    return 1
+
+                case .WaitingForSelection:
+                    return self.agencys.count
+
+                case .NotReadyForSelection:
+                    return 0
             }
-        } else {
-            return 0
+
+            case .Route:
+                switch self.tableHanlder.sectionStates[tableSection.Route.rawValue].status {
+                case .Selected:
+                    return 1
+
+                case .WaitingForSelection:
+                    return self.routes.count
+
+                case .NotReadyForSelection:
+                    return 0
+            }
+
+            case .Stop:
+                switch self.tableHanlder.sectionStates[tableSection.Stop.rawValue].status {
+                case .Selected:
+                    return 1
+
+                case .WaitingForSelection:
+                    return self.stops.count
+
+                case .NotReadyForSelection:
+                    return 0
+            }
         }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case tableSection.Agency.rawValue:
-            let reuseID = "agencyCell"
-            let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-            let agency = self.agencys[indexPath.row]
-            cell.textLabel?.text = agency.name
-            return cell
+        switch tableSection(rawValue: indexPath.section)! {
+            case .Agency:
+                let reuseID = "agencyCell"
+                let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+                let agency = self.agencys[indexPath.row]
+                cell.textLabel?.text = agency.name
+                return cell
 
-        case tableSection.Route.rawValue:
-            let reuseID = "agencyCell"
-            let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-            let route = self.routes[indexPath.row]
-            cell.textLabel?.text = route.long_name
-            return cell
+            case .Route:
+                let reuseID = "agencyCell"
+                let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+                let route = self.routes[indexPath.row]
+                cell.textLabel?.text = route.long_name
+                return cell
 
-        case tableSection.Stop.rawValue:
-            let reuseID = "agencyCell"
-            let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-            let stop = self.stops[indexPath.row]
-            cell.textLabel?.text = stop.name
-            return cell
-        default:
-            let reuseID = "agencyCell"
-            let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-            return cell
-        }
+            case .Stop:
+                let reuseID = "agencyCell"
+                let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+                let stop = self.stops[indexPath.row]
+                cell.textLabel?.text = stop.name
+                return cell
+            }
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -139,22 +162,40 @@ class OneBigViewController: UIViewController,
 
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        NSLog("Selected: \(indexPath.section) \(indexPath.row)")
 
-        // if pick in section n
-        switch indexPath.section {
-        case tableSection.Agency.rawValue:
-            self.opened[indexPath.section + 1] = !self.opened[indexPath.section + 1]
+        switch tableSection(rawValue: indexPath.section)! {
+        case .Agency:
+            // select the agency
+            self.agency = self.agencys[indexPath.row]
 
-        case tableSection.Route.rawValue:
-            self.opened[indexPath.section + 1] = !self.opened[indexPath.section + 1]
+            // change the status of agency section
+            self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Agency, myStatus: .Selected)
 
-        default:
-            print("do nothing")
+            // change the status of route section
+            self.tableHanlder.sectionStates[indexPath.section + 1] = SectionState(mySection: .Route, myStatus: .WaitingForSelection)
+
+            // set the agency
+            self.agency = self.agencys[indexPath.row]
+
+            // set the routes
+            self.routes = self.agency?.routes?.allObjects as! [Route]
+
+        case .Route:
+            // select the route
+
+
+            // change the status of route section
+            // change the status of stop section
+            // update the map
+            print("yo")
+
+        case .Stop:
+            // select the stop
+            // change the status of stop section
+            // update the map
+            print("yo")
         }
         self.tableView.reloadData()
-
-        // open up section n+1
     }
 
 
@@ -337,6 +378,7 @@ class OneBigViewController: UIViewController,
     }
 
     // MARK: private funcs core data stuff
+    // improve me
     private func loadAgencys() {
         let request = NSFetchRequest.init(entityName: "Agency")
 
@@ -350,7 +392,6 @@ class OneBigViewController: UIViewController,
         }
     }
 
-    // MARK: private funcs core data stuff
     private func loadRoutes() {
         let request = NSFetchRequest.init(entityName: "Route")
 
@@ -364,7 +405,6 @@ class OneBigViewController: UIViewController,
         }
     }
 
-    // MARK: private funcs core data stuff
     private func loadStops() {
         let request = NSFetchRequest.init(entityName: "Stop")
 
