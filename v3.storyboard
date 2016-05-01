@@ -17,11 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="x4g-FD-SiQ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="x4g-FD-SiQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="CXn-8U-J5t"/>
+                                </constraints>
                             </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
-                                <rect key="frame" x="0.0" y="336" width="600" height="264"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
+                                <rect key="frame" x="0.0" y="398" width="600" height="202"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="agencyCell" id="HWp-2f-rEf">
@@ -41,6 +44,7 @@
                             <constraint firstAttribute="trailing" secondItem="x4g-FD-SiQ" secondAttribute="trailing" id="JFI-bu-3uE"/>
                             <constraint firstAttribute="trailing" secondItem="iUW-DF-QGL" secondAttribute="trailing" id="SJ5-7Q-hvb"/>
                             <constraint firstItem="x4g-FD-SiQ" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="UIE-if-fbD"/>
+                            <constraint firstItem="iUW-DF-QGL" firstAttribute="top" secondItem="x4g-FD-SiQ" secondAttribute="bottom" constant="-2" id="WPM-ae-sln"/>
                             <constraint firstItem="x4g-FD-SiQ" firstAttribute="top" secondItem="oRt-en-5WM" secondAttribute="top" id="k5q-Gb-wnT"/>
                             <constraint firstItem="iUW-DF-QGL" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="kTX-CN-tgD"/>
                         </constraints>
