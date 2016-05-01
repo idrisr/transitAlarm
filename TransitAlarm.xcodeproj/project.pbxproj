@@ -27,7 +27,7 @@
 		682712651CD431DD007DFD09 /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682712641CD431DD007DFD09 /* enums.swift */; };
 		682D9CC91CD243E300A54C4E /* 223W_Erie.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */; };
 		683DB40F1CD275A900823C8B /* v3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 683DB40E1CD275A900823C8B /* v3.storyboard */; };
-		683DB4111CD2771B00823C8B /* OneBigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DB4101CD2771B00823C8B /* OneBigViewController.swift */; };
+		683DB4111CD2771B00823C8B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DB4101CD2771B00823C8B /* MainViewController.swift */; };
 		68422DB81CD0F0D100677CA3 /* RouteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DB71CD0F0D100677CA3 /* RouteTableViewController.swift */; };
 		68422DBA1CD0F0E300677CA3 /* StopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DB91CD0F0E300677CA3 /* StopTableViewController.swift */; };
 		68422DBD1CD10A3E00677CA3 /* transit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68422DBB1CD10A3E00677CA3 /* transit.xcdatamodeld */; };
@@ -67,7 +67,7 @@
 		682712641CD431DD007DFD09 /* enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
 		682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 223W_Erie.gpx; path = project_gpxfiles/223W_Erie.gpx; sourceTree = "<group>"; };
 		683DB40E1CD275A900823C8B /* v3.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = v3.storyboard; sourceTree = "<group>"; };
-		683DB4101CD2771B00823C8B /* OneBigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneBigViewController.swift; sourceTree = "<group>"; };
+		683DB4101CD2771B00823C8B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		68422DB71CD0F0D100677CA3 /* RouteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewController.swift; sourceTree = "<group>"; };
 		68422DB91CD0F0E300677CA3 /* StopTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTableViewController.swift; sourceTree = "<group>"; };
 		68422DBC1CD10A3E00677CA3 /* transit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = transit.xcdatamodel; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		6879AF9C1CC53A5F003F6483 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				683DB4101CD2771B00823C8B /* OneBigViewController.swift */,
+				683DB4101CD2771B00823C8B /* MainViewController.swift */,
 				68422DB71CD0F0D100677CA3 /* RouteTableViewController.swift */,
 				68422DB91CD0F0E300677CA3 /* StopTableViewController.swift */,
 				6879AF8C1CC534FA003F6483 /* TransitProvidersViewController.swift */,
@@ -371,7 +371,7 @@
 				68422DB81CD0F0D100677CA3 /* RouteTableViewController.swift in Sources */,
 				688FAC8A1CD5A449009CB665 /* StopPickerTableDataSource.swift in Sources */,
 				68422DBF1CD11B9D00677CA3 /* Extensions.swift in Sources */,
-				683DB4111CD2771B00823C8B /* OneBigViewController.swift in Sources */,
+				683DB4111CD2771B00823C8B /* MainViewController.swift in Sources */,
 				6800E2631CD3F9B80002549B /* Route+CoreDataProperties.swift in Sources */,
 				6879AF8D1CC534FA003F6483 /* TransitProvidersViewController.swift in Sources */,
 				6800E25D1CD3F9B80002549B /* Stop+CoreDataProperties.swift in Sources */,
