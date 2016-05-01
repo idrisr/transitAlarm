@@ -15,6 +15,8 @@ class MainViewController: UIViewController,
                             CLLocationManagerDelegate,
                             MKMapViewDelegate {
 
+    @IBOutlet weak var mapviewHeightConstraint: NSLayoutConstraint!
+
     let dataService = DataService()
     let favorites = [String]()
     var stop: Stop?
@@ -37,14 +39,20 @@ class MainViewController: UIViewController,
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
         self.mapView.showsPointsOfInterest = false
+        self.mapView.delegate = self.tableDataSource
 
         self.tableView.delegate = self.tableDataSource
         self.tableView.dataSource = self.tableDataSource
-        self.mapView.delegate = self.tableDataSource
         self.tableDataSource.mapView = self.mapView
 
+
+//        self.tableDataSource.constraint = self.mapviewHeightConstraint
 //        regionWithAnnotation()
 //        dropStopPin()
+    }
+
+    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
+        print("in a pan")
     }
 
     override func viewDidAppear(animated: Bool) {

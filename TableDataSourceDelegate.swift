@@ -13,7 +13,8 @@ import CoreData
 class TableDataSourceDelegate: NSObject,
                                 UITableViewDataSource,
                                 UITableViewDelegate,
-                                MKMapViewDelegate {
+                                MKMapViewDelegate,
+                                UIGestureRecognizerDelegate {
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
@@ -22,13 +23,17 @@ class TableDataSourceDelegate: NSObject,
     var routes = [Route]()
     var stops = [Stop]()
     var sections = ["Agency"]
-
+//    var constraint = NSLayoutConstraint()
     var mapView: MKMapView?
 
     override init() {
         super.init()
         moc = appDelegate.managedObjectContext
         self.agencys = self.getAgencys()!
+    }
+
+    func hanldePan(gesture: UIPanGestureRecognizer) {
+        print("got a pan gesture")
     }
 
     // MARK: MKMapViewDelegate
@@ -146,6 +151,9 @@ class TableDataSourceDelegate: NSObject,
             // from one to many agencys
             if self.agencys.count == 1 {
 
+                // change constraint to 300
+//                self.constraint.constant = 300
+
                 // show all agencies on map
 
 
@@ -164,6 +172,9 @@ class TableDataSourceDelegate: NSObject,
 
             } else {
             // from many to one agency
+
+                // change constraint to 500
+//                self.constraint.constant = 500
 
 
 

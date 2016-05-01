@@ -20,11 +20,28 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="x4g-FD-SiQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="CXn-8U-J5t"/>
+                                    <constraint firstAttribute="height" constant="400" id="jQl-fU-D7k"/>
                                 </constraints>
                             </mapView>
+                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bug-vu-oWE" userLabel="Separator">
+                                <rect key="frame" x="0.0" y="400" width="600" height="20"/>
+                                <color key="backgroundColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" allowsDirectInteraction="YES"/>
+                                </accessibility>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="7Ou-a1-8qj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="MVh-Z2-SIe" appends="YES" id="Asu-Q6-N4T"/>
+                                </connections>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
-                                <rect key="frame" x="0.0" y="398" width="600" height="202"/>
+                                <rect key="frame" x="0.0" y="420" width="600" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="agencyCell" id="HWp-2f-rEf">
@@ -40,13 +57,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5xf-oH-b56" firstAttribute="top" secondItem="iUW-DF-QGL" secondAttribute="bottom" id="867-bL-RmO"/>
-                            <constraint firstAttribute="trailing" secondItem="x4g-FD-SiQ" secondAttribute="trailing" id="JFI-bu-3uE"/>
-                            <constraint firstAttribute="trailing" secondItem="iUW-DF-QGL" secondAttribute="trailing" id="SJ5-7Q-hvb"/>
-                            <constraint firstItem="x4g-FD-SiQ" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="UIE-if-fbD"/>
-                            <constraint firstItem="iUW-DF-QGL" firstAttribute="top" secondItem="x4g-FD-SiQ" secondAttribute="bottom" constant="-2" id="WPM-ae-sln"/>
-                            <constraint firstItem="x4g-FD-SiQ" firstAttribute="top" secondItem="oRt-en-5WM" secondAttribute="top" id="k5q-Gb-wnT"/>
-                            <constraint firstItem="iUW-DF-QGL" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="kTX-CN-tgD"/>
+                            <constraint firstItem="iUW-DF-QGL" firstAttribute="top" secondItem="bug-vu-oWE" secondAttribute="bottom" id="1mc-cF-LHO"/>
+                            <constraint firstAttribute="trailing" secondItem="bug-vu-oWE" secondAttribute="trailing" id="21D-pc-ECu"/>
+                            <constraint firstAttribute="trailing" secondItem="iUW-DF-QGL" secondAttribute="trailing" id="6DM-dE-rDf"/>
+                            <constraint firstAttribute="trailing" secondItem="x4g-FD-SiQ" secondAttribute="trailing" id="CEq-ji-CDT"/>
+                            <constraint firstItem="x4g-FD-SiQ" firstAttribute="top" secondItem="oRt-en-5WM" secondAttribute="top" id="FPR-gm-yrE"/>
+                            <constraint firstItem="bug-vu-oWE" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="KTd-aI-jLA"/>
+                            <constraint firstItem="5xf-oH-b56" firstAttribute="top" secondItem="iUW-DF-QGL" secondAttribute="bottom" id="T7Y-wJ-qT0"/>
+                            <constraint firstItem="x4g-FD-SiQ" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="bUT-3m-WGI"/>
+                            <constraint firstItem="iUW-DF-QGL" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="szc-2J-AtP"/>
+                            <constraint firstItem="bug-vu-oWE" firstAttribute="top" secondItem="x4g-FD-SiQ" secondAttribute="bottom" id="t6I-ZY-gNV"/>
                         </constraints>
                     </view>
                     <connections>
@@ -55,6 +75,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zA6-Lx-f90" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="MVh-Z2-SIe">
+                    <connections>
+                        <action selector="handlePan:" destination="Xz3-Sy-Oit" id="uZC-Aj-2ne"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="781" y="370"/>
         </scene>
