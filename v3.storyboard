@@ -17,13 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="x4g-FD-SiQ">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="x4g-FD-SiQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="338" id="iIL-sy-DyK"/>
-                                </constraints>
                             </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
                                 <rect key="frame" x="0.0" y="336" width="600" height="264"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -40,13 +37,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="iUW-DF-QGL" secondAttribute="trailing" id="G7p-6f-CoZ"/>
-                            <constraint firstItem="iUW-DF-QGL" firstAttribute="top" secondItem="x4g-FD-SiQ" secondAttribute="bottom" constant="-2" id="Ik6-dg-LXs"/>
-                            <constraint firstItem="x4g-FD-SiQ" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="QX2-lA-bNj"/>
-                            <constraint firstAttribute="trailing" secondItem="x4g-FD-SiQ" secondAttribute="trailing" id="aer-YX-bjp"/>
-                            <constraint firstItem="5xf-oH-b56" firstAttribute="top" secondItem="iUW-DF-QGL" secondAttribute="bottom" id="gCq-dr-dYj"/>
-                            <constraint firstItem="x4g-FD-SiQ" firstAttribute="top" secondItem="oRt-en-5WM" secondAttribute="top" id="iqp-H5-Nm4"/>
-                            <constraint firstItem="iUW-DF-QGL" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="va4-zz-Eh0"/>
+                            <constraint firstItem="5xf-oH-b56" firstAttribute="top" secondItem="iUW-DF-QGL" secondAttribute="bottom" id="867-bL-RmO"/>
+                            <constraint firstAttribute="trailing" secondItem="x4g-FD-SiQ" secondAttribute="trailing" id="JFI-bu-3uE"/>
+                            <constraint firstAttribute="trailing" secondItem="iUW-DF-QGL" secondAttribute="trailing" id="SJ5-7Q-hvb"/>
+                            <constraint firstItem="x4g-FD-SiQ" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="UIE-if-fbD"/>
+                            <constraint firstItem="x4g-FD-SiQ" firstAttribute="top" secondItem="oRt-en-5WM" secondAttribute="top" id="k5q-Gb-wnT"/>
+                            <constraint firstItem="iUW-DF-QGL" firstAttribute="leading" secondItem="oRt-en-5WM" secondAttribute="leading" id="kTX-CN-tgD"/>
                         </constraints>
                     </view>
                     <connections>
