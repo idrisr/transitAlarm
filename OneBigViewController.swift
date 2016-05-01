@@ -27,6 +27,7 @@ class OneBigViewController: UIViewController,
     var routes = [Route]()
     var stops = [Stop]()
     var stop: Stop?
+
     var sections = ["Agency"]
 
     @IBOutlet weak var mapView: MKMapView!
@@ -46,10 +47,7 @@ class OneBigViewController: UIViewController,
         self.mapView.delegate = self
         locationManager.requestAlwaysAuthorization()
 
-        // make lazy vars?
         self.agencys = self.getAgencys()!
-        self.loadRoutes()
-        self.loadStops()
 
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
@@ -139,10 +137,10 @@ class OneBigViewController: UIViewController,
         case .Agency:
             // from one to many agencys
             if self.agencys.count == 1 {
-                self.sections = ["Agency"]
                 let existingAgency = self.agencys.first
                 self.agencys = self.getAgencys()! // change this to return something so it's explicit
-                sectionsToDelete = NSIndexSet(index: 1) // use enum instead of magic number
+                sectionsToDelete = NSIndexSet(indexesInRange: NSMakeRange(1, self.sections.count - 1))
+                self.sections = ["Agency"]
 
                 for i in 0..<agencys.count {
                     if agencys[i] != existingAgency {
@@ -151,7 +149,7 @@ class OneBigViewController: UIViewController,
                 }
 
             } else {
-            // from many to one agencys
+            // from many to one agency
                 self.sections = ["Agency", "Routes"]
                 let agency = self.agencys[indexPath.row]
                 self.routes = agency.routes?.allObjects as! [Route]
@@ -169,9 +167,61 @@ class OneBigViewController: UIViewController,
             }
 
         case .Route:
-            break
+            // from one to many routes
+            if self.routes.count == 1 {
+                self.sections = ["Agency", "Routes"]
+                let existingRoute = self.routes.first
+                self.routes = self.agencys.first?.routes?.allObjects as! [Route]
+                sectionsToDelete = NSIndexSet(index: 2) // use enum instead of magic number
+
+                for i in 0..<self.routes.count {
+                    if routes[i] != existingRoute {
+                        rowsToInsert.append(NSIndexPath(forItem: i, inSection: indexPath.section))
+                    }
+                }
+            } else {
+            // from many to one routes
+                self.sections = ["Agency", "Routes", "Stops"]
+                self.stops = self.routes.first?.stops?.allObjects as! [Stop]
+                sectionsToInsert = NSIndexSet(index: 2)
+
+                // remove unselected agencies
+                var routesToRemove = [Route]()
+                for i in 0..<self.routes.count {
+                    if i != indexPath.row {
+                        rowsToDelete.append(NSIndexPath(forRow: i, inSection: indexPath.section))
+                        routesToRemove.append(self.routes[i])
+                    }
+                }
+                self.routes.removeObjectsInArray(routesToRemove)
+            }
+
         case .Stop:
-            break
+            // from one to many stops
+            if self.stops.count == 1 {
+                self.sections = ["Agency", "Routes", "Stops"]
+                let existingStop = self.stops.first
+                self.stops = self.routes.first?.stops?.allObjects as! [Stop]
+
+                for i in 0..<self.stops.count {
+                    if stops[i] != existingStop {
+                        rowsToInsert.append(NSIndexPath(forItem: i, inSection: indexPath.section))
+                    }
+                }
+            } else {
+            // from many to one stops
+                self.sections = ["Agency", "Routes", "Stops"]
+
+                // remove unselected agencies
+                var stopsToRemove = [Stop]()
+                for i in 0..<self.stops.count {
+                    if i != indexPath.row {
+                        rowsToDelete.append(NSIndexPath(forRow: i, inSection: indexPath.section))
+                        stopsToRemove.append(self.stops[i])
+                    }
+                }
+                self.stops.removeObjectsInArray(stopsToRemove)
+            }
         }
 
         self.tableView.beginUpdates()
@@ -384,29 +434,27 @@ class OneBigViewController: UIViewController,
         }
     }
 
-    private func loadRoutes() {
+    private func getRoutes() -> [Route]? {
         let request = NSFetchRequest.init(entityName: "Route")
-
         do {
             let result = try self.moc!.executeFetchRequest(request)
-            self.routes = result as! [Route]
-            self.tableView.reloadData()
+            return result as? [Route]
         } catch {
             let fetchError = error as NSError
             print(fetchError)
+            return nil
         }
     }
 
-    private func loadStops() {
+    private func getStops() -> [Stop]? {
         let request = NSFetchRequest.init(entityName: "Stop")
-
         do {
             let result = try self.moc!.executeFetchRequest(request)
-            stops = result as! [Stop]
-            self.tableView.reloadData()
+            return result as? [Stop]
         } catch {
             let fetchError = error as NSError
             print(fetchError)
+            return nil
         }
     }
 }
