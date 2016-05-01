@@ -52,7 +52,6 @@ class MainViewController: UIViewController,
         self.minMapHeight = 50
         self.maxMapHeight = UIScreen.mainScreen().bounds.size.height - minMapHeight!
 
-//        self.tableDataSource.constraint = self.mapviewHeightConstraint
 //        regionWithAnnotation()
 //        dropStopPin()
     }

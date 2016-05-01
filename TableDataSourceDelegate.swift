@@ -38,12 +38,10 @@ class TableDataSourceDelegate: NSObject,
 
     // MARK: MKMapViewDelegate
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKPolyline {
+        if overlay is RouteLine {
             let renderer = MKPolylineRenderer(overlay: overlay)
-//            let stop = self.stops[0]
-//            renderer.strokeColor = stop.route?.mapColor
-            renderer.strokeColor = UIColor.blackColor()
-            renderer.lineWidth = 2.0
+            renderer.strokeColor = (overlay as! RouteLine).color
+            renderer.lineWidth = 3.0
             return renderer
         } else if overlay is StopMapOverlay {
             let stopImage = UIImage(named:"StopIcon")
@@ -124,18 +122,6 @@ class TableDataSourceDelegate: NSObject,
 
 
     // MARK: UITableViewDelegate
-
-    // switch on section
-
-    // show all routes nearby
-    // case agency
-
-    // show routes for nearby agencies
-    // case route
-
-    // show stops for selected routes
-    // case stop
-
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
 
@@ -173,11 +159,6 @@ class TableDataSourceDelegate: NSObject,
             } else {
             // from many to one agency
 
-                // change constraint to 500
-//                self.constraint.constant = 500
-
-
-
                 self.sections = ["Agency", "Routes"]
                 let agency = self.agencys[indexPath.row]
                 self.routes = agency.routes?.allObjects as! [Route]
@@ -194,11 +175,15 @@ class TableDataSourceDelegate: NSObject,
                 }
                 self.agencys.removeObjectsInArray(agencysToRemove)
             }
-            self.showAgenciesOnMap()
 
         case .Route:
-            // from one to many routes
             if self.routes.count == 1 {
+            // from one to many routes
+
+                // take route off of map
+                self.removeRouteFromMap()
+
+
                 self.sections = ["Agency", "Routes"]
                 let existingRoute = self.routes.first
                 self.routes = self.agencys.first?.routes?.allObjects as! [Route]
@@ -213,6 +198,7 @@ class TableDataSourceDelegate: NSObject,
                 }
             } else {
             // from many to one routes
+
                 self.sections = ["Agency", "Routes", "Stops"]
                 let route = self.routes[indexPath.row]
                 self.stops = route.stops?.allObjects as! [Stop]
@@ -228,6 +214,9 @@ class TableDataSourceDelegate: NSObject,
                     }
                 }
                 self.routes.removeObjectsInArray(routesToRemove)
+
+                // put route on to map
+                self.drawRouteOnMap()
             }
 
         case .Stop:
@@ -265,6 +254,18 @@ class TableDataSourceDelegate: NSObject,
         tableView.insertSections(sectionsToInsert, withRowAnimation: .Fade)
         tableView.deleteSections(sectionsToDelete, withRowAnimation: .Fade)
         tableView.endUpdates()
+    }
+
+    private func drawRouteOnMap() {
+        self.mapView?.addOverlays( self.routes.map{ ($0.shapeLine) } )
+    }
+
+    private func removeRouteFromMap() {
+        for overlay in self.mapView!.overlays {
+            if overlay is RouteLine  {
+                self.mapView?.removeOverlay(overlay)
+            }
+        }
     }
 
     private func showAgenciesOnMap() {

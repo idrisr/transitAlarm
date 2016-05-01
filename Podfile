@@ -7,5 +7,6 @@ pod 'Firebase', '>= 2.5.1'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
+pod 'ASPolylineView'
 pod 'SwiftHEXColors'
 end

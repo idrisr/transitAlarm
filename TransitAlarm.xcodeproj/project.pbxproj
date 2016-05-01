@@ -32,6 +32,7 @@
 		68422DBF1CD11B9D00677CA3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DBE1CD11B9D00677CA3 /* Extensions.swift */; };
 		68422DC11CD1AD6400677CA3 /* StopOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DC01CD1AD6400677CA3 /* StopOverlayRenderer.swift */; };
 		68422DC31CD1AEB800677CA3 /* StopMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DC21CD1AEB800677CA3 /* StopMapOverlay.swift */; };
+		686346DF1CD6C20200A938C8 /* RouteLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346DE1CD6C20200A938C8 /* RouteLine.swift */; };
 		6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8A1CC534FA003F6483 /* AppDelegate.swift */; };
 		6879AF8D1CC534FA003F6483 /* TransitProvidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8C1CC534FA003F6483 /* TransitProvidersViewController.swift */; };
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		68422DBE1CD11B9D00677CA3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		68422DC01CD1AD6400677CA3 /* StopOverlayRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopOverlayRenderer.swift; sourceTree = "<group>"; };
 		68422DC21CD1AEB800677CA3 /* StopMapOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopMapOverlay.swift; sourceTree = "<group>"; };
+		686346DE1CD6C20200A938C8 /* RouteLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteLine.swift; sourceTree = "<group>"; };
 		6879AF871CC534FA003F6483 /* TransitAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransitAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6879AF8C1CC534FA003F6483 /* TransitProvidersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TransitProvidersViewController.swift; path = TransitAlarm/TransitProvidersViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 		6879AFA91CC701EA003F6483 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				686346DE1CD6C20200A938C8 /* RouteLine.swift */,
 				68422DC01CD1AD6400677CA3 /* StopOverlayRenderer.swift */,
 				68422DC21CD1AEB800677CA3 /* StopMapOverlay.swift */,
 				68A32BE31CD055600015E7EE /* Main.storyboard */,
@@ -368,6 +371,7 @@
 				68422DBD1CD10A3E00677CA3 /* transit.xcdatamodeld in Sources */,
 				6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */,
 				68422DC31CD1AEB800677CA3 /* StopMapOverlay.swift in Sources */,
+				686346DF1CD6C20200A938C8 /* RouteLine.swift in Sources */,
 				6800E2621CD3F9B80002549B /* Agency.swift in Sources */,
 				258362A71CC7E410003E592D /* Constants.swift in Sources */,
 			);
