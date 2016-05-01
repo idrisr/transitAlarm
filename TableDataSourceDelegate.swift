@@ -142,7 +142,6 @@ class TableDataSourceDelegate: NSObject,
         // same code repeated 3 times. Refactor mre
         switch tableSection(rawValue: indexPath.section)! {
         case .Agency:
-            self.showAgenciesOnMap()
 
             // from one to many agencys
             if self.agencys.count == 1 {
@@ -184,6 +183,7 @@ class TableDataSourceDelegate: NSObject,
                 }
                 self.agencys.removeObjectsInArray(agencysToRemove)
             }
+            self.showAgenciesOnMap()
 
         case .Route:
             // from one to many routes
@@ -257,9 +257,11 @@ class TableDataSourceDelegate: NSObject,
     }
 
     private func showAgenciesOnMap() {
-        for agency in self.agencys {
-            for route in agency.routes! {
-                self.mapView?.addOverlay((route as! Route).shapeLine)
+        dispatch_async(dispatch_get_main_queue()) {
+            for agency in self.agencys {
+                for route in agency.routes! {
+                    self.mapView?.addOverlay((route as! Route).shapeLine)
+                }
             }
         }
     }
