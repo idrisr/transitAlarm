@@ -10,6 +10,7 @@ import CoreLocation
 import MapKit
 import UIKit
 
+
 class OneBigViewController: UIViewController,
                             CLLocationManagerDelegate,
                             MKMapViewDelegate {
@@ -60,10 +61,6 @@ class OneBigViewController: UIViewController,
     override func viewDidDisappear(animated: Bool) {
         stopMonitoringRegion()
     }
-
-
-
-
 
     // MARK: CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

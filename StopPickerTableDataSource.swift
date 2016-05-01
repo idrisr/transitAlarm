@@ -92,6 +92,8 @@ class StopPickerTableDataSource: NSObject,
             if self.agencys.count == 1 {
                 let existingAgency = self.agencys.first
                 self.agencys = self.getAgencys()! // change this to return something so it's explicit
+                self.agencys.sortInPlace({$0.name < $1.name})
+
                 sectionsToDelete = NSIndexSet(indexesInRange: NSMakeRange(1, self.sections.count - 1))
                 self.sections = ["Agency"]
 
@@ -106,6 +108,7 @@ class StopPickerTableDataSource: NSObject,
                 self.sections = ["Agency", "Routes"]
                 let agency = self.agencys[indexPath.row]
                 self.routes = agency.routes?.allObjects as! [Route]
+                self.routes.sortInPlace({$0.long_name < $1.long_name})
                 sectionsToInsert = NSIndexSet(index: 1)
 
                 // remove unselected agencies
@@ -125,6 +128,8 @@ class StopPickerTableDataSource: NSObject,
                 self.sections = ["Agency", "Routes"]
                 let existingRoute = self.routes.first
                 self.routes = self.agencys.first?.routes?.allObjects as! [Route]
+                self.routes.sortInPlace({$0.long_name < $1.long_name})
+
                 sectionsToDelete = NSIndexSet(index: 2) // use enum instead of magic number
 
                 for i in 0..<self.routes.count {
@@ -135,7 +140,9 @@ class StopPickerTableDataSource: NSObject,
             } else {
             // from many to one routes
                 self.sections = ["Agency", "Routes", "Stops"]
-                self.stops = self.routes.first?.stops?.allObjects as! [Stop]
+                let route = self.routes[indexPath.row]
+                self.stops = route.stops?.allObjects as! [Stop]
+                self.stops.sortInPlace({Int($0.sequence!) < Int($1.sequence!)})
                 sectionsToInsert = NSIndexSet(index: 2)
 
                 // remove unselected agencies
@@ -155,6 +162,7 @@ class StopPickerTableDataSource: NSObject,
                 self.sections = ["Agency", "Routes", "Stops"]
                 let existingStop = self.stops.first
                 self.stops = self.routes.first?.stops?.allObjects as! [Stop]
+                self.stops.sortInPlace({Int($0.sequence!) < Int($1.sequence!)})
 
                 for i in 0..<self.stops.count {
                     if stops[i] != existingStop {
@@ -178,10 +186,10 @@ class StopPickerTableDataSource: NSObject,
         }
 
         tableView.beginUpdates()
-        tableView.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: .Automatic)
-        tableView.insertRowsAtIndexPaths(rowsToInsert, withRowAnimation: .Automatic)
-        tableView.insertSections(sectionsToInsert, withRowAnimation: .Automatic)
-        tableView.deleteSections(sectionsToDelete, withRowAnimation: .Automatic)
+        tableView.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: .Fade)
+        tableView.insertRowsAtIndexPaths(rowsToInsert, withRowAnimation: .Fade)
+        tableView.insertSections(sectionsToInsert, withRowAnimation: .Fade)
+        tableView.deleteSections(sectionsToDelete, withRowAnimation: .Fade)
         tableView.endUpdates()
     }
 
@@ -192,30 +200,6 @@ class StopPickerTableDataSource: NSObject,
         do {
             let result = try self.moc!.executeFetchRequest(request)
             return result as? [Agency]
-        } catch {
-            let fetchError = error as NSError
-            print(fetchError)
-            return nil
-        }
-    }
-
-    private func getRoutes() -> [Route]? {
-        let request = NSFetchRequest.init(entityName: "Route")
-        do {
-            let result = try self.moc!.executeFetchRequest(request)
-            return result as? [Route]
-        } catch {
-            let fetchError = error as NSError
-            print(fetchError)
-            return nil
-        }
-    }
-
-    private func getStops() -> [Stop]? {
-        let request = NSFetchRequest.init(entityName: "Stop")
-        do {
-            let result = try self.moc!.executeFetchRequest(request)
-            return result as? [Stop]
         } catch {
             let fetchError = error as NSError
             print(fetchError)
