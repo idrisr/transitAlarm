@@ -6,27 +6,67 @@
 //  Copyright © 2016 id. All rights reserved.
 //
 
+import MapKit
 import UIKit
 import CoreData
 
-class StopPickerTableDataSource: NSObject,
+class TableDataSourceDelegate: NSObject,
                                 UITableViewDataSource,
-                                UITableViewDelegate {
+                                UITableViewDelegate,
+                                MKMapViewDelegate {
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
 
-    // somehow all these arrays should be in a struct/class of their own.
     var agencys = [Agency]()
     var routes = [Route]()
     var stops = [Stop]()
-
     var sections = ["Agency"]
+
+    var mapView: MKMapView?
 
     override init() {
         super.init()
         moc = appDelegate.managedObjectContext
         self.agencys = self.getAgencys()!
+    }
+
+    // MARK: MKMapViewDelegate
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+//            let stop = self.stops[0]
+//            renderer.strokeColor = stop.route?.mapColor
+            renderer.strokeColor = UIColor.blackColor()
+            renderer.lineWidth = 2.0
+            return renderer
+        } else if overlay is StopMapOverlay {
+            let stopImage = UIImage(named:"StopIcon")
+            return StopOverlayRenderer(overlay: overlay, overlayImage: stopImage!)
+        } else {
+            let circleRenderer = MKCircleRenderer(overlay: overlay)
+            circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
+            circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+            return circleRenderer
+        }
+    }
+
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation.isKindOfClass(MKUserLocation) {
+            return nil
+        } else if annotation.title! == self.stops[0].name {
+            let pin = MKAnnotationView()
+            pin.image = UIImage.init(named: "MapIcon")
+            pin.canShowCallout = true
+            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            return pin
+        } else {
+            let pin = MKAnnotationView()
+            pin.image = UIImage.init(named: "StopIcon")
+            pin.canShowCallout = true
+            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            return pin
+        }
     }
 
     // MARK: UITableViewDataSource
@@ -77,7 +117,20 @@ class StopPickerTableDataSource: NSObject,
         return self.sections.count;
     }
 
+
     // MARK: UITableViewDelegate
+
+    // switch on section
+
+    // show all routes nearby
+    // case agency
+
+    // show routes for nearby agencies
+    // case route
+
+    // show stops for selected routes
+    // case stop
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
 
@@ -86,10 +139,17 @@ class StopPickerTableDataSource: NSObject,
         var sectionsToDelete = NSIndexSet()
         var sectionsToInsert = NSIndexSet()
 
+        // same code repeated 3 times. Refactor mre
         switch tableSection(rawValue: indexPath.section)! {
         case .Agency:
+            self.showAgenciesOnMap()
+
             // from one to many agencys
             if self.agencys.count == 1 {
+
+                // show all agencies on map
+
+
                 let existingAgency = self.agencys.first
                 self.agencys = self.getAgencys()! // change this to return something so it's explicit
                 self.agencys.sortInPlace({$0.name < $1.name})
@@ -105,6 +165,9 @@ class StopPickerTableDataSource: NSObject,
 
             } else {
             // from many to one agency
+
+
+
                 self.sections = ["Agency", "Routes"]
                 let agency = self.agencys[indexPath.row]
                 self.routes = agency.routes?.allObjects as! [Route]
@@ -191,6 +254,14 @@ class StopPickerTableDataSource: NSObject,
         tableView.insertSections(sectionsToInsert, withRowAnimation: .Fade)
         tableView.deleteSections(sectionsToDelete, withRowAnimation: .Fade)
         tableView.endUpdates()
+    }
+
+    private func showAgenciesOnMap() {
+        for agency in self.agencys {
+            for route in agency.routes! {
+                self.mapView?.addOverlay((route as! Route).shapeLine)
+            }
+        }
     }
 
     // MARK: private funcs core data stuff

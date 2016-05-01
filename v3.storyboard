@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--One Big View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="wWx-19-FP2">
             <objects>
-                <viewController id="Xz3-Sy-Oit" customClass="OneBigViewController" customModule="TransitAlarm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xz3-Sy-Oit" customClass="MainViewController" customModule="TransitAlarm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ggX-wW-kSh"/>
                         <viewControllerLayoutGuide type="bottom" id="5xf-oH-b56"/>

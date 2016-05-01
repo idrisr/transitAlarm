@@ -11,7 +11,7 @@ import MapKit
 import UIKit
 
 
-class OneBigViewController: UIViewController,
+class MainViewController: UIViewController,
                             CLLocationManagerDelegate,
                             MKMapViewDelegate {
 
@@ -25,14 +25,13 @@ class OneBigViewController: UIViewController,
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var didCenterMap = false
-    var tableDataSource = StopPickerTableDataSource()
+    var tableDataSource = TableDataSourceDelegate()
 
     // MARK: view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         locationManager.delegate = self
-        self.mapView.delegate = self
         locationManager.requestAlwaysAuthorization()
 
         self.mapView.showsUserLocation = true
@@ -41,6 +40,8 @@ class OneBigViewController: UIViewController,
 
         self.tableView.delegate = self.tableDataSource
         self.tableView.dataSource = self.tableDataSource
+        self.mapView.delegate = self.tableDataSource
+        self.tableDataSource.mapView = self.mapView
 
 //        regionWithAnnotation()
 //        dropStopPin()
