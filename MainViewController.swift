@@ -25,9 +25,13 @@ class MainViewController: UIViewController,
     @IBOutlet weak var tableView: UITableView!
 
     let locationManager = CLLocationManager()
+    var prevTranslation: CGFloat = 0
     var currentLocation = CLLocation()
     var didCenterMap = false
     var tableDataSource = TableDataSourceDelegate()
+
+    var maxMapHeight: CGFloat?
+    var minMapHeight: CGFloat?
 
     // MARK: view life cycle
     override func viewDidLoad() {
@@ -45,14 +49,33 @@ class MainViewController: UIViewController,
         self.tableView.dataSource = self.tableDataSource
         self.tableDataSource.mapView = self.mapView
 
+        self.minMapHeight = 50
+        self.maxMapHeight = UIScreen.mainScreen().bounds.size.height - minMapHeight!
 
 //        self.tableDataSource.constraint = self.mapviewHeightConstraint
 //        regionWithAnnotation()
 //        dropStopPin()
     }
 
-    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
-        print("in a pan")
+    @IBAction func handlePan(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+            case .Began, .Changed:
+                // get change from last translation
+                let totalTranslation = gesture.translationInView(gesture.view?.superview)
+                let newTranslation = totalTranslation.y - self.prevTranslation
+                let newMapHeight = self.mapView.frame.height + newTranslation
+
+                if newMapHeight > self.minMapHeight && newMapHeight < self.maxMapHeight {
+                    self.mapviewHeightConstraint.constant += newTranslation
+                    self.prevTranslation = totalTranslation.y
+                }
+
+            case .Cancelled, .Ended:
+                self.prevTranslation = 0
+
+            case .Possible, .Failed:
+                break
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
