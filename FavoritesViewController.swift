@@ -8,17 +8,26 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let dataService = DataService()
     var favoriteStops = [String]()
     var currentUser: Firebase!
+    var selectedStop: String!
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var moc: NSManagedObjectContext?
+  
+    var objectStops = [Stop]()
 
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        moc = appDelegate.managedObjectContext
         
         currentUser = dataService.REF_CURRENT_USER
         getTransitStops()
@@ -54,7 +63,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("MapSegue", sender: nil)
+        print(selectedStop)
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,18 +74,32 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath)
         cell.textLabel?.text = favoriteStops[indexPath.row]
+        selectedStop = cell.textLabel?.text
         return cell
     }
 
     @IBAction func skipButtonSegue(sender: UIButton) {
         performSegueWithIdentifier("SkipSegue", sender: nil)
-        
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        let stopName: Stop!
-        
-        
-    }
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "MapSegue" {
+               let destination = segue.destinationViewController as? MapViewController
+                let request = NSFetchRequest.init(entityName: "Stop")
+                do {
+                    let result = try self.moc!.executeFetchRequest(request)
+                    objectStops = result as! [Stop]
+                    for stopName in objectStops {
+                        if stopName.name == selectedStop {
+                            print(stopName.name)
+                            destination?.stop = stopName
+                        }
+                    }
+                    
+                } catch {
+                    let fetchError = error as NSError
+                    print(fetchError)
+                }
+            }
+        }
 }
