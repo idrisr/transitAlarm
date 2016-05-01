@@ -17,10 +17,6 @@ class OneBigViewController: UIViewController,
                             UITableViewDataSource,
                             UITableViewDelegate {
 
-    var agency: Agency?
-    var route: Route?
-    var stop: Stop?
-
     let dataService = DataService()
     let favorites = [String]()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -30,8 +26,8 @@ class OneBigViewController: UIViewController,
     var agencys = [Agency]()
     var routes = [Route]()
     var stops = [Stop]()
-    var sectionClosed = [Bool]()
-    var selection = [Int]()
+    var stop: Stop?
+    var sections = ["Agency"]
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -51,7 +47,7 @@ class OneBigViewController: UIViewController,
         locationManager.requestAlwaysAuthorization()
 
         // make lazy vars?
-        self.loadAgencys()
+        self.agencys = self.getAgencys()!
         self.loadRoutes()
         self.loadStops()
 
@@ -84,77 +80,31 @@ class OneBigViewController: UIViewController,
 
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // for each section
-        // what state are you in?
-
         switch tableSection(rawValue: section)! {
             case .Agency:
                 return self.agencys.count
 
             case .Route:
-                switch self.tableHanlder.sectionStates[tableSection.Route.rawValue].status {
-                case .Selected:
-                    return 1
-
-                case .WaitingForSelection:
-                    return self.routes.count
-
-                case .NotReadyForSelection:
-                    return 0
-            }
+                return self.routes.count
 
             case .Stop:
-                switch self.tableHanlder.sectionStates[tableSection.Stop.rawValue].status {
-                case .Selected:
-                    return 1
-
-                case .WaitingForSelection:
-                    return self.stops.count
-
-                case .NotReadyForSelection:
-                    return 0
-            }
+                return self.stops.count
         }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let sectionState = self.tableHanlder.sectionStates[indexPath.section]
 
         switch tableSection(rawValue: indexPath.section)! {
             case .Agency:
-                var agency: Agency
                 let reuseID = "agencyCell"
-
-                switch sectionState.status {
-                    case .Selected:
-                        agency = self.agencys[sectionState.selection!]
-
-                    case .WaitingForSelection:
-                        agency = self.agencys[indexPath.row]
-
-                    case .NotReadyForSelection:
-                        return tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-                }
-
+                let agency = self.agencys[indexPath.row]
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
                 cell.textLabel?.text = agency.name
                 return cell
 
             case .Route:
-                var route: Route
                 let reuseID = "agencyCell"
-
-                switch sectionState.status {
-                    case .Selected:
-                        route = self.routes[sectionState.selection!]
-
-                    case .WaitingForSelection:
-                        route = self.routes[indexPath.row]
-
-                    case .NotReadyForSelection:
-                        return tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-                }
-
+                let route = self.routes[indexPath.row]
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
                 cell.textLabel?.text = route.long_name
                 return cell
@@ -168,86 +118,70 @@ class OneBigViewController: UIViewController,
             }
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1;
-    }
-
     func tableView(tableView: UITableView, titleForHeaderInSection: Int) -> String? {
         return tableSection(rawValue: titleForHeaderInSection)!.headerTitle()
     }
 
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self.sections.count;
+    }
 
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-        // with animations?
-        let sectionState = self.tableHanlder.sectionStates[indexPath.section]
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
 
         var rowsToDelete     = [NSIndexPath]()
-//        var rowsToInsert     = [NSIndexPath]()
-//        var sectionsToDelete = [NSIndexSet]()
-//        var sectionsToInsert = [NSIndexSet]()
+        var rowsToInsert     = [NSIndexPath]()
+        var sectionsToDelete = NSIndexSet()
+        var sectionsToInsert = NSIndexSet()
 
         switch tableSection(rawValue: indexPath.section)! {
-            case .Agency:
-                switch sectionState.status {
-                    case .WaitingForSelection:
-                        self.agency = self.agencys[indexPath.row]
-                        self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Agency, myStatus: .Selected, mySelection: indexPath.row)
+        case .Agency:
+            // from one to many agencys
+            if self.agencys.count == 1 {
+                self.sections = ["Agency"]
+                let existingAgency = self.agencys.first
+                self.agencys = self.getAgencys()! // change this to return something so it's explicit
+                sectionsToDelete = NSIndexSet(index: 1) // use enum instead of magic number
 
-                        self.tableHanlder.sectionStates[indexPath.section + 1] = SectionState(mySection: .Route, myStatus: .WaitingForSelection, mySelection: nil)
-                        self.routes = self.agency?.routes?.allObjects as! [Route]
-
-                        var agencysToRemove = [Agency]()
-                        for i in 0..<self.agencys.count {
-                            if i != indexPath.row {
-                                rowsToDelete.append(NSIndexPath(forRow: i, inSection: indexPath.section))
-                                agencysToRemove.append(self.agencys[i])
-                            }
-                        }
-
-                    self.agencys.removeObjectsInArray(agencysToRemove)
-//                        sectionsToInsert = [NSIndexSet(index:1)]
-
-                    // already was selected
-                    case .Selected:
-                        self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Agency, myStatus: .WaitingForSelection, mySelection: nil)
-                        self.tableHanlder.sectionStates[indexPath.section + 1] = SectionState(mySection: .Route, myStatus: .NotReadyForSelection, mySelection: nil)
-                        self.tableHanlder.sectionStates[indexPath.section + 2] = SectionState(mySection: .Route, myStatus: .NotReadyForSelection, mySelection: nil)
-
-                    case .NotReadyForSelection:
-                        break
+                for i in 0..<agencys.count {
+                    if agencys[i] != existingAgency {
+                        rowsToInsert.append(NSIndexPath(forItem: i, inSection: indexPath.section))
+                    }
                 }
 
-            case .Route:
-                switch sectionState.status {
-                    case .WaitingForSelection:
-                        break
+            } else {
+            // from many to one agencys
+                self.sections = ["Agency", "Routes"]
+                let agency = self.agencys[indexPath.row]
+                self.routes = agency.routes?.allObjects as! [Route]
+                sectionsToInsert = NSIndexSet(index: 1)
 
-                    case .Selected:
-                        break
-
-                    case .NotReadyForSelection:
-                        break
+                // remove unselected agencies
+                var agencysToRemove = [Agency]()
+                for i in 0..<self.agencys.count {
+                    if i != indexPath.row {
+                        rowsToDelete.append(NSIndexPath(forRow: i, inSection: indexPath.section))
+                        agencysToRemove.append(self.agencys[i])
+                    }
                 }
-                self.route = self.routes[indexPath.row]
-                self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Route, myStatus: .Selected, mySelection: indexPath.row)
-                self.tableHanlder.sectionStates[indexPath.section + 1] = SectionState(mySection: .Stop, myStatus: .WaitingForSelection, mySelection: nil)
-                self.route = self.routes[indexPath.row]
-                self.stops = self.route?.stops?.allObjects as! [Stop]
+                self.agencys.removeObjectsInArray(agencysToRemove)
+            }
 
-            case .Stop:
-                self.stop = self.stops[indexPath.row] // select the stop
-                // change the status of route section
-                self.tableHanlder.sectionStates[indexPath.section] = SectionState(mySection: .Stop, myStatus: .Selected, mySelection: indexPath.row)
-                self.stop = self.stops[indexPath.row] // set the stop
-                // update the map
+        case .Route:
+            break
+        case .Stop:
+            break
         }
 
-//        self.tableView.beginUpdates()
+        self.tableView.beginUpdates()
         self.tableView.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: .Automatic)
-//        self.tableView.endUpdates()
+        self.tableView.insertRowsAtIndexPaths(rowsToInsert, withRowAnimation: .Automatic)
+        self.tableView.insertSections(sectionsToInsert, withRowAnimation: .Automatic)
+        self.tableView.deleteSections(sectionsToDelete, withRowAnimation: .Automatic)
+        self.tableView.endUpdates()
     }
+
 
 
     // MARK: CLLocationManagerDelegate
@@ -437,15 +371,16 @@ class OneBigViewController: UIViewController,
 
     // MARK: private funcs core data stuff
     // improve me
-    private func loadAgencys() {
+    private func getAgencys() -> [Agency]? {
         let request = NSFetchRequest.init(entityName: "Agency")
 
         do {
             let result = try self.moc!.executeFetchRequest(request)
-            self.agencys = result as! [Agency]
+            return result as? [Agency]
         } catch {
             let fetchError = error as NSError
             print(fetchError)
+            return nil
         }
     }
 

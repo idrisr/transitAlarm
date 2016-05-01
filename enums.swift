@@ -36,6 +36,14 @@ enum tableSection: Int {
         }
     }
 
+    func sections() -> [String] {
+        switch self {
+            case .Agency: return ["Agency"]
+            case .Route:  return ["Agency", "Route"]
+            case .Stop:   return ["Agency", "Route", "Stop"]
+        }
+    }
+
     func headerTitle() -> String {
         return self.entityName()
     }
