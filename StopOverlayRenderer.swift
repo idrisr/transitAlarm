@@ -11,21 +11,27 @@ import UIKit
 
 class StopOverlayRenderer: MKOverlayRenderer {
 
-    var overlayImage: UIImage
+    var color: UIColor
 
-    init(overlay:MKOverlay, overlayImage:UIImage) {
-        self.overlayImage = overlayImage
+    init(overlay:MKOverlay, color: UIColor) {
+        self.color = color
         super.init(overlay: overlay)
     }
 
     override func drawMapRect(mapRect: MKMapRect, zoomScale: MKZoomScale, inContext context: CGContext) {
-        let imageReference = overlayImage.CGImage
+        let rect = rectForMapRect(overlay.boundingMapRect)
 
-        let theMapRect = overlay.boundingMapRect
-        let theRect = rectForMapRect(theMapRect)
+        var R:CGFloat = 0
+        var G:CGFloat = 0
+        var B:CGFloat = 0
+        var A:CGFloat = 0
+        color.getRed(&R, green: &G, blue: &B, alpha: &A)
 
-        CGContextScaleCTM(context, 1.0, -1.0)
-        CGContextTranslateCTM(context, 0.0, -theRect.size.height)
-        CGContextDrawImage(context, theRect, imageReference)
+        CGContextSetRGBFillColor (context, 1, 1, 1, 0.5)
+        CGContextFillEllipseInRect (context, rect)
+
+        CGContextSetRGBStrokeColor (context, R, G, B, A)
+        CGContextSetLineWidth (context, 30.0)
+        CGContextStrokeEllipseInRect (context, rect)
     }
 }

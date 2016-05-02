@@ -41,7 +41,7 @@ class TableDataSourceDelegate: NSObject,
         if overlay is RouteLine {
             let renderer = MKPolylineRenderer(overlay: overlay)
             renderer.strokeColor = (overlay as! RouteLine).color
-            renderer.lineWidth = 3.0
+            renderer.lineWidth = 5.0
             return renderer
         } else if overlay is StopMapOverlay {
             let stopImage = UIImage(named:"StopIcon")
@@ -255,6 +255,8 @@ class TableDataSourceDelegate: NSObject,
 
     private func drawRouteOnMap() {
         self.mapView?.addOverlays( self.routes.map{ ($0.shapeLine) } )
+        self.addStopAnnotations()
+        self.addStopOverlays()
     }
 
     private func removeRouteFromMap() {
@@ -263,16 +265,32 @@ class TableDataSourceDelegate: NSObject,
                 self.mapView?.removeOverlay(overlay)
             }
         }
+        self.removeStopOverlays()
+        self.removeStopAnnotations()
     }
 
-    private func showAgenciesOnMap() {
-        // is this where the drawing actually happens... or elsewhere?
-        // i think elsewhere
-        dispatch_async(dispatch_get_main_queue()) {
-            for agency in self.agencys {
-                for route in agency.routes! {
-                    self.mapView?.addOverlay((route as! Route).shapeLine)
-                }
+    private func addStopOverlays() {
+        let route = self.routes.first
+        self.mapView!.addOverlays(route!.stopOverlays)
+    }
+
+    private func addStopAnnotations() {
+        let route = self.routes.first
+        self.mapView!.addAnnotations(route!.stopAnnotations)
+    }
+
+    private func removeStopOverlays() {
+        for overlay in self.mapView!.overlays {
+            if overlay is StopMapOverlay {
+                self.mapView?.removeOverlay(overlay)
+            }
+        }
+    }
+
+    private func removeStopAnnotations() {
+        for annotation in self.mapView!.annotations {
+            if annotation is StopAnnotation {
+                self.mapView?.removeAnnotation(annotation)
             }
         }
     }

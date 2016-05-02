@@ -36,9 +36,7 @@ class MainViewController: UIViewController,
     // MARK: view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
 
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
@@ -126,42 +124,6 @@ class MainViewController: UIViewController,
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         if region is CLCircularRegion {
             handleRegionEventExit(region)
-        }
-    }
-
-    // MARK: MKMapViewDelegate
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKPolyline {
-            let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = self.stop?.route?.mapColor
-            renderer.lineWidth = 2.0
-            return renderer
-        } else if overlay is StopMapOverlay {
-            let stopImage = UIImage(named:"StopIcon")
-            return StopOverlayRenderer(overlay: overlay, overlayImage: stopImage!)
-        } else {
-            let circleRenderer = MKCircleRenderer(overlay: overlay)
-            circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
-            circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
-            return circleRenderer
-        }
-    }
-
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation.isKindOfClass(MKUserLocation) {
-            return nil
-        } else if annotation.title! == self.stop!.name {
-            let pin = MKAnnotationView()
-            pin.image = UIImage.init(named: "MapIcon")
-            pin.canShowCallout = true
-            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-            return pin
-        } else {
-            let pin = MKAnnotationView()
-            pin.image = UIImage.init(named: "StopIcon")
-            pin.canShowCallout = true
-            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-            return pin
         }
     }
 
