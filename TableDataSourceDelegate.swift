@@ -266,6 +266,8 @@ class TableDataSourceDelegate: NSObject,
     }
 
     private func showAgenciesOnMap() {
+        // is this where the drawing actually happens... or elsewhere?
+        // i think elsewhere
         dispatch_async(dispatch_get_main_queue()) {
             for agency in self.agencys {
                 for route in agency.routes! {
