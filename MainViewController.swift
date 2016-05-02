@@ -36,9 +36,7 @@ class MainViewController: UIViewController,
     // MARK: view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
 
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
