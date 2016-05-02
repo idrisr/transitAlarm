@@ -38,7 +38,16 @@ extension Route {
             var locations = shapeSort.map { ($0 as! Shape).location2D }
 
             // create polyline
-            return MKPolyline(coordinates: &locations, count: locations.count)
+            let shapeLine = RouteLine(coordinates: &locations, count: locations.count)
+
+            if let lineColor = UIColor(hexString: self.color!) {
+                shapeLine.color = lineColor
+            } else {
+                shapeLine.color = UIColor.blueColor()
+            }
+
+            shapeLine.title = self.long_name
+            return shapeLine
         }
     }
 

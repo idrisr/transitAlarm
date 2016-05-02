@@ -1,4 +1,5 @@
 PODS:
+  - ASPolylineView (0.2.1)
   - Bolts (1.7.0):
     - Bolts/AppLinks (= 1.7.0)
     - Bolts/Tasks (= 1.7.0)
@@ -15,6 +16,7 @@ PODS:
   - SwiftHEXColors (1.0.4)
 
 DEPENDENCIES:
+  - ASPolylineView
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -22,6 +24,7 @@ DEPENDENCIES:
   - SwiftHEXColors
 
 SPEC CHECKSUMS:
+  ASPolylineView: d1a76a7e1237bca8d65b7d2af176c3ab0d797c42
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
   FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a

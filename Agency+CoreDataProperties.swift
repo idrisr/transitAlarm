@@ -20,5 +20,4 @@ extension Agency {
     @NSManaged var timezone: String?
     @NSManaged var url: String?
     @NSManaged var routes: NSSet?
-
 }
