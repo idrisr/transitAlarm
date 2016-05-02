@@ -27,6 +27,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         moc = appDelegate.managedObjectContext
         
         

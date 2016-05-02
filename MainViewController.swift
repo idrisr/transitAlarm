@@ -20,6 +20,7 @@ class MainViewController: UIViewController,
     let dataService = DataService()
     var stop: Stop?
 
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var openFavoritesButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -40,9 +41,14 @@ class MainViewController: UIViewController,
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         
+        revealViewController().rearViewRevealWidth = 300
+        revealViewController().rightViewRevealWidth = 300
+        
         openFavoritesButton.target = self.revealViewController()
         openFavoritesButton.action = #selector(SWRevealViewController.revealToggle(_:))
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        searchButton.target = self.revealViewController()
+        searchButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
 
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
