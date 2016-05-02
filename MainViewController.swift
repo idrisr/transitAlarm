@@ -18,9 +18,9 @@ class MainViewController: UIViewController,
     @IBOutlet weak var mapviewHeightConstraint: NSLayoutConstraint!
 
     let dataService = DataService()
-    let favorites = [String]()
     var stop: Stop?
 
+    @IBOutlet weak var openFavoritesButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
 
@@ -39,6 +39,10 @@ class MainViewController: UIViewController,
 
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+        
+        openFavoritesButton.target = self.revealViewController()
+        openFavoritesButton.action = #selector(SWRevealViewController.revealToggle(_:))
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
 
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false

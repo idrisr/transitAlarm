@@ -29,8 +29,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         moc = appDelegate.managedObjectContext
         
-        currentUser = dataService.REF_CURRENT_USER
-        getTransitStops()
+        
+        if favoriteStops.count > 0 {
+            currentUser = dataService.REF_CURRENT_USER
+            getTransitStops()
+        }
+       
         setBarButtonItemOnRight()
     }
     
@@ -84,7 +88,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MapSegue" {
-               let destination = segue.destinationViewController as? MapViewController
+               let destination = segue.destinationViewController as? MainViewController
                 let request = NSFetchRequest.init(entityName: "Stop")
                 do {
                     let result = try self.moc!.executeFetchRequest(request)
