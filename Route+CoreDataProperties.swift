@@ -39,13 +39,7 @@ extension Route {
 
             // create polyline
             let shapeLine = RouteLine(coordinates: &locations, count: locations.count)
-
-            if let lineColor = UIColor(hexString: self.color!) {
-                shapeLine.color = lineColor
-            } else {
-                shapeLine.color = UIColor.blueColor()
-            }
-
+            shapeLine.color = self.mapColor
             shapeLine.title = self.long_name
             return shapeLine
         }
@@ -67,7 +61,7 @@ extension Route {
         if self.color != "" {
             return UIColor(hexString: self.color!)!
         } else {
-            return UIColor.blackColor()
+            return UIColor.blueColor()
         }
     }
 }

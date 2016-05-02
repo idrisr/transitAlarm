@@ -53,7 +53,7 @@ extension Stop {
     }
 
     var boundingMapRect: MKMapRect {
-        let size:Double = 5000
+        let size:Double = 1000
         let p = MKMapPointForCoordinate(location2D)
         return MKMapRectMake(p.x - (size / 2), p.y - (size / 2), size, size)
     }

@@ -8,14 +8,17 @@
 
 import UIKit
 import MapKit
+import SwiftHEXColors
 
 class StopMapOverlay: NSObject, MKOverlay {
     var coordinate: CLLocationCoordinate2D
     var boundingMapRect: MKMapRect
+    var color: UIColor
 
     init(stop: Stop) {
         self.coordinate = stop.location2D
         self.boundingMapRect = stop.boundingMapRect
+        self.color = stop.route!.mapColor
         super.init()
     }
 }
