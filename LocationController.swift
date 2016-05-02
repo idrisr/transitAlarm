@@ -34,7 +34,7 @@ class LocationController: NSObject,
         self.mapView = mapView
         super.init()
         locationManager.delegate = self
-        self.centerMapOnUser()
+        locationManager.startUpdatingLocation()
     }
 
     // MARK: CLLocationManagerDelegate

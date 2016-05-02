@@ -95,15 +95,4 @@ class MainViewController: UIViewController {
 
         self.mapView.setRegion(coordinateRegion, animated: false)
     }
-
-    private func getStopCoordinate2D() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2DMake(self.stop!.getLatitude(), self.stop!.getLongitude())
-    }
-
-    private func dropStopPin() {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = self.stop!.location2D
-        annotation.title = self.stop!.name
-        self.mapView.addAnnotation(annotation)
-    }
 }
