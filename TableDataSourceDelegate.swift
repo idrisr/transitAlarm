@@ -137,11 +137,8 @@ class TableDataSourceDelegate: NSObject,
             // from one to many agencys
             if self.agencys.count == 1 {
 
-                // change constraint to 300
-//                self.constraint.constant = 300
-
-                // show all agencies on map
-
+                // take route off of map
+                self.removeRouteFromMap()
 
                 let existingAgency = self.agencys.first
                 self.agencys = self.getAgencys()! // change this to return something so it's explicit
