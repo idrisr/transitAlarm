@@ -11,6 +11,8 @@
 
 import Foundation
 import CoreData
+import MapKit
+import SwiftHEXColors
 
 extension Route {
 
@@ -27,4 +29,36 @@ extension Route {
     @NSManaged var shapes: NSSet?
     @NSManaged var stops: NSSet?
 
+    var shapeLine: MKPolyline {
+        get {
+            // sort shape by sequence
+            let shapeSort = shapes!.sort( { Int(($0 as! Shape).sequence!) > Int(($1 as! Shape).sequence!) } )
+
+            // get locations of shapes
+            var locations = shapeSort.map { ($0 as! Shape).location2D }
+
+            // create polyline
+            return MKPolyline(coordinates: &locations, count: locations.count)
+        }
+    }
+
+    var stopAnnotations: [MKAnnotation] {
+        get {
+            return stops!.map{ ($0 as! Stop).annotation }
+        }
+    }
+
+    var stopOverlays: [StopMapOverlay] {
+        get {
+            return stops!.map{ ($0 as! Stop).overlay }
+        }
+    }
+
+    var mapColor: UIColor {
+        if self.color != "" {
+            return UIColor(hexString: self.color!)!
+        } else {
+            return UIColor.blackColor()
+        }
+    }
 }

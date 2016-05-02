@@ -6,9 +6,9 @@
 //  Copyright © 2016 id. All rights reserved.
 //
 
-import UIKit
-import MapKit
 import CoreLocation
+import MapKit
+import UIKit
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     var stop: Stop?
@@ -28,6 +28,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.showsUserLocation = true
+        self.mapView.showsBuildings = false
+        self.mapView.showsPointsOfInterest = false
+
         locationManager.delegate = self
         self.mapView.delegate = self
 //        locationManager.requestAlwaysAuthorization()
@@ -45,6 +48,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.mapView.addOverlay(self.stop!.route!.shapeLine)
+        self.mapView.addOverlays(self.stop!.route!.stopOverlays)
         locationManager.startUpdatingLocation()
         self.updateDistance()
     }
@@ -92,18 +97,34 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     // MARK: MKMapViewDelegate
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        let circleRenderer = MKCircleRenderer(overlay: overlay)
-        circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
-        circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
-        return circleRenderer
+        if overlay is MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = self.stop?.route?.mapColor
+            renderer.lineWidth = 2.0
+            return renderer
+        } else if overlay is StopMapOverlay {
+            let stopImage = UIImage(named:"StopIcon")
+            return StopOverlayRenderer(overlay: overlay, overlayImage: stopImage!)
+        } else {
+            let circleRenderer = MKCircleRenderer(overlay: overlay)
+            circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
+            circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+            return circleRenderer
+        }
     }
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isKindOfClass(MKUserLocation) {
             return nil
-        } else {
+        } else if annotation.title! == self.stop!.name {
             let pin = MKAnnotationView()
             pin.image = UIImage.init(named: "MapIcon")
+            pin.canShowCallout = true
+            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            return pin
+        } else {
+            let pin = MKAnnotationView()
+            pin.image = UIImage.init(named: "StopIcon")
             pin.canShowCallout = true
             pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             return pin
@@ -164,6 +185,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         annotation.coordinate = self.stop!.location2D
         annotation.title = self.stop!.name
         self.mapView.addAnnotation(annotation)
+    }
+
+    private func addStopOverlays() {
+        self.mapView.addOverlays(self.stop!.route!.stopOverlays)
+    }
+
+    private func addStopAnnotations() {
+        self.mapView.addAnnotations(self.stop!.route!.stopAnnotations)
     }
 
     private func handleRegionEvent(region: CLRegion!) {

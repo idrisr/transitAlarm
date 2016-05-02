@@ -34,10 +34,6 @@ class StopTableViewController: UITableViewController {
         let stop = self.stops[indexPath.row]
 
         cell.textLabel!.text = stop.name
-        let lat = Float(stop.latitude!)
-        let lon = Float(stop.longitude!)
-        let seq = Int(stop.sequence!)
-        cell.detailTextLabel!.text = String(format: "%.2f", lat!) + " " + String(format: "%.2f", lon!) + " " + "\(seq!)"
         return cell
     }
 
@@ -55,7 +51,6 @@ class StopTableViewController: UITableViewController {
 
         self.shapes = (self.route?.shapes?.allObjects as? [Shape])!
         shapes.sortInPlace( { Int($0.sequence!) > Int($1.sequence!) } )
-//        print(shapes)
         self.tableView.reloadData()
     }
     

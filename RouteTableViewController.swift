@@ -35,9 +35,7 @@ class RouteTableViewController: UITableViewController {
         return cell
     }
 
-
     // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
@@ -48,6 +46,7 @@ class RouteTableViewController: UITableViewController {
 
     private func loadRoutes() {
         self.routes = (self.agency?.routes?.allObjects as? [Route])!
+        self.routes.sortInPlace({$0.long_name < $1.long_name })
         self.tableView.reloadData()
     }
 }
