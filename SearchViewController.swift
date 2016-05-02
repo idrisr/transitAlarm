@@ -22,6 +22,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
     var tableViewStops = [Stop]()
     var filteredTableViewStops = [Stop]()
     
+    var selectedStop: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +50,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
             stop = tableViewStops[indexPath.row]
         }
         cell.textLabel?.text = stop.name
+        selectedStop = cell.textLabel?.text
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(selectedStop)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -79,6 +86,17 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         } catch {
             let fetchError = error as NSError
             print(fetchError)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SearchSegue" {
+            let destination = segue.destinationViewController as? MainViewController
+            for stopName in tableViewStops {
+                if stopName.name == selectedStop {
+                    destination?.stop = stopName
+                }
+            }
         }
     }
 
