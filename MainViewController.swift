@@ -16,9 +16,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mapviewHeightConstraint: NSLayoutConstraint!
 
     let dataService = DataService()
-    let favorites = [String]()
     var stop: Stop?
 
+    @IBOutlet weak var searchButton: UIBarButtonItem!
+    @IBOutlet weak var openFavoritesButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
 
@@ -36,6 +37,15 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         locationController = LocationController(mapView: mapView)
         self.locationController!.mapView = self.mapView
+
+        revealViewController().rearViewRevealWidth = 300
+        revealViewController().rightViewRevealWidth = 300
+        
+        openFavoritesButton.target = self.revealViewController()
+        openFavoritesButton.action = #selector(SWRevealViewController.revealToggle(_:))
+        
+        searchButton.target = self.revealViewController()
+        searchButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
 
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
