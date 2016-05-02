@@ -51,7 +51,7 @@ extension Route {
         }
     }
 
-    var stopAnnotations: [MKAnnotation] {
+    var stopAnnotations: [StopAnnotation] {
         get {
             return stops!.map{ ($0 as! Stop).annotation }
         }

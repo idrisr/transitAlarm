@@ -39,10 +39,10 @@ extension Stop {
         }
     }
 
-    var annotation: MKPointAnnotation {
+    var annotation: StopAnnotation {
         get {
             // TODO: better way?
-            let tmp = MKPointAnnotation()
+            let tmp = StopAnnotation()
             tmp.coordinate = self.location2D
             return tmp
         }
