@@ -38,7 +38,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.stopNameLabel.text = stop?.name
         self.title = stop?.name
 
-        regionWithAnnotation()
+//        regionWithAnnotation()
         dropStopPin()
     }
 
@@ -96,16 +96,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
 
     // MARK: private methods
-    private func regionWithAnnotation() -> CLCircularRegion {
-        let geoLocation = stop!.location2D
-        let radius: CLLocationDistance!
-        radius = 500
-        let regionTitle = stop?.name
-        let region = CLCircularRegion(center: geoLocation, radius: radius, identifier: regionTitle!)
-        let overlay = MKCircle(centerCoordinate: geoLocation, radius: radius)
-        mapView.addOverlay(overlay)
-        return region
+    private func centerMapOnUser() {
+        let distanceMeters: Double = 5000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, distanceMeters, distanceMeters)
+        self.mapView.setRegion(coordinateRegion, animated: true)
     }
+
 
     private func startMonitoringGeotification() {
         if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
@@ -115,8 +111,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
            showAlert("Error", message: "Location always on not enabled, transit stop notification will not be sent")
         }
-        let region = regionWithAnnotation()
-        locationManager.startMonitoringForRegion(region)
+//        let region = regionWithAnnotation()
+//        locationManager.startMonitoringForRegion(region)
     }
 
     private func updateDistance() {

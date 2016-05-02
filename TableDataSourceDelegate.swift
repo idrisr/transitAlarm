@@ -23,8 +23,8 @@ class TableDataSourceDelegate: NSObject,
     var routes = [Route]()
     var stops = [Stop]()
     var sections = ["Agency"]
-//    var constraint = NSLayoutConstraint()
     var mapView: MKMapView?
+    var locationDelegate: LocationControllerDelegate?
 
     override init() {
         super.init()
@@ -44,8 +44,8 @@ class TableDataSourceDelegate: NSObject,
             renderer.lineWidth = 5.0
             return renderer
         } else if overlay is StopMapOverlay {
-            let stopImage = UIImage(named:"StopIcon")
-            return StopOverlayRenderer(overlay: overlay, overlayImage: stopImage!)
+            let stopOverlay = overlay as! StopMapOverlay
+            return StopOverlayRenderer(overlay: stopOverlay, color: stopOverlay.color)
         } else {
             let circleRenderer = MKCircleRenderer(overlay: overlay)
             circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
@@ -55,7 +55,7 @@ class TableDataSourceDelegate: NSObject,
     }
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation.isKindOfClass(MKUserLocation) {
+        if annotation is MKUserLocation {
             return nil
         } else if annotation.title! == self.stops[0].name {
             let pin = MKAnnotationView()
@@ -63,13 +63,16 @@ class TableDataSourceDelegate: NSObject,
             pin.canShowCallout = true
             pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             return pin
-        } else {
-            let pin = MKAnnotationView()
-            pin.image = UIImage.init(named: "StopIcon")
-            pin.canShowCallout = true
-            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-            return pin
         }
+        return nil
+//        else {
+//            let pin = MKAnnotationView()
+//            pin.image = UIImage.init(named: "StopIcon")
+//            pin.canShowCallout = true
+//            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+//            return pin
+//            return nil
+//        }
     }
 
     // MARK: UITableViewDataSource
@@ -139,6 +142,7 @@ class TableDataSourceDelegate: NSObject,
 
                 // take route off of map
                 self.removeRouteFromMap()
+                self.locationDelegate?.stopMonitoringRegion()
 
                 let existingAgency = self.agencys.first
                 self.agencys = self.getAgencys()! // change this to return something so it's explicit
@@ -179,7 +183,7 @@ class TableDataSourceDelegate: NSObject,
 
                 // take route off of map
                 self.removeRouteFromMap()
-
+                self.locationDelegate?.stopMonitoringRegion()
 
                 self.sections = ["Agency", "Routes"]
                 let existingRoute = self.routes.first
@@ -219,6 +223,9 @@ class TableDataSourceDelegate: NSObject,
         case .Stop:
             // from one to many stops
             if self.stops.count == 1 {
+                // stop monitoring region
+                self.locationDelegate?.stopMonitoringRegion()
+
                 self.sections = ["Agency", "Routes", "Stops"]
                 let existingStop = self.stops.first
                 self.stops = self.routes.first?.stops?.allObjects as! [Stop]
@@ -230,9 +237,8 @@ class TableDataSourceDelegate: NSObject,
                     }
                 }
             } else {
-            // from many to one stops
+                // from many to one stops
                 self.sections = ["Agency", "Routes", "Stops"]
-
                 // remove unselected agencies
                 var stopsToRemove = [Stop]()
                 for i in 0..<self.stops.count {
@@ -242,6 +248,9 @@ class TableDataSourceDelegate: NSObject,
                     }
                 }
                 self.stops.removeObjectsInArray(stopsToRemove)
+
+                // start monitoring region
+                self.locationDelegate?.startMonitoringRegionFor(self.stops.first!)
             }
         }
 
@@ -275,8 +284,8 @@ class TableDataSourceDelegate: NSObject,
     }
 
     private func addStopAnnotations() {
-        let route = self.routes.first
-        self.mapView!.addAnnotations(route!.stopAnnotations)
+//        let route = self.routes.first
+//        self.mapView!.addAnnotations(route!.stopAnnotations)
     }
 
     private func removeStopOverlays() {

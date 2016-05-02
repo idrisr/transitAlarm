@@ -35,6 +35,8 @@
 		68422DC31CD1AEB800677CA3 /* StopMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DC21CD1AEB800677CA3 /* StopMapOverlay.swift */; };
 		686346DF1CD6C20200A938C8 /* RouteLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346DE1CD6C20200A938C8 /* RouteLine.swift */; };
 		686346E11CD6F12B00A938C8 /* StopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346E01CD6F12B00A938C8 /* StopAnnotation.swift */; };
+		686346E31CD7BA1600A938C8 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346E21CD7BA1600A938C8 /* LocationController.swift */; };
+		686346E51CD7CFA000A938C8 /* red_small.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 686346E41CD7CFA000A938C8 /* red_small.gpx */; };
 		6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8A1CC534FA003F6483 /* AppDelegate.swift */; };
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
 		6879AFAB1CC72CB3003F6483 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AFAA1CC72CB3003F6483 /* MapViewController.swift */; };
@@ -73,6 +75,8 @@
 		68422DC21CD1AEB800677CA3 /* StopMapOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopMapOverlay.swift; sourceTree = "<group>"; };
 		686346DE1CD6C20200A938C8 /* RouteLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteLine.swift; sourceTree = "<group>"; };
 		686346E01CD6F12B00A938C8 /* StopAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopAnnotation.swift; sourceTree = "<group>"; };
+		686346E21CD7BA1600A938C8 /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		686346E41CD7CFA000A938C8 /* red_small.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = red_small.gpx; sourceTree = "<group>"; };
 		6879AF871CC534FA003F6483 /* TransitAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransitAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6879AF911CC534FA003F6483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */,
+				686346E41CD7CFA000A938C8 /* red_small.gpx */,
 			);
 			name = gpxfiles;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 		6879AF9C1CC53A5F003F6483 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				686346E21CD7BA1600A938C8 /* LocationController.swift */,
 				688FAC891CD5A449009CB665 /* TableDataSourceDelegate.swift */,
 				683DB4101CD2771B00823C8B /* MainViewController.swift */,
 				6879AFAA1CC72CB3003F6483 /* MapViewController.swift */,
@@ -292,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6827125F1CD3FDAA007DFD09 /* SingleViewCoreData.sqlite in Resources */,
+				686346E51CD7CFA000A938C8 /* red_small.gpx in Resources */,
 				682712601CD3FDAB007DFD09 /* SingleViewCoreData.sqlite-shm in Resources */,
 				682712611CD3FDAB007DFD09 /* SingleViewCoreData.sqlite-wal in Resources */,
 				6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */,
@@ -357,6 +364,7 @@
 			files = (
 				258362A11CC7D13F003E592D /* LoginViewController.swift in Sources */,
 				258362A51CC7D2FA003E592D /* DataService.swift in Sources */,
+				686346E31CD7BA1600A938C8 /* LocationController.swift in Sources */,
 				6800E2611CD3F9B80002549B /* Agency+CoreDataProperties.swift in Sources */,
 				6800E25F1CD3F9B80002549B /* Shape+CoreDataProperties.swift in Sources */,
 				6879AFAB1CC72CB3003F6483 /* MapViewController.swift in Sources */,

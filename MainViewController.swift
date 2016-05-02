@@ -11,9 +11,7 @@ import MapKit
 import UIKit
 
 
-class MainViewController: UIViewController,
-                            CLLocationManagerDelegate,
-                            MKMapViewDelegate {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var mapviewHeightConstraint: NSLayoutConstraint!
 
@@ -24,7 +22,7 @@ class MainViewController: UIViewController,
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
 
-    let locationManager = CLLocationManager()
+    var locationController: LocationController?
     var prevTranslation: CGFloat = 0
     var currentLocation = CLLocation()
     var didCenterMap = false
@@ -36,7 +34,8 @@ class MainViewController: UIViewController,
     // MARK: view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
+        locationController = LocationController(mapView: mapView)
+        self.locationController!.mapView = self.mapView
 
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
@@ -46,14 +45,13 @@ class MainViewController: UIViewController,
         self.tableView.delegate = self.tableDataSource
         self.tableView.dataSource = self.tableDataSource
         self.tableDataSource.mapView = self.mapView
+        self.tableDataSource.locationDelegate = locationController
 
         self.minMapHeight = 50
         self.maxMapHeight = UIScreen.mainScreen().bounds.size.height - minMapHeight!
-
-//        regionWithAnnotation()
-//        dropStopPin()
     }
 
+    // MARK: IBActions
     @IBAction func handlePan(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
             case .Began, .Changed:
@@ -73,95 +71,6 @@ class MainViewController: UIViewController,
             case .Possible, .Failed:
                 break
         }
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        startMonitoringGeotification()
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-//        self.mapView.addOverlay(self.stop!.route!.shapeLine)
-//        self.mapView.addOverlays(self.stop!.route!.stopOverlays)
-        locationManager.startUpdatingLocation()
-        centerMapOnUser()
-    }
-
-    override func viewDidDisappear(animated: Bool) {
-        stopMonitoringRegion()
-    }
-
-    // MARK: CLLocationManagerDelegate
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        mapView.showsUserLocation = (status == .AuthorizedAlways)
-    }
-
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        currentLocation = locations.first!
-
-        if !self.didCenterMap {
-            self.centerMapOnUser()
-            self.didCenterMap  = !self.didCenterMap
-        }
-    }
-
-    func stopMonitoringRegion() {
-        for region in locationManager.monitoredRegions {
-            if let circularRegion = region as? CLCircularRegion {
-                if circularRegion.identifier == region.identifier {
-                    locationManager.stopMonitoringForRegion(circularRegion)
-                }
-            }
-        }
-    }
-
-    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        if region is CLCircularRegion {
-            handleRegionEvent(region)
-        }
-    }
-
-    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if region is CLCircularRegion {
-            handleRegionEventExit(region)
-        }
-    }
-
-//    // MARK: private methods user location stuff
-//    private func drawRoutes() {
-//        for route in self.routes {
-//            self.mapView.addOverlay(route.shapeLine)
-//        }
-//    }
-
-    // MARK: private methods map stuff
-    private func regionWithAnnotation() -> CLCircularRegion {
-        let geoLocation = stop!.location2D
-        let radius: CLLocationDistance!
-        radius = 500
-        let regionTitle = stop?.name
-        let region = CLCircularRegion(center: geoLocation, radius: radius, identifier: regionTitle!)
-        let overlay = MKCircle(centerCoordinate: geoLocation, radius: radius)
-        mapView.addOverlay(overlay)
-        return region
-    }
-
-    private func startMonitoringGeotification() {
-        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
-            showAlert("Error", message: "Geofencing not supported on device.")
-            return
-        }
-        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
-           showAlert("Error", message: "Location always on not enabled, transit stop notification will not be sent")
-        }
-//        let region = regionWithAnnotation()
-//        locationManager.startMonitoringForRegion(region)
-    }
-
-    private func centerMapOnUser() {
-        let distanceMeters: Double = 5000
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, distanceMeters, distanceMeters)
-        self.mapView.setRegion(coordinateRegion, animated: true)
     }
 
     private func centerMap() {
@@ -187,57 +96,4 @@ class MainViewController: UIViewController,
         annotation.title = self.stop!.name
         self.mapView.addAnnotation(annotation)
     }
-
-    private func addStopOverlays() {
-        self.mapView.addOverlays(self.stop!.route!.stopOverlays)
-    }
-
-    private func addStopAnnotations() {
-        self.mapView.addAnnotations(self.stop!.route!.stopAnnotations)
-    }
-
-    private func handleRegionEvent(region: CLRegion!) {
-        print("Transit stop approaching!")
-        if UIApplication.sharedApplication().applicationState == .Active {
-            showAlertWithSaveOption(region.identifier, message: "Your stop is approaching, would you like to save stop for future use?")
-        } else {
-            // Otherwise present a local notification
-            let notification = UILocalNotification()
-            notification.alertBody = "Approaching \(region.identifier)"
-            notification.soundName = "Default";
-            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-        }
-    }
-
-    private func handleRegionEventExit(region: CLRegion!) {
-        print("You have missed your stop.")
-    }
-
-
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-
-    private func showAlertWithSaveOption(title:String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
-        let saveAction = UIAlertAction(title: "Save", style: .Default) { (UIAlertAction) in
-            let transitStopName: Dictionary<String,String> = [
-                "transitStop":self.stop!.name!
-            ]
-//            let saveStop = DataService.dataService.REF_CURRENT_USER
-            let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
-            let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
-            firebaseSaveStopList.updateChildValues(transitStopName)
-//            self.dataService.getTransitStops()
-        }
-        alert.addAction(action)
-        alert.addAction(saveAction)
-        locationManager.stopUpdatingLocation()
-        presentViewController(alert, animated: true, completion: nil)
-    }
-
 }
