@@ -273,7 +273,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cXW-pg-9bc">
-                        <barButtonItem key="leftBarButtonItem" title="Favorites" id="VP1-7O-Wbl"/>
+                        <barButtonItem key="leftBarButtonItem" image="favoriteIcon" id="VP1-7O-Wbl"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="XAP-wS-tFl"/>
                     </navigationItem>
                     <connections>
@@ -294,7 +294,10 @@
             <point key="canvasLocation" x="1411" y="374"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="favoriteIcon" width="22" height="22"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pcq-6x-iB8"/>
+        <segue reference="ohi-RP-xHG"/>
     </inferredMetricsTieBreakers>
 </document>
