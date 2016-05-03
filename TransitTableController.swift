@@ -270,7 +270,7 @@ class TransitTableController: NSObject,
         self.sections = ["Agency", "Routes"]
         let agency = self.agencys[indexPath.row]
         self.routes = agency.routes?.allObjects as! [Route]
-        self.routes.sortInPlace({$0.long_name < $1.long_name})
+        self.sortRoutes()
         tableUpdates.sectionsToInsert = NSIndexSet(index: 1)
 
         // remove unselected agencies
@@ -320,7 +320,7 @@ class TransitTableController: NSObject,
         self.sections = ["Agency", "Routes"]
         let existingRoute = self.routes.first
         self.routes = self.agencys.first?.routes?.allObjects as! [Route]
-        self.routes.sortInPlace({$0.long_name < $1.long_name})
+        self.sortRoutes()
 
         tableUpdates.sectionsToDelete = NSIndexSet(index: 2) // use enum instead of magic number
 
@@ -330,6 +330,23 @@ class TransitTableController: NSObject,
             }
         }
         return tableUpdates
+    }
+
+    private func sortRoutes() {
+        let agency = self.agencys.first
+        switch agency!.name! {
+            case "CTA Bus":
+                self.routes.sortInPlace({$0.idNumeric! < $1.idNumeric! })
+
+            case "CTA Train":
+                self.routes.sortInPlace({$0.id < $1.id})
+
+            case "Metra":
+                self.routes.sortInPlace({$0.id < $1.id})
+
+            default:
+                break
+        }
     }
 
     private func stopOneToMany(indexPath: NSIndexPath) -> TableUpdates {

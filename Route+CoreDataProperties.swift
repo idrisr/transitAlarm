@@ -45,6 +45,23 @@ extension Route {
         }
     }
 
+    var idNumeric: Int? {
+        get {
+            do {
+                let string = id!
+                let re = try NSRegularExpression(pattern: "[0-9]+", options: .CaseInsensitive)
+                let matches = re.matchesInString(string, options: .ReportProgress, range: NSRange(location: 0, length: string.utf16.count))
+                if matches.count > 0 {
+                    let match = matches[0]
+                    return Int((string as NSString).substringWithRange(match.rangeAtIndex(0)))!
+                }
+            } catch {
+                return nil
+            }
+            return nil
+        }
+    }
+
     var stopAnnotations: [StopAnnotation] {
         get {
             return stops!.map{ ($0 as! Stop).annotation }
