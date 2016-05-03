@@ -20,7 +20,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     var moc: NSManagedObjectContext?
   
     var objectStops = [Stop]()
-    var stopSelectorDelegate : StopPickerDelegate?
+    var stopDelegate : StopDelegate?
 
     @IBOutlet weak var tableView: UITableView!
     

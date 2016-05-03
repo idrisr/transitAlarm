@@ -10,11 +10,11 @@ import CoreLocation
 import MapKit
 import UIKit
 
-protocol StopPickerDelegate {
-    func setSelectedStop(stop: Stop)
+protocol StopDelegate {
+    func setAlarmForStop(stop: Stop)
 }
 
-class MainViewController: UIViewController, StopPickerDelegate {
+class MainViewController: UIViewController, StopDelegate {
 
     let dataService = DataService()
     var stop: Stop?
@@ -30,6 +30,7 @@ class MainViewController: UIViewController, StopPickerDelegate {
     var currentLocation = CLLocation()
     var didCenterMap = false
     var transitTable = TransitTableController()
+    var stopUpdateDelegate: TransitDataStopUpdate?
 
     var maxMapHeight: CGFloat?
     var minMapHeight: CGFloat?
@@ -60,25 +61,15 @@ class MainViewController: UIViewController, StopPickerDelegate {
         self.tableView.dataSource = self.transitTable
         self.transitTable.mapView = self.mapView
         self.transitTable.locationDelegate = locationController
+        self.stopUpdateDelegate = self.transitTable
 
         self.minMapHeight = 50
         self.maxMapHeight = UIScreen.mainScreen().bounds.size.height - minMapHeight!
     }
 
-    // MARK: StopPickerDelegate
-    func setSelectedStop(stop: Stop) {
-
-    }
-
-    // ugly way to do it. better ways?
-    private func setDelegates() {
-        for vc in (self.parentViewController?.parentViewController?.childViewControllers)! {
-            if vc is FavoritesViewController {
-                (vc as! FavoritesViewController).stopSelectorDelegate = self
-            } else if vc is SearchViewController {
-                (vc as! SearchViewController).stopSelectorDelegate = self
-            }
-        }
+    // MARK: StopDelegate
+    func setAlarmForStop(stop: Stop) {
+        self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
     }
 
     // MARK: IBActions
@@ -115,4 +106,16 @@ class MainViewController: UIViewController, StopPickerDelegate {
 
         self.mapView.setRegion(coordinateRegion, animated: false)
     }
+
+    // ugly way to do it. better ways?
+    private func setDelegates() {
+        for vc in (self.parentViewController?.parentViewController?.childViewControllers)! {
+            if vc is FavoritesViewController {
+                (vc as! FavoritesViewController).stopDelegate = self
+            } else if vc is SearchViewController {
+                (vc as! SearchViewController).stopDelegate = self
+            }
+        }
+    }
+
 }

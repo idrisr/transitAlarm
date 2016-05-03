@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 
 protocol TransitDataStopUpdate {
-    func setAlertFor(stop: Stop)
+    func setAlertFor(stop: Stop, tableView: UITableView)
 }
 
 struct TableUpdates {
@@ -43,11 +43,6 @@ class TransitTableController: NSObject,
         super.init()
         moc = appDelegate.managedObjectContext
         self.agencys = self.getAgencys()!
-    }
-
-    // MARK: TransitDataStopUpdate
-    func setAlertFor(stop: Stop) {
-
     }
 
     // MARK: MKMapViewDelegate
@@ -159,6 +154,45 @@ class TransitTableController: NSObject,
                 }
             }
 
+        self.updateTableWith(tableUpdates, tableView: tableView)
+    }
+
+    // MARK: TransitDataStopUpdate
+    func setAlertFor(stop: Stop, tableView: UITableView) {
+        var tableUpdates = TableUpdates()
+
+        // remove all agencys
+        for i in 0..<self.agencys.count {
+            tableUpdates.rowsToDelete.append(NSIndexPath(forItem: i, inSection: tableSection.Agency.rawValue))
+        }
+        // remove all routes
+        for i in 0..<self.routes.count {
+            tableUpdates.rowsToDelete.append(NSIndexPath(forItem: i, inSection: tableSection.Route.rawValue))
+        }
+        // remove all stops
+        for i in 0..<self.stops.count {
+            tableUpdates.rowsToDelete.append(NSIndexPath(forItem: i, inSection: tableSection.Stop.rawValue))
+        }
+
+        self.stops = [stop]
+        self.routes = [stop.route!]
+        self.agencys = [stop.route!.agency!]
+
+        // add new agency
+        tableUpdates.rowsToInsert.append(NSIndexPath(forItem: 0, inSection: tableSection.Agency.rawValue))
+
+        // add new route
+        tableUpdates.rowsToInsert.append(NSIndexPath(forItem: 0, inSection: tableSection.Route.rawValue))
+
+        // add new stop
+        tableUpdates.rowsToInsert.append(NSIndexPath(forItem: 0, inSection: tableSection.Stop.rawValue))
+
+        self.locationDelegate?.startMonitoringRegionFor(self.stops.first!)
+        self.updateTableWith(tableUpdates, tableView: tableView)
+    }
+
+    // MARK: private func-y stuff
+    private func updateTableWith(tableUpdates: TableUpdates, tableView: UITableView) {
         tableView.beginUpdates()
         tableView.deleteRowsAtIndexPaths(tableUpdates.rowsToDelete, withRowAnimation: .Fade)
         tableView.insertRowsAtIndexPaths(tableUpdates.rowsToInsert, withRowAnimation: .Fade)
@@ -297,15 +331,6 @@ class TransitTableController: NSObject,
         return tableUpdates
     }
 
-    // MARK: StopPickerDelegate
-    func setSelectedStop(stop: Stop) {
-        self.routes = [stop.route!]
-        self.agencys = [stop.route!.agency!]
-        self.stops = [stop]
-//        self.tableView.re
-    }
-
-    // MARK: private func-y stuff
     private func drawRouteOnMap() {
         self.mapView?.addOverlays( self.routes.map{ ($0.shapeLine) } )
         self.addStopOverlays()

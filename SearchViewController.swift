@@ -22,7 +22,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
     var tableViewStops = [Stop]()
     var filteredTableViewStops = [Stop]()
 
-    var stopSelectorDelegate : StopPickerDelegate?
+    var stopDelegate : StopDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
