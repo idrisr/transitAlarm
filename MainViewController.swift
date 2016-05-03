@@ -10,6 +10,9 @@ import CoreLocation
 import MapKit
 import UIKit
 
+protocol StopPickerDelegate {
+    func setSelectedStop(stop: Stop)
+}
 
 class MainViewController: UIViewController, StopPickerDelegate {
 
