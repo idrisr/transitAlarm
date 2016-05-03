@@ -57,6 +57,14 @@ extension Route {
         }
     }
 
+    var mapTextColor: UIColor {
+        if self.text_color != "" {
+            return UIColor(hexString: self.text_color!)!
+        } else {
+            return UIColor.blackColor()
+        }
+    }
+
     var mapColor: UIColor {
         if self.color != "" {
             return UIColor(hexString: self.color!)!

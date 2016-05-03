@@ -105,6 +105,8 @@ class TransitTableController: NSObject,
                 let reuseID = "routeCell"
                 let route = self.routes[indexPath.row]
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+                cell.backgroundColor = route.mapColor
+                cell.textLabel?.textColor = route.mapTextColor
                 cell.textLabel?.text = route.long_name
                 return cell
 
@@ -112,7 +114,13 @@ class TransitTableController: NSObject,
                 let reuseID = "stopCell"
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
                 let stop = self.stops[indexPath.row]
+                let route = stop.route!
+
+                cell.backgroundColor = route.mapColor
+                cell.textLabel?.textColor = route.mapTextColor
+                cell.textLabel?.text = route.long_name
                 cell.textLabel?.text = stop.name
+
                 return cell
             }
     }
