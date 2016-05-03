@@ -10,10 +10,15 @@ import MapKit
 import UIKit
 import CoreData
 
+protocol StopPickerDelegate {
+    func setSelectedStop(stop: Stop)
+}
+
 class TableDataSourceDelegate: NSObject,
                                 UITableViewDataSource,
                                 UITableViewDelegate,
                                 MKMapViewDelegate,
+                                StopPickerDelegate,
                                 UIGestureRecognizerDelegate {
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -63,16 +68,9 @@ class TableDataSourceDelegate: NSObject,
             pin.canShowCallout = true
             pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             return pin
+        } else {
+            return nil
         }
-        return nil
-//        else {
-//            let pin = MKAnnotationView()
-//            pin.image = UIImage.init(named: "StopIcon")
-//            pin.canShowCallout = true
-//            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-//            return pin
-//            return nil
-//        }
     }
 
     // MARK: UITableViewDataSource
@@ -100,14 +98,14 @@ class TableDataSourceDelegate: NSObject,
                 return cell
 
             case .Route:
-                let reuseID = "agencyCell"
+                let reuseID = "routeCell"
                 let route = self.routes[indexPath.row]
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
                 cell.textLabel?.text = route.long_name
                 return cell
 
             case .Stop:
-                let reuseID = "agencyCell"
+                let reuseID = "stopCell"
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
                 let stop = self.stops[indexPath.row]
                 cell.textLabel?.text = stop.name
@@ -145,7 +143,7 @@ class TableDataSourceDelegate: NSObject,
                 self.locationDelegate?.stopMonitoringRegion()
 
                 let existingAgency = self.agencys.first
-                self.agencys = self.getAgencys()! // change this to return something so it's explicit
+                self.agencys = self.getAgencys()!
                 self.agencys.sortInPlace({$0.name < $1.name})
 
                 sectionsToDelete = NSIndexSet(indexesInRange: NSMakeRange(1, self.sections.count - 1))
@@ -262,9 +260,16 @@ class TableDataSourceDelegate: NSObject,
         tableView.endUpdates()
     }
 
+    // MARK: StopPickerDelegate
+    func setSelectedStop(stop: Stop) {
+        self.routes = [stop.route!]
+        self.agencys = [stop.route!.agency!]
+        self.stops = [stop]
+//        self.tableView.re
+    }
+
     private func drawRouteOnMap() {
         self.mapView?.addOverlays( self.routes.map{ ($0.shapeLine) } )
-        self.addStopAnnotations()
         self.addStopOverlays()
     }
 
@@ -281,11 +286,6 @@ class TableDataSourceDelegate: NSObject,
     private func addStopOverlays() {
         let route = self.routes.first
         self.mapView!.addOverlays(route!.stopOverlays)
-    }
-
-    private func addStopAnnotations() {
-//        let route = self.routes.first
-//        self.mapView!.addAnnotations(route!.stopAnnotations)
     }
 
     private func removeStopOverlays() {
