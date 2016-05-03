@@ -146,7 +146,7 @@ class LocationController: NSObject,
             let transitStopName: Dictionary<String,String> = [
                 "transitStop":self.stop!.name!
             ]
-            let saveStop = DataService.dataService.REF_CURRENT_USER
+//            let saveStop = DataService.dataService.REF_CURRENT_USER
             let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
             let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
             firebaseSaveStopList.updateChildValues(transitStopName)
