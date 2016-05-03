@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -196,7 +197,35 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HWp-2f-rEf" id="hx1-nM-jzf">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nft-f5-l8G">
+                                                    <rect key="frame" x="5" y="5" width="27" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="nft-f5-l8G" secondAttribute="height" multiplier="45:57" id="Jxv-es-HGU"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfa-wC-Vdo">
+                                                    <rect key="frame" x="69" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <string key="userLabel" base64-UTF8="YES">
+bmFtZRs
+</string>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qfa-wC-Vdo" firstAttribute="centerY" secondItem="nft-f5-l8G" secondAttribute="centerY" id="48Z-A1-bj8"/>
+                                                <constraint firstAttribute="bottom" secondItem="nft-f5-l8G" secondAttribute="bottom" constant="5" id="Bwb-4b-Ev1"/>
+                                                <constraint firstItem="qfa-wC-Vdo" firstAttribute="leading" secondItem="nft-f5-l8G" secondAttribute="trailing" constant="30" id="O8U-XH-keK"/>
+                                                <constraint firstItem="nft-f5-l8G" firstAttribute="leading" secondItem="hx1-nM-jzf" secondAttribute="leading" constant="5" id="VYH-X2-SYP"/>
+                                                <constraint firstItem="nft-f5-l8G" firstAttribute="top" secondItem="hx1-nM-jzf" secondAttribute="top" constant="5" id="wJh-ni-vY7"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="iconImageView" destination="nft-f5-l8G" id="Io9-d9-xwj"/>
+                                            <outlet property="nameLabel" destination="qfa-wC-Vdo" id="s1n-RS-cOf"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="routeCell" id="syh-8V-cym" customClass="RouteTableViewCell" customModule="TransitAlarm" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="600" height="44"/>

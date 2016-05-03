@@ -10,9 +10,15 @@ import UIKit
 
 class AgencyTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        nameLabel?.font = UIFont(name: "Helvetica-Bold", size: 20)
+        nameLabel?.textColor = UIColor.whiteColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

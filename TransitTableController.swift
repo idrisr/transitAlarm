@@ -10,6 +10,16 @@ import MapKit
 import UIKit
 import CoreData
 
+extension UIColor {
+    class func CTAColor() -> UIColor {
+        return UIColor(colorLiteralRed: 60/256, green: 117/256, blue: 194/256, alpha: 1)
+    }
+
+    class func metraColor() -> UIColor {
+        return UIColor(colorLiteralRed: 50/256, green: 80/256, blue: 159/256, alpha: 1)
+    }
+}
+
 protocol TransitDataStopUpdate {
     func setAlertFor(stop: Stop, tableView: UITableView)
 }
@@ -92,25 +102,37 @@ class TransitTableController: NSObject,
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
         switch tableSection(rawValue: indexPath.section)! {
             case .Agency:
                 let reuseID = "agencyCell"
                 let agency = self.agencys[indexPath.row]
-                let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+                let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! AgencyTableViewCell
+                var color: UIColor
 
-                // fix me into an enum
+                // fix me into an enum, please
                 var imageName: String
                 switch agency.name! {
                     case "CTA Bus":
-                        imageName = "cta_bus"
+                        imageName = "cta_bus_white"
+                        cell.backgroundColor = UIColor(colorLiteralRed: 60/256, green: 117/256, blue: 194/256, alpha: 1)
+                        color = UIColor.CTAColor()
+
+                    case "Metra":
+                        imageName = "cta_train_white"
+                        color = UIColor.metraColor()
+
+                    case "CTA Train":
+                        imageName = "cta_train_white"
+                        color = UIColor.CTAColor()
 
                     default:
-                        imageName = "cta_train"
+                        imageName = ""
+                        color = UIColor.whiteColor()
                 }
 
-                cell.imageView!.image = UIImage(named: imageName)
-                cell.textLabel?.text = agency.name
+                cell.iconImageView!.image = UIImage(named: imageName)
+                cell.nameLabel.text = agency.name
+                cell.backgroundColor = color
                 return cell
 
             case .Route:
@@ -270,7 +292,6 @@ class TransitTableController: NSObject,
         self.sections = ["Agency", "Routes"]
         let agency = self.agencys[indexPath.row]
         self.routes = agency.routes?.allObjects as! [Route]
-        self.sortRoutes()
         tableUpdates.sectionsToInsert = NSIndexSet(index: 1)
 
         // remove unselected agencies
@@ -281,7 +302,10 @@ class TransitTableController: NSObject,
                 agencysToRemove.append(self.agencys[i])
             }
         }
+
+        // brittle. sort routes depends on only agency present
         self.agencys.removeObjectsInArray(agencysToRemove)
+        self.sortRoutes()
 
         return tableUpdates
     }
@@ -334,6 +358,9 @@ class TransitTableController: NSObject,
 
     private func sortRoutes() {
         let agency = self.agencys.first
+
+        // whats the better, more functional swifty way?
+        // stringly typed. bad
         switch agency!.name! {
             case "CTA Bus":
                 self.routes.sortInPlace({$0.idNumeric! < $1.idNumeric! })
