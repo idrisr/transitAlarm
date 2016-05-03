@@ -20,6 +20,11 @@ extension UIColor {
     }
 }
 
+protocol TableSizeUpdateDelegate {
+    func updateTableSizeFor(height: CGFloat)
+}
+
+
 protocol TransitDataStopUpdate {
     func setAlertFor(stop: Stop, tableView: UITableView)
 }

@@ -14,12 +14,12 @@ protocol StopDelegate {
     func setAlarmForStop(stop: Stop)
 }
 
-class MainViewController: UIViewController, StopDelegate {
+class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegate {
 
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     let dataService = DataService()
     var stop: Stop?
 
-    @IBOutlet weak var mapviewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var openFavoritesButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
@@ -76,13 +76,15 @@ class MainViewController: UIViewController, StopDelegate {
     @IBAction func handlePan(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
             case .Began, .Changed:
+                // if tableview required height totally displayed, dont allow movement
+
                 // get change from last translation
                 let totalTranslation = gesture.translationInView(gesture.view?.superview)
                 let newTranslation = totalTranslation.y - self.prevTranslation
                 let newMapHeight = self.mapView.frame.height + newTranslation
 
                 if newMapHeight > self.minMapHeight && newMapHeight < self.maxMapHeight {
-                    self.mapviewHeightConstraint.constant += newTranslation
+                    self.tableViewHeightConstraint.constant -= newTranslation
                     self.prevTranslation = totalTranslation.y
                 }
 
@@ -92,6 +94,10 @@ class MainViewController: UIViewController, StopDelegate {
             case .Possible, .Failed:
                 break
         }
+    }
+
+    func tableViewFullyDisplayed() -> Bool {
+        return false
     }
 
     private func centerMap() {
@@ -105,6 +111,10 @@ class MainViewController: UIViewController, StopDelegate {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(averageLocation, latitudeDistance * 1.1, longitudeDistance * 1.1)
 
         self.mapView.setRegion(coordinateRegion, animated: false)
+    }
+
+    func updateTableSizeFor(height: CGFloat) {
+        
     }
 
     // ugly way to do it. better ways?
