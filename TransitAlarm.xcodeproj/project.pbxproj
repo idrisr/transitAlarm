@@ -90,9 +90,9 @@
 		686346E81CD7EA3D00A938C8 /* RouteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
 		686346EA1CD7EA4900A938C8 /* StopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
 		6879AF871CC534FA003F6483 /* TransitAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransitAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6879AF911CC534FA003F6483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6879AF961CC534FA003F6483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TransitAlarm/AppDelegate.swift; sourceTree = "<group>"; };
+		6879AF911CC534FA003F6483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = TransitAlarm/Assets.xcassets; sourceTree = "<group>"; };
+		6879AF961CC534FA003F6483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = TransitAlarm/Info.plist; sourceTree = "<group>"; };
 		6879AFAA1CC72CB3003F6483 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		688FAC891CD5A449009CB665 /* TransitTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitTableController.swift; sourceTree = "<group>"; };
 		ED5957CB7DFB6C78C26E900D /* Pods-TransitAlarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +136,8 @@
 		259AE0051CD6F80500E18FC8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6879AF961CC534FA003F6483 /* Info.plist */,
+				6879AF8A1CC534FA003F6483 /* AppDelegate.swift */,
 				259AE0071CD6F8CC00E18FC8 /* SWRevealViewController.h */,
 				259AE0081CD6F8CC00E18FC8 /* SWRevealViewController.m */,
 				259AE0061CD6F8BC00E18FC8 /* TransitAlarm-Bridging-Header.h */,
@@ -155,15 +157,13 @@
 		6879AF7E1CC534FA003F6483 = {
 			isa = PBXGroup;
 			children = (
-				682D9CC51CD2429000A54C4E /* gpxfiles */,
-				68A32BAF1CD051C80015E7EE /* CoreData */,
-				258362A31CC7D2D0003E592D /* Services */,
+				68A32BAF1CD051C80015E7EE /* model */,
+				6879AF9C1CC53A5F003F6483 /* Controller */,
 				6879AFA91CC701EA003F6483 /* view */,
-				6879AFA21CC566D0003F6483 /* model */,
+				682D9CC51CD2429000A54C4E /* gpxfiles */,
+				258362A31CC7D2D0003E592D /* Services */,
 				6879AF9F1CC562CC003F6483 /* data */,
 				259AE0051CD6F80500E18FC8 /* Supporting Files */,
-				6879AF9C1CC53A5F003F6483 /* Controller */,
-				6879AF891CC534FA003F6483 /* TransitAlarm */,
 				6879AF881CC534FA003F6483 /* Products */,
 				88185E17FD44657094D50B86 /* Pods */,
 				18489A65B60CAD40C67F1E2B /* Frameworks */,
@@ -176,16 +176,6 @@
 				6879AF871CC534FA003F6483 /* TransitAlarm.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		6879AF891CC534FA003F6483 /* TransitAlarm */ = {
-			isa = PBXGroup;
-			children = (
-				6879AF8A1CC534FA003F6483 /* AppDelegate.swift */,
-				6879AF911CC534FA003F6483 /* Assets.xcassets */,
-				6879AF961CC534FA003F6483 /* Info.plist */,
-			);
-			path = TransitAlarm;
 			sourceTree = "<group>";
 		};
 		6879AF9C1CC53A5F003F6483 /* Controller */ = {
@@ -209,17 +199,10 @@
 			name = data;
 			sourceTree = "<group>";
 		};
-		6879AFA21CC566D0003F6483 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				68422DBE1CD11B9D00677CA3 /* Extensions.swift */,
-			);
-			name = model;
-			sourceTree = "<group>";
-		};
 		6879AFA91CC701EA003F6483 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				6879AF911CC534FA003F6483 /* Assets.xcassets */,
 				686346E61CD7EA2600A938C8 /* AgencyTableViewCell.swift */,
 				686346E81CD7EA3D00A938C8 /* RouteTableViewCell.swift */,
 				686346EA1CD7EA4900A938C8 /* StopTableViewCell.swift */,
@@ -232,9 +215,10 @@
 			name = view;
 			sourceTree = "<group>";
 		};
-		68A32BAF1CD051C80015E7EE /* CoreData */ = {
+		68A32BAF1CD051C80015E7EE /* model */ = {
 			isa = PBXGroup;
 			children = (
+				68422DBE1CD11B9D00677CA3 /* Extensions.swift */,
 				6800E2551CD3F9B80002549B /* Stop+CoreDataProperties.swift */,
 				6800E2561CD3F9B80002549B /* Stop.swift */,
 				6800E2571CD3F9B80002549B /* Shape+CoreDataProperties.swift */,
@@ -249,7 +233,7 @@
 				6827125E1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite-wal */,
 				682712641CD431DD007DFD09 /* enums.swift */,
 			);
-			name = CoreData;
+			name = model;
 			sourceTree = "<group>";
 		};
 		88185E17FD44657094D50B86 /* Pods */ = {

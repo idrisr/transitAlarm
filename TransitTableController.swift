@@ -50,7 +50,7 @@ class TransitTableController: NSObject,
         if overlay is RouteLine {
             let renderer = MKPolylineRenderer(overlay: overlay)
             renderer.strokeColor = (overlay as! RouteLine).color
-            renderer.lineWidth = 5.0
+            renderer.lineWidth = 10.0
             return renderer
         } else if overlay is StopMapOverlay {
             let stopOverlay = overlay as! StopMapOverlay
@@ -98,16 +98,36 @@ class TransitTableController: NSObject,
                 let reuseID = "agencyCell"
                 let agency = self.agencys[indexPath.row]
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+
+                // fix me into an enum
+                var imageName: String
+                switch agency.name! {
+                    case "CTA Bus":
+                        imageName = "cta_bus"
+
+                    default:
+                        imageName = "cta_train"
+                }
+
+                cell.imageView!.image = UIImage(named: imageName)
                 cell.textLabel?.text = agency.name
                 return cell
 
             case .Route:
                 let reuseID = "routeCell"
                 let route = self.routes[indexPath.row]
-                let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+
+                // Q: cant we init the cell with the route and get the prepared cell back?
+                // A: yes
+
+                let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! RouteTableViewCell
                 cell.backgroundColor = route.mapColor
-                cell.textLabel?.textColor = route.mapTextColor
-                cell.textLabel?.text = route.long_name
+
+                cell.idLabel.text = route.id!
+                cell.nameLabel.text = route.long_name!
+
+                cell.idLabel.textColor = route.mapTextColor
+                cell.nameLabel.textColor = route.mapTextColor
                 return cell
 
             case .Stop:
@@ -134,6 +154,11 @@ class TransitTableController: NSObject,
     }
 
     // MARK: UITableViewDelegate
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 20)
+    }
+
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         var tableUpdates = TableUpdates()
@@ -170,7 +195,7 @@ class TransitTableController: NSObject,
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 25
+        return 50
     }
 
     // MARK: TransitDataStopUpdate

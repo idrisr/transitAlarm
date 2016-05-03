@@ -61,7 +61,7 @@ extension Route {
         if self.text_color != "" {
             return UIColor(hexString: self.text_color!)!
         } else {
-            return UIColor.blackColor()
+            return UIColor.whiteColor()
         }
     }
 
