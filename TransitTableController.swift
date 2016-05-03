@@ -14,12 +14,12 @@ protocol StopPickerDelegate {
     func setSelectedStop(stop: Stop)
 }
 
-class TableDataSourceDelegate: NSObject,
-                                UITableViewDataSource,
-                                UITableViewDelegate,
-                                MKMapViewDelegate,
-                                StopPickerDelegate,
-                                UIGestureRecognizerDelegate {
+class TransitTableController: NSObject,
+                              MKMapViewDelegate,
+                              StopPickerDelegate,
+                              UIGestureRecognizerDelegate,
+                              UITableViewDataSource,
+                              UITableViewDelegate {
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
@@ -121,7 +121,6 @@ class TableDataSourceDelegate: NSObject,
         return self.sections.count;
     }
 
-
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -131,7 +130,7 @@ class TableDataSourceDelegate: NSObject,
         var sectionsToDelete = NSIndexSet()
         var sectionsToInsert = NSIndexSet()
 
-        // same code repeated 3 times. Refactor mre
+        // same code repeated 3 times. Refactor me
         switch tableSection(rawValue: indexPath.section)! {
         case .Agency:
 
@@ -260,6 +259,14 @@ class TableDataSourceDelegate: NSObject,
         tableView.endUpdates()
     }
 
+    // the start of the refactor of the case monstrosity above
+    private func agencyOneToMany() { }
+    private func agencyManyToOne() { }
+    private func routeManyToOne()  { }
+    private func routeOneToMany()  { }
+    private func stopOneToMany()   { }
+    private func stopManyToOne()   { }
+
     // MARK: StopPickerDelegate
     func setSelectedStop(stop: Stop) {
         self.routes = [stop.route!]
@@ -268,6 +275,7 @@ class TableDataSourceDelegate: NSObject,
 //        self.tableView.re
     }
 
+    // MARK: private func-y stuff
     private func drawRouteOnMap() {
         self.mapView?.addOverlays( self.routes.map{ ($0.shapeLine) } )
         self.addStopOverlays()
