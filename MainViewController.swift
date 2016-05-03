@@ -11,13 +11,12 @@ import MapKit
 import UIKit
 
 
-class MainViewController: UIViewController {
-
-    @IBOutlet weak var mapviewHeightConstraint: NSLayoutConstraint!
+class MainViewController: UIViewController, StopPickerDelegate {
 
     let dataService = DataService()
     var stop: Stop?
 
+    @IBOutlet weak var mapviewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var openFavoritesButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
@@ -27,7 +26,7 @@ class MainViewController: UIViewController {
     var prevTranslation: CGFloat = 0
     var currentLocation = CLLocation()
     var didCenterMap = false
-    var tableDataSource = TableDataSourceDelegate()
+    var transitTable = TransitTableController()
 
     var maxMapHeight: CGFloat?
     var minMapHeight: CGFloat?
@@ -38,9 +37,11 @@ class MainViewController: UIViewController {
         locationController = LocationController(mapView: mapView)
         self.locationController!.mapView = self.mapView
 
+        self.setDelegates()
+
         revealViewController().rearViewRevealWidth = 300
         revealViewController().rightViewRevealWidth = 300
-        
+
         openFavoritesButton.target = self.revealViewController()
         openFavoritesButton.action = #selector(SWRevealViewController.revealToggle(_:))
         
@@ -50,15 +51,31 @@ class MainViewController: UIViewController {
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
         self.mapView.showsPointsOfInterest = false
-        self.mapView.delegate = self.tableDataSource
+        self.mapView.delegate = self.transitTable
 
-        self.tableView.delegate = self.tableDataSource
-        self.tableView.dataSource = self.tableDataSource
-        self.tableDataSource.mapView = self.mapView
-        self.tableDataSource.locationDelegate = locationController
+        self.tableView.delegate = self.transitTable
+        self.tableView.dataSource = self.transitTable
+        self.transitTable.mapView = self.mapView
+        self.transitTable.locationDelegate = locationController
 
         self.minMapHeight = 50
         self.maxMapHeight = UIScreen.mainScreen().bounds.size.height - minMapHeight!
+    }
+
+    // MARK: StopPickerDelegate
+    func setSelectedStop(stop: Stop) {
+
+    }
+
+    // ugly way to do it. better ways?
+    private func setDelegates() {
+        for vc in (self.parentViewController?.parentViewController?.childViewControllers)! {
+            if vc is FavoritesViewController {
+                (vc as! FavoritesViewController).stopSelectorDelegate = self
+            } else if vc is SearchViewController {
+                (vc as! SearchViewController).stopSelectorDelegate = self
+            }
+        }
     }
 
     // MARK: IBActions
