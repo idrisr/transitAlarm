@@ -165,6 +165,14 @@ class TransitTableController: NSObject,
         self.updateTableWith(tableUpdates, tableView: tableView)
     }
 
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 25
+    }
+
     // MARK: TransitDataStopUpdate
     func setAlertFor(stop: Stop, tableView: UITableView) {
         var tableUpdates = TableUpdates()
