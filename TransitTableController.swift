@@ -24,6 +24,7 @@ protocol TransitDataStopUpdate {
     func setAlertFor(stop: Stop, tableView: UITableView)
 }
 
+
 struct TableUpdates {
     // holds arrays for which rows and sections to insert / delete
     var rowsToDelete     = [NSIndexPath]()
@@ -48,6 +49,7 @@ class TransitTableController: NSObject,
     var sections = ["Agency"]
     var mapView: MKMapView?
     var locationDelegate: LocationControllerDelegate?
+    var tableSizeDelegate: TableSizeDelegate?
 
     override init() {
         super.init()
@@ -264,6 +266,7 @@ class TransitTableController: NSObject,
         tableView.insertSections(tableUpdates.sectionsToInsert, withRowAnimation: .Fade)
         tableView.deleteSections(tableUpdates.sectionsToDelete, withRowAnimation: .Fade)
         tableView.endUpdates()
+        self.tableSizeDelegate?.adjustTableSize()
     }
 
     private func agencyOneToMany(indexPath: NSIndexPath) -> TableUpdates {

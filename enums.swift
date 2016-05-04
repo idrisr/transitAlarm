@@ -68,8 +68,8 @@ enum tableSection: Int {
     func minRows() -> Int {
         switch self {
             case .Agency: return 3
-            case .Route:  return 4
-            case .Stop:   return 6
+            case .Route:  return 5
+            case .Stop:   return 7
         }
     }
 

@@ -14,7 +14,13 @@ protocol StopDelegate {
     func setAlarmForStop(stop: Stop)
 }
 
-class MainViewController: UIViewController, StopDelegate {
+protocol TableSizeDelegate {
+    func adjustTableSize()
+}
+
+class MainViewController: UIViewController,
+                          StopDelegate,
+                          TableSizeDelegate {
 
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     let dataService = DataService()
@@ -61,6 +67,7 @@ class MainViewController: UIViewController, StopDelegate {
 
         self.transitTable.mapView = self.mapView
         self.transitTable.locationDelegate = locationController
+        self.transitTable.tableSizeDelegate = self
         self.stopUpdateDelegate = self.transitTable
 
         self.minTableViewHeight = 50
@@ -120,7 +127,15 @@ class MainViewController: UIViewController, StopDelegate {
     }
 
     // MARK: TableSizeUpdateDelegate
-    func updateTableSizeFor(height: CGFloat) { }
+    func adjustTableSize() {
+        UIView.animateWithDuration(0.4) {
+            // change constraints inside animation block
+            self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
+
+            // force layout inside animation block
+            self.view.layoutIfNeeded()
+        }
+    }
 
     // MARK: private helper funcs to manage table view size
     private func scrollDirectionFor(gesture: UIPanGestureRecognizer) -> direction {
@@ -141,11 +156,6 @@ class MainViewController: UIViewController, StopDelegate {
     private func tableViewInStartPosition() -> Bool {
         // true if table has height for all agencies and one section header
         return abs(self.tableView.frame.height - CGFloat(kAGENCYS * tableHeights.Row.height() + tableHeights.Header.height())) < 0.1
-    }
-
-
-    func tableViewFullyDisplayed() -> Bool {
-        return false
     }
 
     private func centerMap() {
@@ -174,7 +184,7 @@ class MainViewController: UIViewController, StopDelegate {
 
     private func defaultHeightForTable() -> CGFloat {
         let sections = tableView.numberOfSections
-        let minRows = tableSection(rawValue: sections)!.minRows()
+        let minRows = tableSection(rawValue: sections - 1)!.minRows() // -1 to go to 0-indices
         let rows = min(self.rowsInTable(), minRows)
         return self.heightForRows(rows, sections: sections)
     }
