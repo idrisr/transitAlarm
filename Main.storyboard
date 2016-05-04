@@ -54,9 +54,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Xz3-Sy-Oit" kind="custom" identifier="MapSegue" customClass="SWRevealViewControllerSeguePushController" id="pcq-6x-iB8"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -143,9 +140,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Xz3-Sy-Oit" kind="custom" identifier="SearchSegue" customClass="SWRevealViewControllerSeguePushController" id="XgX-zp-8vd"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -191,11 +185,11 @@
                         <viewControllerLayoutGuide type="bottom" id="5xf-oH-b56"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oRt-en-5WM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bug-vu-oWE" userLabel="Separator">
-                                <rect key="frame" x="0.0" y="415" width="600" height="15"/>
+                                <rect key="frame" x="0.0" y="351" width="600" height="15"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" staticText="YES" allowsDirectInteraction="YES"/>
@@ -210,10 +204,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4g-FD-SiQ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="415"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="351"/>
                                 <gestureRecognizers/>
                             </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
                                 <rect key="frame" x="0.0" y="366" width="600" height="170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -302,7 +296,7 @@ bmFtZRs
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxu-9p-bqP" userLabel="SeparatorOverlay">
-                                <rect key="frame" x="0.0" y="408" width="600" height="30"/>
+                                <rect key="frame" x="0.0" y="344" width="600" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -359,7 +353,4 @@ bmFtZRs
     <resources>
         <image name="favoriteIcon" width="22" height="22"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="pcq-6x-iB8"/>
-    </inferredMetricsTieBreakers>
 </document>
