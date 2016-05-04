@@ -259,8 +259,6 @@ class TransitTableController: NSObject,
         self.updateTableWith(tableUpdates, tableView: tableView)
     }
 
-    // MARK: TransitTableDelegate
-
     // MARK: private func-y stuff
     private func updateTableWith(tableUpdates: TableUpdates, tableView: UITableView) {
         tableView.beginUpdates()
