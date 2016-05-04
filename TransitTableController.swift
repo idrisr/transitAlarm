@@ -20,14 +20,10 @@ extension UIColor {
     }
 }
 
-protocol TableSizeUpdateDelegate {
-    func updateTableSizeFor(height: CGFloat)
-}
-
-
 protocol TransitDataStopUpdate {
     func setAlertFor(stop: Stop, tableView: UITableView)
 }
+
 
 struct TableUpdates {
     // holds arrays for which rows and sections to insert / delete
@@ -53,6 +49,7 @@ class TransitTableController: NSObject,
     var sections = ["Agency"]
     var mapView: MKMapView?
     var locationDelegate: LocationControllerDelegate?
+    var tableSizeDelegate: TableSizeDelegate?
 
     override init() {
         super.init()
@@ -65,7 +62,7 @@ class TransitTableController: NSObject,
         if overlay is RouteLine {
             let renderer = MKPolylineRenderer(overlay: overlay)
             renderer.strokeColor = (overlay as! RouteLine).color
-            renderer.lineWidth = 10.0
+            renderer.lineWidth = 8.0
             return renderer
         } else if overlay is StopMapOverlay {
             let stopOverlay = overlay as! StopMapOverlay
@@ -145,7 +142,7 @@ class TransitTableController: NSObject,
                 let route = self.routes[indexPath.row]
 
                 // Q: cant we init the cell with the route and get the prepared cell back?
-                // A: yes
+                // A: yes. MVVM?
 
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! RouteTableViewCell
                 cell.backgroundColor = route.mapColor
@@ -218,11 +215,11 @@ class TransitTableController: NSObject,
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return tableHeights.Header.height()
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
+        return tableHeights.Row.height()
     }
 
     // MARK: TransitDataStopUpdate
@@ -259,6 +256,8 @@ class TransitTableController: NSObject,
         self.updateTableWith(tableUpdates, tableView: tableView)
     }
 
+    // MARK: TransitTableDelegate
+
     // MARK: private func-y stuff
     private func updateTableWith(tableUpdates: TableUpdates, tableView: UITableView) {
         tableView.beginUpdates()
@@ -267,6 +266,7 @@ class TransitTableController: NSObject,
         tableView.insertSections(tableUpdates.sectionsToInsert, withRowAnimation: .Fade)
         tableView.deleteSections(tableUpdates.sectionsToDelete, withRowAnimation: .Fade)
         tableView.endUpdates()
+        self.tableSizeDelegate?.adjustTableSize()
     }
 
     private func agencyOneToMany(indexPath: NSIndexPath) -> TableUpdates {

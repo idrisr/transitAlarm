@@ -213,8 +213,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="415"/>
                                 <gestureRecognizers/>
                             </mapView>
+<<<<<<< HEAD
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
                                 <rect key="frame" x="0.0" y="430" width="600" height="170"/>
+=======
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
+                                <rect key="frame" x="0.0" y="366" width="600" height="170"/>
+>>>>>>> 693695e791b7e94e1b806ffc84e14eae49008270
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="Bs4-Pw-FPg"/>
@@ -342,7 +347,7 @@ bmFtZRs
                         <outlet property="mapView" destination="x4g-FD-SiQ" id="Gnm-zg-duF"/>
                         <outlet property="openFavoritesButton" destination="VP1-7O-Wbl" id="u3r-tz-Tzr"/>
                         <outlet property="searchButton" destination="XAP-wS-tFl" id="eOg-fc-mis"/>
-                        <outlet property="tableView" destination="iUW-DF-QGL" id="rTM-N0-bVk"/>
+                        <outlet property="tableView" destination="iUW-DF-QGL" id="3gH-T4-buG"/>
                         <outlet property="tableViewHeightConstraint" destination="Bs4-Pw-FPg" id="pO8-Ag-ab4"/>
                     </connections>
                 </viewController>

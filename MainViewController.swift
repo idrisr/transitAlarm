@@ -14,7 +14,13 @@ protocol StopDelegate {
     func setAlarmForStop(stop: Stop)
 }
 
-class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegate {
+protocol TableSizeDelegate {
+    func adjustTableSize()
+}
+
+class MainViewController: UIViewController,
+                          StopDelegate,
+                          TableSizeDelegate {
 
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     let dataService = DataService()
@@ -32,8 +38,7 @@ class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegat
     var transitTable = TransitTableController()
     var stopUpdateDelegate: TransitDataStopUpdate?
 
-    var maxMapHeight: CGFloat?
-    var minMapHeight: CGFloat?
+    var minTableViewHeight: CGFloat?
 
     // MARK: view life cycle
     override func viewDidLoad() {
@@ -48,7 +53,7 @@ class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegat
 
         openFavoritesButton.target = self.revealViewController()
         openFavoritesButton.action = #selector(SWRevealViewController.revealToggle(_:))
-        
+
         searchButton.target = self.revealViewController()
         searchButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
 
@@ -59,12 +64,15 @@ class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegat
 
         self.tableView.delegate = self.transitTable
         self.tableView.dataSource = self.transitTable
+
         self.transitTable.mapView = self.mapView
         self.transitTable.locationDelegate = locationController
+        self.transitTable.tableSizeDelegate = self
         self.stopUpdateDelegate = self.transitTable
+    }
 
-        self.minMapHeight = 50
-        self.maxMapHeight = UIScreen.mainScreen().bounds.size.height - minMapHeight!
+    override func viewDidAppear(animated: Bool) {
+        self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
     }
 
     // MARK: StopDelegate
@@ -76,16 +84,40 @@ class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegat
     @IBAction func handlePan(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
             case .Began, .Changed:
-                // if tableview required height totally displayed, dont allow movement
 
-                // get change from last translation
                 let totalTranslation = gesture.translationInView(gesture.view?.superview)
                 let newTranslation = totalTranslation.y - self.prevTranslation
-                let newMapHeight = self.mapView.frame.height + newTranslation
+                let newTableViewHeight = self.tableView.frame.height - newTranslation
 
-                if newMapHeight > self.minMapHeight && newMapHeight < self.maxMapHeight {
-                    self.tableViewHeightConstraint.constant -= newTranslation
-                    self.prevTranslation = totalTranslation.y
+                switch scrollDirectionFor(gesture) {
+                    case .Up:
+                        // would be too tall
+                        if newTableViewHeight >= maxHeightForTable() {
+                            if self.tableView.frame.height <= maxHeightForTable() {
+                                // cant move the entire pan, but can move some of the pan
+                                let adjTranslation = maxHeightForTable() - self.tableView.frame.height
+                                self.adjustHeightConstraintTo(adjTranslation, totalTranslation: totalTranslation)
+                            }
+                            else {
+                                self.prevTranslation = 0
+                            }
+                        } else {
+                            self.adjustHeightConstraintTo(newTranslation, totalTranslation: totalTranslation)
+                        }
+                    case .Down:
+                        // would be too short
+                        if newTableViewHeight <= minHeightForTable() {
+                            if self.tableView.frame.height >= minHeightForTable() {
+                                // cant move the entire pan, but can move some of the pan
+                                let adjTranslation = self.tableView.frame.height - minHeightForTable()
+                                self.adjustHeightConstraintTo(adjTranslation, totalTranslation: totalTranslation)
+                            }
+                            else {
+                                self.prevTranslation = 0
+                            }
+                        } else {
+                            self.adjustHeightConstraintTo(newTranslation, totalTranslation: totalTranslation)
+                        }
                 }
 
             case .Cancelled, .Ended:
@@ -96,8 +128,41 @@ class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegat
         }
     }
 
-    func tableViewFullyDisplayed() -> Bool {
-        return false
+    private func adjustHeightConstraintTo(newTranslation: CGFloat, totalTranslation: CGPoint) {
+        self.tableViewHeightConstraint.constant -= newTranslation
+        self.prevTranslation = totalTranslation.y
+    }
+
+    // MARK: TableSizeUpdateDelegate
+    func adjustTableSize() {
+        UIView.animateWithDuration(0.4) {
+            // change constraints inside animation block
+            self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
+
+            // force layout inside animation block
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    // MARK: private helper funcs to manage table view size
+    private func scrollDirectionFor(gesture: UIPanGestureRecognizer) -> direction {
+        // direction of pan. Up is making the tableview larger
+        let netTranslation = gesture.translationInView(gesture.view).y - self.prevTranslation
+        if netTranslation < 0 {
+            return .Up
+        } else {
+            return .Down
+        }
+    }
+
+    private func tableViewInStartState() -> Bool {
+        // true if table is showing all the agencies and nothing else, aka the starting state
+        return self.tableView.numberOfRowsInSection(tableSection.Agency.rawValue) == kAGENCYS
+    }
+
+    private func tableViewInStartPosition() -> Bool {
+        // true if table has height for all agencies and one section header
+        return abs(self.tableView.frame.height - CGFloat(kAGENCYS) * tableHeights.Row.height() + tableHeights.Header.height()) < 0.1
     }
 
     private func centerMap() {
@@ -113,10 +178,6 @@ class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegat
         self.mapView.setRegion(coordinateRegion, animated: false)
     }
 
-    func updateTableSizeFor(height: CGFloat) {
-        
-    }
-
     // ugly way to do it. better ways?
     private func setDelegates() {
         for vc in (self.parentViewController?.parentViewController?.childViewControllers)! {
@@ -128,4 +189,37 @@ class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegat
         }
     }
 
+    private func defaultHeightForTable() -> CGFloat {
+        let sections = tableView.numberOfSections
+        let minRows = tableSection(rawValue: sections - 1)!.minRows() // -1 to go to 0-indices
+        let rows = min(self.rowsInTable(), minRows)
+        return self.heightForRows(rows, sections: sections)
+    }
+
+    private func minHeightForTable() -> CGFloat {
+        let rows = tableHeights.Row.minVisible()
+        let sections = tableHeights.Header.minVisible()
+        return heightForRows(rows, sections: sections)
+    }
+
+    private func maxHeightForTable() -> CGFloat {
+        let rows = self.rowsInTable()
+        let sections = tableView.numberOfSections
+        return heightForRows(rows, sections: sections)
+    }
+
+    private func heightForRows(rows:Int, sections: Int) -> CGFloat {
+        let rowHeight = CGFloat(rows) * tableHeights.Row.height()
+        let sectionHeight = CGFloat(sections) * tableHeights.Header.height()
+        return CGFloat(rowHeight + sectionHeight)
+    }
+
+    private func rowsInTable() -> Int {
+        var rows = 0
+        let sectionCount = self.tableView.numberOfSections - 1
+        for i in 0...sectionCount {
+            rows += self.tableView.numberOfRowsInSection(i)
+        }
+        return rows
+    }
 }
