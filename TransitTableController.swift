@@ -20,11 +20,6 @@ extension UIColor {
     }
 }
 
-protocol TableSizeUpdateDelegate {
-    func updateTableSizeFor(height: CGFloat)
-}
-
-
 protocol TransitDataStopUpdate {
     func setAlertFor(stop: Stop, tableView: UITableView)
 }
@@ -145,7 +140,7 @@ class TransitTableController: NSObject,
                 let route = self.routes[indexPath.row]
 
                 // Q: cant we init the cell with the route and get the prepared cell back?
-                // A: yes
+                // A: yes. MVVM?
 
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! RouteTableViewCell
                 cell.backgroundColor = route.mapColor
@@ -258,6 +253,8 @@ class TransitTableController: NSObject,
         self.locationDelegate?.startMonitoringRegionFor(self.stops.first!)
         self.updateTableWith(tableUpdates, tableView: tableView)
     }
+
+    // MARK: TransitTableDelegate
 
     // MARK: private func-y stuff
     private func updateTableWith(tableUpdates: TableUpdates, tableView: UITableView) {

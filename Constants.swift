@@ -11,4 +11,4 @@ import Foundation
 let STATUS_ERROR_ACCOUNT_NONEXIST = -8
 let KEY_UID = "uid"
 let SEGUE_LOGIN = "LoginSegue"
-
+let kAGENCYS = 3 // bad. fix me. later

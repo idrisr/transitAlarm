@@ -186,7 +186,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="351"/>
                                 <gestureRecognizers/>
                             </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-DF-QGL">
                                 <rect key="frame" x="0.0" y="366" width="600" height="170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -315,7 +315,7 @@ bmFtZRs
                         <outlet property="mapView" destination="x4g-FD-SiQ" id="Gnm-zg-duF"/>
                         <outlet property="openFavoritesButton" destination="VP1-7O-Wbl" id="u3r-tz-Tzr"/>
                         <outlet property="searchButton" destination="XAP-wS-tFl" id="eOg-fc-mis"/>
-                        <outlet property="tableView" destination="iUW-DF-QGL" id="rTM-N0-bVk"/>
+                        <outlet property="tableView" destination="iUW-DF-QGL" id="3gH-T4-buG"/>
                         <outlet property="tableViewHeightConstraint" destination="Bs4-Pw-FPg" id="pO8-Ag-ab4"/>
                     </connections>
                 </viewController>

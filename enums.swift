@@ -23,6 +23,23 @@ extension Array where Element: Equatable {
     }
 }
 
+enum direction: Int {
+    case Up
+    case Down
+}
+
+enum tableHeights: Int {
+    case Row
+    case Header
+
+    func height() -> Int {
+        switch self {
+        case .Row: return 50
+        case .Header : return 20
+        }
+    }
+}
+
 enum tableSection: Int {
     case Agency
     case Route
@@ -46,6 +63,14 @@ enum tableSection: Int {
 
     func headerTitle() -> String {
         return self.entityName()
+    }
+
+    func minRows() -> Int {
+        switch self {
+            case .Agency: return 3
+            case .Route:  return 4
+            case .Stop:   return 6
+        }
     }
 
     static let allValues = [Agency, Route, Stop]
