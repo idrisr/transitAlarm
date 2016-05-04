@@ -51,12 +51,23 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         }
         cell.textLabel?.text = stop.name
         cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 20)
-        selectedStop = cell.textLabel?.text
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(selectedStop)
+        let searchStop: Stop!
+        if searchBarIsSearching {
+            searchStop = filteredTableViewStops[indexPath.row]
+        } else {
+            searchStop = tableViewStops[indexPath.row]
+        }
+        selectedStop = searchStop.name
+        for stopName in tableViewStops {
+            if stopName.name == selectedStop {
+                self.stopDelegate!.setAlarmForStop(stopName)
+                revealViewController().rightRevealToggle(nil)
+            }
+        }
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -90,15 +101,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "SearchSegue" {
-            let destination = segue.destinationViewController as? MainViewController
-            for stopName in tableViewStops {
-                if stopName.name == selectedStop {
-                    destination?.stop = stopName
-                }
-            }
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "SearchSegue" {
+//            let destination = segue.destinationViewController as? MainViewController
+//            for stopName in tableViewStops {
+//                if stopName.name == selectedStop {
+//                    destination?.stop = stopName
+//                }
+//            }
+//        }
+//    }
 
 }

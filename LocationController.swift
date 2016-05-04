@@ -185,7 +185,6 @@ class LocationController: NSObject,
             let user = ["provider": authData.provider!, "email":"email"]
             DataService.dataService.createFirebaseUser(authData.uid, user: user)
             NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
-            DataService.dataService.userExists = true
             let transitStopName: Dictionary<String,String> = [
                 "transitStop":self.stop!.name!
                 ]
