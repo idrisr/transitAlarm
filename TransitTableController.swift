@@ -252,7 +252,8 @@ class TransitTableController: NSObject,
         // add new stop
         tableUpdates.rowsToInsert.append(NSIndexPath(forItem: 0, inSection: tableSection.Stop.rawValue))
 
-        tableUpdates.sectionsToInsert = NSIndexSet(indexesInRange: NSMakeRange(tableView.numberOfSections, tableSection.allValues.count - 1))
+        let additionalSections = tableSection.allValues.count - tableView.numberOfSections
+        tableUpdates.sectionsToInsert = NSIndexSet(indexesInRange: NSMakeRange(tableView.numberOfSections, additionalSections))
 
         self.sections = ["Agency", "Routes", "Stops"]
         self.locationDelegate?.startMonitoringRegionFor(self.stops.first!)
