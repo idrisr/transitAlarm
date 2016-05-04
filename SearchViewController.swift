@@ -50,6 +50,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
             stop = tableViewStops[indexPath.row]
         }
         cell.textLabel?.text = stop.name
+        cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 20)
         selectedStop = cell.textLabel?.text
         return cell
     }
@@ -66,7 +67,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
             
         } else {
             searchBarIsSearching = true
-            let lower = searchBar.text!.uppercaseString
+            let lower = searchBar.text!
             filteredTableViewStops = tableViewStops.filter({$0.name!.rangeOfString(lower) != nil})
             tableView.reloadData()
         }

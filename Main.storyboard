@@ -44,14 +44,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tcj-bW-Pys">
-                                <rect key="frame" x="0.0" y="65" width="600" height="535"/>
+                                <rect key="frame" x="0.0" y="65" width="330" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="330" id="RIn-El-xVS"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoriteCell" id="1r3-1z-d2h">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="330" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1r3-1z-d2h" id="nXo-ds-sbd">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="330" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -65,30 +68,35 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDJ-a0-eC6">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                <rect key="frame" x="0.0" y="0.0" width="330" height="65"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2t-zV-2ME">
-                                        <rect key="frame" x="237" y="22" width="127" height="21"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="27"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2t-zV-2ME">
+                                        <rect key="frame" x="102" y="22" width="127" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="kjs-1w-Ah6"/>
+                                            <constraint firstAttribute="width" constant="127" id="r6I-Z6-jqo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="Wlc-q1-267"/>
+                                    <constraint firstItem="J2t-zV-2ME" firstAttribute="centerY" secondItem="rDJ-a0-eC6" secondAttribute="centerY" id="DLW-Fc-VLv"/>
+                                    <constraint firstAttribute="height" constant="65" id="LhN-0b-Jwr"/>
+                                    <constraint firstAttribute="width" constant="330" id="N8l-MI-SQI"/>
+                                    <constraint firstItem="J2t-zV-2ME" firstAttribute="centerX" secondItem="rDJ-a0-eC6" secondAttribute="centerX" id="xnX-yq-15O"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="tcj-bW-Pys" secondAttribute="trailing" id="Yby-jN-Rc7"/>
-                            <constraint firstItem="rDJ-a0-eC6" firstAttribute="leading" secondItem="T8q-xz-xAk" secondAttribute="leading" id="ZYh-Wo-FNa"/>
-                            <constraint firstItem="tcj-bW-Pys" firstAttribute="leading" secondItem="T8q-xz-xAk" secondAttribute="leading" id="dVe-eB-i3n"/>
-                            <constraint firstAttribute="trailing" secondItem="rDJ-a0-eC6" secondAttribute="trailing" id="f1i-S1-r90"/>
-                            <constraint firstItem="zBM-16-LMV" firstAttribute="top" secondItem="tcj-bW-Pys" secondAttribute="bottom" id="mH4-4n-Uww"/>
-                            <constraint firstItem="rDJ-a0-eC6" firstAttribute="top" secondItem="T8q-xz-xAk" secondAttribute="top" id="sU4-Sl-LyM"/>
-                            <constraint firstItem="tcj-bW-Pys" firstAttribute="top" secondItem="rDJ-a0-eC6" secondAttribute="bottom" id="xaq-eH-TTn"/>
+                            <constraint firstItem="rDJ-a0-eC6" firstAttribute="leading" secondItem="T8q-xz-xAk" secondAttribute="leading" id="1bV-Sw-shs"/>
+                            <constraint firstItem="zBM-16-LMV" firstAttribute="top" secondItem="tcj-bW-Pys" secondAttribute="bottom" id="Ajb-WG-w4J"/>
+                            <constraint firstItem="tcj-bW-Pys" firstAttribute="leading" secondItem="T8q-xz-xAk" secondAttribute="leading" id="cLu-IW-cJS"/>
+                            <constraint firstItem="rDJ-a0-eC6" firstAttribute="top" secondItem="T8q-xz-xAk" secondAttribute="top" id="iVa-22-Hcd"/>
+                            <constraint firstItem="tcj-bW-Pys" firstAttribute="top" secondItem="rDJ-a0-eC6" secondAttribute="bottom" id="lwn-5W-Lts"/>
                         </constraints>
                     </view>
                     <connections>

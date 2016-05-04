@@ -17,6 +17,7 @@ class DataService {
     private var _REF_USER = Firebase(url: "https://transit-alarm.firebaseio.com/users")
     
     var transitStops = [String]()
+    var userExists = false
 
 
     var REF_BASE: Firebase {

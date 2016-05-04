@@ -120,7 +120,7 @@ class LocationController: NSObject,
     private func handleRegionEvent(region: CLRegion!) {
         print("Transit stop approaching!")
         if UIApplication.sharedApplication().applicationState == .Active {
-            showAlertWithSaveOption(region.identifier, message: "Your stop is approaching, would you like to save stop for future use?")
+            showAlertWithSaveOption(region.identifier, message: "Your stop is approaching, would you like to save stop for future use? If you choose 'save' you will be prompted to login via Facebook so that you may save stops across multiple devices.")
         } else {
             // Otherwise present a local notification
             let notification = UILocalNotification()
@@ -156,16 +156,11 @@ class LocationController: NSObject,
             } else {
               self.facebookLogin()
             }
-//            let transitStopName: Dictionary<String,String> = [
-//                "transitStop":self.stop!.name!
-//            ]
-//            let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
-//            let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
-//            firebaseSaveStopList.updateChildValues(transitStopName)
         }
         alert.addAction(action)
         alert.addAction(saveAction)
         let vc = UIApplication.sharedApplication().keyWindow?.rootViewController!
+        stopMonitoringRegion()
         vc?.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -182,18 +177,23 @@ class LocationController: NSObject,
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 ref.authWithOAuthProvider("facebook", token: accessToken,
                     withCompletionBlock: { error, authData in
-                        if error != nil {
+                    if error != nil {
                             print("Login failed. \(error)")
-                        } else {
+                    } else {
                             print("Logged in! \(authData)")
-                        }
-                        let user = ["provider": authData.provider!, "email":"email"]
-                        DataService.dataService.createFirebaseUser(authData.uid, user: user)
-                        NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
+                    }
+            let user = ["provider": authData.provider!, "email":"email"]
+            DataService.dataService.createFirebaseUser(authData.uid, user: user)
+            NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
+            DataService.dataService.userExists = true
+            let transitStopName: Dictionary<String,String> = [
+                "transitStop":self.stop!.name!
+                ]
+            let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
+            let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
+            firebaseSaveStopList.updateChildValues(transitStopName)
                 })
             }
         })
     }
-    
-  
 }

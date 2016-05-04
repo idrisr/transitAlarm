@@ -29,13 +29,14 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         moc = appDelegate.managedObjectContext
-        
        
         currentUser = dataService.REF_CURRENT_USER
         getTransitStops()
         
         setBarButtonItemOnRight()
     }
+    
+    
     
     func setBarButtonItemOnRight() {
         let btnName = UIButton()
@@ -89,6 +90,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath)
         cell.textLabel?.text = favoriteStops[indexPath.row]
+        cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 20)
         selectedStop = cell.textLabel?.text
         return cell
     }
