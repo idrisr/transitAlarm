@@ -31,12 +31,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         moc = appDelegate.managedObjectContext
-    
+        if checkForUser() {
+            getTransitStops()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         if checkForUser() {
             getTransitStops()
+            tableView.reloadData()
         }
     }
     
@@ -53,9 +56,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         let ref = Firebase(url:"\(currentUser)/favorites")
         ref.observeEventType(.ChildAdded, withBlock: { snapshot in
             let transitStops = snapshot.value.objectForKey("transitStop") as? String
+            if self.favoriteStops.contains(transitStops!) {
+                print("stop already included")
+            } else {
             self.favoriteStops.append(transitStops!)
+            }
             print("\(self.favoriteStops)")
-            self.tableView.reloadData()
         })
     }
     

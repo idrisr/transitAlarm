@@ -67,20 +67,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDJ-a0-eC6">
                                 <rect key="frame" x="0.0" y="0.0" width="330" height="65"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2t-zV-2ME">
-                                        <rect key="frame" x="102" y="22" width="127" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Stops" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2t-zV-2ME">
+                                        <rect key="frame" x="102" y="22" width="127" height="23"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="kjs-1w-Ah6"/>
+                                            <constraint firstAttribute="height" constant="23" id="kjs-1w-Ah6"/>
                                             <constraint firstAttribute="width" constant="127" id="r6I-Z6-jqo"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.23529411764705882" green="0.45882352941176469" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="J2t-zV-2ME" firstAttribute="centerY" secondItem="rDJ-a0-eC6" secondAttribute="centerY" id="DLW-Fc-VLv"/>
+                                    <constraint firstItem="J2t-zV-2ME" firstAttribute="centerY" secondItem="rDJ-a0-eC6" secondAttribute="centerY" constant="1" id="DLW-Fc-VLv"/>
                                     <constraint firstAttribute="height" constant="65" id="LhN-0b-Jwr"/>
                                     <constraint firstAttribute="width" constant="330" id="N8l-MI-SQI"/>
                                     <constraint firstItem="J2t-zV-2ME" firstAttribute="centerX" secondItem="rDJ-a0-eC6" secondAttribute="centerX" id="xnX-yq-15O"/>
@@ -134,6 +134,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKX-c3-8Ta">
+                                <rect key="frame" x="300" y="0.0" width="300" height="64"/>
+                                <color key="backgroundColor" red="0.23529411759999999" green="0.45882352939999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="5nj-pu-YbY"/>
+                                    <constraint firstAttribute="width" constant="300" id="stp-tN-uGw"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F38-9a-UZY">
                                 <rect key="frame" x="300" y="64" width="300" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -155,7 +163,7 @@
                                     <outlet property="delegate" destination="La1-gZ-jXH" id="oG5-6S-j9u"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="de6-Zz-dxR">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search All Stops" translatesAutoresizingMaskIntoConstraints="NO" id="de6-Zz-dxR">
                                 <rect key="frame" x="300" y="20" width="300" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="quO-KS-R0x"/>
@@ -170,9 +178,11 @@
                         <constraints>
                             <constraint firstItem="F38-9a-UZY" firstAttribute="top" secondItem="de6-Zz-dxR" secondAttribute="bottom" id="7fd-Ga-GPw"/>
                             <constraint firstItem="QVm-Vv-irB" firstAttribute="top" secondItem="F38-9a-UZY" secondAttribute="bottom" id="Bro-XM-ewt"/>
+                            <constraint firstItem="BKX-c3-8Ta" firstAttribute="top" secondItem="uaj-dX-80c" secondAttribute="top" id="VGz-Vn-uvn"/>
                             <constraint firstAttribute="trailing" secondItem="de6-Zz-dxR" secondAttribute="trailing" id="gl3-c3-b1u"/>
                             <constraint firstItem="de6-Zz-dxR" firstAttribute="top" secondItem="ons-gN-AHm" secondAttribute="bottom" id="idt-X0-gfj"/>
                             <constraint firstAttribute="trailing" secondItem="F38-9a-UZY" secondAttribute="trailing" id="p0K-lI-sjq"/>
+                            <constraint firstAttribute="trailing" secondItem="BKX-c3-8Ta" secondAttribute="trailing" id="ygV-gu-AQv"/>
                         </constraints>
                     </view>
                     <connections>
