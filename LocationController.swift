@@ -146,7 +146,6 @@ class LocationController: NSObject,
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (UIAlertAction) in
-<<<<<<< HEAD
             if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
                 let transitStopName: Dictionary<String,String> = [
                     "transitStop":self.stop!.name!
@@ -179,16 +178,12 @@ class LocationController: NSObject,
                     }
                 })
             }
-=======
             let transitStopName: Dictionary<String,String> = [
                 "transitStop":self.stop!.name!
             ]
-//            let saveStop = DataService.dataService.REF_CURRENT_USER
             let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
             let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
             firebaseSaveStopList.updateChildValues(transitStopName)
-            //            self.dataService.getTransitStops()
->>>>>>> d747f2f5620f1f716a7ddc9f79b5025323f25a1e
         }
         alert.addAction(action)
         alert.addAction(saveAction)
