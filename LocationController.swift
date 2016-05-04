@@ -148,7 +148,7 @@ class LocationController: NSObject,
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (UIAlertAction) in
             if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
                 let transitStopName: Dictionary<String,String> = [
-                    "transitStop":self.stop!.name!
+                    "transitStop":self.stop!.id!
                 ]
                 let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
                 let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
