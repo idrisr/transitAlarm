@@ -62,7 +62,7 @@ class TransitTableController: NSObject,
         if overlay is RouteLine {
             let renderer = MKPolylineRenderer(overlay: overlay)
             renderer.strokeColor = (overlay as! RouteLine).color
-            renderer.lineWidth = 10.0
+            renderer.lineWidth = 8.0
             return renderer
         } else if overlay is StopMapOverlay {
             let stopOverlay = overlay as! StopMapOverlay
@@ -215,11 +215,11 @@ class TransitTableController: NSObject,
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return tableHeights.Header.height()
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
+        return tableHeights.Row.height()
     }
 
     // MARK: TransitDataStopUpdate

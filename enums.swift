@@ -32,10 +32,10 @@ enum tableHeights: Int {
     case Row
     case Header
 
-    func height() -> Int {
+    func height() -> CGFloat {
         switch self {
-            case .Row: return 50
-            case .Header : return 20
+            case .Row: return 40.0
+            case .Header : return 20.0
         }
     }
 

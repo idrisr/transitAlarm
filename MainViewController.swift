@@ -71,6 +71,10 @@ class MainViewController: UIViewController,
         self.stopUpdateDelegate = self.transitTable
     }
 
+    override func viewDidAppear(animated: Bool) {
+        self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
+    }
+
     // MARK: StopDelegate
     func setAlarmForStop(stop: Stop) {
         self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
@@ -158,7 +162,7 @@ class MainViewController: UIViewController,
 
     private func tableViewInStartPosition() -> Bool {
         // true if table has height for all agencies and one section header
-        return abs(self.tableView.frame.height - CGFloat(kAGENCYS * tableHeights.Row.height() + tableHeights.Header.height())) < 0.1
+        return abs(self.tableView.frame.height - CGFloat(kAGENCYS) * tableHeights.Row.height() + tableHeights.Header.height()) < 0.1
     }
 
     private func centerMap() {
@@ -205,8 +209,8 @@ class MainViewController: UIViewController,
     }
 
     private func heightForRows(rows:Int, sections: Int) -> CGFloat {
-        let rowHeight = rows * tableHeights.Row.height()
-        let sectionHeight = sections * tableHeights.Header.height()
+        let rowHeight = CGFloat(rows) * tableHeights.Row.height()
+        let sectionHeight = CGFloat(sections) * tableHeights.Header.height()
         return CGFloat(rowHeight + sectionHeight)
     }
 
