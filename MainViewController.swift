@@ -200,9 +200,8 @@ class MainViewController: UIViewController,
 
     private func maxHeightForTable() -> CGFloat {
         let rows = self.rowsInTable()
-        let rowHeight = rows * tableHeights.Row.height()
-        let sectionHeight = tableView.numberOfSections * tableHeights.Header.height()
-        return CGFloat(rowHeight + sectionHeight)
+        let sections = tableView.numberOfSections
+        return heightForRows(rows, sections: sections)
     }
 
     private func heightForRows(rows:Int, sections: Int) -> CGFloat {
