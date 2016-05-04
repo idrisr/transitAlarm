@@ -18,8 +18,13 @@ protocol LocationControllerDelegate {
     func startMonitoringRegionFor(stop: Stop)
 }
 
+protocol StopFavoriteDelegate {
+    func saveFavoriteFor(stop: Stop)
+}
+
 class LocationController: NSObject,
     LocationControllerDelegate,
+    StopFavoriteDelegate,
     CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
@@ -39,6 +44,16 @@ class LocationController: NSObject,
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
+    
+    func saveFavoriteFor(stop: Stop) {
+        let transitStopName: Dictionary<String,String> = [
+            "transitStop": stop.id!
+        ]
+        let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
+        let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
+        firebaseSaveStopList.updateChildValues(transitStopName)
+    }
+
 
     // MARK: CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -147,12 +162,7 @@ class LocationController: NSObject,
         let action = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (UIAlertAction) in
             if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
-                let transitStopName: Dictionary<String,String> = [
-                    "transitStop":self.stop!.id!
-                ]
-                let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
-                let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
-                firebaseSaveStopList.updateChildValues(transitStopName)
+              self.saveFavoriteFor(self.stop!)
             } else {
               self.facebookLogin()
             }
