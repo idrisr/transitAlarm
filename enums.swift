@@ -34,8 +34,15 @@ enum tableHeights: Int {
 
     func height() -> Int {
         switch self {
-        case .Row: return 50
-        case .Header : return 20
+            case .Row: return 50
+            case .Header : return 20
+        }
+    }
+
+    func minVisible() -> Int {
+        switch self {
+            case .Row: return 1
+            case .Header : return 1
         }
     }
 }

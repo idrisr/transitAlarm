@@ -69,8 +69,6 @@ class MainViewController: UIViewController,
         self.transitTable.locationDelegate = locationController
         self.transitTable.tableSizeDelegate = self
         self.stopUpdateDelegate = self.transitTable
-
-        self.minTableViewHeight = 50
     }
 
     // MARK: StopDelegate
@@ -80,8 +78,6 @@ class MainViewController: UIViewController,
 
     // MARK: IBActions
     @IBAction func handlePan(gesture: UIPanGestureRecognizer) {
-//        print("default: \(self.defaultHeightForTable()) max: \(self.maxHeightForTable())")
-
         switch gesture.state {
             case .Began, .Changed:
 
@@ -106,8 +102,15 @@ class MainViewController: UIViewController,
                         }
                     case .Down:
                         // would be too short
-                        if newTableViewHeight <= minTableViewHeight {
-                            self.prevTranslation = 0
+                        if newTableViewHeight <= minHeightForTable() {
+                            if self.tableView.frame.height >= minHeightForTable() {
+                                // cant move the entire pan, but can move some of the pan
+                                let adjTranslation = self.tableView.frame.height - minHeightForTable()
+                                self.adjustHeightConstraintTo(adjTranslation, totalTranslation: totalTranslation)
+                            }
+                            else {
+                                self.prevTranslation = 0
+                            }
                         } else {
                             self.adjustHeightConstraintTo(newTranslation, totalTranslation: totalTranslation)
                         }
@@ -187,6 +190,12 @@ class MainViewController: UIViewController,
         let minRows = tableSection(rawValue: sections - 1)!.minRows() // -1 to go to 0-indices
         let rows = min(self.rowsInTable(), minRows)
         return self.heightForRows(rows, sections: sections)
+    }
+
+    private func minHeightForTable() -> CGFloat {
+        let rows = tableHeights.Row.minVisible()
+        let sections = tableHeights.Header.minVisible()
+        return heightForRows(rows, sections: sections)
     }
 
     private func maxHeightForTable() -> CGFloat {
