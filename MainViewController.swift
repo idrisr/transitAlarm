@@ -61,6 +61,7 @@ class MainViewController: UIViewController,
         self.mapView.showsBuildings = false
         self.mapView.showsPointsOfInterest = false
         self.mapView.delegate = self.transitTable
+        self.mapView.userTrackingMode = .FollowWithHeading
 
         self.tableView.delegate = self.transitTable
         self.tableView.dataSource = self.transitTable
