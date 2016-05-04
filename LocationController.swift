@@ -178,12 +178,12 @@ class LocationController: NSObject,
                     }
                 })
             }
-            let transitStopName: Dictionary<String,String> = [
-                "transitStop":self.stop!.name!
-            ]
-            let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
-            let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
-            firebaseSaveStopList.updateChildValues(transitStopName)
+//            let transitStopName: Dictionary<String,String> = [
+//                "transitStop":self.stop!.name!
+//            ]
+//            let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
+//            let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
+//            firebaseSaveStopList.updateChildValues(transitStopName)
         }
         alert.addAction(action)
         alert.addAction(saveAction)

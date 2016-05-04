@@ -30,8 +30,10 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         moc = appDelegate.managedObjectContext
         
+       
         currentUser = dataService.REF_CURRENT_USER
         getTransitStops()
+
        
         setBarButtonItemOnRight()
     }
