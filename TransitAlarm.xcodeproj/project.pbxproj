@@ -44,7 +44,6 @@
 		686346EB1CD7EA4900A938C8 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346EA1CD7EA4900A938C8 /* StopTableViewCell.swift */; };
 		6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8A1CC534FA003F6483 /* AppDelegate.swift */; };
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
-		6879AFAB1CC72CB3003F6483 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AFAA1CC72CB3003F6483 /* MapViewController.swift */; };
 		688FAC8A1CD5A449009CB665 /* TransitTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688FAC891CD5A449009CB665 /* TransitTableController.swift */; };
 		BF7A6E1DD50199FA43AD4029 /* Pods_TransitAlarm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1F438AF36F8B192181B97F /* Pods_TransitAlarm.framework */; };
 /* End PBXBuildFile section */
@@ -93,7 +92,6 @@
 		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TransitAlarm/AppDelegate.swift; sourceTree = "<group>"; };
 		6879AF911CC534FA003F6483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = TransitAlarm/Assets.xcassets; sourceTree = "<group>"; };
 		6879AF961CC534FA003F6483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = TransitAlarm/Info.plist; sourceTree = "<group>"; };
-		6879AFAA1CC72CB3003F6483 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		688FAC891CD5A449009CB665 /* TransitTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitTableController.swift; sourceTree = "<group>"; };
 		ED5957CB7DFB6C78C26E900D /* Pods-TransitAlarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,7 +182,6 @@
 				686346E21CD7BA1600A938C8 /* LocationController.swift */,
 				688FAC891CD5A449009CB665 /* TransitTableController.swift */,
 				683DB4101CD2771B00823C8B /* MainViewController.swift */,
-				6879AFAA1CC72CB3003F6483 /* MapViewController.swift */,
 				258362A01CC7D13F003E592D /* LoginViewController.swift */,
 				252D7E1E1CD12E970088AF76 /* FavoritesViewController.swift */,
 				259AE00F1CD7C34000E18FC8 /* SearchViewController.swift */,
@@ -377,7 +374,6 @@
 				6800E2611CD3F9B80002549B /* Agency+CoreDataProperties.swift in Sources */,
 				259AE0091CD6F8CC00E18FC8 /* SWRevealViewController.m in Sources */,
 				6800E25F1CD3F9B80002549B /* Shape+CoreDataProperties.swift in Sources */,
-				6879AFAB1CC72CB3003F6483 /* MapViewController.swift in Sources */,
 				68422DC11CD1AD6400677CA3 /* StopOverlayRenderer.swift in Sources */,
 				686346EB1CD7EA4900A938C8 /* StopTableViewCell.swift in Sources */,
 				682712651CD431DD007DFD09 /* enums.swift in Sources */,
