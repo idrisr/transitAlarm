@@ -59,13 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Load the existing database
         if !NSFileManager.defaultManager().fileExistsAtPath(url.path!) {
 
-            let sourceSqliteURLs = [NSBundle.mainBundle().URLForResource("\(self.db)", withExtension: "sqlite")!,
-                                    NSBundle.mainBundle().URLForResource("\(self.db)", withExtension: "sqlite-wal")!,
-                                    NSBundle.mainBundle().URLForResource("\(self.db)", withExtension: "sqlite-shm")!]
+            let sourceSqliteURLs = [NSBundle.mainBundle().URLForResource("\(self.db)", withExtension: "sqlite")!]
 
-            let destSqliteURLs = [self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.db).sqlite"),
-                                  self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.db).sqlite-wal"),
-                                  self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.db).sqlite-shm")]
+            let destSqliteURLs = [self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.db).sqlite")]
 
             for index in 0..<sourceSqliteURLs.count {
                 do {

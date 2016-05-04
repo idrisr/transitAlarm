@@ -25,8 +25,6 @@
 		6800E2631CD3F9B80002549B /* Route+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800E25B1CD3F9B80002549B /* Route+CoreDataProperties.swift */; };
 		6800E2641CD3F9B80002549B /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800E25C1CD3F9B80002549B /* Route.swift */; };
 		6827125F1CD3FDAA007DFD09 /* SingleViewCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6827125C1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite */; };
-		682712601CD3FDAB007DFD09 /* SingleViewCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 6827125D1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite-shm */; };
-		682712611CD3FDAB007DFD09 /* SingleViewCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 6827125E1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite-wal */; };
 		682712651CD431DD007DFD09 /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682712641CD431DD007DFD09 /* enums.swift */; };
 		682D9CC91CD243E300A54C4E /* 223W_Erie.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */; };
 		683DB40F1CD275A900823C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 683DB40E1CD275A900823C8B /* Main.storyboard */; };
@@ -71,8 +69,6 @@
 		6800E25B1CD3F9B80002549B /* Route+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Route+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6800E25C1CD3F9B80002549B /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		6827125C1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = SingleViewCoreData.sqlite; sourceTree = "<group>"; };
-		6827125D1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SingleViewCoreData.sqlite-shm"; sourceTree = "<group>"; };
-		6827125E1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SingleViewCoreData.sqlite-wal"; sourceTree = "<group>"; };
 		682712641CD431DD007DFD09 /* enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
 		682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 223W_Erie.gpx; path = project_gpxfiles/223W_Erie.gpx; sourceTree = "<group>"; };
 		683DB40E1CD275A900823C8B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -226,8 +222,6 @@
 				6800E25C1CD3F9B80002549B /* Route.swift */,
 				68422DBB1CD10A3E00677CA3 /* transit.xcdatamodeld */,
 				6827125C1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite */,
-				6827125D1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite-shm */,
-				6827125E1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite-wal */,
 				682712641CD431DD007DFD09 /* enums.swift */,
 			);
 			name = model;
@@ -305,8 +299,6 @@
 			files = (
 				6827125F1CD3FDAA007DFD09 /* SingleViewCoreData.sqlite in Resources */,
 				686346E51CD7CFA000A938C8 /* red_small.gpx in Resources */,
-				682712601CD3FDAB007DFD09 /* SingleViewCoreData.sqlite-shm in Resources */,
-				682712611CD3FDAB007DFD09 /* SingleViewCoreData.sqlite-wal in Resources */,
 				6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */,
 				682D9CC91CD243E300A54C4E /* 223W_Erie.gpx in Resources */,
 				683DB40F1CD275A900823C8B /* Main.storyboard in Resources */,
