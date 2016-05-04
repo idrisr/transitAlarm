@@ -43,8 +43,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tcj-bW-Pys">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tcj-bW-Pys">
+                                <rect key="frame" x="0.0" y="65" width="600" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoriteCell" id="1r3-1z-d2h">
@@ -64,8 +64,32 @@
                                     <outlet property="delegate" destination="fnD-jP-WLq" id="bSe-Sf-Nwn"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDJ-a0-eC6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2t-zV-2ME">
+                                        <rect key="frame" x="237" y="22" width="127" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="27"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="Wlc-q1-267"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tcj-bW-Pys" secondAttribute="trailing" id="Yby-jN-Rc7"/>
+                            <constraint firstItem="rDJ-a0-eC6" firstAttribute="leading" secondItem="T8q-xz-xAk" secondAttribute="leading" id="ZYh-Wo-FNa"/>
+                            <constraint firstItem="tcj-bW-Pys" firstAttribute="leading" secondItem="T8q-xz-xAk" secondAttribute="leading" id="dVe-eB-i3n"/>
+                            <constraint firstAttribute="trailing" secondItem="rDJ-a0-eC6" secondAttribute="trailing" id="f1i-S1-r90"/>
+                            <constraint firstItem="zBM-16-LMV" firstAttribute="top" secondItem="tcj-bW-Pys" secondAttribute="bottom" id="mH4-4n-Uww"/>
+                            <constraint firstItem="rDJ-a0-eC6" firstAttribute="top" secondItem="T8q-xz-xAk" secondAttribute="top" id="sU4-Sl-LyM"/>
+                            <constraint firstItem="tcj-bW-Pys" firstAttribute="top" secondItem="rDJ-a0-eC6" secondAttribute="bottom" id="xaq-eH-TTn"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="tcj-bW-Pys" id="AcW-vF-1JL"/>

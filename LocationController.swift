@@ -154,29 +154,7 @@ class LocationController: NSObject,
                 let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
                 firebaseSaveStopList.updateChildValues(transitStopName)
             } else {
-                let ref = Firebase(url: "https://transit-alarm.firebaseio.com")
-                let facebookLogin = FBSDKLoginManager()
-                facebookLogin.logInWithReadPermissions(["email"], handler: {
-                    (facebookResult, facebookError) -> Void in
-                    if facebookError != nil {
-                        print("Facebook login failed. Error \(facebookError)")
-                    } else if facebookResult.isCancelled {
-                        print("Facebook login was cancelled.")
-                    } else {
-                        let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-                        ref.authWithOAuthProvider("facebook", token: accessToken,
-                            withCompletionBlock: { error, authData in
-                                if error != nil {
-                                    print("Login failed. \(error)")
-                                } else {
-                                    print("Logged in! \(authData)")
-                                }
-                                let user = ["provider": authData.provider!, "email":"email"]
-                                DataService.dataService.createFirebaseUser(authData.uid, user: user)
-                                NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
-                        })
-                    }
-                })
+              self.facebookLogin()
             }
 //            let transitStopName: Dictionary<String,String> = [
 //                "transitStop":self.stop!.name!
@@ -189,6 +167,32 @@ class LocationController: NSObject,
         alert.addAction(saveAction)
         let vc = UIApplication.sharedApplication().keyWindow?.rootViewController!
         vc?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func facebookLogin() {
+        let ref = Firebase(url: "https://transit-alarm.firebaseio.com")
+        let facebookLogin = FBSDKLoginManager()
+        facebookLogin.logInWithReadPermissions(["email"], handler: {
+            (facebookResult, facebookError) -> Void in
+            if facebookError != nil {
+                print("Facebook login failed. Error \(facebookError)")
+            } else if facebookResult.isCancelled {
+                print("Facebook login was cancelled.")
+            } else {
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                ref.authWithOAuthProvider("facebook", token: accessToken,
+                    withCompletionBlock: { error, authData in
+                        if error != nil {
+                            print("Login failed. \(error)")
+                        } else {
+                            print("Logged in! \(authData)")
+                        }
+                        let user = ["provider": authData.provider!, "email":"email"]
+                        DataService.dataService.createFirebaseUser(authData.uid, user: user)
+                        NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
+                })
+            }
+        })
     }
     
   

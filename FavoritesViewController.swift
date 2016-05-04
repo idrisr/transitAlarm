@@ -33,8 +33,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
        
         currentUser = dataService.REF_CURRENT_USER
         getTransitStops()
-
-       
+        
         setBarButtonItemOnRight()
     }
     
@@ -65,12 +64,24 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         performSegueWithIdentifier("SkipSegue", sender: nil)
     }
     
-
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(selectedStop)
-        
+        let request = NSFetchRequest.init(entityName: "Stop")
+        do {
+            let result = try self.moc!.executeFetchRequest(request)
+            objectStops = result as! [Stop]
+            for stopName in objectStops {
+                if stopName.name == selectedStop {
+                    print(stopName.name)
+                    self.stopDelegate!.setAlarmForStop(stopName)
+                }
+            }
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+       performSegueWithIdentifier("MapSegue", sender: nil)
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoriteStops.count
     }
@@ -86,23 +97,23 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         performSegueWithIdentifier("SkipSegue", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MapSegue" {
-               let destination = segue.destinationViewController as? MainViewController
-                let request = NSFetchRequest.init(entityName: "Stop")
-                do {
-                    let result = try self.moc!.executeFetchRequest(request)
-                    objectStops = result as! [Stop]
-                    for stopName in objectStops {
-                        if stopName.name == selectedStop {
-                            print(stopName.name)
-                            destination?.stop = stopName
-                        }
-                    }
-                } catch {
-                    let fetchError = error as NSError
-                    print(fetchError)
-                }
-            }
-        }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "MapSegue" {
+//               let destination = segue.destinationViewController as? MainViewController
+//                let request = NSFetchRequest.init(entityName: "Stop")
+//                do {
+//                    let result = try self.moc!.executeFetchRequest(request)
+//                    objectStops = result as! [Stop]
+//                    for stopName in objectStops {
+//                        if stopName.name == selectedStop {
+//                            print(stopName.name)
+//                            destination?.stop = stopName
+//                        }
+//                    }
+//                } catch {
+//                    let fetchError = error as NSError
+//                    print(fetchError)
+//                }
+//            }
+//        }
 }
