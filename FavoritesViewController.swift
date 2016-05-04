@@ -67,6 +67,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let request = NSFetchRequest.init(entityName: "Stop")
+        // goes through all 7000 stops. use predicates instead on stop name
         do {
             let result = try self.moc!.executeFetchRequest(request)
             objectStops = result as! [Stop]
@@ -80,7 +81,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             let fetchError = error as NSError
             print(fetchError)
         }
-       performSegueWithIdentifier("MapSegue", sender: nil)
+        revealViewController().revealToggle(nil)
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,24 +99,4 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     @IBAction func skipButtonSegue(sender: UIButton) {
         performSegueWithIdentifier("SkipSegue", sender: nil)
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "MapSegue" {
-//               let destination = segue.destinationViewController as? MainViewController
-//                let request = NSFetchRequest.init(entityName: "Stop")
-//                do {
-//                    let result = try self.moc!.executeFetchRequest(request)
-//                    objectStops = result as! [Stop]
-//                    for stopName in objectStops {
-//                        if stopName.name == selectedStop {
-//                            print(stopName.name)
-//                            destination?.stop = stopName
-//                        }
-//                    }
-//                } catch {
-//                    let fetchError = error as NSError
-//                    print(fetchError)
-//                }
-//            }
-//        }
 }

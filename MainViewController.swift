@@ -46,10 +46,10 @@ class MainViewController: UIViewController,
         locationController = LocationController(mapView: mapView)
         self.locationController!.mapView = self.mapView
 
-        self.setDelegates()
-
         revealViewController().rearViewRevealWidth = 300
         revealViewController().rightViewRevealWidth = 300
+
+        self.setDelegatesFor(revealViewController())
 
         openFavoritesButton.target = self.revealViewController()
         openFavoritesButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -179,8 +179,8 @@ class MainViewController: UIViewController,
     }
 
     // ugly way to do it. better ways?
-    private func setDelegates() {
-        for vc in (self.parentViewController?.parentViewController?.childViewControllers)! {
+    private func setDelegatesFor(parentViewController: UIViewController) {
+        for vc in parentViewController.childViewControllers {
             if vc is FavoritesViewController {
                 (vc as! FavoritesViewController).stopDelegate = self
             } else if vc is SearchViewController {
