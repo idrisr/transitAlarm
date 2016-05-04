@@ -37,14 +37,19 @@ class MainViewController: UIViewController,
     var didCenterMap = false
     var transitTable = TransitTableController()
     var stopUpdateDelegate: TransitDataStopUpdate?
+    
+    var favoriteStopDelegate: StopFavoriteDelegate?
 
     var minTableViewHeight: CGFloat?
 
     // MARK: view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         locationController = LocationController(mapView: mapView)
         self.locationController!.mapView = self.mapView
+        
+        self.favoriteStopDelegate = locationController
 
         revealViewController().rearViewRevealWidth = 300
         revealViewController().rightViewRevealWidth = 300
