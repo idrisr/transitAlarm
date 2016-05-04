@@ -15,12 +15,14 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     let dataService = DataService()
     var favoriteStops = [String]()
     var currentUser: Firebase!
-    var selectedStop: String!
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var selectedStop: String!
     var moc: NSManagedObjectContext?
   
     var objectStops = [Stop]()
     var stopDelegate : StopDelegate?
+    
+    var userExists = false
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,29 +31,25 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                 
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         moc = appDelegate.managedObjectContext
-       
-        currentUser = dataService.REF_CURRENT_USER
-        getTransitStops()
-        
-        setBarButtonItemOnRight()
+    
     }
     
+    override func viewDidAppear(animated: Bool) {
+        if checkForUser() {
+            getTransitStops()
+        }
+    }
     
-    
-    func setBarButtonItemOnRight() {
-        let btnName = UIButton()
-        btnName.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
-        btnName.addTarget(self, action: #selector(FavoritesViewController.skipPressed), forControlEvents: .TouchUpInside)
-        btnName.setTitle("Skip", forState: UIControlState.Normal)
-        btnName.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-        
-        let rightBarButton = UIBarButtonItem()
-        rightBarButton.customView = btnName
-        self.navigationItem.rightBarButtonItem = rightBarButton
-        self.title = "Favorites"
+    func checkForUser() -> Bool {
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
+            return true
+        } else {
+            return false
+        }
     }
     
     func getTransitStops() {
+        currentUser = dataService.REF_CURRENT_USER
         let ref = Firebase(url:"\(currentUser)/favorites")
         ref.observeEventType(.ChildAdded, withBlock: { snapshot in
             let transitStops = snapshot.value.objectForKey("transitStop") as? String
@@ -61,12 +59,9 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         })
     }
     
-    func skipPressed() {
-        performSegueWithIdentifier("SkipSegue", sender: nil)
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let request = NSFetchRequest.init(entityName: "Stop")
+        self.selectedStop = favoriteStops[indexPath.row]
         // goes through all 7000 stops. use predicates instead on stop name
         do {
             let result = try self.moc!.executeFetchRequest(request)
@@ -92,7 +87,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCell", forIndexPath: indexPath)
         cell.textLabel?.text = favoriteStops[indexPath.row]
         cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 20)
-        selectedStop = cell.textLabel?.text
         return cell
     }
 

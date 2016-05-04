@@ -17,8 +17,7 @@ class DataService {
     private var _REF_USER = Firebase(url: "https://transit-alarm.firebaseio.com/users")
     
     var transitStops = [String]()
-    var userExists = false
-
+    
 
     var REF_BASE: Firebase {
         return _REF_BASE
@@ -43,11 +42,6 @@ class DataService {
         REF_USER.childByAppendingPath(uid).setValue(user)
     }
     
- 
-    
-    
-    
-
 }
 
 
