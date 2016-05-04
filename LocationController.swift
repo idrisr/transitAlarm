@@ -9,6 +9,9 @@
 import CoreLocation
 import MapKit
 import UIKit
+import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 protocol LocationControllerDelegate {
     func stopMonitoringRegion()
@@ -21,7 +24,7 @@ class LocationController: NSObject,
 
     let locationManager = CLLocationManager()
     var mapView: MKMapView
-
+    
     let dataService = DataService()
     let favorites = [String]()
     var stop: Stop?
@@ -143,18 +146,44 @@ class LocationController: NSObject,
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (UIAlertAction) in
-            let transitStopName: Dictionary<String,String> = [
-                "transitStop":self.stop!.name!
-            ]
-            let saveStop = DataService.dataService.REF_CURRENT_USER
-            let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
-            let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
-            firebaseSaveStopList.updateChildValues(transitStopName)
-            //            self.dataService.getTransitStops()
+            if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
+                let transitStopName: Dictionary<String,String> = [
+                    "transitStop":self.stop!.name!
+                ]
+                let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
+                let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
+                firebaseSaveStopList.updateChildValues(transitStopName)
+            } else {
+                let ref = Firebase(url: "https://transit-alarm.firebaseio.com")
+                let facebookLogin = FBSDKLoginManager()
+                facebookLogin.logInWithReadPermissions(["email"], handler: {
+                    (facebookResult, facebookError) -> Void in
+                    if facebookError != nil {
+                        print("Facebook login failed. Error \(facebookError)")
+                    } else if facebookResult.isCancelled {
+                        print("Facebook login was cancelled.")
+                    } else {
+                        let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                        ref.authWithOAuthProvider("facebook", token: accessToken,
+                            withCompletionBlock: { error, authData in
+                                if error != nil {
+                                    print("Login failed. \(error)")
+                                } else {
+                                    print("Logged in! \(authData)")
+                                }
+                                let user = ["provider": authData.provider!, "email":"email"]
+                                DataService.dataService.createFirebaseUser(authData.uid, user: user)
+                                NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
+                        })
+                    }
+                })
+            }
         }
         alert.addAction(action)
         alert.addAction(saveAction)
         let vc = UIApplication.sharedApplication().keyWindow?.rootViewController!
         vc?.presentViewController(alert, animated: true, completion: nil)
     }
+    
+  
 }

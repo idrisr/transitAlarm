@@ -65,6 +65,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="tcj-bW-Pys" id="dbD-eH-C4g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cw9-2I-Te3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -251,6 +254,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XgX-zp-8vd"/>
+        <segue reference="pcq-6x-iB8"/>
     </inferredMetricsTieBreakers>
 </document>

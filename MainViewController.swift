@@ -14,7 +14,7 @@ import UIKit
 class MainViewController: UIViewController {
 
     @IBOutlet weak var mapviewHeightConstraint: NSLayoutConstraint!
-
+    
     let dataService = DataService()
     var stop: Stop?
 

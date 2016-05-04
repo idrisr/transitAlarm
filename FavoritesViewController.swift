@@ -26,15 +26,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         moc = appDelegate.managedObjectContext
         
-        
-        if favoriteStops.count > 0 {
-            currentUser = dataService.REF_CURRENT_USER
-            getTransitStops()
-        }
+        currentUser = dataService.REF_CURRENT_USER
+        getTransitStops()
        
         setBarButtonItemOnRight()
     }
@@ -100,7 +97,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
                             destination?.stop = stopName
                         }
                     }
-                    
                 } catch {
                     let fetchError = error as NSError
                     print(fetchError)
