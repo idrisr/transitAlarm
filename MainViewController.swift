@@ -10,11 +10,13 @@ import CoreLocation
 import MapKit
 import UIKit
 
+protocol StopDelegate {
+    func setAlarmForStop(stop: Stop)
+}
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, StopDelegate, TableSizeUpdateDelegate {
 
-    @IBOutlet weak var mapviewHeightConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     let dataService = DataService()
     var stop: Stop?
 
@@ -27,7 +29,8 @@ class MainViewController: UIViewController {
     var prevTranslation: CGFloat = 0
     var currentLocation = CLLocation()
     var didCenterMap = false
-    var tableDataSource = TableDataSourceDelegate()
+    var transitTable = TransitTableController()
+    var stopUpdateDelegate: TransitDataStopUpdate?
 
     var maxMapHeight: CGFloat?
     var minMapHeight: CGFloat?
@@ -38,9 +41,11 @@ class MainViewController: UIViewController {
         locationController = LocationController(mapView: mapView)
         self.locationController!.mapView = self.mapView
 
+        self.setDelegates()
+
         revealViewController().rearViewRevealWidth = 300
         revealViewController().rightViewRevealWidth = 300
-        
+
         openFavoritesButton.target = self.revealViewController()
         openFavoritesButton.action = #selector(SWRevealViewController.revealToggle(_:))
         
@@ -50,28 +55,36 @@ class MainViewController: UIViewController {
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
         self.mapView.showsPointsOfInterest = false
-        self.mapView.delegate = self.tableDataSource
+        self.mapView.delegate = self.transitTable
 
-        self.tableView.delegate = self.tableDataSource
-        self.tableView.dataSource = self.tableDataSource
-        self.tableDataSource.mapView = self.mapView
-        self.tableDataSource.locationDelegate = locationController
+        self.tableView.delegate = self.transitTable
+        self.tableView.dataSource = self.transitTable
+        self.transitTable.mapView = self.mapView
+        self.transitTable.locationDelegate = locationController
+        self.stopUpdateDelegate = self.transitTable
 
         self.minMapHeight = 50
         self.maxMapHeight = UIScreen.mainScreen().bounds.size.height - minMapHeight!
+    }
+
+    // MARK: StopDelegate
+    func setAlarmForStop(stop: Stop) {
+        self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
     }
 
     // MARK: IBActions
     @IBAction func handlePan(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
             case .Began, .Changed:
+                // if tableview required height totally displayed, dont allow movement
+
                 // get change from last translation
                 let totalTranslation = gesture.translationInView(gesture.view?.superview)
                 let newTranslation = totalTranslation.y - self.prevTranslation
                 let newMapHeight = self.mapView.frame.height + newTranslation
 
                 if newMapHeight > self.minMapHeight && newMapHeight < self.maxMapHeight {
-                    self.mapviewHeightConstraint.constant += newTranslation
+                    self.tableViewHeightConstraint.constant -= newTranslation
                     self.prevTranslation = totalTranslation.y
                 }
 
@@ -81,6 +94,10 @@ class MainViewController: UIViewController {
             case .Possible, .Failed:
                 break
         }
+    }
+
+    func tableViewFullyDisplayed() -> Bool {
+        return false
     }
 
     private func centerMap() {
@@ -95,4 +112,20 @@ class MainViewController: UIViewController {
 
         self.mapView.setRegion(coordinateRegion, animated: false)
     }
+
+    func updateTableSizeFor(height: CGFloat) {
+        
+    }
+
+    // ugly way to do it. better ways?
+    private func setDelegates() {
+        for vc in (self.parentViewController?.parentViewController?.childViewControllers)! {
+            if vc is FavoritesViewController {
+                (vc as! FavoritesViewController).stopDelegate = self
+            } else if vc is SearchViewController {
+                (vc as! SearchViewController).stopDelegate = self
+            }
+        }
+    }
+
 }

@@ -20,8 +20,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     var moc: NSManagedObjectContext?
   
     var objectStops = [Stop]()
+    var stopDelegate : StopDelegate?
 
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {

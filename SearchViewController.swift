@@ -21,15 +21,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
     
     var tableViewStops = [Stop]()
     var filteredTableViewStops = [Stop]()
+
+    var stopDelegate : StopDelegate?
     
     var selectedStop: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         moc = appDelegate.managedObjectContext
-        
         loadAllStops()
     }
     
@@ -37,7 +37,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         if searchBarIsSearching {
             return filteredTableViewStops.count
         } else {
-        return tableViewStops.count
+            return tableViewStops.count
         }
     }
     
