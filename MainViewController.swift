@@ -69,6 +69,19 @@ class MainViewController: UIViewController,
         self.transitTable.locationDelegate = locationController
         self.transitTable.tableSizeDelegate = self
         self.stopUpdateDelegate = self.transitTable
+        navigationController?.hidesBarsOnTap = false
+        navigationController?.hidesBarsOnSwipe = true
+
+        self.title = "Transit Alarm"
+        self.navigationController?.navigationBar.titleTextAttributes
+    }
+
+    override func prefersStatusBarHidden() -> Bool {
+        return navigationController?.navigationBarHidden == true
+    }
+
+    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+        return UIStatusBarAnimation.Slide
     }
 
     override func viewDidAppear(animated: Bool) {
