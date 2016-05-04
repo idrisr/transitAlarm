@@ -55,19 +55,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let searchStop: Stop!
+        let stop: Stop!
+
         if searchBarIsSearching {
-            searchStop = filteredTableViewStops[indexPath.row]
+            stop = filteredTableViewStops[indexPath.row]
         } else {
-            searchStop = tableViewStops[indexPath.row]
+            stop = tableViewStops[indexPath.row]
         }
-        selectedStop = searchStop.name
-        for stopName in tableViewStops {
-            if stopName.name == selectedStop {
-                self.stopDelegate!.setAlarmForStop(stopName)
-                revealViewController().rightRevealToggle(nil)
-            }
-        }
+        self.stopDelegate!.setAlarmForStop(stop)
+        revealViewController().rightRevealToggle(nil)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -100,16 +96,4 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
             print(fetchError)
         }
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "SearchSegue" {
-//            let destination = segue.destinationViewController as? MainViewController
-//            for stopName in tableViewStops {
-//                if stopName.name == selectedStop {
-//                    destination?.stop = stopName
-//                }
-//            }
-//        }
-//    }
-
 }
