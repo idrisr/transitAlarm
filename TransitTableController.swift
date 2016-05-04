@@ -252,6 +252,9 @@ class TransitTableController: NSObject,
         // add new stop
         tableUpdates.rowsToInsert.append(NSIndexPath(forItem: 0, inSection: tableSection.Stop.rawValue))
 
+        tableUpdates.sectionsToInsert = NSIndexSet(indexesInRange: NSMakeRange(tableView.numberOfSections, tableSection.allValues.count - 1))
+
+        self.sections = ["Agency", "Routes", "Stops"]
         self.locationDelegate?.startMonitoringRegionFor(self.stops.first!)
         self.updateTableWith(tableUpdates, tableView: tableView)
     }
@@ -261,8 +264,8 @@ class TransitTableController: NSObject,
     // MARK: private func-y stuff
     private func updateTableWith(tableUpdates: TableUpdates, tableView: UITableView) {
         tableView.beginUpdates()
-        tableView.deleteRowsAtIndexPaths(tableUpdates.rowsToDelete, withRowAnimation: .Fade)
         tableView.insertRowsAtIndexPaths(tableUpdates.rowsToInsert, withRowAnimation: .Fade)
+        tableView.deleteRowsAtIndexPaths(tableUpdates.rowsToDelete, withRowAnimation: .Fade)
         tableView.insertSections(tableUpdates.sectionsToInsert, withRowAnimation: .Fade)
         tableView.deleteSections(tableUpdates.sectionsToDelete, withRowAnimation: .Fade)
         tableView.endUpdates()
