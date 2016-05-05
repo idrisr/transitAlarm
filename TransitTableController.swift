@@ -47,9 +47,9 @@ class TransitTableController: NSObject,
     var routes = [Route]()
     var stops = [Stop]()
     var sections = ["Agency"]
-    var mapView: MKMapView?
     var locationDelegate: LocationControllerDelegate?
     var tableSizeDelegate: TableSizeDelegate?
+    var transitMapDelegate: TransitMapDelegate?
 
     override init() {
         super.init()
@@ -57,48 +57,6 @@ class TransitTableController: NSObject,
         self.agencys = self.getAgencys()!
     }
 
-    // MARK: MKMapViewDelegate
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is RouteLine {
-            let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = (overlay as! RouteLine).color
-            renderer.lineWidth = 8.0
-            return renderer
-        } else if overlay is StopMapOverlay {
-            let stopOverlay = overlay as! StopMapOverlay
-            return StopOverlayRenderer(overlay: stopOverlay, color: stopOverlay.color)
-        } else {
-            let circleRenderer = MKCircleRenderer(overlay: overlay)
-            circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
-            circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
-            return circleRenderer
-        }
-    }
-
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        } else if annotation.title! == self.stops[0].name {
-            let pin = MKAnnotationView()
-            pin.image = UIImage.init(named: "MapIcon")
-            pin.canShowCallout = true
-            pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-            return pin
-        } else if annotation is MKPointAnnotation {
-            let flag = MKAnnotationView()
-            flag.image = UIImage(named: "checkeredFlag")
-            return flag
-        } else {
-            return nil
-        }
-    }
-
-    func mapView(mapView: MKMapView,
-                 didAddAnnotationViews views: [MKAnnotationView]) {
-        for av in views {
-            print(av)
-        }
-    }
 
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -198,11 +156,17 @@ class TransitTableController: NSObject,
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         var tableUpdates = TableUpdates()
 
+        // what a mess. mapping. table data updates. zooming. too much. state pattern?
         // this chunk can probably be reduced to one line of code
         switch tableSection(rawValue: indexPath.section)! {
             case .Agency:
                 if self.agencys.count == 1 {
+                    self.locationDelegate?.stopMonitoringRegion()
                     tableUpdates = agencyOneToMany(indexPath)
+                    self.transitMapDelegate?.clearMap()
+
+                    // center map on route center
+
                 } else {
                     tableUpdates = agencyManyToOne(indexPath)
                 }
@@ -210,15 +174,20 @@ class TransitTableController: NSObject,
             case .Route:
                 if self.routes.count == 1 {
                     tableUpdates = routeOneToMany(indexPath)
+                    self.transitMapDelegate?.clearMap()
                 } else {
                     tableUpdates = routeManyToOne(indexPath)
+                    self.transitMapDelegate?.drawRoute(self.routes.first! as Route)
+//                    self.mapView?.setCenterCoordinate(self.routes.first!.routeCenter, animated: true)
                 }
 
             case .Stop:
                 if self.stops.count == 1 {
                     tableUpdates = stopOneToMany(indexPath)
+                    self.transitMapDelegate?.removeStopPin()
                 } else {
                     tableUpdates = stopManyToOne(indexPath)
+                    self.transitMapDelegate?.drawStop(self.stops.first!)
                 }
             }
 
@@ -271,6 +240,7 @@ class TransitTableController: NSObject,
         self.updateTableWith(tableUpdates, tableView: tableView)
     }
 
+
     // MARK: private func-y stuff
     private func updateTableWith(tableUpdates: TableUpdates, tableView: UITableView) {
         tableView.beginUpdates()
@@ -286,8 +256,6 @@ class TransitTableController: NSObject,
         var tableUpdates = TableUpdates()
 
         // take route off of map
-        self.removeRouteFromMap()
-        self.locationDelegate?.stopMonitoringRegion()
 
         let existingAgency = self.agencys.first
         self.agencys = self.getAgencys()!
@@ -347,8 +315,6 @@ class TransitTableController: NSObject,
         }
         self.routes.removeObjectsInArray(routesToRemove)
 
-        // put route on to map
-        self.drawRouteOnMap()
         return tableUpdates
     }
 
@@ -356,7 +322,7 @@ class TransitTableController: NSObject,
         var tableUpdates = TableUpdates()
 
         // take route off of map
-        self.removeRouteFromMap()
+        self.transitMapDelegate?.clearMap()
         self.locationDelegate?.stopMonitoringRegion()
 
         self.sections = ["Agency", "Routes"]
@@ -432,42 +398,6 @@ class TransitTableController: NSObject,
         self.locationDelegate?.startMonitoringRegionFor(self.stops.first!)
 
         return tableUpdates
-    }
-
-    private func drawRouteOnMap() {
-        self.mapView?.addOverlays( self.routes.map{ ($0.shapeLine) } )
-        self.addStopOverlays()
-    }
-
-    private func removeRouteFromMap() {
-        for overlay in self.mapView!.overlays {
-            if overlay is RouteLine  {
-                self.mapView?.removeOverlay(overlay)
-            }
-        }
-        self.removeStopOverlays()
-        self.removeStopAnnotations()
-    }
-
-    private func addStopOverlays() {
-        let route = self.routes.first
-        self.mapView!.addOverlays(route!.stopOverlays)
-    }
-
-    private func removeStopOverlays() {
-        for overlay in self.mapView!.overlays {
-            if overlay is StopMapOverlay {
-                self.mapView?.removeOverlay(overlay)
-            }
-        }
-    }
-
-    private func removeStopAnnotations() {
-        for annotation in self.mapView!.annotations {
-            if annotation is StopAnnotation {
-                self.mapView?.removeAnnotation(annotation)
-            }
-        }
     }
 
     // MARK: private funcs core data stuff

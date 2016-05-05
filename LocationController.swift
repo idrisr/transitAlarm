@@ -28,7 +28,7 @@ class LocationController: NSObject,
     CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
-    var mapView: MKMapView
+    var transitMapDelegate: TransitMapDelegate?
     
     let dataService = DataService()
     let favorites = [String]()
@@ -38,8 +38,7 @@ class LocationController: NSObject,
     var currentLocation = CLLocation()
     var didCenterMap = false
 
-    init(mapView: MKMapView) {
-        self.mapView = mapView
+    override init() {
         super.init()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
@@ -56,9 +55,9 @@ class LocationController: NSObject,
 
 
     // MARK: CLLocationManagerDelegate
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        mapView.showsUserLocation = (status == .AuthorizedAlways)
-    }
+//    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+//        mapView.showsUserLocation = (status == .AuthorizedAlways)
+//    }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.first!
@@ -90,7 +89,7 @@ class LocationController: NSObject,
                 }
             }
         }
-        self.removeGeoFenceOverlay()
+        self.transitMapDelegate?.removeStopPin()
     }
 
     func startMonitoringRegionFor(stop:Stop) {
@@ -104,33 +103,9 @@ class LocationController: NSObject,
         }
         let region = regionWithAnnotation()
         locationManager.startMonitoringForRegion(region)
-        self.dropStopPin()
-    }
-
-    func removeGeoFenceOverlay() {
-        for overlay in self.mapView.overlays {
-            if overlay is MKCircle {
-                self.mapView.removeOverlay(overlay)
-            }
-        }
-        self.remoteStopPin()
     }
 
     // MARK: private location+map stuff
-    private func dropStopPin() {
-        let stopAnnotation = MKPointAnnotation()
-        stopAnnotation.coordinate = stop!.location2D
-        self.mapView.addAnnotation(stopAnnotation)
-    }
-
-    private func remoteStopPin() {
-        for annotation in self.mapView.annotations {
-            if annotation is MKPointAnnotation {
-                self.mapView.removeAnnotation(annotation)
-            }
-        }
-    }
-
     private func regionWithAnnotation() -> CLCircularRegion {
         let geoLocation = stop!.location2D
         let radius: CLLocationDistance!
@@ -138,14 +113,14 @@ class LocationController: NSObject,
         let regionTitle = stop?.name
         let region = CLCircularRegion(center: geoLocation, radius: radius, identifier: regionTitle!)
         let overlay = MKCircle(centerCoordinate: geoLocation, radius: radius)
-        mapView.addOverlay(overlay)
+        self.transitMapDelegate?.addOverlay(overlay)
         return region
     }
 
     private func centerMapOnUser() {
         let distanceMeters: Double = 5000
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, distanceMeters, distanceMeters)
-        self.mapView.setRegion(coordinateRegion, animated: true)
+        self.transitMapDelegate?.setRegion(coordinateRegion, animated: true)
     }
 
     private func handleRegionEvent(region: CLRegion!) {

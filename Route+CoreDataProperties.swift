@@ -89,4 +89,10 @@ extension Route {
             return UIColor.blueColor()
         }
     }
+
+    var routeCenter: CLLocationCoordinate2D {
+        let stopSort = stops!.sort( { Int(($0 as! Stop).sequence!) > Int(($1 as! Stop).sequence!) } )
+        let midStop = stopSort[stopSort.count / 2] as! Stop
+        return midStop.location2D
+    }
 }
