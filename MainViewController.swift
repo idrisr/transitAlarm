@@ -20,8 +20,7 @@ protocol TransitMapDelegate {
     func clearMap()
     func removeStopPin()
 
-    func centerOnRoute()
-    func centerOnStop()
+    func setCenterOnCoordinate(coordinate:CLLocationCoordinate2D, animated: Bool)
 
     func addOverlay(overlay: MKOverlay)
     func setRegion(coordinateRegion: MKCoordinateRegion, animated: Bool)
@@ -210,6 +209,10 @@ class MainViewController: UIViewController,
     }
 
     // MARK: TransitMapDelegate
+    func setCenterOnCoordinate(coordinate:CLLocationCoordinate2D, animated: Bool) {
+        self.mapView.setCenterCoordinate(coordinate, animated: animated)
+    }
+
     func drawRoute(route: Route) {
         self.mapView.addOverlay(route.shapeLine)
         self.mapView.addOverlays(route.stopOverlays)

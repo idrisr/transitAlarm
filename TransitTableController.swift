@@ -164,9 +164,6 @@ class TransitTableController: NSObject,
                     self.locationDelegate?.stopMonitoringRegion()
                     tableUpdates = agencyOneToMany(indexPath)
                     self.transitMapDelegate?.clearMap()
-
-                    // center map on route center
-
                 } else {
                     tableUpdates = agencyManyToOne(indexPath)
                 }
@@ -178,7 +175,8 @@ class TransitTableController: NSObject,
                 } else {
                     tableUpdates = routeManyToOne(indexPath)
                     self.transitMapDelegate?.drawRoute(self.routes.first! as Route)
-//                    self.mapView?.setCenterCoordinate(self.routes.first!.routeCenter, animated: true)
+                    // center on route center
+                    self.transitMapDelegate?.setCenterOnCoordinate(self.routes.first!.routeCenter, animated: true)
                 }
 
             case .Stop:
@@ -188,6 +186,7 @@ class TransitTableController: NSObject,
                 } else {
                     tableUpdates = stopManyToOne(indexPath)
                     self.transitMapDelegate?.drawStop(self.stops.first!)
+                    // center on stop
                 }
             }
 
