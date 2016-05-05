@@ -142,6 +142,8 @@ class MainViewController: UIViewController,
         self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
         self.clearMap()
         self.drawStop(stop)
+        // should happen via delegate
+        locationController.startMonitoringRegionFor(stop)
         self.setCenterOnCoordinate(stop.location2D, animated: true)
     }
 
