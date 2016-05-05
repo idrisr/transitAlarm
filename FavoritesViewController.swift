@@ -10,8 +10,9 @@ import UIKit
 import Firebase
 import CoreData
 
-class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
+
+    @IBOutlet weak var navBar: UINavigationBar!
     let dataService = DataService()
     var stopIDs = [String]()
     var currentUser: Firebase!
@@ -31,6 +32,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         moc = appDelegate.managedObjectContext
+        self.navBar.delegate = self
+    }
+
+    // MARK: UINavigationBarDelegate
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .TopAttached
     }
     
     override func viewDidAppear(animated: Bool) {
