@@ -40,6 +40,7 @@
 		686346E71CD7EA2600A938C8 /* AgencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346E61CD7EA2600A938C8 /* AgencyTableViewCell.swift */; };
 		686346E91CD7EA3D00A938C8 /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346E81CD7EA3D00A938C8 /* RouteTableViewCell.swift */; };
 		686346EB1CD7EA4900A938C8 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346EA1CD7EA4900A938C8 /* StopTableViewCell.swift */; };
+		686346F31CDB840300A938C8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 686346F21CDB840300A938C8 /* Launch Screen.storyboard */; };
 		6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8A1CC534FA003F6483 /* AppDelegate.swift */; };
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
 		688FAC8A1CD5A449009CB665 /* TransitTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688FAC891CD5A449009CB665 /* TransitTableController.swift */; };
@@ -84,6 +85,7 @@
 		686346E61CD7EA2600A938C8 /* AgencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyTableViewCell.swift; sourceTree = "<group>"; };
 		686346E81CD7EA3D00A938C8 /* RouteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
 		686346EA1CD7EA4900A938C8 /* StopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
+		686346F21CDB840300A938C8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		6879AF871CC534FA003F6483 /* TransitAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TransitAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TransitAlarm/AppDelegate.swift; sourceTree = "<group>"; };
 		6879AF911CC534FA003F6483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = TransitAlarm/Assets.xcassets; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		6879AFA91CC701EA003F6483 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				686346F21CDB840300A938C8 /* Launch Screen.storyboard */,
 				6879AF911CC534FA003F6483 /* Assets.xcassets */,
 				686346E61CD7EA2600A938C8 /* AgencyTableViewCell.swift */,
 				686346E81CD7EA3D00A938C8 /* RouteTableViewCell.swift */,
@@ -297,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				686346F31CDB840300A938C8 /* Launch Screen.storyboard in Resources */,
 				6827125F1CD3FDAA007DFD09 /* SingleViewCoreData.sqlite in Resources */,
 				686346E51CD7CFA000A938C8 /* red_small.gpx in Resources */,
 				6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */,
