@@ -66,6 +66,7 @@
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iji-Mr-Iug">
                                 <rect key="frame" x="0.0" y="20" width="330" height="44"/>
+                                <color key="tintColor" red="0.23529411759999999" green="0.45882352939999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" red="0.23529411759999999" green="0.45882352939999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
@@ -115,7 +116,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lsm-7g-Hpe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-215" y="358"/>
+            <point key="canvasLocation" x="-127" y="217"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="cho-IV-gVf">
