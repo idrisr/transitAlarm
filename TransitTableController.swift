@@ -84,8 +84,19 @@ class TransitTableController: NSObject,
             pin.canShowCallout = true
             pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             return pin
+        } else if annotation is MKPointAnnotation {
+            let flag = MKAnnotationView()
+            flag.image = UIImage(named: "checkeredFlag")
+            return flag
         } else {
             return nil
+        }
+    }
+
+    func mapView(mapView: MKMapView,
+                 didAddAnnotationViews views: [MKAnnotationView]) {
+        for av in views {
+            print(av)
         }
     }
 

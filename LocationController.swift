@@ -104,6 +104,7 @@ class LocationController: NSObject,
         }
         let region = regionWithAnnotation()
         locationManager.startMonitoringForRegion(region)
+        self.dropStopPin()
     }
 
     func removeGeoFenceOverlay() {
@@ -112,13 +113,28 @@ class LocationController: NSObject,
                 self.mapView.removeOverlay(overlay)
             }
         }
+        self.remoteStopPin()
     }
 
     // MARK: private location+map stuff
+    private func dropStopPin() {
+        let stopAnnotation = MKPointAnnotation()
+        stopAnnotation.coordinate = stop!.location2D
+        self.mapView.addAnnotation(stopAnnotation)
+    }
+
+    private func remoteStopPin() {
+        for annotation in self.mapView.annotations {
+            if annotation is MKPointAnnotation {
+                self.mapView.removeAnnotation(annotation)
+            }
+        }
+    }
+
     private func regionWithAnnotation() -> CLCircularRegion {
         let geoLocation = stop!.location2D
         let radius: CLLocationDistance!
-        radius = 500
+        radius = 300
         let regionTitle = stop?.name
         let region = CLCircularRegion(center: geoLocation, radius: radius, identifier: regionTitle!)
         let overlay = MKCircle(centerCoordinate: geoLocation, radius: radius)
