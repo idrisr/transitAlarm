@@ -43,6 +43,7 @@ class TransitTableController: NSObject,
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
 
+    var stopAlertPopupDelegate :StopAlertPopupDelegate?
     var agencys = [Agency]()
     var routes = [Route]()
     var stops = [Stop]()
@@ -155,6 +156,7 @@ class TransitTableController: NSObject,
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         var tableUpdates = TableUpdates()
+        var didSetStop = false
 
         // what a mess. mapping. table data updates. zooming. too much. state pattern?
         // this chunk can probably be reduced to one line of code
@@ -187,10 +189,19 @@ class TransitTableController: NSObject,
                     tableUpdates = stopManyToOne(indexPath)
                     self.transitMapDelegate?.drawStop(self.stops.first!)
                     self.transitMapDelegate?.setCenterOnCoordinate(self.stops.first!.location2D, animated: true)
+
+                    // should call the same method the delegates are to set the stop
+                    // UG.LY.
+                    didSetStop = true
+                    self.updateTableWith(tableUpdates, tableView: tableView)
+                    let stop = self.stops.first!
+                    self.setAlertFor(stop, tableView: tableView)
                 }
             }
 
-        self.updateTableWith(tableUpdates, tableView: tableView)
+        if !didSetStop {
+            self.updateTableWith(tableUpdates, tableView: tableView)
+        }
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -203,6 +214,8 @@ class TransitTableController: NSObject,
 
     // MARK: TransitDataStopUpdate
     func setAlertFor(stop: Stop, tableView: UITableView) {
+        self.stopAlertPopupDelegate?.showAlert(stop)
+
         var tableUpdates = TableUpdates()
 
         // remove all agencys

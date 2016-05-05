@@ -30,9 +30,14 @@ protocol TableSizeDelegate {
     func adjustTableSize()
 }
 
+protocol StopAlertPopupDelegate {
+    func showAlert(stop: Stop)
+}
+
 class MainViewController: UIViewController,
                           StopDelegate,
                           MKMapViewDelegate,
+                          StopAlertPopupDelegate,
                           TableSizeDelegate,
                           TransitMapDelegate {
 
@@ -84,6 +89,7 @@ class MainViewController: UIViewController,
         self.transitTable.locationDelegate = locationController
         self.transitTable.tableSizeDelegate = self
         self.transitTable.transitMapDelegate = self
+        self.transitTable.stopAlertPopupDelegate = self
 
         self.stopUpdateDelegate = self.transitTable
         navigationController?.hidesBarsOnTap = false
@@ -135,6 +141,16 @@ class MainViewController: UIViewController,
     }
 
     func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+    }
+
+    // MARK: StopAlertPopupDelegate
+    func showAlert(stop: Stop) {
+        let alert = UIAlertController(title: "yo", message: "yo", preferredStyle: .Alert)
+        self.presentViewController(alert, animated: true, completion: nil)
+
+        UIView.animateWithDuration(3.0) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 
     // MARK: StopDelegate
