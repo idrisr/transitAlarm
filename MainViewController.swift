@@ -142,6 +142,7 @@ class MainViewController: UIViewController,
         self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
         self.clearMap()
         self.drawStop(stop)
+        self.setCenterOnCoordinate(stop.location2D, animated: true)
     }
 
     // MARK: IBActions
@@ -210,7 +211,11 @@ class MainViewController: UIViewController,
 
     // MARK: TransitMapDelegate
     func setCenterOnCoordinate(coordinate:CLLocationCoordinate2D, animated: Bool) {
-        self.mapView.setCenterCoordinate(coordinate, animated: animated)
+        UIView.animateWithDuration(1.0) {
+            self.mapView.setCenterCoordinate(coordinate, animated: animated)
+            // force layout inside animation block
+            self.view.layoutIfNeeded()
+        }
     }
 
     func drawRoute(route: Route) {

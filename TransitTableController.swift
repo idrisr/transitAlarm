@@ -186,7 +186,7 @@ class TransitTableController: NSObject,
                 } else {
                     tableUpdates = stopManyToOne(indexPath)
                     self.transitMapDelegate?.drawStop(self.stops.first!)
-                    // center on stop
+                    self.transitMapDelegate?.setCenterOnCoordinate(self.stops.first!.location2D, animated: true)
                 }
             }
 
