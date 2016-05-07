@@ -63,9 +63,6 @@ class MapController: NSObject, MKMapViewDelegate, MapDelegate {
         }
     }
 
-    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
-    }
-
     // MARK: MapDelegate
     func setCenterOnCoordinate(coordinate:CLLocationCoordinate2D, animated: Bool) {
         UIView.animateWithDuration(1.0) {
@@ -146,18 +143,4 @@ class MapController: NSObject, MKMapViewDelegate, MapDelegate {
             }
         }
     }
-
-    // FIXME: is this used???
-//    private func centerMap() {
-//        let latitudeDistance = abs(self.stop!.getLatitude() - self.currentLocation.coordinate.latitude).degreesToMeters()
-//        let longitudeDistance = abs(self.stop!.getLongitude() - self.currentLocation.coordinate.longitude).degreesToMeters()
-//
-//        let averageLatitude = (self.stop!.getLatitude() + self.currentLocation.coordinate.latitude) / 2
-//        let averageLongitude = (self.stop!.getLongitude() + self.currentLocation.coordinate.longitude) / 2
-//
-//        let averageLocation = CLLocationCoordinate2D(latitude: averageLatitude, longitude: averageLongitude)
-//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(averageLocation, latitudeDistance * 1.1, longitudeDistance * 1.1)
-//
-//        self.mapView.setRegion(coordinateRegion, animated: false)
-//    }
 }
