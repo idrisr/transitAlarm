@@ -39,6 +39,7 @@
 		6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8A1CC534FA003F6483 /* AppDelegate.swift */; };
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
 		688FAC8A1CD5A449009CB665 /* TransitTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688FAC891CD5A449009CB665 /* TransitTableController.swift */; };
+		68DEF1A21CDEB0ED002FF584 /* GeoFence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687EB27E1CDEAAB000252B4F /* GeoFence.swift */; };
 		BF7A6E1DD50199FA43AD4029 /* Pods_TransitAlarm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1F438AF36F8B192181B97F /* Pods_TransitAlarm.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		6879AF8A1CC534FA003F6483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6879AF911CC534FA003F6483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6879AF961CC534FA003F6483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		687EB27E1CDEAAB000252B4F /* GeoFence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFence.swift; sourceTree = "<group>"; };
 		688FAC891CD5A449009CB665 /* TransitTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitTableController.swift; sourceTree = "<group>"; };
 		ED5957CB7DFB6C78C26E900D /* Pods-TransitAlarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,15 +140,15 @@
 		6879AF7E1CC534FA003F6483 = {
 			isa = PBXGroup;
 			children = (
+				68A32BAF1CD051C80015E7EE /* model */,
 				6879AF9C1CC53A5F003F6483 /* Controller */,
+				6879AFA91CC701EA003F6483 /* view */,
 				18489A65B60CAD40C67F1E2B /* Frameworks */,
 				88185E17FD44657094D50B86 /* Pods */,
 				6879AF881CC534FA003F6483 /* Products */,
 				258362A31CC7D2D0003E592D /* Services */,
 				259AE0051CD6F80500E18FC8 /* Support */,
 				682D9CC51CD2429000A54C4E /* gpxfiles */,
-				68A32BAF1CD051C80015E7EE /* model */,
-				6879AFA91CC701EA003F6483 /* view */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,8 +178,8 @@
 		6879AFA91CC701EA003F6483 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				686346E61CD7EA2600A938C8 /* AgencyTableViewCell.swift */,
 				6879AF911CC534FA003F6483 /* Assets.xcassets */,
+				686346E61CD7EA2600A938C8 /* AgencyTableViewCell.swift */,
 				686346F21CDB840300A938C8 /* Launch Screen.storyboard */,
 				683DB40E1CD275A900823C8B /* Main.storyboard */,
 				686346DE1CD6C20200A938C8 /* RouteLine.swift */,
@@ -193,6 +195,7 @@
 		68A32BAF1CD051C80015E7EE /* model */ = {
 			isa = PBXGroup;
 			children = (
+				687EB27E1CDEAAB000252B4F /* GeoFence.swift */,
 				6800E2591CD3F9B80002549B /* Agency+CoreDataProperties.swift */,
 				6800E25A1CD3F9B80002549B /* Agency.swift */,
 				68422DBE1CD11B9D00677CA3 /* Extensions.swift */,
@@ -345,6 +348,7 @@
 				6800E2611CD3F9B80002549B /* Agency+CoreDataProperties.swift in Sources */,
 				259AE0091CD6F8CC00E18FC8 /* SWRevealViewController.m in Sources */,
 				6800E25F1CD3F9B80002549B /* Shape+CoreDataProperties.swift in Sources */,
+				68DEF1A21CDEB0ED002FF584 /* GeoFence.swift in Sources */,
 				68422DC11CD1AD6400677CA3 /* StopOverlayRenderer.swift in Sources */,
 				686346EB1CD7EA4900A938C8 /* StopTableViewCell.swift in Sources */,
 				682712651CD431DD007DFD09 /* enums.swift in Sources */,

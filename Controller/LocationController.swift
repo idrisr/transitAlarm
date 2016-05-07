@@ -7,7 +7,6 @@
 //
 
 import CoreLocation
-import MapKit
 import UIKit
 
 protocol LocationControllerDelegate {
@@ -36,7 +35,6 @@ class LocationController: NSObject,
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        print("\(unsafeAddressOf(locationManager)))")
     }
     
     func saveFavoriteFor(stop: Stop) {
@@ -48,7 +46,7 @@ class LocationController: NSObject,
         currentLocation = locations.first!
 
         if !self.didCenterMap {
-           // self.centerMapOnUser() // FIXME: send to mapdelegate
+            self.mapDelegate?.setCenterOnCoordinate(self.currentLocation.coordinate, animated: true)
             self.didCenterMap  = !self.didCenterMap
         }
     }
@@ -85,24 +83,15 @@ class LocationController: NSObject,
         }
         if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
            showAlert("Error", message: "Location always on not enabled, transit stop notification will not be sent")
+           return
         }
-        let region = regionWithAnnotation()
-        locationManager.startMonitoringForRegion(region)
+
+        let geoFence = GeoFence(stop: stop)
+        locationManager.startMonitoringForRegion(geoFence.region)
+        self.mapDelegate?.addOverlay(geoFence.overlay)
     }
 
     // MARK: private location+map stuff
-    // FIXME: refactor and move to Map Controller
-    private func regionWithAnnotation() -> CLCircularRegion {
-        let geoLocation = stop!.location2D
-        let radius: CLLocationDistance!
-        radius = 300
-        let regionTitle = stop?.name
-        let region = CLCircularRegion(center: geoLocation, radius: radius, identifier: regionTitle!)
-        let overlay = MKCircle(centerCoordinate: geoLocation, radius: radius)
-        self.mapDelegate?.addOverlay(overlay)
-        return region
-    }
-
     private func handleRegionEvent(region: CLRegion!) {
         // FIXME: get simulator warning: 
     // 2016-05-07 14:54:33.405 TransitAlarm[8625:34597312] Warning: Attempt to present <UIAlertController: 0x7fbbaa6b2880>  on <SWRevealViewController: 0x7fbba4864a00> which is already presenting <UIAlertController: 0x7fbbaa3e10f0>
