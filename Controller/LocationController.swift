@@ -29,21 +29,26 @@ class LocationController: NSObject,
     var currentLocation = CLLocation()
     var didCenterMap = false
 
+    static let sharedInstance = LocationController()
+
     override init() {
         super.init()
         locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        print("\(unsafeAddressOf(locationManager)))")
     }
     
     func saveFavoriteFor(stop: Stop) {
         // save to NSUserDefaults
     }
 
+    // MARK: CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.first!
 
         if !self.didCenterMap {
-//            self.centerMapOnUser() // FIXME: send to mapdelegate
+           // self.centerMapOnUser() // FIXME: send to mapdelegate
             self.didCenterMap  = !self.didCenterMap
         }
     }
@@ -86,6 +91,7 @@ class LocationController: NSObject,
     }
 
     // MARK: private location+map stuff
+    // FIXME: refactor and move to Map Controller
     private func regionWithAnnotation() -> CLCircularRegion {
         let geoLocation = stop!.location2D
         let radius: CLLocationDistance!
@@ -98,7 +104,10 @@ class LocationController: NSObject,
     }
 
     private func handleRegionEvent(region: CLRegion!) {
-        print("Transit stop approaching!")
+        // FIXME: get simulator warning: 
+    // 2016-05-07 14:54:33.405 TransitAlarm[8625:34597312] Warning: Attempt to present <UIAlertController: 0x7fbbaa6b2880>  on <SWRevealViewController: 0x7fbba4864a00> which is already presenting <UIAlertController: 0x7fbbaa3e10f0>
+        // 2016-05-07 14:54:38.461 TransitAlarm[8625:34597312] Attempting to load the view of a view controller while it is deallocating is not allowed and may result in undefined behavior (<UIAlertController: 0x7fbbaa6b2880>)
+
         if UIApplication.sharedApplication().applicationState == .Active {
             showAlertWithSaveOption(region.identifier, message: "Your stop is approaching, would you like to save stop for future use? If you choose 'save' you will be prompted to login via Facebook so that you may save stops across multiple devices.")
         } else {

@@ -11,17 +11,17 @@ import CoreLocation
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let locationManager = CLLocationManager()
     var window: UIWindow?
     let model = "transit"
     let db = "SingleViewCoreData"
+    let locationController = LocationController.sharedInstance
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
+
+        // FIXME: make me less confusing
+        locationController.locationManager.requestAlwaysAuthorization()
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil))
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         return true

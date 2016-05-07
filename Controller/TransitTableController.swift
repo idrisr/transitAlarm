@@ -6,7 +6,6 @@
 //  Copyright © 2016 id. All rights reserved.
 //
 
-import MapKit
 import UIKit
 import CoreData
 
@@ -34,7 +33,6 @@ struct TableUpdates {
 }
 
 class TransitTableController: NSObject,
-                              MKMapViewDelegate,
                               TransitDataStopUpdate,
                               UIGestureRecognizerDelegate,
                               UITableViewDataSource,
