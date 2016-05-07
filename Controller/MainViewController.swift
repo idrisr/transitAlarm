@@ -14,18 +14,6 @@ protocol StopDelegate {
     func setAlarmForStop(stop: Stop)
 }
 
-protocol TransitMapDelegate {
-    func drawRoute(route: Route) // draws routes, no destination set
-    func drawStop(stop: Stop)    // sets destination
-    func clearMap()
-    func removeStopPin()
-
-    func setCenterOnCoordinate(coordinate:CLLocationCoordinate2D, animated: Bool)
-
-    func addOverlay(overlay: MKOverlay)
-    func setRegion(coordinateRegion: MKCoordinateRegion, animated: Bool)
-}
-
 protocol TableSizeDelegate {
     func adjustTableSize()
 }
@@ -35,63 +23,59 @@ protocol StopAlertPopupDelegate {
 }
 
 class MainViewController: UIViewController,
-                          StopDelegate,
-                          MKMapViewDelegate,
                           StopAlertPopupDelegate,
-                          TableSizeDelegate,
-                          TransitMapDelegate {
+                          StopDelegate,
+                          TableSizeDelegate {
 
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
-    let dataService = DataService()
-    var stop: Stop?
-
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var openFavoritesButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
 
     var locationController = LocationController()
-    var prevTranslation: CGFloat = 0
-    var currentLocation = CLLocation()
-    var didCenterMap = false
     var transitTable = TransitTableController()
-    var stopUpdateDelegate: TransitDataStopUpdate?
-    var favoriteStopDelegate: StopFavoriteDelegate?
+    var mapController :MapController?
+
+    var currentLocation = CLLocation() // FIXME: why not in location controller?
+
+    var prevTranslation: CGFloat = 0
     var minTableViewHeight: CGFloat?
+    var didCenterMap = false // FIXME: why not in mapcontroller
+
+    var stopUpdateDelegate: TransitDataStopUpdate?
+    var mapDelegate: MapDelegate?
+
 
     // MARK: view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.locationController.transitMapDelegate = self
-        self.favoriteStopDelegate = locationController
+
+        mapController                  = MapController(mapView: mapView)
+        mapDelegate                    = mapController
+        transitTable.mapDelegate       = mapController
+        locationController.mapDelegate = mapController
+        mapView.delegate               = mapController
 
         revealViewController().rearViewRevealWidth = 300
         revealViewController().rightViewRevealWidth = 300
 
-        self.setDelegatesFor(revealViewController())
+        setDelegatesFor(revealViewController())
 
-        openFavoritesButton.target = self.revealViewController()
+        openFavoritesButton.target = revealViewController()
         openFavoritesButton.action = #selector(SWRevealViewController.revealToggle(_:))
 
-        searchButton.target = self.revealViewController()
+        searchButton.target = revealViewController()
         searchButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
 
-        self.mapView.showsUserLocation = true
-        self.mapView.showsBuildings = false
-        self.mapView.showsPointsOfInterest = false
-        self.mapView.delegate = self
-        self.mapView.userTrackingMode = .FollowWithHeading
+        tableView.delegate = transitTable
+        tableView.dataSource = transitTable
 
-        self.tableView.delegate = self.transitTable
-        self.tableView.dataSource = self.transitTable
+        transitTable.locationDelegate = locationController
+        transitTable.tableSizeDelegate = self
+        transitTable.stopAlertPopupDelegate = self
 
-        self.transitTable.locationDelegate = locationController
-        self.transitTable.tableSizeDelegate = self
-        self.transitTable.transitMapDelegate = self
-        self.transitTable.stopAlertPopupDelegate = self
-
-        self.stopUpdateDelegate = self.transitTable
+        stopUpdateDelegate = self.transitTable
         navigationController?.hidesBarsOnTap = false
         navigationController?.hidesBarsOnSwipe = true
 
@@ -110,39 +94,6 @@ class MainViewController: UIViewController,
         self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
     }
 
-    // MARK: MKMapViewDelegate
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is RouteLine {
-            let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = (overlay as! RouteLine).color
-            renderer.lineWidth = 8.0
-            return renderer
-        } else if overlay is StopMapOverlay {
-            let stopOverlay = overlay as! StopMapOverlay
-            return StopOverlayRenderer(overlay: stopOverlay, color: stopOverlay.color)
-        } else {
-            let circleRenderer = MKCircleRenderer(overlay: overlay)
-            circleRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
-            circleRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
-            return circleRenderer
-        }
-    }
-
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        } else if annotation is MKPointAnnotation {
-            let flag = MKAnnotationView()
-            flag.image = UIImage(named: "checkeredFlag")
-            return flag
-        } else {
-            return nil
-        }
-    }
-
-    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
-    }
-
     // MARK: StopAlertPopupDelegate
     func showAlert(stop: Stop) {
         let alert = UIAlertController(title: "yo", message: "yo", preferredStyle: .Alert)
@@ -156,11 +107,11 @@ class MainViewController: UIViewController,
     // MARK: StopDelegate
     func setAlarmForStop(stop: Stop) {
         self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
-        self.clearMap()
-        self.drawStop(stop)
+        self.mapDelegate!.clearMap()
+        self.mapDelegate!.drawStop(stop)
         // should happen via delegate
         locationController.startMonitoringRegionFor(stop)
-        self.setCenterOnCoordinate(stop.location2D, animated: true)
+        self.mapDelegate!.setCenterOnCoordinate(stop.location2D, animated: true)
     }
 
     // MARK: IBActions
@@ -225,107 +176,6 @@ class MainViewController: UIViewController,
             // force layout inside animation block
             self.view.layoutIfNeeded()
         }
-    }
-
-    // MARK: TransitMapDelegate
-    func setCenterOnCoordinate(coordinate:CLLocationCoordinate2D, animated: Bool) {
-        UIView.animateWithDuration(1.0) {
-            self.mapView.setCenterCoordinate(coordinate, animated: animated)
-            // force layout inside animation block
-            self.view.layoutIfNeeded()
-        }
-    }
-
-    func drawRoute(route: Route) {
-        self.mapView.addOverlay(route.shapeLine)
-        self.mapView.addOverlays(route.stopOverlays)
-    }
-
-    func drawStop(stop: Stop) {
-        let route = stop.route!
-        self.drawRoute(route)
-        self.mapView.addOverlay(route.shapeLine)
-        self.mapView.addOverlays(route.stopOverlays)
-        self.addStopPin(stop)
-    }
-
-    func clearMap() {
-        removeRouteFromMap()
-        removeStopOverlays()
-        removeStopAnnotations()
-        removeStopPin()
-    }
-
-    func removeStopPin() {
-        for annotation in self.mapView.annotations {
-            if annotation is MKPointAnnotation {
-                self.mapView.removeAnnotation(annotation)
-            }
-        }
-        for overlay in self.mapView.overlays {
-            if overlay is MKCircle {
-                self.mapView.removeOverlay(overlay)
-            }
-        }
-    }
-
-    func addOverlay(overlay: MKOverlay) {
-        self.mapView.addOverlay(overlay)
-    }
-
-    func setRegion(coordinateRegion: MKCoordinateRegion, animated: Bool) {
-        self.mapView.setRegion(coordinateRegion, animated: animated)
-    }
-
-    func centerOnUser() {}
-    func centerOnRoute(){}
-    func centerOnStop() {}
-
-    // MARK: map helpers
-    private func addStopPin(stop: Stop) {
-        let stopAnnotation = MKPointAnnotation()
-        stopAnnotation.coordinate = stop.location2D
-        self.mapView.addAnnotation(stopAnnotation)
-    }
-
-    private func removeRouteFromMap() {
-        for overlay in self.mapView!.overlays {
-            if overlay is RouteLine  {
-                self.mapView?.removeOverlay(overlay)
-            }
-        }
-        self.removeStopOverlays()
-        self.removeStopAnnotations()
-    }
-
-    private func removeStopOverlays() {
-        for overlay in self.mapView!.overlays {
-            if overlay is StopMapOverlay {
-                self.mapView?.removeOverlay(overlay)
-            }
-        }
-    }
-
-    private func removeStopAnnotations() {
-        for annotation in self.mapView!.annotations {
-            if annotation is StopAnnotation {
-                self.mapView?.removeAnnotation(annotation)
-            }
-        }
-    }
-
-    // is this used???
-    private func centerMap() {
-        let latitudeDistance = abs(self.stop!.getLatitude() - self.currentLocation.coordinate.latitude).degreesToMeters()
-        let longitudeDistance = abs(self.stop!.getLongitude() - self.currentLocation.coordinate.longitude).degreesToMeters()
-
-        let averageLatitude = (self.stop!.getLatitude() + self.currentLocation.coordinate.latitude) / 2
-        let averageLongitude = (self.stop!.getLongitude() + self.currentLocation.coordinate.longitude) / 2
-
-        let averageLocation = CLLocationCoordinate2D(latitude: averageLatitude, longitude: averageLongitude)
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(averageLocation, latitudeDistance * 1.1, longitudeDistance * 1.1)
-
-        self.mapView.setRegion(coordinateRegion, animated: false)
     }
 
     // MARK: private helper funcs to manage table view size

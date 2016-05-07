@@ -7,15 +7,12 @@
 //
 
 import UIKit
-import Firebase
 import CoreData
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
 
     @IBOutlet weak var navBar: UINavigationBar!
-    let dataService = DataService()
     var stopIDs = [String]()
-    var currentUser: Firebase!
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var selectedStop: String!
     var moc: NSManagedObjectContext?
@@ -35,11 +32,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         self.navBar.delegate = self
     }
 
-    // MARK: UINavigationBarDelegate
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return .TopAttached
-    }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if checkForUser() {
@@ -47,22 +40,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func checkForUser() -> Bool {
-        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     func getTransitStops() {
-        currentUser = dataService.REF_CURRENT_USER
-        let ref = Firebase(url:"\(currentUser)/favorites")
-        ref.observeEventType(.ChildAdded, withBlock: { snapshot in
-            let stopID = snapshot.value.objectForKey("transitStop") as? String
-            self.stopIDs.append(stopID!)
-            self.loadStopData()
-        })
+        // do from NSUserDefaults
     }
 
     func loadStopData() {
@@ -78,6 +57,11 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             print(fetchError)
         }
         self.tableView.reloadData()
+    }
+
+    // MARK: UINavigationBarDelegate
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .TopAttached
     }
 
     // MARK: UITableViewDataSource
@@ -99,4 +83,14 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 20)
         return cell
     }
+
+    // MARK: private func stuff
+    private func checkForUser() -> Bool {
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+
 }

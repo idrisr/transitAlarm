@@ -50,7 +50,7 @@ class TransitTableController: NSObject,
     var sections = ["Agency"]
     var locationDelegate: LocationControllerDelegate?
     var tableSizeDelegate: TableSizeDelegate?
-    var transitMapDelegate: TransitMapDelegate?
+    var mapDelegate: MapDelegate?
 
     override init() {
         super.init()
@@ -165,7 +165,7 @@ class TransitTableController: NSObject,
                 if self.agencys.count == 1 {
                     self.locationDelegate?.stopMonitoringRegion()
                     tableUpdates = agencyOneToMany(indexPath)
-                    self.transitMapDelegate?.clearMap()
+                    self.mapDelegate?.clearMap()
                 } else {
                     tableUpdates = agencyManyToOne(indexPath)
                 }
@@ -173,22 +173,22 @@ class TransitTableController: NSObject,
             case .Route:
                 if self.routes.count == 1 {
                     tableUpdates = routeOneToMany(indexPath)
-                    self.transitMapDelegate?.clearMap()
+                    self.mapDelegate?.clearMap()
                 } else {
                     tableUpdates = routeManyToOne(indexPath)
-                    self.transitMapDelegate?.drawRoute(self.routes.first! as Route)
+                    self.mapDelegate?.drawRoute(self.routes.first! as Route)
                     // center on route center
-                    self.transitMapDelegate?.setCenterOnCoordinate(self.routes.first!.routeCenter, animated: true)
+                    self.mapDelegate?.setCenterOnCoordinate(self.routes.first!.routeCenter, animated: true)
                 }
 
             case .Stop:
                 if self.stops.count == 1 {
                     tableUpdates = stopOneToMany(indexPath)
-                    self.transitMapDelegate?.removeStopPin()
+                    self.mapDelegate?.removeStopPin()
                 } else {
                     tableUpdates = stopManyToOne(indexPath)
-                    self.transitMapDelegate?.drawStop(self.stops.first!)
-                    self.transitMapDelegate?.setCenterOnCoordinate(self.stops.first!.location2D, animated: true)
+                    self.mapDelegate?.drawStop(self.stops.first!)
+                    self.mapDelegate?.setCenterOnCoordinate(self.stops.first!.location2D, animated: true)
 
                     // should call the same method the delegates are to set the stop
                     // UG.LY.
@@ -334,7 +334,7 @@ class TransitTableController: NSObject,
         var tableUpdates = TableUpdates()
 
         // take route off of map
-        self.transitMapDelegate?.clearMap()
+        self.mapDelegate?.clearMap()
         self.locationDelegate?.stopMonitoringRegion()
 
         self.sections = ["Agency", "Routes"]

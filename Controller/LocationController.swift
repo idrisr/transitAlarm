@@ -9,28 +9,19 @@
 import CoreLocation
 import MapKit
 import UIKit
-import Firebase
-import FBSDKCoreKit
-import FBSDKLoginKit
 
 protocol LocationControllerDelegate {
     func stopMonitoringRegion()
     func startMonitoringRegionFor(stop: Stop)
 }
 
-protocol StopFavoriteDelegate {
-    func saveFavoriteFor(stop: Stop)
-}
-
 class LocationController: NSObject,
     LocationControllerDelegate,
-    StopFavoriteDelegate,
     CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
-    var transitMapDelegate: TransitMapDelegate?
+    var mapDelegate: MapDelegate?
     
-    let dataService = DataService()
     let favorites = [String]()
     var stop: Stop?
 
@@ -45,25 +36,14 @@ class LocationController: NSObject,
     }
     
     func saveFavoriteFor(stop: Stop) {
-        let transitStopName: Dictionary<String,String> = [
-            "transitStop": stop.id!
-        ]
-        let firebaseSaveStop = DataService.dataService.REF_CURRENT_USER.childByAppendingPath("favorites")
-        let firebaseSaveStopList = firebaseSaveStop.childByAutoId()
-        firebaseSaveStopList.updateChildValues(transitStopName)
+        // save to NSUserDefaults
     }
-
-
-    // MARK: CLLocationManagerDelegate
-//    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-//        mapView.showsUserLocation = (status == .AuthorizedAlways)
-//    }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.first!
 
         if !self.didCenterMap {
-            self.centerMapOnUser()
+//            self.centerMapOnUser() // FIXME: send to mapdelegate
             self.didCenterMap  = !self.didCenterMap
         }
     }
@@ -89,7 +69,7 @@ class LocationController: NSObject,
                 }
             }
         }
-        self.transitMapDelegate?.removeStopPin()
+        self.mapDelegate?.removeStopPin()
     }
 
     func startMonitoringRegionFor(stop:Stop) {
@@ -113,14 +93,8 @@ class LocationController: NSObject,
         let regionTitle = stop?.name
         let region = CLCircularRegion(center: geoLocation, radius: radius, identifier: regionTitle!)
         let overlay = MKCircle(centerCoordinate: geoLocation, radius: radius)
-        self.transitMapDelegate?.addOverlay(overlay)
+        self.mapDelegate?.addOverlay(overlay)
         return region
-    }
-
-    private func centerMapOnUser() {
-        let distanceMeters: Double = 5000
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, distanceMeters, distanceMeters)
-        self.transitMapDelegate?.setRegion(coordinateRegion, animated: true)
     }
 
     private func handleRegionEvent(region: CLRegion!) {
