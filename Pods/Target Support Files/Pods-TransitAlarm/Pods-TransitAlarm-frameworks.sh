@@ -84,20 +84,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-TransitAlarm/ASPolylineView.framework"
-  install_framework "Pods-TransitAlarm/Bolts.framework"
-  install_framework "Pods-TransitAlarm/FBSDKCoreKit.framework"
-  install_framework "Pods-TransitAlarm/FBSDKLoginKit.framework"
-  install_framework "Pods-TransitAlarm/FBSDKShareKit.framework"
-  install_framework "Pods-TransitAlarm/Firebase.framework"
   install_framework "Pods-TransitAlarm/SwiftHEXColors.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-TransitAlarm/ASPolylineView.framework"
-  install_framework "Pods-TransitAlarm/Bolts.framework"
-  install_framework "Pods-TransitAlarm/FBSDKCoreKit.framework"
-  install_framework "Pods-TransitAlarm/FBSDKLoginKit.framework"
-  install_framework "Pods-TransitAlarm/FBSDKShareKit.framework"
-  install_framework "Pods-TransitAlarm/Firebase.framework"
   install_framework "Pods-TransitAlarm/SwiftHEXColors.framework"
 fi
