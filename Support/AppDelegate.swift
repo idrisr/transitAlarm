@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // FIXME: make me less confusing
         locationController.locationManager.requestAlwaysAuthorization()
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil))
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
         return true
     }
 

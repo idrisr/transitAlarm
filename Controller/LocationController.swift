@@ -20,6 +20,7 @@ class LocationController: NSObject,
 
     let locationManager = CLLocationManager()
     var mapDelegate: MapDelegate?
+    var alertDelegate: AlertDelegate?
     
     let favorites = [String]()
     var stop: Stop?
@@ -44,7 +45,6 @@ class LocationController: NSObject,
     // MARK: CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.first!
-
         if !self.didCenterMap {
             self.mapDelegate?.setCenterOnCoordinate(self.currentLocation.coordinate, animated: true)
             self.didCenterMap  = !self.didCenterMap
@@ -57,11 +57,7 @@ class LocationController: NSObject,
         }
     }
 
-    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if region is CLCircularRegion {
-            handleRegionEventExit(region)
-        }
-    }
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) { }
 
     // MARK: LocationControllerDelegate
     func stopMonitoringRegion() {
@@ -93,12 +89,9 @@ class LocationController: NSObject,
 
     // MARK: private location+map stuff
     private func handleRegionEvent(region: CLRegion!) {
-        // FIXME: get simulator warning: 
-    // 2016-05-07 14:54:33.405 TransitAlarm[8625:34597312] Warning: Attempt to present <UIAlertController: 0x7fbbaa6b2880>  on <SWRevealViewController: 0x7fbba4864a00> which is already presenting <UIAlertController: 0x7fbbaa3e10f0>
-        // 2016-05-07 14:54:38.461 TransitAlarm[8625:34597312] Attempting to load the view of a view controller while it is deallocating is not allowed and may result in undefined behavior (<UIAlertController: 0x7fbbaa6b2880>)
-
         if UIApplication.sharedApplication().applicationState == .Active {
-            showAlertWithSaveOption(region.identifier, message: "Your stop is approaching, would you like to save stop for future use? If you choose 'save' you will be prompted to login via Facebook so that you may save stops across multiple devices.")
+            // FIXME: needs sound here too
+            showAlertWithSaveOption(region.identifier, message: "Your stop is approaching!")
         } else {
             // Otherwise present a local notification
             let notification = UILocalNotification()
@@ -108,32 +101,18 @@ class LocationController: NSObject,
         }
     }
 
-    private func handleRegionEventExit(region: CLRegion!) {
-        print("You have missed your stop.")
-    }
-
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
-        let vc = UIApplication.sharedApplication().keyWindow?.rootViewController!
-        vc?.presentViewController(alert, animated: true, completion: nil)
+        self.alertDelegate?.presentAlert(alert)
     }
 
     private func showAlertWithSaveOption(title:String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
-        let saveAction = UIAlertAction(title: "Save", style: .Default) { (UIAlertAction) in
-            if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
-//              self.saveFavoriteFor(self.stop!)
-            } else {
-//              self.facebookLogin()
-            }
-        }
+        let action = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
         alert.addAction(action)
-        alert.addAction(saveAction)
-        let vc = UIApplication.sharedApplication().keyWindow?.rootViewController!
         stopMonitoringRegion()
-        vc?.presentViewController(alert, animated: true, completion: nil)
+        self.alertDelegate?.presentAlert(alert)
     }
 }

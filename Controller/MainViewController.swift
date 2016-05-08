@@ -22,7 +22,12 @@ protocol StopAlertPopupDelegate {
     func showAlert(stop: Stop)
 }
 
+protocol AlertDelegate {
+    func presentAlert(alert: UIAlertController)
+}
+
 class MainViewController: UIViewController,
+                          AlertDelegate,
                           StopAlertPopupDelegate,
                           StopDelegate,
                           TableSizeDelegate {
@@ -75,6 +80,8 @@ class MainViewController: UIViewController,
         transitTable.tableSizeDelegate = self
         transitTable.stopAlertPopupDelegate = self
 
+        locationController.alertDelegate = self
+
         stopUpdateDelegate = self.transitTable
         navigationController?.hidesBarsOnTap = false
         navigationController?.hidesBarsOnSwipe = true
@@ -94,6 +101,11 @@ class MainViewController: UIViewController,
         self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
     }
 
+    // MARK: AlertDelegate
+    func presentAlert(alert: UIAlertController) {
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     // MARK: StopAlertPopupDelegate
     func showAlert(stop: Stop) {
         let alert = UIAlertController(title: "yo", message: "yo", preferredStyle: .Alert)
@@ -109,8 +121,7 @@ class MainViewController: UIViewController,
         self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
         self.mapDelegate!.clearMap()
         self.mapDelegate!.drawStop(stop)
-        // should happen via delegate
-        locationController.startMonitoringRegionFor(stop)
+        locationController.startMonitoringRegionFor(stop) // FIXME: should happen via delegate??
         self.mapDelegate!.setCenterOnCoordinate(stop.location2D, animated: true)
     }
 
