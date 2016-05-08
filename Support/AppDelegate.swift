@@ -20,10 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let locationController = LocationController.sharedInstance
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        //Play sound
-        let systemSoundID: SystemSoundID = 1016
-        // to play sound
-        AudioServicesPlaySystemSound (systemSoundID)
+        AudioServicesPlaySystemSound(1016) // whistle
+        AudioServicesPlaySystemSound(4095) // vibrate
+
         print("\(notification.alertBody)")
     }
 
