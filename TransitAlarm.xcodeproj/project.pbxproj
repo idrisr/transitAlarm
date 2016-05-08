@@ -20,7 +20,6 @@
 		6800E2621CD3F9B80002549B /* Agency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800E25A1CD3F9B80002549B /* Agency.swift */; };
 		6800E2631CD3F9B80002549B /* Route+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800E25B1CD3F9B80002549B /* Route+CoreDataProperties.swift */; };
 		6800E2641CD3F9B80002549B /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800E25C1CD3F9B80002549B /* Route.swift */; };
-		6827125F1CD3FDAA007DFD09 /* SingleViewCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6827125C1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite */; };
 		682712651CD431DD007DFD09 /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682712641CD431DD007DFD09 /* enums.swift */; };
 		683DB40F1CD275A900823C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 683DB40E1CD275A900823C8B /* Main.storyboard */; };
 		683DB4111CD2771B00823C8B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DB4101CD2771B00823C8B /* MainViewController.swift */; };
@@ -40,6 +39,7 @@
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
 		688FAC8A1CD5A449009CB665 /* TransitTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688FAC891CD5A449009CB665 /* TransitTableController.swift */; };
 		68DEF1A21CDEB0ED002FF584 /* GeoFence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687EB27E1CDEAAB000252B4F /* GeoFence.swift */; };
+		68DEF1A41CDEEA04002FF584 /* chicago.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 68DEF1A31CDEE98A002FF584 /* chicago.sqlite */; };
 		BF7A6E1DD50199FA43AD4029 /* Pods_TransitAlarm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1F438AF36F8B192181B97F /* Pods_TransitAlarm.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +61,6 @@
 		6800E25A1CD3F9B80002549B /* Agency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agency.swift; sourceTree = "<group>"; };
 		6800E25B1CD3F9B80002549B /* Route+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Route+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6800E25C1CD3F9B80002549B /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
-		6827125C1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = SingleViewCoreData.sqlite; path = ../model/SingleViewCoreData.sqlite; sourceTree = "<group>"; };
 		682712641CD431DD007DFD09 /* enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
 		682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 223W_Erie.gpx; sourceTree = "<group>"; };
 		683DB40E1CD275A900823C8B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		6879AF961CC534FA003F6483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		687EB27E1CDEAAB000252B4F /* GeoFence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFence.swift; sourceTree = "<group>"; };
 		688FAC891CD5A449009CB665 /* TransitTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitTableController.swift; sourceTree = "<group>"; };
+		68DEF1A31CDEE98A002FF584 /* chicago.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = chicago.sqlite; sourceTree = "<group>"; };
 		ED5957CB7DFB6C78C26E900D /* Pods-TransitAlarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +120,6 @@
 		259AE0051CD6F80500E18FC8 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				6827125C1CD3FB6A007DFD09 /* SingleViewCoreData.sqlite */,
 				6879AF8A1CC534FA003F6483 /* AppDelegate.swift */,
 				6879AF961CC534FA003F6483 /* Info.plist */,
 				259AE0061CD6F8BC00E18FC8 /* TransitAlarm-Bridging-Header.h */,
@@ -195,6 +194,7 @@
 		68A32BAF1CD051C80015E7EE /* model */ = {
 			isa = PBXGroup;
 			children = (
+				68DEF1A31CDEE98A002FF584 /* chicago.sqlite */,
 				687EB27E1CDEAAB000252B4F /* GeoFence.swift */,
 				6800E2591CD3F9B80002549B /* Agency+CoreDataProperties.swift */,
 				6800E25A1CD3F9B80002549B /* Agency.swift */,
@@ -281,8 +281,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68DEF1A41CDEEA04002FF584 /* chicago.sqlite in Resources */,
 				686346F31CDB840300A938C8 /* Launch Screen.storyboard in Resources */,
-				6827125F1CD3FDAA007DFD09 /* SingleViewCoreData.sqlite in Resources */,
 				6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */,
 				683DB40F1CD275A900823C8B /* Main.storyboard in Resources */,
 			);
