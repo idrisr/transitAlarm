@@ -6,9 +6,10 @@
 //  Copyright © 2016 id. All rights reserved.
 //
 
-import UIKit
-import CoreLocation
+import AVFoundation
 import CoreData
+import CoreLocation
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let model = "transit"
     let db = "SingleViewCoreData"
     let locationController = LocationController.sharedInstance
+
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        //Play sound
+        let systemSoundID: SystemSoundID = 1016
+        // to play sound
+        AudioServicesPlaySystemSound (systemSoundID)
+        print("\(notification.alertBody)")
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 

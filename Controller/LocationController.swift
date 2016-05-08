@@ -89,30 +89,16 @@ class LocationController: NSObject,
 
     // MARK: private location+map stuff
     private func handleRegionEvent(region: CLRegion!) {
-        if UIApplication.sharedApplication().applicationState == .Active {
-            // FIXME: needs sound here too
-            showAlertWithSaveOption(region.identifier, message: "Your stop is approaching!")
-        } else {
-            // Otherwise present a local notification
-            let notification = UILocalNotification()
-            notification.alertBody = "Approaching \(region.identifier)"
-            notification.soundName = "Default";
-            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-        }
+        let notification = UILocalNotification()
+        notification.alertBody = "Approaching \(region.identifier)"
+        notification.soundName = "Default";
+        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
 
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alert.addAction(action)
-        self.alertDelegate?.presentAlert(alert)
-    }
-
-    private func showAlertWithSaveOption(title:String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-        alert.addAction(action)
-        stopMonitoringRegion()
         self.alertDelegate?.presentAlert(alert)
     }
 }
