@@ -14,6 +14,10 @@ protocol LocationControllerDelegate {
     func startMonitoringRegionFor(stop: Stop)
 }
 
+// FIXME:
+// Simulator warning: 
+// Trying to start MapKit location updates without prompting for location authorization. Must call -[CLLocationManager requestWhenInUseAuthorization] or -[CLLocationManager requestAlwaysAuthorization] first.
+
 class LocationController: NSObject,
     LocationControllerDelegate,
     CLLocationManagerDelegate {
