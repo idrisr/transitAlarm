@@ -40,6 +40,7 @@
 		688FAC8A1CD5A449009CB665 /* TransitTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688FAC891CD5A449009CB665 /* TransitTableController.swift */; };
 		68DEF1A21CDEB0ED002FF584 /* GeoFence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687EB27E1CDEAAB000252B4F /* GeoFence.swift */; };
 		68DEF1A41CDEEA04002FF584 /* chicago.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 68DEF1A31CDEE98A002FF584 /* chicago.sqlite */; };
+		68DEF1F81CE11A98002FF584 /* alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 68DEF1F71CE11A98002FF584 /* alarm.wav */; };
 		BF7A6E1DD50199FA43AD4029 /* Pods_TransitAlarm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1F438AF36F8B192181B97F /* Pods_TransitAlarm.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		687EB27E1CDEAAB000252B4F /* GeoFence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFence.swift; sourceTree = "<group>"; };
 		688FAC891CD5A449009CB665 /* TransitTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitTableController.swift; sourceTree = "<group>"; };
 		68DEF1A31CDEE98A002FF584 /* chicago.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = chicago.sqlite; sourceTree = "<group>"; };
+		68DEF1F71CE11A98002FF584 /* alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alarm.wav; sourceTree = "<group>"; };
 		ED5957CB7DFB6C78C26E900D /* Pods-TransitAlarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +179,7 @@
 		6879AFA91CC701EA003F6483 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				68DEF1F71CE11A98002FF584 /* alarm.wav */,
 				6879AF911CC534FA003F6483 /* Assets.xcassets */,
 				686346E61CD7EA2600A938C8 /* AgencyTableViewCell.swift */,
 				686346F21CDB840300A938C8 /* Launch Screen.storyboard */,
@@ -281,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68DEF1F81CE11A98002FF584 /* alarm.wav in Resources */,
 				68DEF1A41CDEEA04002FF584 /* chicago.sqlite in Resources */,
 				686346F31CDB840300A938C8 /* Launch Screen.storyboard in Resources */,
 				6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */,
