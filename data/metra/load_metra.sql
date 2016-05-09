@@ -1,103 +1,130 @@
-DROP DATABASE IF EXISTS metra;
--- CREATE DATABASE IF NOT EXISTS metra;
-CREATE DATABASE metra
-	DEFAULT CHARACTER SET utf8
-	DEFAULT COLLATE utf8_general_ci;
-
-USE metra
-
-DROP TABLE IF EXISTS agency;
--- agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang
-CREATE TABLE `agency` (
-    agency_id VARCHAR(255) NOT NULL PRIMARY KEY,
-    agency_name VARCHAR(255),
-    agency_url VARCHAR(255),
-    agency_lang VARCHAR(50),
-    agency_timezone VARCHAR(50)
+DROP TABLE IF EXISTS agency cascade;
+CREATE TABLE agency (
+    id       VARCHAR(255) NOT NULL PRIMARY KEY,
+    name     VARCHAR(255),
+    url      VARCHAR(255),
+    timezone VARCHAR(255),
+    lang     VARCHAR(255),
+    phone VARCHAR(255),
+    agency_fare_url VARCHAR(255)
 );
+COPY agency FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/agency.txt' 
+WITH CSV HEADER DELIMITER ',';
 
-DROP TABLE IF EXISTS shapes;
--- shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence
-CREATE TABLE `shapes` (
-	shape_id VARCHAR(255) NOT NULL,
-	shape_pt_lat DECIMAL(8,6),
-	shape_pt_lon DECIMAL(8,6),
-	shape_pt_sequence INTEGER,
-    shape_dist_traveled DECIMAL(8,6),
-    primary key (shape_id, shape_pt_lat, shape_pt_lon)
+DROP TABLE IF EXISTS route cascade;
+CREATE TABLE route (
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
+    short_name VARCHAR(255),
+    long_name VARCHAR(255),
+    description VARCHAR(255),
+    agency_id VARCHAR(255) REFERENCES agency (id),
+    type INTEGER,
+    color VARCHAR(255),
+    text_color VARCHAR(255),
+    url VARCHAR(255)
 );
+COPY route FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/routes.txt' 
+WITH CSV HEADER DELIMITER ',';
 
-DROP TABLE IF EXISTS routes;
--- route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color
-CREATE TABLE `routes` (
-    route_id VARCHAR(255) NOT NULL PRIMARY KEY,
-	route_short_name VARCHAR(50),
-	route_long_name VARCHAR(255),
-    route_desc VARCHAR(255),
-    agency_id VARCHAR(255),
-	route_type INT(2),
-	route_color VARCHAR(20),
-	route_text_color VARCHAR(20),
-	route_url VARCHAR(255),
-	--  FOREIGN KEY (agency_id) REFERENCES agency(agency_id),
-	--  KEY `agency_id` (agency_id),
-	KEY `route_type` (route_type)
+DROP TABLE IF EXISTS fare_attribute cascade;
+CREATE TABLE fare_attribute (
+    id INTEGER NOT NULL PRIMARY KEY,
+    price DOUBLE PRECISION,
+    currency_type VARCHAR(255),
+    payment_method INTEGER,
+    transfers INTEGER,
+    transfer_duration INTEGER
 );
+COPY fare_attribute FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/fare_attributes.txt' 
+WITH CSV HEADER DELIMITER ',';
 
-DROP TABLE IF EXISTS trips;
--- trip_id,service_id,route_id,trip_headsign,direction_id,shape_id
-CREATE TABLE `trips` (
-route_id VARCHAR(255),
-service_id VARCHAR(255),
-trip_id VARCHAR(255) NOT NULL PRIMARY KEY,
-trip_headsign VARCHAR(255),
-block_id VARCHAR(255),
-shape_id VARCHAR(255),
-FOREIGN KEY (route_id) REFERENCES routes(route_id),
-KEY `route_id` (route_id),
-KEY `service_id` (service_id)
+DROP TABLE IF EXISTS fare_rule cascade;
+CREATE TABLE fare_rule (
+    fare_id INTEGER REFERENCES fare_attribute (id),
+    route_id VARCHAR(255)  REFERENCES route (id),
+    origin_id VARCHAR(255),
+    destination_id VARCHAR(255),
+    contains_id VARCHAR(255)
 );
+COPY fare_rule FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/fare_rules.txt' 
+WITH CSV HEADER DELIMITER ',';
 
-DROP TABLE IF EXISTS stops;
--- stop_id,stop_code,stop_name,stop_lat,stop_lon,location_type,parent_station,wheelchair_boarding
-CREATE TABLE `stops` (
-    stop_id VARCHAR(255) NOT NULL PRIMARY KEY,
-	stop_code VARCHAR(255),
-	stop_name VARCHAR(255),
-	stop_lat DECIMAL(8,6),
-	stop_lon DECIMAL(8,6),
-	location_type INT(2),
-	parent_station VARCHAR(255),
-	wheelchair_boarding INT(2),
-	stop_desc VARCHAR(255),
-	zone_id VARCHAR(255)
+DROP TABLE IF EXISTS trip cascade;
+CREATE TABLE trip (
+    route_id VARCHAR(255) REFERENCES route (id),
+    service_id VARCHAR(255),
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
+    headsign VARCHAR(255),
+    block_id VARCHAR(255),
+    shape_id VARCHAR(255),
+    direction_id VARCHAR(255)
 );
+COPY trip FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/trips.txt' 
+WITH CSV HEADER DELIMITER ',';
 
-
-DROP TABLE IF EXISTS stop_times;
--- trip_id,stop_id,stop_sequence,arrival_time,departure_time,stop_headsign,pickup_type,drop_off_type,shape_dist_traveled
-CREATE TABLE `stop_times` (
-    trip_id          VARCHAR(255),
-    arrival_time     VARCHAR(8),
-    departure_time   VARCHAR(8),
-    stop_id          VARCHAR(255),
-    stop_sequence    SMALLINT UNSIGNED,
-    pickup_type      INT(2),
-    drop_off_type    INT(2),
-
-	FOREIGN KEY (trip_id) REFERENCES trips(trip_id),
-	FOREIGN KEY (stop_id) REFERENCES stops(stop_id),
-	KEY `trip_id` (trip_id),
-	KEY `stop_id` (stop_id),
-	KEY `stop_sequence` (stop_sequence),
-	KEY `pickup_type` (pickup_type),
-	KEY `drop_off_type` (drop_off_type)
+DROP TABLE IF EXISTS shape cascade;
+CREATE TABLE shape (
+    id VARCHAR(255) NOT NULL,
+    latitude double precision NOT NULL,
+    longitude double precision NOT NULL,
+    sequence INTEGER,
+    primary key (id, latitude, longitude, sequence)
 );
+COPY shape FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/shapes.txt' 
+WITH CSV HEADER DELIMITER ',';
 
+DROP TABLE IF EXISTS calendar cascade;
+CREATE TABLE calendar (
+    service_id VARCHAR(255) NOT NULL PRIMARY KEY,
+    monday boolean,
+    tuesday boolean,
+    wednesday boolean,
+    thursday boolean,
+    friday boolean,
+    saturday boolean,
+    sunday boolean,
+    start_date VARCHAR(255),
+    end_date VARCHAR(255)
+);
+COPY calendar FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/calendar.txt'
+WITH CSV HEADER DELIMITER ',';
 
-LOAD DATA LOCAL INFILE 'tmp/agency.txt' INTO TABLE agency                 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-LOAD DATA LOCAL INFILE 'tmp/shapes.txt' INTO TABLE shapes                 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-LOAD DATA LOCAL INFILE 'tmp/routes.txt' INTO TABLE routes                 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-LOAD DATA LOCAL INFILE 'tmp/stops.txt' INTO TABLE stops                   FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-LOAD DATA LOCAL INFILE 'tmp/trips.txt' INTO TABLE trips                   FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-LOAD DATA LOCAL INFILE 'tmp/stop_times.txt' INTO TABLE stop_times         FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+DROP TABLE IF EXISTS calendar_date cascade;
+CREATE TABLE calendar_date (
+    service_id VARCHAR(255),
+    date VARCHAR(255),
+    exception_type INTEGER
+);
+COPY calendar_date FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/calendar_dates.txt'
+WITH CSV HEADER DELIMITER ',';
+
+DROP TABLE IF EXISTS stop cascade;
+CREATE TABLE stop (
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
+    name VARCHAR(255),
+    description VARCHAR(255),
+    latitude double precision,
+    longitude double precision, 
+    zone_id VARCHAR(255),
+    url VARCHAR(255),
+    wheelchair_boarding BOOLEAN
+);
+COPY stop FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/stops.txt' 
+WITH CSV HEADER DELIMITER ',';
+
+DROP TABLE IF EXISTS stop_time cascade;
+CREATE TABLE stop_time (
+    trip_id          VARCHAR(255) REFERENCES trip (id),
+    arrival_time     VARCHAR(255),
+    departure_time   VARCHAR(255),
+    stop_id          VARCHAR(255) REFERENCES stop (id),
+    stop_sequence    INTEGER,
+    pickup_type      INTEGER,
+    drop_off_type    INTEGER,
+    center_boarding  BOOLEAN,
+    south_boarding   BOOLEAN,
+    bikes_allowed    BOOLEAN,
+    notice           BOOLEAN
+);
+COPY stop_time FROM '/Users/id/Dropbox/learning/mobile_makers/TransitAlarm/data/metra/csv/stop_times.txt' 
+WITH CSV HEADER DELIMITER ',';

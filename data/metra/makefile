@@ -1,24 +1,15 @@
-all: clean unzip removequotes removespaces loaddb createRouteTrip updateStopname
+all: clean unzip removequotes removespaces loaddb
 
-TMPDIR=tmp
+TMPDIR=csv
 gtfs?=metra.zip
-STOPS=$(TMPDIR)/stops.txt
 MAKEDB_SQL=load_metra.sql
-SQLGETBADLATLON=get_bad_lat_lon.sql
-BADLATLON=$(TMPDIR)/bad_lat_lon
-DBPASSWORD=password
-DBNAME=metra
-SQLUPDATEBADLATLON=$(TMPDIR)/update_bad_lat_lon.sql
-UPDATESTOPNAME_SQL=update_stop_name.sql
-COMMON_DIR=../common
-
-CREATEROUTETRIP_SQL=$(COMMON_DIR)/longestTripForRoute.sql
-ADDAGENCYID_SQL=$(COMMON_DIR)/addAgencyIDtoRoute.sql
 
 # MD5 (metra_20130308_0424.zip) = 8fdaf34ffa53c6f5c6846ce3b1f27437
 # http://www.gtfs-data-exchange.com/agency/metra/
 # http://gtfs.s3.amazonaws.com/metra_20130308_0424.zip
 # Sat Apr 23 17:22:53 CDT 2016
+
+files = agency calendar calendar_dates fare_attributes fare_rules routes shapes stops stop_times trips
 
 help:
 	# @echo "see https://developers.google.com/transit/gtfs/reference"
@@ -28,15 +19,12 @@ help:
 
 unzip:
 	@mkdir -p $(TMPDIR)
-	@unzip $(gtfs) trips.txt      -d $(TMPDIR)
-	@unzip $(gtfs) stop_times.txt -d $(TMPDIR)
-	@unzip $(gtfs) stops.txt      -d $(TMPDIR)
-	@unzip $(gtfs) shapes.txt     -d $(TMPDIR)
-	@unzip $(gtfs) routes.txt     -d $(TMPDIR)
-	@unzip $(gtfs) agency.txt     -d $(TMPDIR)
+	$(foreach file, $(files),\
+		unzip $(gtfs) $(file).txt -d $(TMPDIR); \
+	)
 	dos2unix $(TMPDIR)/*
 
-removequotes:
+removequotes: $(TMPDIR)
 	for f in $(TMPDIR)/*; do      \
 		gsed -i 's/"//g' $$f; \
 	done
@@ -47,13 +35,7 @@ removespaces:
 	done
 
 loaddb:
-	sed "s/DB_REPLACE_ME/$(DBNAME)/g" $(MAKEDB_SQL) | mysql -u root -p$(DBPASSWORD);
-
-updateStopname:
-	mysql -u root -p$(DBPASSWORD) < $(UPDATESTOPNAME_SQL)
-
-createRouteTrip:
-	sed "s/DB_REPLACE_ME/$(DBNAME)/g" $(CREATEROUTETRIP_SQL) | mysql -u root -p$(DBPASSWORD);
+	psql -d metra -f load_metra.sql  
 
 clean:
 	rm -rf $(TMPDIR)
