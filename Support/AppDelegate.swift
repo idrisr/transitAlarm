@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let model = "transit"
-    let db = "SingleViewCoreData"
+    let db = "chicago"
     let locationController = LocationController.sharedInstance
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
