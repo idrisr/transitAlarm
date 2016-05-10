@@ -23,7 +23,7 @@ protocol StopAlertPopupDelegate {
 }
 
 protocol AlertDelegate {
-    func presentAlert(alert: UIAlertController)
+    func presentAlert(alert: UIAlertController, completionHandler: () -> ())
 }
 
 class MainViewController: UIViewController,
@@ -86,6 +86,9 @@ class MainViewController: UIViewController,
         navigationController?.hidesBarsOnTap = false
         navigationController?.hidesBarsOnSwipe = true
 
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.alertDelegate = self
+
         self.title = "Transit Alarm"
     }
 
@@ -102,7 +105,7 @@ class MainViewController: UIViewController,
     }
 
     // MARK: AlertDelegate
-    func presentAlert(alert: UIAlertController) {
+    func presentAlert(alert: UIAlertController, completionHandler: () -> ()) {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 

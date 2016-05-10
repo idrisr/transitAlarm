@@ -103,6 +103,6 @@ class LocationController: NSObject,
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alert.addAction(action)
-        self.alertDelegate?.presentAlert(alert)
+        self.alertDelegate?.presentAlert(alert, completionHandler: {})
     }
 }

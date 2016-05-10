@@ -12,22 +12,52 @@ import CoreLocation
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     var window: UIWindow?
     let model = "transit"
     let db = "chicago"
     let locationController = LocationController.sharedInstance
+    var alertDelegate: AlertDelegate?
+    var player: AVAudioPlayer!
 
+    // FIXME: turn off compass calibration
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        AudioServicesPlaySystemSound(1016) // whistle
-        AudioServicesPlaySystemSound(4095) // vibrate
+        let alert = UIAlertController(title: "At your stop", message: "Get Off!", preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (alert) in
+            self.player.stop()
+        }
 
-        print("\(notification.alertBody)")
+        AudioServicesPlaySystemSound(4095) // vibrate
+        do {
+            let sound = NSBundle.mainBundle().pathForResource("alarm", ofType: "wav")
+            let url = NSURL(fileURLWithPath: sound!)
+            self.player = try AVAudioPlayer(contentsOfURL: url)
+            self.player.play()
+        } catch {
+            print(error)
+        }
+
+        alert.addAction(cancelAction)
+        self.alertDelegate?.presentAlert(alert, completionHandler: {})
+
+    }
+
+    func applicationDidReceiveMemoryWarning(application: UIApplication) {
+        // FIXME: sometimes gets a Received memory warning
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // FIXME: make me less confusing
+        // FIXME: somehow loyola seems always set upon app launch
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DefaultToSpeaker)
+            try session.setActive(true)
+        } catch {
+            print(error)
+        }
+
         locationController.locationManager.requestAlwaysAuthorization()
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil))
         return true
