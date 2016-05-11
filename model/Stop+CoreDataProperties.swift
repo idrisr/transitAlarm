@@ -41,10 +41,7 @@ extension Stop {
 
     var annotation: StopAnnotation {
         get {
-            // TODO: better way?
-            let tmp = StopAnnotation()
-            tmp.coordinate = self.location2D
-            return tmp
+            return StopAnnotation(stop: self)
         }
     }
 

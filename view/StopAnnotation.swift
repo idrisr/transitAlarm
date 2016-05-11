@@ -10,5 +10,8 @@ import UIKit
 import MapKit
 
 class StopAnnotation: MKPointAnnotation {
-
+    init(stop: Stop) {
+        super.init()
+        self.coordinate = stop.location2D
+    }
 }
