@@ -10,6 +10,8 @@ import UIKit
 import CoreLocation
 import MapKit
 
+// TODO: protocol extension of MKMapViewDelegate good idea?
+// https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID521
 protocol MapDelegate {
     func drawRoute(route: Route) // draws routes, no destination set
     func drawStop(stop: Stop)    // sets destination
@@ -19,7 +21,6 @@ protocol MapDelegate {
     func addOverlay(overlay: MKOverlay)
     func setRegion(coordinateRegion: MKCoordinateRegion, animated: Bool)
 }
-
 
 class MapController: NSObject, MKMapViewDelegate, MapDelegate {
 

@@ -67,6 +67,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
         // TODO: check here that permission was given for alerts
     }
 
+    // FIXME: what happens to the alarm in these 4 conditions?
+    func applicationDidEnterBackground(application: UIApplication) { }
+    func applicationWillEnterForeground(application: UIApplication) { }
+    func applicationDidBecomeActive(application: UIApplication) { }
+    func applicationWillTerminate(application: UIApplication) { }
+
     // MARK: - Core Data stack
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.idrisr.CoreDataDeleteMe" in the application's documents Application Support directory.
