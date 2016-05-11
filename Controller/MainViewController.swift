@@ -18,6 +18,7 @@ protocol TableSizeDelegate {
     func adjustTableSize()
 }
 
+// FIXME: make part of AlertDelegate?
 protocol StopAlertPopupDelegate {
     func showAlert(stop: Stop)
 }
@@ -111,12 +112,16 @@ class MainViewController: UIViewController,
 
     // MARK: StopAlertPopupDelegate
     func showAlert(stop: Stop) {
-        let alert = UIAlertController(title: "yo", message: "yo", preferredStyle: .Alert)
+        let title = "Location Alarm Set"
+        let message = "Route: \(stop.route!.long_name!)\nStop: \(stop.name!)"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         self.presentViewController(alert, animated: true, completion: nil)
 
-        UIView.animateWithDuration(3.0) {
+        let delay = 2.2 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
             self.dismissViewControllerAnimated(true, completion: nil)
-        }
+        })
     }
 
     // MARK: StopDelegate

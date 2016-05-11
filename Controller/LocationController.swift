@@ -58,10 +58,9 @@ class LocationController: NSObject,
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         if region is CLCircularRegion {
             handleRegionEvent(region)
+            stopMonitoringRegion()
         }
     }
-
-    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) { }
 
     // MARK: LocationControllerDelegate
     func stopMonitoringRegion() {
@@ -76,13 +75,18 @@ class LocationController: NSObject,
     }
 
     func startMonitoringRegionFor(stop:Stop) {
+        // can also create a UILocationNotification that triggers on region
+        // https://developer.apple.com/library/ios/documentation/iPhone/Reference/UILocalNotification_Class/index.html#//apple_ref/occ/instp/UILocalNotification/region
+
         self.stop = stop
         if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
             showAlert("Error", message: "Geofencing not supported on device.")
             return
         }
         if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
-           showAlert("Error", message: "Location always on not enabled, transit stop notification will not be sent")
+           // FIXME, improve this message
+           // Deep link to settings
+           showAlert("Error", message: "Location always on not enabled, transit stop notification can not be sent")
            return
         }
 
