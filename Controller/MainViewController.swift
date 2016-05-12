@@ -63,17 +63,6 @@ class MainViewController: UIViewController,
         locationController.mapDelegate = mapController
         mapView.delegate               = mapController
 
-        revealViewController().rearViewRevealWidth = 300
-        revealViewController().rightViewRevealWidth = 300
-
-        setDelegatesFor(revealViewController())
-
-        openFavoritesButton.target = revealViewController()
-        openFavoritesButton.action = #selector(SWRevealViewController.revealToggle(_:))
-
-        searchButton.target = revealViewController()
-        searchButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-
         tableView.delegate = transitTable
         tableView.dataSource = transitTable
 
@@ -222,9 +211,7 @@ class MainViewController: UIViewController,
     // ugly way to do it. better ways?
     private func setDelegatesFor(parentViewController: UIViewController) {
         for vc in parentViewController.childViewControllers {
-            if vc is FavoritesViewController {
-                (vc as! FavoritesViewController).stopDelegate = self
-            } else if vc is SearchViewController {
+            if vc is SearchViewController {
                 (vc as! SearchViewController).stopDelegate = self
             }
         }

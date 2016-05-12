@@ -28,7 +28,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         moc = appDelegate.managedObjectContext
         loadAllStops()
     }
@@ -63,7 +62,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
             stop = tableViewStops[indexPath.row]
         }
         self.stopDelegate!.setAlarmForStop(stop)
-        revealViewController().rightRevealToggle(nil)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
