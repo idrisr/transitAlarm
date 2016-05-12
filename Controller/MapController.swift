@@ -27,6 +27,9 @@ class MapController: NSObject, MKMapViewDelegate, MapDelegate {
     let mapView: MKMapView
 
     init(mapView: MKMapView) {
+        // FIXME: set maprect at startup so its the right zoom level
+        // see: func setVisibleMapRect(_ mapRect: MKMapRect, animated animate: Bool)
+
         self.mapView = mapView
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
