@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		258362A51CC7D2FA003E592D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258362A41CC7D2FA003E592D /* DataService.swift */; };
-		258362A71CC7E410003E592D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258362A61CC7E410003E592D /* Constants.swift */; };
 		259AE0101CD7C34000E18FC8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259AE00F1CD7C34000E18FC8 /* SearchViewController.swift */; };
 		6800E25D1CD3F9B80002549B /* Stop+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800E2551CD3F9B80002549B /* Stop+CoreDataProperties.swift */; };
 		6800E25E1CD3F9B80002549B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800E2561CD3F9B80002549B /* Stop.swift */; };
@@ -36,6 +34,7 @@
 		6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8A1CC534FA003F6483 /* AppDelegate.swift */; };
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
 		688FAC8A1CD5A449009CB665 /* TransitTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688FAC891CD5A449009CB665 /* TransitTableController.swift */; };
+		689E9D341CE4E6CD006CC487 /* ContrainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689E9D331CE4E6CD006CC487 /* ContrainerViewController.swift */; };
 		68DEF1A21CDEB0ED002FF584 /* GeoFence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687EB27E1CDEAAB000252B4F /* GeoFence.swift */; };
 		68DEF1A41CDEEA04002FF584 /* chicago.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 68DEF1A31CDEE98A002FF584 /* chicago.sqlite */; };
 		68DEF1F81CE11A98002FF584 /* alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 68DEF1F71CE11A98002FF584 /* alarm.wav */; };
@@ -45,8 +44,6 @@
 /* Begin PBXFileReference section */
 		1B1F438AF36F8B192181B97F /* Pods_TransitAlarm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TransitAlarm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		252D7E1E1CD12E970088AF76 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		258362A41CC7D2FA003E592D /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		258362A61CC7E410003E592D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		259AE0061CD6F8BC00E18FC8 /* TransitAlarm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TransitAlarm-Bridging-Header.h"; sourceTree = "<group>"; };
 		259AE00F1CD7C34000E18FC8 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		43C7C040C5F92399D5135115 /* Pods-TransitAlarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.release.xcconfig"; sourceTree = "<group>"; };
@@ -82,6 +79,7 @@
 		6879AF961CC534FA003F6483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		687EB27E1CDEAAB000252B4F /* GeoFence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFence.swift; sourceTree = "<group>"; };
 		688FAC891CD5A449009CB665 /* TransitTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitTableController.swift; sourceTree = "<group>"; };
+		689E9D331CE4E6CD006CC487 /* ContrainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContrainerViewController.swift; sourceTree = "<group>"; };
 		68DEF1A31CDEE98A002FF584 /* chicago.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = chicago.sqlite; sourceTree = "<group>"; };
 		68DEF1F71CE11A98002FF584 /* alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alarm.wav; sourceTree = "<group>"; };
 		ED5957CB7DFB6C78C26E900D /* Pods-TransitAlarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,15 +103,6 @@
 				1B1F438AF36F8B192181B97F /* Pods_TransitAlarm.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		258362A31CC7D2D0003E592D /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				258362A61CC7E410003E592D /* Constants.swift */,
-				258362A41CC7D2FA003E592D /* DataService.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		259AE0051CD6F80500E18FC8 /* Support */ = {
@@ -145,7 +134,6 @@
 				18489A65B60CAD40C67F1E2B /* Frameworks */,
 				88185E17FD44657094D50B86 /* Pods */,
 				6879AF881CC534FA003F6483 /* Products */,
-				258362A31CC7D2D0003E592D /* Services */,
 				259AE0051CD6F80500E18FC8 /* Support */,
 				682D9CC51CD2429000A54C4E /* gpxfiles */,
 			);
@@ -162,6 +150,7 @@
 		6879AF9C1CC53A5F003F6483 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				689E9D331CE4E6CD006CC487 /* ContrainerViewController.swift */,
 				252D7E1E1CD12E970088AF76 /* FavoritesViewController.swift */,
 				686346E21CD7BA1600A938C8 /* LocationController.swift */,
 				683DB4101CD2771B00823C8B /* MainViewController.swift */,
@@ -343,7 +332,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				258362A51CC7D2FA003E592D /* DataService.swift in Sources */,
 				686346E31CD7BA1600A938C8 /* LocationController.swift in Sources */,
 				6800E2611CD3F9B80002549B /* Agency+CoreDataProperties.swift in Sources */,
 				6800E25F1CD3F9B80002549B /* Shape+CoreDataProperties.swift in Sources */,
@@ -352,6 +340,7 @@
 				686346EB1CD7EA4900A938C8 /* StopTableViewCell.swift in Sources */,
 				682712651CD431DD007DFD09 /* enums.swift in Sources */,
 				688FAC8A1CD5A449009CB665 /* TransitTableController.swift in Sources */,
+				689E9D341CE4E6CD006CC487 /* ContrainerViewController.swift in Sources */,
 				68422DBF1CD11B9D00677CA3 /* Extensions.swift in Sources */,
 				683DB4111CD2771B00823C8B /* MainViewController.swift in Sources */,
 				6800E2631CD3F9B80002549B /* Route+CoreDataProperties.swift in Sources */,
@@ -368,7 +357,6 @@
 				686346DF1CD6C20200A938C8 /* RouteLine.swift in Sources */,
 				6800E2621CD3F9B80002549B /* Agency.swift in Sources */,
 				686346E91CD7EA3D00A938C8 /* RouteTableViewCell.swift in Sources */,
-				258362A71CC7E410003E592D /* Constants.swift in Sources */,
 				686346E71CD7EA2600A938C8 /* AgencyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

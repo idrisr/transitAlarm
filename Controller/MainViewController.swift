@@ -199,12 +199,12 @@ class MainViewController: UIViewController,
 
     private func tableViewInStartState() -> Bool {
         // true if table is showing all the agencies and nothing else, aka the starting state
-        return self.tableView.numberOfRowsInSection(tableSection.Agency.rawValue) == kAGENCYS
+        return self.tableView.numberOfRowsInSection(tableSection.Agency.rawValue) == tableSection.Agency.minRows()
     }
 
     private func tableViewInStartPosition() -> Bool {
         // true if table has height for all agencies and one section header
-        return abs(self.tableView.frame.height - CGFloat(kAGENCYS) * tableHeights.Row.height() + tableHeights.Header.height()) < 0.1
+        return abs(self.tableView.frame.height - CGFloat(tableSection.Agency.minRows()) * tableHeights.Row.height() + tableHeights.Header.height()) < 0.1
     }
 
 
