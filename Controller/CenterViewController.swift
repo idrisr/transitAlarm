@@ -250,6 +250,18 @@ extension CenterViewController: StopDelegate {
 // MARK: TableSizeDelegate
 extension CenterViewController: TableSizeDelegate {
     func adjustTableSize() {
+        // FIXME: try using this animate to remove some of the jerkiness when the table refuses to expand more
+        // UIView.animateWithDuration(NSTimeInterval,
+             // delay: NSTimeInterval,
+             // usingSpringWithDamping: CGFloat,
+             // initialSpringVelocity: CGFloat,
+             // options: UIViewAnimationOptions,
+             // animations: {
+                // code
+            // }) { (Bool) in
+                // code
+        // }
+        
         UIView.animateWithDuration(0.4) {
             // change constraints inside animation block
             self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
