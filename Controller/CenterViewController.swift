@@ -27,11 +27,7 @@ protocol AlertDelegate {
     func presentAlert(alert: UIAlertController, completionHandler: () -> ())
 }
 
-class MainViewController: UIViewController,
-                          AlertDelegate,
-                          StopAlertPopupDelegate,
-                          StopDelegate,
-                          TableSizeDelegate {
+class CenterViewController: UIViewController {
 
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchButton: UIBarButtonItem!
@@ -51,7 +47,7 @@ class MainViewController: UIViewController,
 
     var stopUpdateDelegate: TransitDataStopUpdate?
     var mapDelegate: MapDelegate?
-
+    var centerViewControllerDelegate: CenterViewControllerDelegate?
 
     // MARK: view life cycle
     override func viewDidLoad() {
@@ -92,34 +88,6 @@ class MainViewController: UIViewController,
 
     override func viewDidAppear(animated: Bool) {
         self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
-    }
-
-    // MARK: AlertDelegate
-    func presentAlert(alert: UIAlertController, completionHandler: () -> ()) {
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-    // MARK: StopAlertPopupDelegate
-    func showAlert(stop: Stop) {
-        let title = "Location Alarm Set"
-        let message = "Route: \(stop.route!.long_name!)\nStop: \(stop.name!)"
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: true, completion: nil)
-
-        let delay = 2.2 * Double(NSEC_PER_SEC)
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
-    }
-
-    // MARK: StopDelegate
-    func setAlarmForStop(stop: Stop) {
-        self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
-        self.mapDelegate!.clearMap()
-        self.mapDelegate!.drawStop(stop)
-        locationController.startMonitoringRegionFor(stop) // FIXME: should happen via delegate??
-        self.mapDelegate!.setCenterOnCoordinate(stop.location2D, animated: true)
     }
 
     // MARK: IBActions
@@ -175,16 +143,6 @@ class MainViewController: UIViewController,
         self.prevTranslation = totalTranslation.y
     }
 
-    // MARK: TableSizeUpdateDelegate
-    func adjustTableSize() {
-        UIView.animateWithDuration(0.4) {
-            // change constraints inside animation block
-            self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
-
-            // force layout inside animation block
-            self.view.layoutIfNeeded()
-        }
-    }
 
     // MARK: private helper funcs to manage table view size
     private func scrollDirectionFor(gesture: UIPanGestureRecognizer) -> direction {
@@ -249,5 +207,55 @@ class MainViewController: UIViewController,
             rows += self.tableView.numberOfRowsInSection(i)
         }
         return rows
+    }
+}
+
+// MARK: AlertDelegate
+extension CenterViewController: AlertDelegate {
+    func presentAlert(alert: UIAlertController, completionHandler: () -> ()) {
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: StopAlertPopupDelegate
+extension CenterViewController: StopAlertPopupDelegate {
+    //FIXME: dont present a 2nd alert controller if already showing one
+    //    2016-05-12 14:42:54.218 TransitAlarm[64076:38266662] Warning: Attempt to present <UIAlertController: 0x7fb530418500>  on <TransitAlarm.CenterViewController: 0x7fb529e4da70> which is already presenting <UIAlertController: 0x7fb5303cbb50>
+
+    func showAlert(stop: Stop) {
+        let title = "Location Alarm Set"
+        let message = "Route: \(stop.route!.long_name!)\nStop: \(stop.name!)"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        self.presentViewController(alert, animated: true, completion: nil)
+
+        let delay = 2.2 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+    }
+}
+
+// MARK: StopDelegate
+extension CenterViewController: StopDelegate {
+    func setAlarmForStop(stop: Stop) {
+        self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
+        self.mapDelegate!.clearMap()
+        self.mapDelegate!.drawStop(stop)
+        locationController.startMonitoringRegionFor(stop) // FIXME: should happen via delegate??
+        self.mapDelegate!.setCenterOnCoordinate(stop.location2D, animated: true)
+    }
+}
+
+// MARK: TableSizeDelegate
+extension CenterViewController: TableSizeDelegate {
+    func adjustTableSize() {
+        UIView.animateWithDuration(0.4) {
+            // change constraints inside animation block
+            self.tableViewHeightConstraint.constant = self.defaultHeightForTable()
+
+            // force layout inside animation block
+            self.view.layoutIfNeeded()
+        }
     }
 }
