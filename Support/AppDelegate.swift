@@ -11,6 +11,7 @@ import CoreData
 import CoreLocation
 import UIKit
 
+//FIXME: bug - didnt work when app was in background and hit the stop
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
