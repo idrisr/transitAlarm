@@ -18,7 +18,7 @@
 		6800E2641CD3F9B80002549B /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6800E25C1CD3F9B80002549B /* Route.swift */; };
 		682712651CD431DD007DFD09 /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682712641CD431DD007DFD09 /* enums.swift */; };
 		683DB40F1CD275A900823C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 683DB40E1CD275A900823C8B /* Main.storyboard */; };
-		683DB4111CD2771B00823C8B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DB4101CD2771B00823C8B /* MainViewController.swift */; };
+		683DB4111CD2771B00823C8B /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DB4101CD2771B00823C8B /* CenterViewController.swift */; };
 		68422DBD1CD10A3E00677CA3 /* transit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68422DBB1CD10A3E00677CA3 /* transit.xcdatamodeld */; };
 		68422DBF1CD11B9D00677CA3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DBE1CD11B9D00677CA3 /* Extensions.swift */; };
 		68422DC11CD1AD6400677CA3 /* StopOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DC01CD1AD6400677CA3 /* StopOverlayRenderer.swift */; };
@@ -34,7 +34,7 @@
 		6879AF8B1CC534FA003F6483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879AF8A1CC534FA003F6483 /* AppDelegate.swift */; };
 		6879AF921CC534FA003F6483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6879AF911CC534FA003F6483 /* Assets.xcassets */; };
 		688FAC8A1CD5A449009CB665 /* TransitTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688FAC891CD5A449009CB665 /* TransitTableController.swift */; };
-		689E9D341CE4E6CD006CC487 /* ContrainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689E9D331CE4E6CD006CC487 /* ContrainerViewController.swift */; };
+		689E9D341CE4E6CD006CC487 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689E9D331CE4E6CD006CC487 /* ContainerViewController.swift */; };
 		68DEF1A21CDEB0ED002FF584 /* GeoFence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687EB27E1CDEAAB000252B4F /* GeoFence.swift */; };
 		68DEF1A41CDEEA04002FF584 /* chicago.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 68DEF1A31CDEE98A002FF584 /* chicago.sqlite */; };
 		68DEF1F81CE11A98002FF584 /* alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 68DEF1F71CE11A98002FF584 /* alarm.wav */; };
@@ -58,7 +58,7 @@
 		682712641CD431DD007DFD09 /* enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
 		682D9CC81CD243E300A54C4E /* 223W_Erie.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 223W_Erie.gpx; sourceTree = "<group>"; };
 		683DB40E1CD275A900823C8B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		683DB4101CD2771B00823C8B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		683DB4101CD2771B00823C8B /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		68422DBC1CD10A3E00677CA3 /* transit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = transit.xcdatamodel; sourceTree = "<group>"; };
 		68422DBE1CD11B9D00677CA3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		68422DC01CD1AD6400677CA3 /* StopOverlayRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopOverlayRenderer.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		6879AF961CC534FA003F6483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		687EB27E1CDEAAB000252B4F /* GeoFence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFence.swift; sourceTree = "<group>"; };
 		688FAC891CD5A449009CB665 /* TransitTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitTableController.swift; sourceTree = "<group>"; };
-		689E9D331CE4E6CD006CC487 /* ContrainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContrainerViewController.swift; sourceTree = "<group>"; };
+		689E9D331CE4E6CD006CC487 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		68DEF1A31CDEE98A002FF584 /* chicago.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = chicago.sqlite; sourceTree = "<group>"; };
 		68DEF1F71CE11A98002FF584 /* alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alarm.wav; sourceTree = "<group>"; };
 		ED5957CB7DFB6C78C26E900D /* Pods-TransitAlarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitAlarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,10 +150,10 @@
 		6879AF9C1CC53A5F003F6483 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				689E9D331CE4E6CD006CC487 /* ContrainerViewController.swift */,
+				689E9D331CE4E6CD006CC487 /* ContainerViewController.swift */,
 				252D7E1E1CD12E970088AF76 /* FavoritesViewController.swift */,
 				686346E21CD7BA1600A938C8 /* LocationController.swift */,
-				683DB4101CD2771B00823C8B /* MainViewController.swift */,
+				683DB4101CD2771B00823C8B /* CenterViewController.swift */,
 				686A2B5D1CDD998800D1BEB7 /* MapController.swift */,
 				259AE00F1CD7C34000E18FC8 /* SearchViewController.swift */,
 				688FAC891CD5A449009CB665 /* TransitTableController.swift */,
@@ -340,9 +340,9 @@
 				686346EB1CD7EA4900A938C8 /* StopTableViewCell.swift in Sources */,
 				682712651CD431DD007DFD09 /* enums.swift in Sources */,
 				688FAC8A1CD5A449009CB665 /* TransitTableController.swift in Sources */,
-				689E9D341CE4E6CD006CC487 /* ContrainerViewController.swift in Sources */,
+				689E9D341CE4E6CD006CC487 /* ContainerViewController.swift in Sources */,
 				68422DBF1CD11B9D00677CA3 /* Extensions.swift in Sources */,
-				683DB4111CD2771B00823C8B /* MainViewController.swift in Sources */,
+				683DB4111CD2771B00823C8B /* CenterViewController.swift in Sources */,
 				6800E2631CD3F9B80002549B /* Route+CoreDataProperties.swift in Sources */,
 				6800E25D1CD3F9B80002549B /* Stop+CoreDataProperties.swift in Sources */,
 				259AE0101CD7C34000E18FC8 /* SearchViewController.swift in Sources */,

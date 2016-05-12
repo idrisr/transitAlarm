@@ -23,6 +23,20 @@ extension Array where Element: Equatable {
     }
 }
 
+enum viewControllerIdentifiers: String {
+    case Center
+    case Search
+    case Favorites
+
+    func identifier() -> String {
+        switch self  {
+            case Center: return "CenterViewController"
+            case Search: return "SearchViewController"
+            case Favorites: return "FavoritesViewController"
+        }
+    }
+}
+
 enum direction: Int {
     case Up
     case Down

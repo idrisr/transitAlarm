@@ -156,7 +156,7 @@ class TransitTableController: NSObject,
         var tableUpdates = TableUpdates()
         var didSetStop = false
 
-        // what a mess. mapping. table data updates. zooming. too much. state pattern?
+        // FIXME: what a mess. mapping. table data updates. zooming. too much. state pattern?
         // this chunk can probably be reduced to one line of code
         switch tableSection(rawValue: indexPath.section)! {
             case .Agency:

@@ -11,7 +11,7 @@
         <!--Search View Controller-->
         <scene sceneID="cho-IV-gVf">
             <objects>
-                <viewController id="La1-gZ-jXH" customClass="SearchViewController" customModule="TransitAlarm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="La1-gZ-jXH" customClass="SearchViewController" customModule="TransitAlarm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ons-gN-AHm"/>
                         <viewControllerLayoutGuide type="bottom" id="QVm-Vv-irB"/>
@@ -80,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="1397" y="-433"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Center View Controller-->
         <scene sceneID="wWx-19-FP2">
             <objects>
-                <viewController id="Xz3-Sy-Oit" customClass="MainViewController" customModule="TransitAlarm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CenterViewController" id="Xz3-Sy-Oit" customClass="CenterViewController" customModule="TransitAlarm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ggX-wW-kSh"/>
                         <viewControllerLayoutGuide type="bottom" id="5xf-oH-b56"/>
