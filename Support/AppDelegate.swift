@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
     var alertDelegate: AlertDelegate?
     var player: AVAudioPlayer!
 
-    // FIXME: turn off compass calibration
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         self.locationController.stopMonitoringRegion()
 

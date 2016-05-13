@@ -102,4 +102,7 @@ class LocationController: NSObject,
         alert.addAction(action)
         self.alertDelegate?.presentAlert(alert, completionHandler: {})
     }
+}    func locationManagerShouldDisplayHeadingCalibration(manager: CLLocationManager) -> Bool {
+        return false
+    }
 }
