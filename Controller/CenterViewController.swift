@@ -35,7 +35,7 @@ class CenterViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
 
-    var locationController = LocationController()
+    var locationController = LocationController.sharedInstance
     var transitTable = TransitTableController()
     var mapController :MapController?
 

@@ -24,24 +24,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     // FIXME: turn off compass calibration
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        let alert = UIAlertController(title: "At your stop", message: "Get Off!", preferredStyle: .Alert)
-        let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (alert) in
-            self.player.stop()
+        // stop monitoring region now when
+        self.locationController.stopMonitoringRegion()
+
+        switch (UIApplication.sharedApplication().applicationState) {
+            case .Active:
+                let alert = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (alert) in
+                    self.player.stop()
+                }
+
+                AudioServicesPlaySystemSound(4095) // vibrate
+                do {
+                    let sound = NSBundle.mainBundle().pathForResource("alarm", ofType: "wav")
+                    let url = NSURL(fileURLWithPath: sound!)
+                    self.player = try AVAudioPlayer(contentsOfURL: url)
+                    self.player.play()
+                } catch {
+                    print(error)
+                }
+
+                alert.addAction(cancelAction)
+                self.alertDelegate?.presentAlert(alert, completionHandler: {})
+
+            case .Inactive:
+                break
+
+            case .Background:
+                break
         }
-
-        AudioServicesPlaySystemSound(4095) // vibrate
-        do {
-            let sound = NSBundle.mainBundle().pathForResource("alarm", ofType: "wav")
-            let url = NSURL(fileURLWithPath: sound!)
-            self.player = try AVAudioPlayer(contentsOfURL: url)
-            self.player.play()
-        } catch {
-            print(error)
-        }
-
-        alert.addAction(cancelAction)
-        self.alertDelegate?.presentAlert(alert, completionHandler: {})
-
     }
 
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
@@ -60,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
         }
 
         locationController.locationManager.requestAlwaysAuthorization()
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil))
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
         return true
     }
 
