@@ -52,8 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
         }
     }
 
+    // TODO: sometimes gets a Received memory warning
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
-        // FIXME: sometimes gets a Received memory warning
+        NSLog("\(NSThread.callStackSymbols())")
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
