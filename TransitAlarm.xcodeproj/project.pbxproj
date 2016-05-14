@@ -23,6 +23,7 @@
 		68422DBF1CD11B9D00677CA3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DBE1CD11B9D00677CA3 /* Extensions.swift */; };
 		68422DC11CD1AD6400677CA3 /* StopOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DC01CD1AD6400677CA3 /* StopOverlayRenderer.swift */; };
 		68422DC31CD1AEB800677CA3 /* StopMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68422DC21CD1AEB800677CA3 /* StopMapOverlay.swift */; };
+		685012521CE7A26D001B5512 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685012511CE7A26D001B5512 /* Constants.swift */; };
 		686346DF1CD6C20200A938C8 /* RouteLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346DE1CD6C20200A938C8 /* RouteLine.swift */; };
 		686346E11CD6F12B00A938C8 /* StopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346E01CD6F12B00A938C8 /* StopAnnotation.swift */; };
 		686346E31CD7BA1600A938C8 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686346E21CD7BA1600A938C8 /* LocationController.swift */; };
@@ -63,6 +64,7 @@
 		68422DBE1CD11B9D00677CA3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		68422DC01CD1AD6400677CA3 /* StopOverlayRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopOverlayRenderer.swift; sourceTree = "<group>"; };
 		68422DC21CD1AEB800677CA3 /* StopMapOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopMapOverlay.swift; sourceTree = "<group>"; };
+		685012511CE7A26D001B5512 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		685781EB1CE2A0B200463BF5 /* blue.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = blue.gpx; sourceTree = "<group>"; };
 		686346DE1CD6C20200A938C8 /* RouteLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteLine.swift; sourceTree = "<group>"; };
 		686346E01CD6F12B00A938C8 /* StopAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopAnnotation.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		68A32BAF1CD051C80015E7EE /* model */ = {
 			isa = PBXGroup;
 			children = (
+				685012511CE7A26D001B5512 /* Constants.swift */,
 				68DEF1A31CDEE98A002FF584 /* chicago.sqlite */,
 				687EB27E1CDEAAB000252B4F /* GeoFence.swift */,
 				6800E2591CD3F9B80002549B /* Agency+CoreDataProperties.swift */,
@@ -221,6 +224,7 @@
 				6879AF851CC534FA003F6483 /* Resources */,
 				62ECD0AC29E6B7A3420A14AE /* Embed Pods Frameworks */,
 				3B2D8B8CF9BBB213ABB00F37 /* Copy Pods Resources */,
+				689C8BCC1CE667740025B7DB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -310,6 +314,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TransitAlarm/Pods-TransitAlarm-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		689C8BCC1CE667740025B7DB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./warnings.sh;
+		};
 		DBF88D3BABBF12FEB2B934E5 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -358,6 +375,7 @@
 				6800E2621CD3F9B80002549B /* Agency.swift in Sources */,
 				686346E91CD7EA3D00A938C8 /* RouteTableViewCell.swift in Sources */,
 				686346E71CD7EA2600A938C8 /* AgencyTableViewCell.swift in Sources */,
+				685012521CE7A26D001B5512 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
