@@ -59,17 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         NSLog("\(#function)")
-        // FIXME: can get here from significant location update. what's the codepath.
-        // Test with device the following:
-
-        // What if: stop alarm set -- local notification
-        // app terminated
-        // significant location update received, bringing us here
-        // does the notification still exist?
-        // is the app now in the background?
-        // check for UIApplicationLaunchOptionsLocationKey in launchOptions to indicate location is what got us here
-        // need to configure the LocationManager and set its delegate
-
         // FIXME: dont hijack audio when using app. only use for alarm when needed when app is foreground
         let session = AVAudioSession.sharedInstance()
         do {
