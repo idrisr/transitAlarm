@@ -16,7 +16,7 @@ struct GeoFence {
     let region: CLCircularRegion
 
     init(stop: Stop) {
-        let radius: CLLocationDistance = 300 // FIXME: Magic number
+        let radius: CLLocationDistance = Constants.geoFenceMeters
         self.overlay = MKCircle(centerCoordinate: stop.location2D, radius: radius)
         self.region = CLCircularRegion(center: stop.location2D, radius: radius, identifier: stop.name!)
         self.region.notifyOnEntry = true
