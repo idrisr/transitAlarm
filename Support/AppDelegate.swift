@@ -21,7 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
     var alertDelegate: AlertDelegate?
     var player: AVAudioPlayer!
 
+
+    func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        NSLog("\(#function)")
+        return true
+    }
+
+    // FIXME -- what is this error:  shows up from device
+    // Error Domain=NSOSStatusErrorDomain Code=-50 "(null)"
+
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        NSLog("\(#function)")
         self.locationController.stopMonitoringRegion()
 
         switch (UIApplication.sharedApplication().applicationState) {
@@ -54,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     // TODO: sometimes gets a Received memory warning
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
+        NSLog("\(#function)")
+        //FIXME print with new lines between frames
         NSLog("\(NSThread.callStackSymbols())")
     }
 
@@ -73,17 +85,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
         return true
     }
 
+    // FIXME: check here that permission was given for alerts
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        // TODO: check here that permission was given for alerts
+        NSLog("\(#function)")
     }
 
     // FIXME: what happens to the alarm in these 4 conditions?
-    func applicationDidEnterBackground(application: UIApplication) { }
-    func applicationWillEnterForeground(application: UIApplication) { }
-    func applicationDidBecomeActive(application: UIApplication) { }
-    func applicationWillTerminate(application: UIApplication) {
-
+    func applicationDidEnterBackground(application: UIApplication) {
+        NSLog("\(#function)")
     }
+
 
     // MARK: - Core Data stack
     lazy var applicationDocumentsDirectory: NSURL = {

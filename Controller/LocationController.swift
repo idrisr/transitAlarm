@@ -14,16 +14,13 @@ protocol LocationControllerDelegate {
     func startMonitoringRegionFor(stop: Stop)
 }
 
-// FIXME:
-// Simulator warning: 
+// FIXME: Simulator warning:
 // Trying to start MapKit location updates without prompting for location authorization. Must call -[CLLocationManager requestWhenInUseAuthorization] or -[CLLocationManager requestAlwaysAuthorization] first.
 
 // FIXME: uibackgroundmodes core location
+// FIXME: significant location changes
 
-class LocationController: NSObject,
-    LocationControllerDelegate,
-    CLLocationManagerDelegate {
-
+class LocationController: NSObject {
     let locationManager = CLLocationManager()
     var mapDelegate: MapDelegate?
     var alertDelegate: AlertDelegate?
@@ -49,41 +46,6 @@ class LocationController: NSObject,
         // save to NSUserDefaults
     }
 
-    // MARK: CLLocationManagerDelegate
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        currentLocation = locations.first!
-        if !self.didCenterMap {
-            self.mapDelegate?.setCenterOnCoordinate(self.currentLocation.coordinate, animated: true)
-            self.didCenterMap  = !self.didCenterMap
-        }
-    }
-
-    // MARK: LocationControllerDelegate
-    func stopMonitoringRegion() {
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        self.mapDelegate?.removeStopPin()
-    }
-
-    func startMonitoringRegionFor(stop:Stop) {
-        // can also create a UILocationNotification that triggers on region
-        // https://developer.apple.com/library/ios/documentation/iPhone/Reference/UILocalNotification_Class/index.html#//apple_ref/occ/instp/UILocalNotification/region
-
-        let notification = makeUILocalNotificationFor(stop)
-        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-
-        self.stop = stop
-        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
-            showAlert("Error", message: "Geofencing not supported on device.")
-            return
-        } else if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
-           // FIXME, improve this message
-           // Deep link to settings
-           showAlert("Error", message: "Location always on not enabled, transit stop notification can not be sent")
-           return
-        }
-
-        self.mapDelegate?.addOverlay(GeoFence(stop: stop).overlay)
-    }
 
     private func makeUILocalNotificationFor(stop: Stop) -> UILocalNotification {
         let notification = UILocalNotification()
@@ -102,7 +64,57 @@ class LocationController: NSObject,
         alert.addAction(action)
         self.alertDelegate?.presentAlert(alert, completionHandler: {})
     }
-}    func locationManagerShouldDisplayHeadingCalibration(manager: CLLocationManager) -> Bool {
+}
+
+// MARK: CLLocationManagerDelegate
+extension LocationController: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.first!
+        if !self.didCenterMap {
+            self.mapDelegate?.setCenterOnCoordinate(self.currentLocation.coordinate, animated: true)
+            self.didCenterMap  = !self.didCenterMap
+        }
+    }
+
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        // FIXME: handle me
+    }
+
+    func locationManagerShouldDisplayHeadingCalibration(manager: CLLocationManager) -> Bool {
         return false
+    }
+
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        // FIXME: do something
+    }
+}
+
+
+// MARK: LocationControllerDelegate
+extension LocationController: LocationControllerDelegate {
+    func stopMonitoringRegion() {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        self.mapDelegate?.removeStopPin()
+    }
+
+    func startMonitoringRegionFor(stop:Stop) {
+        // can also create a UILocationNotification that triggers on region
+        // https://developer.apple.com/library/ios/documentation/iPhone/Reference/UILocalNotification_Class/index.html#//apple_ref/occ/instp/UILocalNotification/region
+
+        let notification = makeUILocalNotificationFor(stop)
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+
+        self.stop = stop
+        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+            showAlert("Error", message: "Geofencing not supported on device.")
+            return
+        } else if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+           // FIXME, improve this message
+           // Deep link to settings
+            // FIXME: use alert delegate
+           showAlert("Error", message: "Location always on not enabled, transit stop notification can not be sent")
+           return
+        }
+        self.mapDelegate?.addOverlay(GeoFence(stop: stop).overlay)
     }
 }

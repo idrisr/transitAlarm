@@ -1,0 +1,6 @@
+in background, after pressing notification:
+    applicationWillEnterForeground
+    application(_:didReceiveLocalNotification:)
+    applicationDidBecomeActive
+
+
