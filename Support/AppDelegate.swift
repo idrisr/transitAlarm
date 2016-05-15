@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
 
     func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        NSLog("\(#function)")
         return true
     }
 
@@ -31,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
     // Error Domain=NSOSStatusErrorDomain Code=-50 "(null)"
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        NSLog("\(#function)")
         self.locationController.stopMonitoringRegion()
 
         switch (UIApplication.sharedApplication().applicationState) {
@@ -64,13 +62,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     // TODO: sometimes gets a Received memory warning
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
-        NSLog("\(#function)")
         //FIXME print with new lines between frames
-        NSLog("\(NSThread.callStackSymbols())")
+        NSLog("\(NSThread.callStackSymbols().joinWithSeparator("\n"))")
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        NSLog("\(#function)")
         // FIXME: dont hijack audio when using app. only use for alarm when needed when app is foreground
         let session = AVAudioSession.sharedInstance()
         do {
@@ -87,14 +83,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     // FIXME: check here that permission was given for alerts
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        NSLog("\(#function)")
     }
 
     // FIXME: what happens to the alarm in these 4 conditions?
     func applicationDidEnterBackground(application: UIApplication) {
-        NSLog("\(#function)")
     }
-
 
     // MARK: - Core Data stack
     lazy var applicationDocumentsDirectory: NSURL = {
