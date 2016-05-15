@@ -50,10 +50,10 @@ class AlertCatalog {
     }
 
     class func locationPermission() -> (UIAlertController, completionHandler) {
-        // FIXME, improve this message +
         // TODO: Deep link to settings
+        // TODO: Deep link to settings see: https://www.natashatherobot.com/ios-taking-the-user-to-settings/
         let title = "Location Permissions Not Enabled"
-        let message = "Transit Alarm requires access to your location to inform you when your stop is nearing. Go to Settings->Location and enable location for this app for alarms to be set"
+        let message = "Location was not enabled. Please enable it in Settings to set a Transit Alarm"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alert.addAction(action)
@@ -62,10 +62,10 @@ class AlertCatalog {
     }
 
     class func notificationPermission() -> (UIAlertController, completionHandler) {
-        // FIXME: improve this message +
         // TODO: Deep link to settings
+        // TODO: Deep link to settings see: https://www.natashatherobot.com/ios-taking-the-user-to-settings/
         let title = "Notifications Not Enabled"
-        let message = "Transit Alarm will send you notifications when you set an alarm and your stop is approaching. To allow notifications go to Settings->TransitAlarm"
+        let message = "Notifications was not enabled. Please enable it in Settings to set a Transit Alarm"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alert.addAction(action)
