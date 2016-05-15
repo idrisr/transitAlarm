@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
     let locationController = LocationController.sharedInstance
     var alertDelegate: AlertDelegate?
     var player: AVAudioPlayer!
+    var session: AVAudioSession!
 
 
     func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
@@ -34,19 +35,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
         switch (UIApplication.sharedApplication().applicationState) {
             case .Active:
-                let alert = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
-                let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (alert) in
-                    self.player.stop()
-                }
-
-                AudioServicesPlaySystemSound(4095) // vibrate
                 do {
+                    AudioServicesPlaySystemSound(4095) // vibrate
+                    self.session = AVAudioSession.sharedInstance()
+
+                    try self.session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers)
+                    try self.session.setActive(true)
                     let sound = NSBundle.mainBundle().pathForResource("alarm", ofType: "wav")
                     let url = NSURL(fileURLWithPath: sound!)
                     self.player = try AVAudioPlayer(contentsOfURL: url)
                     self.player.play()
                 } catch {
                     print(error)
+                }
+
+                let alert = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
+
+                let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (alert) in
+                    do {
+                        self.player.stop()
+                        try self.session.setActive(false)
+                    } catch {
+                        print(error)
+                    }
                 }
 
                 alert.addAction(cancelAction)
@@ -67,15 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // FIXME: dont hijack audio when using app. only use for alarm when needed when app is foreground
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DefaultToSpeaker)
-            try session.setActive(true)
-        } catch {
-            print(error)
-        }
-
         locationController.locationManager.requestAlwaysAuthorization()
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
         return true

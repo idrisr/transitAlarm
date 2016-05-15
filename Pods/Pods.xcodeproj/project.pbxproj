@@ -13,7 +13,7 @@
 		<key>03E0577A2CB9B9C42E06F1056232EE34</key>
 		<dict>
 			<key>fileRef</key>
-			<string>C28C817FC5AA12FE89F1D27D9F1E37DF</string>
+			<string>4A61B948B6C573B93171D3CC4A6C0011</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -102,7 +102,7 @@
 		<key>16EFCA6452D2475823EA06BF56749C1D</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>90B6DE42F4A1219F95FB97033CDDC327</string>
+			<string>5302E2C1C45A705B147F89BE9DF8BA56</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -157,6 +157,19 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
+		<key>1AB9C8060DC4E7C2665A9FD4E1980D37</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SwiftHEXColors-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>1B14EF92CCDF832763A67F2D20A60540</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -175,7 +188,7 @@
 		<key>1CF1DC13E77C788E2C1FA01E0DEBBE2F</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>90B6DE42F4A1219F95FB97033CDDC327</string>
+			<string>5302E2C1C45A705B147F89BE9DF8BA56</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -295,7 +308,7 @@
 		<key>2B222AE7AFBCF83596C29135D5AE1435</key>
 		<dict>
 			<key>fileRef</key>
-			<string>520BBEC95FF970E079B0F20454D42A30</string>
+			<string>AC3B6C166C320199573D1DF56FD3D60E</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -320,30 +333,6 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>2E9AEE3056F3E97A63D9A082662F0701</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Reveal.framework</string>
-			<key>path</key>
-			<string>Reveal-Framework-iOS-1.6.2/Reveal.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>30D1C9427B684D313ED644DD1842EB7A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>SwiftHEXColors.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>3E4E89230EF59BC255123B67864ACF77</key>
 		<dict>
 			<key>isa</key>
@@ -357,19 +346,6 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
-		<key>3F450599BC0E72721193F50F15C1796F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>40F295E2C8564CBE5B955507814145C7</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -380,26 +356,6 @@
 			<string>text</string>
 			<key>path</key>
 			<string>Pods-TransitAlarm-acknowledgements.markdown</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>411D33AC9F49D9AB3514CB2E02841F8F</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>3F450599BC0E72721193F50F15C1796F</string>
-				<string>30D1C9427B684D313ED644DD1842EB7A</string>
-				<string>90B6DE42F4A1219F95FB97033CDDC327</string>
-				<string>6FE9C72DA11519ABF49A9C951F6FBCA9</string>
-				<string>FFB18D8D80B14A670F72274584E0E3C9</string>
-				<string>520BBEC95FF970E079B0F20454D42A30</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/SwiftHEXColors</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -416,16 +372,42 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>520BBEC95FF970E079B0F20454D42A30</key>
+		<key>4A61B948B6C573B93171D3CC4A6C0011</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>SwiftHEXColors.swift</string>
 			<key>path</key>
-			<string>SwiftHEXColors-umbrella.h</string>
+			<string>Sources/SwiftHEXColors.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>521D0CA45562BC99EB8014ACA42D1793</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>SwiftHEXColors.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5302E2C1C45A705B147F89BE9DF8BA56</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>SwiftHEXColors.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -439,6 +421,19 @@
 			<string>text.plist.xml</string>
 			<key>path</key>
 			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>643EF5A3C165FDF63B0AA5963609D6B0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>7EE78F953F95B965777D3D4D3D30987F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -467,51 +462,6 @@
 			<string>A90D6060878E2C87C305ECF0781ED7C9</string>
 			<key>remoteInfo</key>
 			<string>SwiftHEXColors</string>
-		</dict>
-		<key>6FE9C72DA11519ABF49A9C951F6FBCA9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SwiftHEXColors-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>721A5DF3BAD0AF173D1C44260997853C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>SwiftHEXColors.h</string>
-			<key>path</key>
-			<string>Sources/SwiftHEXColors.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7467879BBB9C0EE5F57C7A78F16F8692</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>721A5DF3BAD0AF173D1C44260997853C</string>
-				<string>C28C817FC5AA12FE89F1D27D9F1E37DF</string>
-				<string>411D33AC9F49D9AB3514CB2E02841F8F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>SwiftHEXColors</string>
-			<key>path</key>
-			<string>SwiftHEXColors</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>78F201232C71C1F10D6F673CF4918038</key>
 		<dict>
@@ -546,12 +496,29 @@
 			<array>
 				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
 				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>F0DA70FB755CB5D808BCA2CA50A2AEEA</string>
+				<string>643EF5A3C165FDF63B0AA5963609D6B0</string>
 				<string>78F201232C71C1F10D6F673CF4918038</string>
 				<string>10E9D72FC5870806FD8F4606DD81FA01</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7EE78F953F95B965777D3D4D3D30987F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C265DA3D31FDD3AF6EC32E1C06DC85DE</string>
+				<string>4A61B948B6C573B93171D3CC4A6C0011</string>
+				<string>8E8929D701F51A3835DB20DAEB6053B2</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>SwiftHEXColors</string>
+			<key>path</key>
+			<string>SwiftHEXColors</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -568,29 +535,23 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>81A2A761E5D0855CF0DD5DF1CCD837A4</key>
+		<key>8E8929D701F51A3835DB20DAEB6053B2</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>2E9AEE3056F3E97A63D9A082662F0701</string>
+				<string>E3E18E1C2579BFB07F1FF612E8F423F2</string>
+				<string>521D0CA45562BC99EB8014ACA42D1793</string>
+				<string>5302E2C1C45A705B147F89BE9DF8BA56</string>
+				<string>1AB9C8060DC4E7C2665A9FD4E1980D37</string>
+				<string>E97186B5AFCA4D522F7DCAAF045F2DC4</string>
+				<string>AC3B6C166C320199573D1DF56FD3D60E</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>90B6DE42F4A1219F95FB97033CDDC327</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
+			<string>Support Files</string>
 			<key>path</key>
-			<string>SwiftHEXColors.xcconfig</string>
+			<string>../Target Support Files/SwiftHEXColors</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -621,7 +582,7 @@
 		<key>A13A423DF0EE032E88B7CAB75BF94156</key>
 		<dict>
 			<key>fileRef</key>
-			<string>6FE9C72DA11519ABF49A9C951F6FBCA9</string>
+			<string>1AB9C8060DC4E7C2665A9FD4E1980D37</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -761,6 +722,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>AC3B6C166C320199573D1DF56FD3D60E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SwiftHEXColors-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>B21D2FFA9EA3FAEB7983DF693DA6A599</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -839,18 +813,18 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>C28C817FC5AA12FE89F1D27D9F1E37DF</key>
+		<key>C265DA3D31FDD3AF6EC32E1C06DC85DE</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>SwiftHEXColors.swift</string>
+			<string>SwiftHEXColors.h</string>
 			<key>path</key>
-			<string>Sources/SwiftHEXColors.swift</string>
+			<string>Sources/SwiftHEXColors.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -920,6 +894,32 @@
 				<string>A90D6060878E2C87C305ECF0781ED7C9</string>
 			</array>
 		</dict>
+		<key>E3E18E1C2579BFB07F1FF612E8F423F2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E97186B5AFCA4D522F7DCAAF045F2DC4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SwiftHEXColors-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>F0A1A8896CA712B4DE80A53547C27B13</key>
 		<dict>
 			<key>baseConfigurationReference</key>
@@ -983,20 +983,6 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Debug</string>
-		</dict>
-		<key>F0DA70FB755CB5D808BCA2CA50A2AEEA</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>FF0127B6E294696D5A75B64750A1AC44</string>
-				<string>7467879BBB9C0EE5F57C7A78F16F8692</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>F3BDB23CC3E36958DC5FB229BF88D737</key>
 		<dict>
@@ -1063,7 +1049,7 @@
 		<key>F5EEC3C893B695228B75C387AA28D608</key>
 		<dict>
 			<key>fileRef</key>
-			<string>721A5DF3BAD0AF173D1C44260997853C</string>
+			<string>C265DA3D31FDD3AF6EC32E1C06DC85DE</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1152,34 +1138,6 @@
 			<string>text.script.sh</string>
 			<key>path</key>
 			<string>Pods-TransitAlarm-resources.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FF0127B6E294696D5A75B64750A1AC44</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>81A2A761E5D0855CF0DD5DF1CCD837A4</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Reveal-iOS-SDK</string>
-			<key>path</key>
-			<string>Reveal-iOS-SDK</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FFB18D8D80B14A670F72274584E0E3C9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SwiftHEXColors-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>

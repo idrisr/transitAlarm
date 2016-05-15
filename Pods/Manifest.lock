@@ -1,13 +1,10 @@
 PODS:
-  - Reveal-iOS-SDK (1.6.2)
   - SwiftHEXColors (1.0.4)
 
 DEPENDENCIES:
-  - Reveal-iOS-SDK
   - SwiftHEXColors
 
 SPEC CHECKSUMS:
-  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
 
 COCOAPODS: 0.39.0
