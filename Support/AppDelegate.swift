@@ -52,17 +52,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
                 let alert = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
 
 
-                // FIXME: down low error
-                // 2016-05-14 22:06:14.499 TransitAlarm[770:35232] _BSMachError: (os/kern) invalid capability (20)
-                // 2016-05-14 22:06:14.502 TransitAlarm[770:35232] _BSMachError: (os/kern) invalid name (15)
-
                 let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (alert) in
-                    do {
-                        self.player.stop()
-                        try self.session.setActive(false)
-                    } catch {
-                        print(error)
-                    }
+                    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                    dispatch_async(dispatch_get_global_queue(priority, 0), {
+                        do {
+                            self.player.stop()
+                            try self.session.setActive(false)
+                        } catch {
+                            print(error)
+                        }
+                    })
                 }
 
                 alert.addAction(cancelAction)
