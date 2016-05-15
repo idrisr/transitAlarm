@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import SwiftHEXColors
 
 class StopMapOverlay: NSObject, MKOverlay {
     var coordinate: CLLocationCoordinate2D

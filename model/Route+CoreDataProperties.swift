@@ -12,7 +12,6 @@
 import Foundation
 import CoreData
 import MapKit
-import SwiftHEXColors
 
 extension Route {
 
@@ -76,7 +75,7 @@ extension Route {
 
     var mapTextColor: UIColor {
         if self.text_color != "" {
-            return UIColor(hexString: self.text_color!)!
+            return UIColor.hexColor(self.text_color!)
         } else {
             return UIColor.whiteColor()
         }
@@ -84,7 +83,7 @@ extension Route {
 
     var mapColor: UIColor {
         if self.color != "" {
-            return UIColor(hexString: self.color!)!
+            return UIColor.hexColor(self.color!)
         } else {
             return UIColor.blueColor()
         }

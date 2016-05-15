@@ -1,6 +1,0 @@
-framework module Pods_TransitAlarm {
-  umbrella header "Pods-TransitAlarm-umbrella.h"
-
-  export *
-  module * { export * }
-}
