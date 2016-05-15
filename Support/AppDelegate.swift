@@ -19,9 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
     let db = "chicago"
     let locationController = LocationController.sharedInstance
     var alertDelegate: AlertDelegate?
-    var player: AVAudioPlayer!
-    var session: AVAudioSession!
-
 
     func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         return true
@@ -35,49 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
         switch (UIApplication.sharedApplication().applicationState) {
             case .Active:
-                do {
-                    AudioServicesPlaySystemSound(4095) // vibrate
-                    self.session = AVAudioSession.sharedInstance()
-
-                    try self.session.setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions.DuckOthers)
-                    try self.session.setActive(true)
-                    let sound = NSBundle.mainBundle().pathForResource("alarm", ofType: "wav")
-                    let url = NSURL(fileURLWithPath: sound!)
-                    self.player = try AVAudioPlayer(contentsOfURL: url)
-                    self.player.play()
-                } catch {
-                    print(error)
-                }
-
-                let alert = UIAlertController(title: notification.alertTitle, message: notification.alertBody, preferredStyle: .Alert)
-
-
-                let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (alert) in
-                    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-                    dispatch_async(dispatch_get_global_queue(priority, 0), {
-                        do {
-                            self.player.stop()
-                            try self.session.setActive(false)
-                        } catch {
-                            print(error)
-                        }
-                    })
-                }
-
-                alert.addAction(cancelAction)
+                let alert = AlertFactory.destinationAlert(notification)
                 self.alertDelegate?.presentAlert(alert, completionHandler: {})
-
-            case .Inactive:
-                break
-
-            case .Background:
+            case .Inactive, .Background:
                 break
         }
     }
 
     // TODO: sometimes gets a Received memory warning
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
-        //FIXME print with new lines between frames
         NSLog("\(NSThread.callStackSymbols().joinWithSeparator("\n"))")
     }
 
@@ -89,10 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     // FIXME: check here that permission was given for alerts
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-    }
-
-    // FIXME: what happens to the alarm in these 4 conditions?
-    func applicationDidEnterBackground(application: UIApplication) {
+        if notificationSettings.types.contains(.Alert) && notificationSettings.types.contains(.Sound) {
+        } else {
+            NSLog("Dont have the right alert permissions")
+        }
     }
 
     // MARK: - Core Data stack

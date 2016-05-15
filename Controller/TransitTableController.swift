@@ -79,7 +79,7 @@ class TransitTableController: NSObject,
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! AgencyTableViewCell
                 var color: UIColor
 
-                // fix me into an enum, please
+                // FIXME: into an enum, please
                 var imageName: String
                 switch agency.name! {
                     case "CTA Bus":
