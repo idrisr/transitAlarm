@@ -9,12 +9,14 @@
 import AVFoundation
 import UIKit
 
-class AlertFactory {
-    // FIXME: probably not the factory pattern. Rename or re-factor(y)
+typealias completionHandler = ( () -> () )? // (⊙)﹏(⊙)
+
+
+class AlertCatalog {
     static var player: AVAudioPlayer!
     static var session: AVAudioSession!
 
-    class func destinationAlert(notification: UILocalNotification) -> UIAlertController {
+    class func destinationAlert(notification: UILocalNotification) -> (UIAlertController, completionHandler) {
         do {
             AudioServicesPlaySystemSound(4095) // vibrate
             self.session = AVAudioSession.sharedInstance()
@@ -44,6 +46,36 @@ class AlertFactory {
         }
 
         alert.addAction(cancelAction)
-        return alert
+        return (alert: alert, completionHandler: nil)
+    }
+
+    class func locationPermission() -> (UIAlertController, completionHandler) {
+        // FIXME, improve this message +
+        // TODO: Deep link to settings
+        let title = "Location Permissions Not Enabled"
+        let message = "Transit Alarm requires access to your location to inform you when your stop is nearing. Go to Settings->Location and enable location for this app for alarms to be set"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(action)
+
+        return (alert: alert, completionHandler: nil)
+    }
+
+    class func notificationPermission() -> (UIAlertController, completionHandler) {
+        // FIXME, improve this message +
+        // TODO: Deep link to settings
+        let title = "Notifications Not Enabled"
+        let message = "Transit Alarm will send you notifications when you set an alarm and your stop is approaching. To allow notifications go to Settings->TransitAlarm"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(action)
+        return (alert: alert, completionHandler: nil)
+    }
+
+    class func stopSetAlert(stop: Stop) -> (UIAlertController, completionHandler) {
+        let title = "Location Alarm Set"
+        let message = "Route: \(stop.route!.long_name!)\nStop: \(stop.name!)"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        return (alert: alert, completionHandler: nil)
     }
 }

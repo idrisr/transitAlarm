@@ -6,6 +6,9 @@
 //  Copyright © 2016 id. All rights reserved.
 //
 
+import Foundation
+
 struct Constants {
     static let geoFenceMeters: Double = 300
+    static let alertTimeout: NSTimeInterval = 2.2
 }

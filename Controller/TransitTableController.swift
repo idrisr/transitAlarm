@@ -20,6 +20,7 @@ extension UIColor {
 }
 
 protocol TransitDataStopUpdate {
+    // FIXME: change name to match the fact only really doing table updates
     func setAlertFor(stop: Stop, tableView: UITableView)
 }
 
@@ -41,7 +42,7 @@ class TransitTableController: NSObject,
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var moc: NSManagedObjectContext?
 
-    var stopAlertPopupDelegate :StopAlertPopupDelegate?
+    var alertDelegate: AlertDelegate?
     var agencys = [Agency]()
     var routes = [Route]()
     var stops = [Stop]()
@@ -185,15 +186,14 @@ class TransitTableController: NSObject,
                     self.mapDelegate?.removeStopPin()
                 } else {
                     tableUpdates = stopManyToOne(indexPath)
-                    self.mapDelegate?.drawStop(self.stops.first!)
-                    self.mapDelegate?.setCenterOnCoordinate(self.stops.first!.location2D, animated: true)
 
-                    // should call the same method the delegates are to set the stop
+                    // FIXME: should call the same method the delegates are to set the stop
                     // UG.LY.
                     didSetStop = true
                     self.updateTableWith(tableUpdates, tableView: tableView)
                     let stop = self.stops.first!
                     self.setAlertFor(stop, tableView: tableView)
+                    self.locationDelegate?.startMonitoringRegionFor(stop)
                 }
             }
 
@@ -212,8 +212,6 @@ class TransitTableController: NSObject,
 
     // MARK: TransitDataStopUpdate
     func setAlertFor(stop: Stop, tableView: UITableView) {
-        self.stopAlertPopupDelegate?.showAlert(stop)
-
         var tableUpdates = TableUpdates()
 
         // remove all agencys
@@ -246,7 +244,6 @@ class TransitTableController: NSObject,
         tableUpdates.sectionsToInsert = NSIndexSet(indexesInRange: NSMakeRange(tableView.numberOfSections, additionalSections))
 
         self.sections = ["Agency", "Routes", "Stops"]
-        self.locationDelegate?.startMonitoringRegionFor(self.stops.first!)
         self.updateTableWith(tableUpdates, tableView: tableView)
     }
 
@@ -403,9 +400,6 @@ class TransitTableController: NSObject,
             }
         }
         self.stops.removeObjectsInArray(stopsToRemove)
-
-        // start monitoring region
-        self.locationDelegate?.startMonitoringRegionFor(self.stops.first!)
 
         return tableUpdates
     }
