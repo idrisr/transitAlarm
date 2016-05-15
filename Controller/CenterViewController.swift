@@ -18,13 +18,9 @@ protocol TableSizeDelegate {
     func adjustTableSize()
 }
 
-// FIXME: make part of AlertDelegate?
-protocol StopAlertPopupDelegate {
-    func showAlert(stop: Stop)
-}
-
 protocol AlertDelegate {
-    func presentAlert(alert: UIAlertController, completionHandler: () -> ())
+    func presentAlert(alert: UIAlertController, completion: completionHandler)
+    func presentAlert(alert:UIAlertController, completion: completionHandler, timeout: NSTimeInterval)
 }
 
 class CenterViewController: UIViewController {
@@ -64,7 +60,7 @@ class CenterViewController: UIViewController {
 
         transitTable.locationDelegate = locationController
         transitTable.tableSizeDelegate = self
-        transitTable.stopAlertPopupDelegate = self
+        transitTable.alertDelegate = self
 
         locationController.alertDelegate = self
 
@@ -212,38 +208,29 @@ class CenterViewController: UIViewController {
 
 // MARK: AlertDelegate
 extension CenterViewController: AlertDelegate {
-    func presentAlert(alert: UIAlertController, completionHandler: () -> ()) {
-        self.presentViewController(alert, animated: true, completion: nil)
+    func presentAlert(alert: UIAlertController, completion: completionHandler) {
+        self.presentViewController(alert, animated: true, completion: completion)
     }
-}
 
-// MARK: StopAlertPopupDelegate
-extension CenterViewController: StopAlertPopupDelegate {
-    //FIXME: dont present a 2nd alert controller if already showing one
-    //    2016-05-12 14:42:54.218 TransitAlarm[64076:38266662] Warning: Attempt to present <UIAlertController: 0x7fb530418500>  on <TransitAlarm.CenterViewController: 0x7fb529e4da70> which is already presenting <UIAlertController: 0x7fb5303cbb50>
-
-    func showAlert(stop: Stop) {
-        let title = "Location Alarm Set"
-        let message = "Route: \(stop.route!.long_name!)\nStop: \(stop.name!)"
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: true, completion: nil)
-
-        let delay = 2.2 * Double(NSEC_PER_SEC)
+    func presentAlert(alert:UIAlertController, completion: completionHandler, timeout: NSTimeInterval) {
+        self.presentAlert(alert, completion: completion)
+        let delay = timeout * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue(), {
             self.dismissViewControllerAnimated(true, completion: nil)
         })
+
     }
 }
 
 // MARK: StopDelegate
 extension CenterViewController: StopDelegate {
     func setAlarmForStop(stop: Stop) {
-        self.stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
-        self.mapDelegate!.clearMap()
-        self.mapDelegate!.drawStop(stop)
+        stopUpdateDelegate!.setAlertFor(stop, tableView: self.tableView)
+        mapDelegate!.clearMap()
+        mapDelegate!.drawStop(stop)
         locationController.startMonitoringRegionFor(stop) // FIXME: should happen via delegate??
-        self.mapDelegate!.setCenterOnCoordinate(stop.location2D, animated: true)
+        mapDelegate!.setCenterOnCoordinate(stop.location2D, animated: true)
     }
 }
 

@@ -29,11 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         self.locationController.stopMonitoringRegion()
-
         switch (UIApplication.sharedApplication().applicationState) {
             case .Active:
-                let alert = AlertFactory.destinationAlert(notification)
-                self.alertDelegate?.presentAlert(alert, completionHandler: {})
+                let (alert, completion) = AlertCatalog.destinationAlert(notification)
+                self.alertDelegate?.presentAlert(alert, completion: completion)
             case .Inactive, .Background:
                 break
         }
@@ -52,9 +51,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     // FIXME: check here that permission was given for alerts
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        if notificationSettings.types.contains(.Alert) && notificationSettings.types.contains(.Sound) {
-        } else {
-            NSLog("Dont have the right alert permissions")
+        if !self.notificationSettings {
+            let (alert, completion) = AlertCatalog.notificationPermission()
+            self.alertDelegate?.presentAlert(alert, completion: completion)
+        }
+    }
+
+    var notificationSettings: Bool {
+        get {
+            let notificationSettings = UIApplication.sharedApplication().currentUserNotificationSettings()!
+            return notificationSettings.types.contains(.Alert) && notificationSettings.types.contains(.Sound)
         }
     }
 

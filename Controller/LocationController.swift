@@ -62,7 +62,7 @@ class LocationController: NSObject {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alert.addAction(action)
-        self.alertDelegate?.presentAlert(alert, completionHandler: {})
+        self.alertDelegate?.presentAlert(alert, completion:nil)
     }
 }
 
@@ -85,7 +85,7 @@ extension LocationController: CLLocationManagerDelegate {
     }
 
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        // FIXME: do something
+        NSLog("\(error)")
     }
 }
 
@@ -98,23 +98,33 @@ extension LocationController: LocationControllerDelegate {
     }
 
     func startMonitoringRegionFor(stop:Stop) {
-        // can also create a UILocationNotification that triggers on region
-        // https://developer.apple.com/library/ios/documentation/iPhone/Reference/UILocalNotification_Class/index.html#//apple_ref/occ/instp/UILocalNotification/region
+        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+            let (alert, completion) = AlertCatalog.locationPermission()
+            self.alertDelegate?.presentAlert(alert, completion: completion)
+            return
+        }
+
+        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+            let (alert, completion) = AlertCatalog.locationPermission()
+            self.alertDelegate?.presentAlert(alert, completion: completion)
+            return
+        }
+
+        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+        if !appDelegate.notificationSettings {
+            let (alert, completion) = AlertCatalog.notificationPermission()
+            self.alertDelegate?.presentAlert(alert, completion: completion)
+            return
+        }
+
+        let (alert, completion) = AlertCatalog.stopSetAlert(stop)
+        self.alertDelegate?.presentAlert(alert, completion: completion, timeout: Constants.alertTimeout)
 
         let notification = makeUILocalNotificationFor(stop)
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-
         self.stop = stop
-        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
-            showAlert("Error", message: "Geofencing not supported on device.")
-            return
-        } else if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
-           // FIXME, improve this message
-           // Deep link to settings
-            // FIXME: use alert delegate
-           showAlert("Error", message: "Location always on not enabled, transit stop notification can not be sent")
-           return
-        }
         self.mapDelegate?.addOverlay(GeoFence(stop: stop).overlay)
+        self.mapDelegate?.drawStop(stop)
+        self.mapDelegate?.setCenterOnCoordinate(stop.location2D, animated: true)
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
 }
