@@ -77,7 +77,10 @@ extension LocationController: CLLocationManagerDelegate {
     }
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        // FIXME: handle me
+        if status != .AuthorizedAlways {
+            let (alert, completionHandler) = AlertCatalog.locationPermission()
+            self.alertDelegate?.presentAlert(alert, completion: completionHandler)
+        }
     }
 
     func locationManagerShouldDisplayHeadingCalibration(manager: CLLocationManager) -> Bool {
