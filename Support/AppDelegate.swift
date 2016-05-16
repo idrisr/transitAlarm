@@ -49,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
         return true
     }
 
-    // FIXME: check here that permission was given for alerts
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         if !self.notificationSettings {
             let (alert, completion) = AlertCatalog.notificationPermission()

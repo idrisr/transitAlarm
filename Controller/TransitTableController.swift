@@ -20,7 +20,7 @@ extension UIColor {
 }
 
 protocol TransitDataStopUpdate {
-    // FIXME: change name to match the fact only really doing table updates
+    // TODO: change name to match the fact only really doing table updates
     func setAlertFor(stop: Stop, tableView: UITableView)
 }
 
@@ -80,7 +80,7 @@ class TransitTableController: NSObject,
                 let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! AgencyTableViewCell
                 var color: UIColor
 
-                // FIXME: into an enum, please
+                // TODO: into an enum, please
                 var imageName: String
                 switch agency.name! {
                     case "CTA Bus":
@@ -187,7 +187,7 @@ class TransitTableController: NSObject,
                 } else {
                     tableUpdates = stopManyToOne(indexPath)
 
-                    // FIXME: should call the same method the delegates are to set the stop
+                    // TODO: should call the same method the delegates are to set the stop
                     // UG.LY.
                     didSetStop = true
                     self.updateTableWith(tableUpdates, tableView: tableView)
