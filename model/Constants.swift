@@ -10,5 +10,5 @@ import Foundation
 
 struct Constants {
     static let geoFenceMeters: Double = 300
-    static let alertTimeout: NSTimeInterval = 2.2
+    static let alertTimeout: NSTimeInterval = 4.0
 }
