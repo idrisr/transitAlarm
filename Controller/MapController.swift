@@ -22,8 +22,7 @@ protocol MapDelegate {
     func setRegion(coordinateRegion: MKCoordinateRegion, animated: Bool)
 }
 
-class MapController: NSObject, MKMapViewDelegate, MapDelegate {
-
+class MapController: NSObject {
     let mapView: MKMapView
 
     init(mapView: MKMapView) {
@@ -37,7 +36,54 @@ class MapController: NSObject, MKMapViewDelegate, MapDelegate {
         self.mapView.userTrackingMode = .FollowWithHeading
     }
 
-    // MARK: MKMapViewDelegate
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        } else if annotation is MKPointAnnotation {
+            let flag = MKAnnotationView()
+            flag.image = UIImage(named: "checkeredFlag")
+            return flag
+        } else {
+            return nil
+        }
+    }
+
+    // MARK: map helpers
+    private func addStopPin(stop: Stop) {
+        let stopAnnotation = MKPointAnnotation()
+        stopAnnotation.coordinate = stop.location2D
+        self.mapView.addAnnotation(stopAnnotation)
+    }
+
+    private func removeRouteFromMap() {
+        for overlay in self.mapView.overlays {
+            if overlay is RouteLine  {
+                self.mapView.removeOverlay(overlay)
+            }
+        }
+        self.removeStopOverlays()
+        self.removeStopAnnotations()
+    }
+
+    private func removeStopOverlays() {
+        for overlay in self.mapView.overlays {
+            if overlay is StopMapOverlay {
+                self.mapView.removeOverlay(overlay)
+            }
+        }
+    }
+
+    private func removeStopAnnotations() {
+        for annotation in self.mapView.annotations {
+            if annotation is StopAnnotation {
+                self.mapView.removeAnnotation(annotation)
+            }
+        }
+    }
+}
+
+// MARK: MKMapViewDelegate
+extension MKMapViewDelegate {
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is RouteLine {
             let renderer = MKPolylineRenderer(overlay: overlay)
@@ -54,20 +100,10 @@ class MapController: NSObject, MKMapViewDelegate, MapDelegate {
             return circleRenderer
         }
     }
+}
 
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        } else if annotation is MKPointAnnotation {
-            let flag = MKAnnotationView()
-            flag.image = UIImage(named: "checkeredFlag")
-            return flag
-        } else {
-            return nil
-        }
-    }
-
-    // MARK: MapDelegate
+// MARK: MapDelegate
+extension MapController: MapDelegate {
     func setCenterOnCoordinate(coordinate:CLLocationCoordinate2D, animated: Bool) {
         UIView.animateWithDuration(1.0) {
             self.mapView.setCenterCoordinate(coordinate, animated: animated)
@@ -113,38 +149,5 @@ class MapController: NSObject, MKMapViewDelegate, MapDelegate {
 
     func setRegion(coordinateRegion: MKCoordinateRegion, animated: Bool) {
         self.mapView.setRegion(coordinateRegion, animated: animated)
-    }
-
-    // MARK: map helpers
-    private func addStopPin(stop: Stop) {
-        let stopAnnotation = MKPointAnnotation()
-        stopAnnotation.coordinate = stop.location2D
-        self.mapView.addAnnotation(stopAnnotation)
-    }
-
-    private func removeRouteFromMap() {
-        for overlay in self.mapView.overlays {
-            if overlay is RouteLine  {
-                self.mapView.removeOverlay(overlay)
-            }
-        }
-        self.removeStopOverlays()
-        self.removeStopAnnotations()
-    }
-
-    private func removeStopOverlays() {
-        for overlay in self.mapView.overlays {
-            if overlay is StopMapOverlay {
-                self.mapView.removeOverlay(overlay)
-            }
-        }
-    }
-
-    private func removeStopAnnotations() {
-        for annotation in self.mapView.annotations {
-            if annotation is StopAnnotation {
-                self.mapView.removeAnnotation(annotation)
-            }
-        }
     }
 }
