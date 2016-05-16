@@ -24,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
         return true
     }
 
-    // FIXME -- what is this error:  shows up from device
-    // Error Domain=NSOSStatusErrorDomain Code=-50 "(null)"
-
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         self.locationController.stopMonitoringRegion()
         switch (UIApplication.sharedApplication().applicationState) {
@@ -40,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
 
     // TODO: sometimes gets a Received memory warning
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
+        // shows up when rapidly zooming map
         NSLog("\(NSThread.callStackSymbols().joinWithSeparator("\n"))")
     }
 
