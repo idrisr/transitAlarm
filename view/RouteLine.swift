@@ -11,5 +11,6 @@ import MapKit
 import UIKit
 
 class RouteLine: MKPolyline {
+    // FIXME: create better renderer so line isnt so thick at low zooms
     var color: UIColor?
 }
