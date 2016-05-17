@@ -32,13 +32,23 @@ class MapController: NSObject {
 
         // MKMapRect
         // MKMapPoint x,y on map - MKMapPointForCoordinate
-        // MKMapSize 
+
+        // MKCoordinateRegion
+        // MKCoordinateSpan
+        // MKCoor
+        // MKMapsize
 
         self.mapView = mapView
         self.mapView.showsUserLocation = true
         self.mapView.showsBuildings = false
         self.mapView.showsPointsOfInterest = false
         self.mapView.userTrackingMode = .FollowWithHeading
+
+
+//        self.mapView.setVisibleMapRect(<#T##mapRect: MKMapRect##MKMapRect#>, animated: true)
+//        MKMapRect
+        let point = MKMapPoint(
+
     }
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
