@@ -12,13 +12,8 @@ import UIKit
 protocol LocationControllerDelegate {
     func stopMonitoringRegion()
     func startMonitoringRegionFor(stop: Stop)
+    var isMonitoring: Bool {get}
 }
-
-// FIXME: Simulator warning:
-// Trying to start MapKit location updates without prompting for location authorization. Must call -[CLLocationManager requestWhenInUseAuthorization] or -[CLLocationManager requestAlwaysAuthorization] first.
-
-// FIXME: uibackgroundmodes core location
-// FIXME: significant location changes
 
 class LocationController: NSObject {
     let locationManager = CLLocationManager()
@@ -31,6 +26,7 @@ class LocationController: NSObject {
     var prevTranslation: CGFloat = 0
     var currentLocation = CLLocation()
     var didCenterMap = false
+    var isMonitoring = false
 
     // FIXME: use something like a dispatch once to prevent multiple initialization
     static let sharedInstance = LocationController()
@@ -41,11 +37,6 @@ class LocationController: NSObject {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
-    
-    func saveFavoriteFor(stop: Stop) {
-        // save to NSUserDefaults
-    }
-
 
     private func makeUILocalNotificationFor(stop: Stop) -> UILocalNotification {
         let notification = UILocalNotification()
@@ -69,9 +60,10 @@ class LocationController: NSObject {
 // MARK: CLLocationManagerDelegate
 extension LocationController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        NSLog("\(locations)") // for seeing whats up in the background / asleep
         currentLocation = locations.first!
         if !self.didCenterMap {
-            self.mapDelegate?.setCenterOnCoordinate(self.currentLocation.coordinate, animated: true)
+            self.mapDelegate?.setCenterOnCoordinate(self.currentLocation.coordinate, animated: true) // for seeing whats up in the background / asleep
             self.didCenterMap  = !self.didCenterMap
         }
     }
@@ -98,6 +90,11 @@ extension LocationController: LocationControllerDelegate {
     func stopMonitoringRegion() {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         self.mapDelegate?.removeStopPin()
+        self.isMonitoring = false
+
+        if CLLocationManager.significantLocationChangeMonitoringAvailable() {
+            self.locationManager.startMonitoringSignificantLocationChanges()
+        }
     }
 
     func startMonitoringRegionFor(stop:Stop) {
@@ -120,6 +117,10 @@ extension LocationController: LocationControllerDelegate {
             return
         }
 
+        if CLLocationManager.significantLocationChangeMonitoringAvailable() {
+            self.locationManager.stopMonitoringSignificantLocationChanges()
+        }
+
         let (alert, completion) = AlertCatalog.stopSetAlert(stop)
         self.alertDelegate?.presentAlert(alert, completion: completion, timeout: Constants.alertTimeout)
 
@@ -129,5 +130,6 @@ extension LocationController: LocationControllerDelegate {
         self.mapDelegate?.drawStop(stop)
         self.mapDelegate?.setCenterOnCoordinate(stop.location2D, animated: true)
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        self.isMonitoring = true
     }
 }

@@ -12,6 +12,7 @@ import MapKit
 
 // TODO: protocol extension of MKMapViewDelegate good idea?
 // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID521
+
 protocol MapDelegate {
     func drawRoute(route: Route) // draws routes, no destination set
     func drawStop(stop: Stop)    // sets destination
@@ -28,6 +29,10 @@ class MapController: NSObject {
     init(mapView: MKMapView) {
         // FIXME: set maprect at startup so its the right zoom level
         // see: func setVisibleMapRect(_ mapRect: MKMapRect, animated animate: Bool)
+
+        // MKMapRect
+        // MKMapPoint x,y on map - MKMapPointForCoordinate
+        // MKMapSize 
 
         self.mapView = mapView
         self.mapView.showsUserLocation = true
@@ -83,7 +88,7 @@ class MapController: NSObject {
 }
 
 // MARK: MKMapViewDelegate
-extension MKMapViewDelegate {
+extension MapController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is RouteLine {
             let renderer = MKPolylineRenderer(overlay: overlay)

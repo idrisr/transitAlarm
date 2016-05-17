@@ -13,6 +13,8 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, AVAudioPlayerDelegate {
+    // add nslogs for background and foreground moves to get into the console log
+    // what are the different region meanings
 
     var window: UIWindow?
     let model = "transit"
