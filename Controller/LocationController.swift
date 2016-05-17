@@ -36,6 +36,8 @@ class LocationController: NSObject {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.pausesLocationUpdatesAutomatically = true;
+        locationManager.activityType = .OtherNavigation
     }
 
     private func makeUILocalNotificationFor(stop: Stop) -> UILocalNotification {
